@@ -1,0 +1,46 @@
+T'
+      Size = 1
+    end
+    object QBrowseGRUP: TStringField
+      FieldName = 'GRUP'
+      Size = 1
+    end
+    object QBrowseKD_DIV: TStringField
+      FieldName = 'KD_DIV'
+      Size = 5
+    end
+    object QBrowseNAMA_DIVISI: TStringField
+      FieldName = 'NAMA_DIVISI'
+      Size = 50
+    end
+    object QBrowseKODE_BRG: TStringField
+      FieldName = 'KODE_BRG'
+      Size = 50
+    end
+    object QBrowseNAMA_BRG: TStringField
+      FieldName = 'NAMA_BRG'
+      Required = True
+      Size = 50
+    end
+    object QBrowseSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QBrowseQTY1: TFloatField
+      FieldName = 'QTY1'
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QBrowseLOKASI: TStringField
+      FieldName = 'LOKASI'
+      Size = 12
+    end
+    object QBrowseKD_REK_GL1: TStringField
+      FieldName = 'KD_REK_GL1'
+      Size = 22
+    end
+    object QBrowseHRG: TFloatField
+      FieldName = 'HRG'
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QBrowseKD_REK_GL: TStringField
+      FieldName = 'KD_REK_G

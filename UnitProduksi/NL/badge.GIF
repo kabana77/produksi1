@@ -1,0 +1,37 @@
+unit SaldoRAB;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, QRCtrls, Wwdatsrc, OracleData, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, StdCtrls, QuickRpt, ComCtrls, Mask, wwdbedit,
+  Wwdbspin, Buttons, ExtCtrls, wwmonthcalendar, wwdbdatetimepicker, Oracle,
+  DBCtrls, wwdblook;
+
+type
+  TSaldoRABFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    Panel3: TPanel;
+    BitBtn1: TBitBtn;
+    ECari: TEdit;
+    dsQBrowse: TwwDataSource;
+    QuickRep1: TQuickRep;
+    ColumnHeaderBand1: TQRBand;
+    DetailBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    QRDBText3: TQRDBText;
+    QRSysData1: TQRSysData;
+    QRDBText6: TQRDBText;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel4: TQRLabel;
+    QRLabel6: TQRLabel;
+    QRLabel9: TQRLabel;
+    Label15: TLabe

@@ -1,0 +1,195 @@
+   Size = 30
+    end
+    object QTransaksiDIV1: TStringField
+      FieldName = 'DIV1'
+      Size = 30
+    end
+    object QTransaksiDIV2: TStringField
+      FieldName = 'DIV2'
+      Size = 30
+    end
+    object QTransaksiDIV3: TStringField
+      FieldName = 'DIV3'
+      Size = 30
+    end
+    object QTransaksiDIV4: TStringField
+      FieldName = 'DIV4'
+      Size = 30
+    end
+    object QTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 30
+    end
+    object QTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 30
+    end
+    object QTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 30
+    end
+    object QTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 30
+    end
+    object QTransaksiDISTRIBUSI: TStringField
+      FieldName = 'DISTRIBUSI'
+      Size = 80
+    end
+  end
+  object dsQTransaksi: TwwDataSource
+    DataSet = QTransaksi
+    Left = 40
+    Top = 88
+  end
+  object FNo_Urut: TOracleDataSet
+    SQL.Strings = (
+      'select ipisma_db5.fno_urut_jk(:pkode,:ptgl) as no_nota from dual')
+    Variables.Data = {
+      0300000002000000060000003A504B4F44450500000004000000393931000000
+      0000050000003A5054474C0C00000007000000786C020101010100000000}
+    QBEDefinition.QBEFieldDefs = {0400000001000000070000004E4F5F4E4F5441010000000000}
+    BeforeQuery = FNo_UrutBeforeQuery
+    Session = DMFrm.OS
+    Left = 8
+    Top = 48
+    object FNo_UrutNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 4000
+    end
+  end
+  object LookMaster: TwwLookupDialog
+    Selected.Strings = (
+      'NO_NOTA'#9'16'#9'NO NOTA'#9'F'
+      'TGL'#9'12'#9'TGL'#9#9
+      'STATUS'#9'10'#9'STATUS'#9#9
+      'ISPOST'#9'1'#9'POST'#9#9
+      'GRUP'#9'3'#9'GRUP'#9'F'
+      'SHIFT'#9'3'#9'SHIFT'#9'F')
+    GridTitleAlignment = taLeftJustify
+    GridColor = clWhite
+    GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+    LookupTable = QMaster
+    Caption = 'Lookup'
+    MaxWidth = 0
+    MaxHeight = 209
+    CharCase = ecNormal
+    Left = 49
+    Top = 24
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db5.vrekap_kirim_ke_jahit_kemas'
+      ':myparam'
+      '')
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D01000000110000006F726465
+      72206279204E4F5F4E4F54410000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000E000000070000004E4F5F4E4F54410100000000000A00000054474C
+      5F494E534552540100000000000A0000004F50525F494E534552540100000000
+      00060000004E4F5F5245470100000000000300000054474C0100000000000400
+      0000475255500100000000000500000053484946540100000000000A0000004B
+      4F4E535452554B534901000000000005000000434F52414B0100000000000600
+      000053415455414E010000000000050000004A454E4953010000000000020000
+      00424B0100000000000200000042530100000000000500000050415241480100
+      00000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    Session = DMFrm.OS
+    Left = 12
+    Top = 305
+    object QBrowseNO_REG: TFloatField
+      FieldName = 'NO_REG'
+      Required = True
+    end
+    object QBrowseTGL: TDateTimeField
+      FieldName = 'TGL'
+      Required = True
+    end
+    object QBrowseNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+    end
+    object QBrowseGRUP: TStringField
+      FieldName = 'GRUP'
+      Required = True
+      Size = 3
+    end
+    object QBrowseSHIFT: TStringField
+      FieldName = 'SHIFT'
+      Required = True
+      Size = 3
+    end
+    object QBrowseKONSTRUKSI: TStringField
+      FieldName = 'KONSTRUKSI'
+      Size = 30
+    end
+    object QBrowseCORAK: TStringField
+      FieldName = 'CORAK'
+      Size = 30
+    end
+    object QBrowseBK: TFloatField
+      FieldName = 'BK'
+    end
+    object QBrowseBS: TFloatField
+      FieldName = 'BS'
+    end
+    object QBrowsePARAH: TFloatField
+      FieldName = 'PARAH'
+    end
+    object QBrowseSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 10
+    end
+    object QBrowseJENIS: TStringField
+      FieldName = 'JENIS'
+      Size = 10
+    end
+    object QBrowseTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QBrowseOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 61
+    Top = 304
+  end
+  object QBrowseTotal: TOracleDataSet
+    SQL.Strings = (
+      
+        'select sum(bk) as bk, sum(bs) as bs, sum(parah) as parah from ip' +
+        'isma_db5.vrekap_kirim_ke_jahit_kemas'
+      ':myparam'
+      '')
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D01000000110000006F726465
+      72206279204E4F5F4E4F54410000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000300000002000000424B010000000000020000004253010000000000
+      050000005041524148010000000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    Session = DMFrm.OS
+    Left = 388
+    Top = 217
+    object QBrowseTotalBK: TFloatField
+      FieldName = 'BK'
+    end
+    object QBrowseTotalBS: TFloatField
+      FieldName = 'BS'
+    end
+    object QBrowseTotalPARAH: TFloatField
+      FieldName = 'PARAH'
+    end
+  end
+  object QTotal: TOracleDataSet
+    SQL.Strings = (
+      
+        'select sum(qty) as bk, sum(qty2) as bs, sum(qty3) as parah from ' +
+        'ipisma_db5.bukti2_detail a'
+      'where a.no_reg = :no_reg')
+    Variables.Data = {0300000001000000070000003A4E4F5F5245470300000000000000000000

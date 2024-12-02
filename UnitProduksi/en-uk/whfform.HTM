@@ -1,0 +1,119 @@
+    QTotal.Close;
+      QTotal.SetVariable('pawal',vTglAwal.Date);
+      QTotal.SetVariable('pakhir',vTglAkhir.Date);
+      QTotal.Open;
+      wwDBGrid2.ColumnByName('QTY1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotalGULUNG_IN.AsFloat);
+      wwDBGrid2.ColumnByName('QTY2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotalMTR_IN.AsFloat);
+      }
+    end;
+end;
+
+procedure THasilJetDyeingFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if QBrowse2.FieldByName(AFieldName).FieldKind=fkData then
+  begin
+    vorder:='order by '+AFieldName;
+    BtnOkClick(Nil);
+  end
+  else
+    ShowMessage('Maaf, tidak bisa Urut menurut kolom '+AFieldName+' !');
+end;
+
+procedure THasilJetDyeingFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LabelBanner.Caption:='Record ke '+IntToStr(QBrowse2.RecNo)+' dari '+FormatFloat('#,#',QBrowse2.RecordCount)+' Records';
+end;
+
+procedure THasilJetDyeingFrm.BtnClose1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure THasilJetDyeingFrm.BtnClose2Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure THasilJetDyeingFrm.vTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.DateTime:=EndOfTheMonth(vTglAwal.Date);
+end;
+
+procedure THasilJetDyeingFrm.wwDBSpinLine2Change(Sender: TObject);
+begin
+    wwDBGrid2.RowHeightPercent:=Round(wwDBSpinLine2.Value);
+end;
+
+procedure THasilJetDyeingFrm.BtnFindClick(Sender: TObject);
+begin
+{	wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowse.QBEMode then
+  begin
+    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowse.QBEMode:=TRUE;
+  end
+  else
+    QBrowse.ClearQBE;}
+
+  wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowse2.QBEMode then
+  begin
+    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowse2.QBEMode:=TRUE;
+  end
+  else
+    QBrowse2.ClearQBE;
+end;
+
+procedure THasilJetDyeingFrm.BtnOk2Click(Sender: TObject);
+begin
+{  if QBrowse.QBEMode then
+  begin
+    QBrowse.ExecuteQBE;
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+  end; }
+
+  if QBrowse2.QBEMode then
+  begin
+    QBrowse2.ExecuteQBE;
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+  end;
+end;
+
+procedure THasilJetDyeingFrm.ppHeaderBand1BeforePrint(Sender: TObject);
+begin
+  ppNo.AsInteger:=0;
+end;
+
+procedure THasilJetDyeingFrm.BtnPrintBrowseClick(Sender: TObject);
+begin
+  if vTglAwal.Date>vTglAkhir.DateTime then
+    ShowMessage('Tgl. Akhir harus lebih besar dari Tgl. Awal !')
+    else
+    begin
+      ppReportBrowse.Print;
+    end;
+end;
+
+procedure THasilJetDyeingFrm.Button1Click(Sender: TObject);
+begin
+  ppDesigner1.ShowModal;
+end;
+
+procedure THasilJetDyeingFrm.BtnDesign2Click(Sender: TObject);
+begin
+  ppDesigner1.ShowModal;
+end;
+
+procedure THasilJetDyeingFrm.ppTitleBand1BeforePrint(Sender: TObject);
+begin
+  ppNamaLaporan.Caption:=Caption;
+  ppNo2.AsInteger:=0;
+  ppPeriode.Caption:=vTglAwal.Text+' s/d '+vTglAkhir.Text;
+  DMFrm.QTime.Close;
+  DMFrm.QTime.Open;
+  ppUserCetak.Caption:=DMFrm.QTimeVUSER_CETAK.AsString;
+end;
+
+procedure THasilJetDyeingFrm.wwDBSpinLine

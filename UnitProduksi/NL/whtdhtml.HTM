@@ -1,0 +1,39 @@
+      end;
+end;
+
+procedure TBenangGreyFrm.wwDBGrid1DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.EditFrame.NonFocusFontColor:=clBlack;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+end;
+
+procedure TBenangGreyFrm.QMasterNewRecord(DataSet: TDataSet);
+begin
+  QMasterKD_JNS_ITEM.AsString:='1';
+  QMasterKD_KEL.AsString:='01';
+  QMasterKD_SATUAN.AsString:='04';
+   QMasterICC.AsString:='0';
+  QMasterQty.AsString:='0';
+end;
+
+procedure TBenangGreyFrm.wwDBGrid1CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+    if (Sender as TwwDBGrid).ColumnByName(Field.FieldName).ReadOnly then
+    begin
+      ABrush.Color:=DMFrm.vclGridRead;
+      AFont.Color:=DMF

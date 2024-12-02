@@ -1,0 +1,39 @@
+s = True
+        DisableThemesInTitle = True
+        ControlType.Strings = (
+          'ISAKTIF;CheckBox;1;0'
+          'ID_SUB_BAG;CustomEdit;LookBagian;F'
+          'ID_HAK;CustomEdit;LookJnsMenu;F')
+        PictureMasks.Strings = (
+          'ID_BAG'#9'*2{#,&}'#9'T'#9'T'
+          'KD_JNS_ITEM'#9'#,&'#9'T'#9'T'
+          'KD_SATUAN'#9'#,&'#9'T'#9'T'
+          'ID_USER'#9'*3{&,#}'#9'T'#9'T')
+        Selected.Strings = (
+          'NO_NOTA'#9'14'#9'Nomer'#9'F'#9'NOTA'
+          'NO_REG'#9'7'#9'Reg'#9'F'#9'NOTA'
+          'TGL'#9'10'#9'Tanggal'#9'F'#9'NOTA'
+          'GRUP'#9'8'#9'GRUP'#9'F'
+          'SHIFT'#9'5'#9'SHIFT'#9'F'
+          'JENIS'#9'8'#9'JENIS'#9'F'
+          'KONSTRUKSI'#9'16'#9'Konstruksi'#9'F'#9'PALEKAT'
+          'CORAK'#9'6'#9'Corak'#9'F'#9'PALEKAT'
+          'SATUAN'#9'10'#9'SATUAN'#9'F'
+          'BK'#9'10'#9'BK'#9'F'#9'MUTU'
+          'BS'#9'10'#9'BS'#9'F'#9'MUTU'
+          'PARAH'#9'10'#9'PARAH'#9'F'#9'MUTU'
+          'TGL_INSERT'#9'14'#9'Tanggal'#9'F'#9'OPERATOR INPUT'
+          'OPR_INSERT'#9'12'#9'Nama'#9'F'#9'OPERATOR INPUT')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Pismatex Master'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQBrowse
+        Font.Charset = DEF

@@ -1,0 +1,182 @@
+
+            TabOrder = 2
+          end
+          object wwDBEdit1: TwwDBEdit
+            Left = 8
+            Top = 24
+            Width = 169
+            Height = 19
+            Anchors = [akTop, akRight]
+            DataField = 'NO_BUKTI'
+            DataSource = dsQMaster
+            ReadOnly = True
+            TabOrder = 0
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object wwDBComboBox1: TwwDBComboBox
+            Left = 624
+            Top = 104
+            Width = 33
+            Height = 19
+            ShowButton = True
+            Style = csDropDown
+            MapList = False
+            AllowClearKey = False
+            DataField = 'GRUP'
+            DataSource = dsQMaster
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              'A'
+              'B'
+              'C'
+              'D'
+              'E'
+              'F')
+            ItemIndex = 0
+            ReadOnly = True
+            Sorted = False
+            TabOrder = 4
+            UnboundDataType = wwDefault
+          end
+          object wwDBComboBox2: TwwDBComboBox
+            Left = 584
+            Top = 104
+            Width = 33
+            Height = 19
+            ShowButton = True
+            Style = csDropDown
+            MapList = False
+            AllowClearKey = False
+            DataField = 'SHIFT'
+            DataSource = dsQMaster
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              '0'
+              '1'
+              '2'
+              '3'
+              '4')
+            ItemIndex = 1
+            ReadOnly = True
+            Sorted = False
+            TabOrder = 3
+            UnboundDataType = wwDefault
+          end
+          object wwDBLookupComboDlg1: TwwDBLookupComboDlg
+            Left = 192
+            Top = 24
+            Width = 65
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'KD_DIV'#9'5'#9'KODE'#9#9
+              'LNAMA_DIVISI'#9'40'#9'DIVISI'#9#9)
+            DataField = 'KD_DIV'
+            DataSource = dsQMaster
+            LookupTable = DMFrm.QDivisi
+            LookupField = 'KD_DIV'
+            TabOrder = 1
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+          end
+          object LookRekening2: TwwDBLookupComboDlg
+            Left = 456
+            Top = 38
+            Width = 105
+            Height = 19
+            ControlType.Strings = (
+              'ISDETAIL;CheckBox;1;0')
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Look Up'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'KD_REK_GL'#9'15'#9'KODE'#9'F'
+              'NAMA_REKENING'#9'50'#9'NAMA REKENING'#9'F'
+              'ISDETAIL'#9'5'#9'ISDETAIL'#9#9)
+            DataField = 'KD_REK_GL'
+            DataSource = dsQMaster
+            LookupTable = DMFrm.RekGL
+            LookupField = 'KD_REK_GL'
+            TabOrder = 6
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+            UseTFields = False
+            OnEnter = LookRekening1Enter
+          end
+        end
+        object PanelDetail: TPanel
+          Left = 0
+          Top = 178
+          Width = 920
+          Height = 403
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 2
+          object wwDBGrid1: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 920
+            Height = 403
+            ControlType.Strings = (
+              'KD_REK_GL;CustomEdit;LookRekening1;F')
+            Selected.Strings = (
+              'KD_ITEM'#9'9'#9'KODE'#9'T'
+              'KETERANGAN'#9'40'#9'ITEM'#9'T'
+              'LSATUAN'#9'9'#9'SATUAN'#9'T'
+              'QTY1'#9'9'#9'QTY'#9'T'
+              'HRG'#9'14'#9'HARGA'#9'F'
+              'SUBTOTAL'#9'14'#9'SUB TOTAL'#9'T'
+              'KD_SUB_LOKASI'#9'12'#9'LOKASI'#9'T'
+              'KD_REK_GL'#9'14'#9'PERKIRAAN DEBET'#9'F')
+            IniAttributes.Enabled = True
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQDetail
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+            ParentCtl3D = False
+            ParentFont = False
+            RowHeightPercent = 150
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = []
+            TitleLines = 2
+            TitleButtons = True
+            UseTFields = False
+            OnEnter = wwDBGrid1Enter
+          end
+          object LookRekening1: TwwDBLookupComboDlg
+            Left = 272
+            Top = 115
+            Width

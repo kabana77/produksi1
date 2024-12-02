@@ -1,0 +1,210 @@
+Type = dtNotKnown
+      DisplayWidth = 0
+      Position = 10
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQMasterppField12: TppField
+      FieldAlias = 'STATUS'
+      FieldName = 'STATUS'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 11
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQMasterppField13: TppField
+      FieldAlias = 'KIRIM_KE'
+      FieldName = 'KIRIM_KE'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 12
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQMasterppField14: TppField
+      FieldAlias = 'KD_REKANAN'
+      FieldName = 'KD_REKANAN'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 13
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQMasterppField15: TppField
+      FieldAlias = 'LNAMA_REKANAN'
+      FieldName = 'LNAMA_REKANAN'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 14
+      Searchable = False
+      Sortable = False
+    end
+  end
+  object ppDBQDetail: TppDBPipeline
+    DataSource = dsQDetail
+    OpenDataSource = False
+    UserName = 'DBQDetail'
+    Left = 112
+    Top = 80
+    MasterDataPipelineName = 'ppDBQMaster'
+    object ppDBQDetailppField1: TppField
+      FieldAlias = 'IBUKTI_DETAIL'
+      FieldName = 'IBUKTI_DETAIL'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 0
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField2: TppField
+      FieldAlias = 'KD_ITEM'
+      FieldName = 'KD_ITEM'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 1
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField3: TppField
+      FieldAlias = 'LITEM'
+      FieldName = 'LITEM'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 2
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField4: TppField
+      FieldAlias = 'LSATUAN'
+      FieldName = 'LSATUAN'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 3
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField5: TppField
+      FieldAlias = 'IBUKTI'
+      FieldName = 'IBUKTI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 4
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField6: TppField
+      FieldAlias = 'QTY1'
+      FieldName = 'QTY1'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 5
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField7: TppField
+      FieldAlias = 'KETERANGAN'
+      FieldName = 'KETERANGAN'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 6
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField8: TppField
+      FieldAlias = 'KD_SUB_LOKASI'
+      FieldName = 'KD_SUB_LOKASI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 7
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField9: TppField
+      FieldAlias = 'HRG'
+      FieldName = 'HRG'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 8
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppField10: TppField
+      FieldAlias = 'SUBTOTAL'
+      FieldName = 'SUBTOTAL'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 9
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQDetailppMasterFieldLink1: TppMasterFieldLink
+      MasterFieldName = 'IBUKTI'
+      GuidCollationType = gcString
+      DetailFieldName = 'IBUKTI'
+      DetailSortOrder = soAscending
+    end
+  end
+  object QTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select * from vtransaksi')
+    QBEDefinition.QBEFieldDefs = {
+      04000000120000000E0000004E414D415F5452414E53414B5349010000000000
+      0C0000004B445F5452414E53414B534901000000000006000000505245464958
+      01000000000005000000504C494E450100000000000700000050484541444552
+      0100000000000A00000044495354524942555349010000000000040000005454
+      4431010000000000040000005454443201000000000004000000545444330100
+      0000000004000000545444340100000000000400000044495631010000000000
+      0400000044495632010000000000040000004449563301000000000004000000
+      44495634010000000000040000004A414231010000000000040000004A414232
+      010000000000040000004A414233010000000000040000004A41423401000000
+      0000}
+    Session = DMFrm.OS
+    BeforeOpen = QTransaksiBeforeOpen
+    Left = 304
+    Top = 8
+    object QTransaksiNAMA_TRANSAKSI: TStringField
+      FieldName = 'NAMA_TRANSAKSI'
+      Size = 50
+    end
+    object QTransaksiKD_TRANSAKSI: TStringField
+      DisplayWidth = 3
+      FieldName = 'KD_TRANSAKSI'
+      Required = True
+      Size = 3
+    end
+    object QTransaksiPREFIX: TStringField
+      FieldName = 'PREFIX'
+      Size = 5
+    end
+    object QTransaksiPLINE: TStringField
+      FieldName = 'PLINE'
+      Size = 1
+    end
+    object QTransaksiPHEADER: TStringField
+      FieldName = 'PHEADER'
+      Size = 1
+    end
+    object QTransaksiDISTRIBUSI: TStringField
+      FieldName = 'DISTRIBUSI'
+      Size = 80
+    end
+    object QTransaksiTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 30
+    end
+    object QTransaksi

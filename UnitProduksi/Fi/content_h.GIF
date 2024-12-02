@@ -1,0 +1,39 @@
+  Transparent = True
+        DataPipelineName = 'ppDBQTransaksi'
+        mmHeight = 4233
+        mmLeft = 241300
+        mmTop = 21167
+        mmWidth = 33602
+        BandType = 7
+      end
+      object ppDBText42: TppDBText
+        UserName = 'DBText42'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'TTD2'
+        DataPipeline = ppDBQTransaksi
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = [fsBold, fsUnderline]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppDBQTransaksi'
+        mmHeight = 4233
+        mmLeft = 202142
+        mmTop = 21431
+        mmWidth = 33602
+        BandType = 7
+      end
+      object ppDBText43: TppDBText
+        UserName = 'DBText43'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'TTD3'
+        DataPipel

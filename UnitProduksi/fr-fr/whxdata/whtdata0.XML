@@ -1,0 +1,77 @@
+vdebet:=vdebet+QBrowseDEBET.AsFloat;
+      vkredit:=vkredit+QBrowseKREDIT.AsFloat;
+      QBrowse.Next;
+  end;
+  QBrowse.First;
+  QBrowse.EnableControls;
+  wwDBGrid1.ColumnByName('DEBET').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vdebet);
+  wwDBGrid1.ColumnByName('KREDIT').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vkredit);  }
+end;
+
+procedure TReturPenjualanFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        if cbPreview.Checked then
+          QuickRep1.Preview
+          else
+            QuickRep1.Print;
+        QBrowse.EnableControls;
+      end;
+  1 : begin
+        if cbPreview.Checked then
+          QuickRep3.Preview
+          else
+            QuickRep3.Print;
+      end;
+  2 : begin
+        if cbPreview.Checked then
+          QuickRep2.Preview
+          else
+            QuickRep2.Print;
+      end;
+  end;
+end;
+
+procedure TReturPenjualanFrm.TabSheet1Show(Sender: TObject);
+begin
+  VTglAwal2.Date:=dATE;
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal2.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir2.Date)+''',''dd/mm/yyyy'')+1-1/86400))';
+  QBrowse.Open;
+end;
+
+procedure TReturPenjualanFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TReturPenjualanFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=Caption;
+     wwDBGrid1.ExportOptions.TitleName:=Caption;
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid1.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+en

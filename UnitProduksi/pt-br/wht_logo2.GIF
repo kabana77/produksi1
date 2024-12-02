@@ -1,0 +1,65 @@
+object DesainFrm: TDesainFrm
+  Left = 3
+  Top = 66
+  Width = 1035
+  Height = 733
+  Caption = 'DesainFrm'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDefault
+  Scaled = False
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object TitlePanel: TPanel
+    Left = 0
+    Top = 0
+    Width = 1027
+    Height = 41
+    Align = alTop
+    BevelInner = bvRaised
+    Caption = 'DESAIN PALEKAT'
+    Color = clNavy
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWhite
+    Font.Height = -21
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Panel2: TPanel
+    Left = 0
+    Top = 663
+    Width = 1027
+    Height = 36
+    Align = alBottom
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 1
+    object BitBtn6: TBitBtn
+      Left = 912
+      Top = 8
+      Width = 75
+      Height = 25
+      TabOrder = 0
+      Kind = bkClose
+    end
+  end
+  object PageControl1: TPageControl
+    Left = 0
+    Top = 41
+    Width = 1027
+    

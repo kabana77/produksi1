@@ -1,0 +1,80 @@
+DesignSize = (
+            792
+            41)
+          object BtnPrintInput: TBitBtn
+            Left = 614
+            Top = 6
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = '&Print'
+            TabOrder = 0
+            OnClick = BtnPrintInputClick
+            NumGlyphs = 2
+          end
+          object BtnClose1: TBitBtn
+            Left = 694
+            Top = 6
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = '&Close'
+            TabOrder = 1
+            OnClick = BtnClose1Click
+            NumGlyphs = 2
+          end
+          object wwDBNavigatorInput: TwwDBNavigator
+            Left = 0
+            Top = 0
+            Width = 249
+            Height = 41
+            AutosizeStyle = asSizeNavButtons
+            DataSource = dsQMaster
+            RepeatInterval.InitialDelay = 500
+            RepeatInterval.Interval = 100
+            Align = alLeft
+            object wwDBNavigatorInputButton: TwwNavButton
+              Left = 0
+              Top = 0
+              Width = 50
+              Height = 41
+              Hint = 'Move to prior record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              ShowText = True
+              Spacing = 4
+              Transparent = False
+              Caption = 'Pre&v'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 0
+              Style = nbsPrior
+            end
+            object wwDBNavigatorInputNext: TwwNavButton
+              Left = 50
+              Top = 0
+              Width = 50
+              Height = 41
+              Hint = 'Move to next record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              ShowText = True
+              Spacing = 4
+              Transparent = False
+              Caption = '&Next'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 1
+              Style = nbsNext
+            end
+            object wwDBNavigatorInputCancel: TwwNavButton
+              Left = 100
+              Top = 0
+              Width = 50
+              Height = 41
+              Hint = 'Cancel changes made to current record'
+              ImageIndex = -1
+              NumGlyphs = 2
+    

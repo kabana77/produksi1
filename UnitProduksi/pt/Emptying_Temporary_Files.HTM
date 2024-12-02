@@ -1,0 +1,186 @@
+,'''+
+        vkomponen+''','''+vcaption+''','+IntToStr((MainFrm.Components[i] as TMenuItem).GroupIndex));
+}      QBuatMenu.Close;
+      QBuatMenu.SetVariable('id_menu',FormatFloat('000',vkode));
+      QBuatMenu.SetVariable('nama_komponen',vkomponen);
+      QBuatMenu.SetVariable('nama_menu',vcaption);
+      QBuatMenu.SetVariable('lvl',vlvl);
+      QBuatMenu.Execute;   
+    end;
+  end;
+  DMFrm.OS.Commit;
+end;
+
+procedure TOtoritasUserFrm.wwDBGrid2CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+  begin
+    if QMaster2HAK_LIHAT.AsString='1' then
+    begin
+      AFont.Color:=clBlue;
+      ABrush.Color:=clWhite;
+    end
+      else
+      begin
+        AFont.Color:=clRed;
+        ABrush.Color:=clGray;
+      end;
+  end;
+end;
+
+procedure TOtoritasUserFrm.QMaster3BeforePost(DataSet: TDataSet);
+begin
+  QMaster3NAMA_USER.AsString:=UpperCase(QMaster3NAMA_USER.AsString);
+  QMaster3PWD.AsString:=UpperCase(QMaster3NAMA_USER.AsString);
+  try
+    QSql.Close;
+    QSql.SQL.Text:='create user '+QMaster3NAMA_USER.AsString+' identified by '+QMaster3PWD.AsString;
+    QSql.Execute;
+    QSql.Close;
+    QSql.SQL.Text:='grant connect to '+QMaster3NAMA_USER.AsString;
+    QSql.Execute;
+  except
+  end;
+end;
+
+procedure TOtoritasUserFrm.QMaster3BeforeDelete(DataSet: TDataSet);
+begin
+  if (QMaster3NAMA_USER.AsString='SYSTEM') or
+     (QMaster3NAMA_USER.AsString='CIP_ADMIN') then
+  begin
+     ShowMessage('Tidak diperkenankan menghapus user '+QMaster3NAMA_USER.AsString+' !');
+     Abort;
+  end
+  else
+  begin
+    try
+      QSql.Close;
+      QSql.SQL.Text:='drop user '+QMaster3NAMA_USER.AsString+' cascade';
+      QSql.Execute;
+    except;
+    end;
+  end;
+end;
+
+procedure TOtoritasUserFrm.BtnEditing4Click(Sender: TObject);
+begin
+  wwDBGrid4.Options:=wwDBGrid4.Options-[dgRowSelect];
+  wwDBGrid4.ReadOnly:=False;
+  TabSheet1.TabVisible:=False;
+  TabSheet2.TabVisible:=False;
+  TabSheet3.TabVisible:=False;
+end;
+
+procedure TOtoritasUserFrm.BtnBrowse4Click(Sender: TObject);
+begin
+  if BtnSimpan.Enabled then
+    ShowMessage('Simpan/ Posting Data Dulu !')
+    else
+    begin
+      wwDBGrid4.Options:=wwDBGrid4.Options+[dgRowSelect];
+      wwDBGrid4.ReadOnly:=True;
+      TabSheet1.TabVisible:=True;
+      TabSheet2.TabVisible:=True;
+      TabSheet3.TabVisible:=True;
+    end;
+
+end;
+
+procedure TOtoritasUserFrm.BitBtn4Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+begin
+  vpertama:=True;
+  if BtnSimpan.Enabled then
+    ShowMessage('Mode CARI berfungsi jika perubahan data sudah di-POSTING/ SIMPAN !')
+    else
+    begin
+        vfilter4:=' where (';
+        if (QMaster4.FieldCount>=1) then
+        begin
+          for i:=0 to QMaster4.FieldCount-1 do
+          begin
+            if QMaster4.Fields[i].FieldKind=fkData then
+            begin
+              if vpertama then
+                begin
+                  vfilter4:=vfilter4+QMaster4.Fields[i].FieldName+' like ''%'+ECari4.Text+'%''';
+                  vpertama:=False;
+                end
+                else
+                  vfilter4:=vfilter4+' or '+QMaster4.Fields[i].FieldName+' like ''%'+ECari4.Text+'%''';
+            end;
+          end;
+          vfilter4:=vfilter4+')';
+          vorder4:=' order by '+wwDBGrid4.Columns[0].FieldName;
+        end;
+        QMaster4.SetVariable('myparam',vfilter4+vorder4);
+        QMaster4.DisableControls;
+        QMaster4.Close;
+        QMaster4.Open;
+        QMaster4.EnableControls;
+    end;
+
+end;
+
+procedure TOtoritasUserFrm.wwDBGrid4CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+  begin
+    if QMaster4HAK_LIHAT.AsString='1' then
+    begin
+      AFont.Color:=clBlue;
+      ABrush.Color:=clWhite;
+    end
+      else
+      begin
+        AFont.Color:=clRed;
+        ABrush.Color:=clGray;
+      end;
+  end;
+
+end;
+
+procedure TOtoritasUserFrm.wwDBGrid4TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter4+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TOtoritasUserFrm.TabSheet4Show(Sender: TObject);
+begin
+  QMaster4.Open;
+  QMaster4.Refresh;
+end;
+
+procedure TOtoritasUserFrm.FormShow(Sender: TObject);
+begin
+  Height:=600;
+  Width:=767;
+end;
+
+procedure TOtoritasUserFrm.FormC

@@ -1,0 +1,64 @@
+
+      'where a.kd_jns_item=:pkd_jns_item'
+      '')
+    Variables.Data = {
+      0300000003000000080000003A4D5942554C414E0100000014000000702E6E31
+      32206173206E696C61695F6177616C0000000000070000003A50544148554E03
+      00000000000000000000000D0000003A504B445F4A4E535F4954454D05000000
+      0000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000070000004B445F4954454D0100000000000A0000004E494C
+      41495F4157414C010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QNilaiAwalBeforeOpen
+    Left = 292
+    Top = 353
+    object QNilaiAwalKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QNilaiAwalNILAI_AWAL: TFloatField
+      FieldName = 'NILAI_AWAL'
+    end
+  end
+  object QUpdate: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      'update pmtx01.item_saldo'
+      
+        '  set :myparam=:pnilai, :myparam2=:pqty, :myparam3=:pnilai2, :my' +
+        'param4=:pqty2'
+      'where kd_item=:pkd_item and tahun=:ptahun;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      030000000A000000080000003A4D59504152414D010000000000000000000000
+      090000003A504B445F4954454D050000000000000000000000070000003A5054
+      4148554E030000000000000000000000070000003A504E494C41490400000000
+      00000000000000090000003A4D59504152414D32010000000000000000000000
+      050000003A50515459040000000000000000000000090000003A4D5950415241
+      4D33010000000000000000000000080000003A504E494C414932040000000000
+      000000000000090000003A4D59504152414D3401000000000000000000000006
+      0000003A5051545932040000000000000000000000}
+    Left = 692
+    Top = 337
+  end
+  object QUpdateMutasi: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  pmtx02.proc_tutup_beli(:pbulan, :pjns_item);'
+      '  pmtx02.proc_tutup_koreksi(:pbulan, :pjns_item);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000070000003A5042554C414E0C00000007000000786C0B1E01
+      0101000000000A0000003A504A4E535F4954454D050000000200000033000000
+      0000}
+    Left = 508
+    Top = 337
+  end
+  object QTutupTahun: TOracleQuery
+    SQL.Strings = (
+      '

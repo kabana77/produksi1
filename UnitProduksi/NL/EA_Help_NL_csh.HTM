@@ -1,0 +1,81 @@
+unit Main;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Menus, Buttons,
+  Controls, ComCtrls, ExtCtrls, LMDCustomComponent, LMDContainerComponent,
+  LMDBaseDialog, LMDAboutDlg, ToolWin, FrameRight, Forms, FrameLeft,
+  LMDControl, LMDBaseControl, LMDBaseGraphicControl, LMDGraphicControl,
+  LMDScrollText, Dialogs, StdCtrls, WinSock, LMDStarter, Grids, Wwdbigrd,
+  Wwdbgrid, LMDGlobalHotKey;
+
+type
+  TMainFrm = class(TForm)
+    MainMenu1: TMainMenu;
+    Fie1: TMenuItem;
+    LogIn1: TMenuItem;
+    LogOut1: TMenuItem;
+    N1: TMenuItem;
+    Exit1: TMenuItem;
+    Window1: TMenuItem;
+    Help1: TMenuItem;
+    About1: TMenuItem;
+    N2: TMenuItem;
+    Arrange1: TMenuItem;
+    Cascade1: TMenuItem;
+    Close1: TMenuItem;
+    FrameLeftFrm1: TFrameLeftFrm;
+    FrameRightFrm1: TFrameRightFrm;
+    StatusBar1: TStatusBar;
+    ToolBar1: TToolBar;
+    OtoritasUserOperator1: TMenuItem;
+    BtnLogin: TSpeedButton;
+    ToolButton1: TToolButton;
+    BtnLogout: TSpeedButton;
+    LMDScrollText1: TLMDScrollText;
+    LMDScrollText2: TLMDScrollText;
+    Banner1: TMenuItem;
+    gANTIpASSWORD1: TMenuItem;
+    ToolButton3: TToolButton;
+    MyAbout: TLMDAboutDlg;
+    ToolButton4: TToolButton;
+    SpeedButton1: TSpeedButton;
+    ToolButton2: TToolButton;
+    Timer1: TTimer;
+    CheckBox1: TCheckBox;
+    ToolButton5: TToolButton;
+    LMDStarter1: TLMDStarter;
+    F9: TLMDGlobalHotKey;
+    F7: TLMDGlobalHotKey;
+    F6: TLMDGlobalHotKey;
+    F8: TLMDGlobalHotKey;
+    Master1: TMenuItem;
+    Perkiraan1: TMenuItem;
+    Rekanan1: TMenuItem;
+    Karyawan1: TMenuItem;
+    Proyek1: TMenuItem;
+    MesindanAlat1: TMenuItem;
+    ItemBarang1: TMenuItem;
+    Anggaran1: TMenuItem;
+    Cashflow1: TMenuItem;
+    ransaksi1: TMenuItem;
+    BukuKas1: TMenuItem;
+    Bank1: TMenuItem;
+    Memorial1: TMenuItem;
+    Kendaraan1: TMenuItem;
+    N3: TMenuItem;
+    SaldoPerkiraan1: TMenuItem;
+    SaldoRekeningCashFlow1: TMenuItem;
+    SaldoRekeningAnggaran1: TMenuItem;
+    Laporan1: TMenuItem;
+    Neraca1: TMenuItem;
+    RealisasiAnggaran1: TMenuItem;
+    RugiLaba1: TMenuItem;
+    N4: TMenuItem;
+    JurnalHPP1: TMenuItem;
+    utupTahun1: TMenuItem;
+    N5: TMenuItem;
+    AnalisaRasioNeraca1: TMenuItem;
+    AnalisaRasioRugiLaba1: TMenuItem;
+    BukuBesarSaldoRekeningPerkiraan1: TMenu

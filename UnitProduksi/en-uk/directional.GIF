@@ -1,0 +1,38 @@
+unit JurnalHPP;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, QRCtrls, Wwdatsrc, OracleData, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, StdCtrls, QuickRpt, ComCtrls, Mask, wwdbedit,
+  Wwdbspin, Buttons, ExtCtrls, DBCtrls, wwcheckbox, wwdbdatetimepicker,
+  wwSpeedButton, wwDBNavigator, wwclearpanel, wwdblook, Wwdbdlg;
+
+type
+  TJurnalHPPFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    QBrowse: TOracleDataSet;
+    dsQBrowse: TwwDataSource;
+    QuickRep1: TQuickRep;
+    PageHeaderBand1: TQRBand;
+    TitleBand1: TQRBand;
+    ColumnHeaderBand1: TQRBand;
+    DetailBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    PageFooterBand1: TQRBand;
+    QRDBText1: TQRDBText;
+    QRDBNoNota: TQRDBText;
+    QRDBTanggal: TQRDBText;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel4: TQRLabel;
+    QRLabel5: TQRLabel;
+    QRLabel6: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRSysData2: TQRS

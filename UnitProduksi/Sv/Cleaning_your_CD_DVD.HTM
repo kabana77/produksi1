@@ -1,0 +1,115 @@
+bject QMutu: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.mutu'
+      'order by mutu')
+    QBEDefinition.QBEFieldDefs = {
+      0400000003000000040000004D5554550100000000000A0000004B4554455241
+      4E47414E0100000000000500000053434F5245010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 552
+    Top = 104
+    object QMutuMUTU: TStringField
+      DisplayWidth = 12
+      FieldName = 'MUTU'
+      Size = 30
+    end
+    object QMutuKETERANGAN: TStringField
+      DisplayWidth = 45
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QMutuSCORE: TFloatField
+      DisplayWidth = 6
+      FieldName = 'SCORE'
+    end
+  end
+  object QResep: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.vresep')
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000080000004E4F5F5245534550010000000000050000005645
+      525349010000000000020000004B500100000000000300000054474C01000000
+      00000A0000004B4F4E535452554B534901000000000005000000434F52414B01
+      0000000000090000004E4F5F44455341494E010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 472
+    Top = 32
+    object QResepNO_RESEP: TStringField
+      DisplayWidth = 16
+      FieldName = 'NO_RESEP'
+    end
+    object QResepVERSI: TStringField
+      DisplayLabel = 'NO.Reg'
+      DisplayWidth = 16
+      FieldName = 'VERSI'
+      Size = 18
+    end
+    object QResepKP: TStringField
+      DisplayWidth = 8
+      FieldName = 'KP'
+    end
+    object QResepTGL: TDateTimeField
+      DisplayLabel = 'TANGGAL'
+      DisplayWidth = 12
+      FieldName = 'TGL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QResepKONSTRUKSI: TStringField
+      DisplayWidth = 20
+      FieldName = 'KONSTRUKSI'
+      Size = 50
+    end
+    object QResepCORAK: TStringField
+      DisplayWidth = 20
+      FieldName = 'CORAK'
+      Size = 50
+    end
+    object QResepNO_DESAIN: TFloatField
+      DisplayLabel = 'NO REG.'
+      DisplayWidth = 10
+      FieldName = 'NO_DESAIN'
+      Required = True
+    end
+  end
+  object wwIntl1: TwwIntl
+    Navigator.ConfirmDeleteMessage = 'Delete record?'
+    Navigator.Hints.FirstHint = 'Move to first record'
+    Navigator.Hints.PriorHint = 'Move to prior record'
+    Navigator.Hints.NextHint = 'Move to next record'
+    Navigator.Hints.LastHint = 'Move to last record'
+    Navigator.Hints.InsertHint = 'Insert new record'
+    Navigator.Hints.DeleteHint = 'Delete current record'
+    Navigator.Hints.EditHint = 'Edit current record'
+    Navigator.Hints.PostHint = 'Post changes of current record'
+    Navigator.Hints.CancelHint = 'Cancel changes made to current record'
+    Navigator.Hints.RefreshHint = 'Refresh the contents of the dataset'
+    Navigator.Hints.PriorPageHint = 'Move backward %d records'
+    Navigator.Hints.NextPageHint = 'Move forward %d records'
+    Navigator.Hints.SaveBookmarkHint = 'Bookmark current record'
+    Navigator.Hints.RestoreBookmarkHint = 'Go back to saved bookmark'
+    Navigator.Hints.RecordViewDialogHint = 'View current record'
+    Navigator.Hints.LocateDialogHint = 'Locate a specific record'
+    Navigator.Hints.FilterDialogHint = 'Filter the dataset'
+    Navigator.Hints.SearchDialogHint = 'Search the dataset'
+    SearchDialog.SearchCharLabel = '&Search Characters'
+    SearchDialog.SearchCharShortLabel = '&Search Char'
+    SearchDialog.SearchByLabel = 'Search &By'
+    SearchDialog.StatusRecLabel = 'Rec #'
+    SearchDialog.StatusOfLabel = 'of'
+    SearchDialog.SearchCharHint = 'Enter characters for incremental search'
+    SearchDialog.SearchByHint = 'Incremental searching and sorting order'
+    LocateDialog.FieldValueLabel = 'Field &Value'
+    LocateDialog.SearchTypeLabel = '&Search Type'
+    LocateDialog.CaseSensitiveLabel = '&Case-sensitive'
+    LocateDialog.MatchExactLabel = '&Exact Match'
+    LocateDialog.MatchStartLabel = '&Partial Match at Beginning'
+    LocateDialog.MatchAnyLabel = 'Partial Match &Anywhere'
+    LocateDialog.FieldsLabel = '&Fields'
+    LocateDialog.BtnFirst = 'Fi&rst'
+    LocateDialog.BtnNext = '&Next'
+    LocateDialog.BtnCancel = 'Cancel'
+    LocateDialog.BtnClose = 'Close'
+    LocateDialog.FieldValueHint = 'Enter field'#39's search value'
+    LocateDialog.CaseSensitiveHint = 'Searching is 

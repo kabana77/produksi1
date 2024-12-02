@@ -1,0 +1,199 @@
+er: TObject);
+begin
+//barcode
+     DMFrm.FontToUse := TFont.Create;
+     DMFrm.selected := 'UCC 128';
+     SelectedFont := 'CIA Code 128 Medium';
+     StrPCopy(DMFrm.TempSelected, DMFrm.Selected);
+     DMFrm.BType := 'C128';
+     DMFrm.FontToUse.Size := 12;
+     DMFrm.FontToUse.Name := SelectedFont;
+     LBarcode.Font := DMFrm.FontToUse;
+//     QRBarcode11.Font := LoginFrm.FontToUse;
+     DMFrm.BType := DMFrm.BType + '-';
+     DMFrm.BType := DMFrm.BType + DMFrm.Format;
+     DMFrm.BType := DMFrm.BType + '.BH';
+// end barcode
+  PanelLeft.Color:=cWarnaPanel;
+  PanelRight.Color:=cWarnaPanel;
+  PanelMain.Color:=cWarnaPanelUtama;
+  PanelLeft.Width:=Round((Width-PanelMain.Width)/2);
+  BtnPrintBrowse.Glyph.LoadFromFile('Images\PRINT.Bmp');
+  BtnClose1.Glyph.LoadFromFile('Images\CLOSE.Bmp');
+  BtnOk.Glyph.LoadFromFile('Images\CHECK.Bmp');
+  BtnOk2.Glyph.LoadFromFile('Images\CHECK.Bmp');
+  BtnFind.Glyph.LoadFromFile('Images\FIND.Bmp');
+  BtnDesign2.Glyph.LoadFromFile('Images\DESIGN.Bmp');
+  BtnExport.Glyph.LoadFromFile('Images\EXPORT.Bmp');
+  BtnClose2.Glyph.LoadFromFile('Images\CLOSE.Bmp');
+//Otoritas Button
+  BtnExport.Visible:=DMFrm.cBtnExport;
+  BtnDesign2.Visible:=DMFrm.cBtnDesign;
+end;
+
+procedure TRekananFrm.BtnExportClick(Sender: TObject);
+begin
+    DMFrm.SaveDialog1.FileName:=PanelHeader.Caption+' '+
+      '.html';
+    if DMFrm.SaveDialog1.Execute then
+    begin
+      try
+        wwDBGrid2.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+        wwDBGrid2.ExportOptions.TitleName:='<font size=4>'+PanelHeader.Caption+'</font><br><font size=1>'+'</font>';
+        wwDBGrid2.ExportOptions.Save;
+        if MessageDlg('Ekspor Data Sukses, Lihat Hasil ?',mtWarning,[mbYes, mbNo],0)=mrYes then
+        begin
+          DMFrm.LMDStarter1.Command:=DMFrm.SaveDialog1.FileName;
+          DMFrm.LMDStarter1.Execute;
+        end;
+  		Except
+    	  ShowMessage('Ekspor Data Gagal !');
+  		end;
+    end;
+end;
+
+procedure TRekananFrm.BtnOkClick(Sender: TObject);
+begin
+  if vTglAwal.Date>vTglAkhir.DateTime then
+    ShowMessage('Tgl. Akhir harus lebih besar dari Tgl. Awal !')
+    else
+    begin
+      if QBrowse.QBEMode then
+        QBrowse.QBEMode:=False;
+      QBrowse.DisableControls;
+      QBrowse.Close;
+      QBrowse.DeclareVariable('pawal',otDate);
+      QBrowse.DeclareVariable('pakhir',otDate);
+      QBrowse.DeclareVariable('porder',otSubst);
+      QBrowse.SQL.Text:='select * from '+cUserTabel+vitem+
+        ' where tgl_insert>=:pawal and tgl_insert<=:pakhir :porder';
+  		QBrowse.SetVariable('pawal',Trunc(vTglAwal.Date));
+  		QBrowse.SetVariable('pakhir',Trunc(vTglAkhir.Date)+1-1/86400);
+      QBrowse.SetVariable('porder',vorder);
+      QBrowse.Open;
+      QBrowse.EnableControls;
+      LabelBanner.Caption:='Data : '+FormatFloat('#,#',QBrowse.RecordCount)+' Records';
+    end;
+end;
+
+procedure TRekananFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if QBrowse.FieldByName(AFieldName).FieldKind=fkData then
+  begin
+    vorder:='order by '+AFieldName;
+    BtnOkClick(Nil);
+  end
+  else
+    ShowMessage('Maaf, tidak bisa Urut menurut kolom '+AFieldName+' !');
+end;
+
+procedure TRekananFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LabelBanner.Caption:='Record ke '+IntToStr(QBrowse.RecNo)+' dari '+FormatFloat('#,#',QBrowse.RecordCount)+' Records';
+end;
+
+procedure TRekananFrm.BtnClose1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TRekananFrm.BtnClose2Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TRekananFrm.wwDBSpinLine2Change(Sender: TObject);
+begin
+    wwDBGrid2.RowHeightPercent:=Round(wwDBSpinLine2.Value);
+end;
+
+procedure TRekananFrm.BtnFindClick(Sender: TObject);
+begin
+	wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowse.QBEMode then
+  begin
+    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowse.QBEMode:=TRUE;
+  end
+  else
+    QBrowse.ClearQBE;
+end;
+
+procedure TRekananFrm.BtnOk2Click(Sender: TObject);
+begin
+  if QBrowse.QBEMode then
+  begin
+    QBrowse.ExecuteQBE;
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+  end;
+
+end;
+
+procedure TRekananFrm.ppHeaderBand1BeforePrint(Sender: TObject);
+begin
+//  ppNo.AsInteger:=0;
+end;
+
+procedure TRekananFrm.Button1Click(Sender: TObject);
+begin
+  ppDesigner1.ShowModal;
+end;
+
+procedure TRekananFrm.BtnDesign2Click(Sender: TObject);
+begin
+  ppDesigner1.Report:=ppReportBrowse;
+  ppDesigner1.ShowModal;
+end;
+
+procedure TRekananFrm.ppTitleBand1BeforePrint(Sender: TObject);
+begin
+  ppNamaLaporan.Caption:=UpperCase(Caption);
+//  ppPeriode.Caption:=vTglAwal.Text+' s/d '+vTglAkhir.Text;
+  DMFrm.QTime.Close;
+  DMFrm.QTime.Open;
+  ppUserCetak.Caption:=DMFrm.QTimeVUSER_CETAK.AsString;
+  vnomer:=0;
+end;
+
+procedure TRekananFrm.EditCariKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key=13 then
+  begin
+    TabSheet1Show(Nil);
+    EditCari.SetFocus;
+  end;
+end;
+
+procedure TRekananFrm.TabSheet1Show(Sender: TObject);
+begin
+
+  if (EditCari.Text='') and (QBrowse.FieldByName('KD_REKANAN').AsString<>'') then
+  begin
+      EditCari.Text:=QBrowse.FieldByName('KD_REKANAN').AsString;
+  end;
+  QMaster.Close;
+  QMaster.SequenceField.Field:='KD_REKANAN';
+  QMaster.SequenceField.Sequence:=cUserTabel+'KD_REKANAN';
+  QMaster.DeclareVariable('kd_rekanan',otInteger);
+  QMaster.SQL.Text:='select a.*, a.rowid from '+cUserTabel+'rekanan a'+
+    ' where a.kd_rekanan=:kd_rekanan';
+  QMaster.SetVariable('kd_rekanan',StrToInt(EditCari.Text));
+  QMaster.Open;
+end;
+
+procedure TRekananFrm.TabSheet1Exit(Sender: TObject);
+begin
+  EditCari.Text:='';
+end;
+
+procedure TRekananFrm.QMasterNewRecord(DataSet: TDataSet);
+begin
+  QMaster.FieldByName('JENIS').AsString:=vjns;
+  QMaster.FieldByName('PROPINSI').AsString:='JAWA TENGAH';
+  QMaster.FieldByName('NEGARA').AsString:='INDONESIA';
+  QMaster.FieldByName('BATAS_KREDIT').AsFloat:=200000000;
+end;
+
+procedure TRekan

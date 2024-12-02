@@ -1,0 +1,37 @@
+
+    procedure LookWrnaCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure wwDBGrid2UpdateFooter(Sender: TObject);
+    procedure LookKonstruksiCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure LookWarnaaCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure LookWarnaaEnter(Sender: TObject);
+  private
+    { Private declarations }
+    vshift, vgrup, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi : String;
+  public
+    { Public declarations }
+    procedure totalSatuan;
+  end;
+
+var
+  HasilJetDyeingFrm: THasilJetDyeingFrm;
+
+procedure ShowForm(pNamaMenu:String; pkode : String; pjudul : string; pjns_brg : String; pjns_lokasi : String);
+
+implementation
+
+uses DM, Pembelian, OrderJetDyeing;
+
+{$R *.dfm}
+procedure THasilJetDyeingFrm.totalSatuan;
+begin
+  QTotalMeter.Close;
+  QTotalPotong.Close;
+  QTotalMeter.SetVariable('pawal',vTglAwal.Date);
+  QTotalPotong.SetVariable('pawal',vTglAwal.Date);
+  QTotalMeter.SetVariable('pakhir',vTglAkhir.Date);
+  QTotalPotong.SetVariable('pakhir',vTglAkhir.Date);
+  QTotalMeter.Open;
+  QTotalPot

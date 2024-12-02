@@ -1,0 +1,88 @@
+= 408
+        Top = 24
+        Width = 121
+        Height = 19
+        TabStop = False
+        Color = clMoneyGreen
+        DataField = 'NO_KONTRAK'
+        DataSource = dsQMaster
+        TabOrder = 5
+        UnboundDataType = wwDefault
+        WantReturns = False
+        WordWrap = False
+      end
+      object wwDBEdit3: TwwDBEdit
+        Left = 544
+        Top = 112
+        Width = 137
+        Height = 19
+        TabStop = False
+        Color = clMoneyGreen
+        DataField = 'NO_BUKTI'
+        DataSource = dsQMaster
+        TabOrder = 6
+        UnboundDataType = wwDefault
+        WantReturns = False
+        WordWrap = False
+      end
+    end
+    object wwDBGrid1: TwwDBGrid
+      Left = 0
+      Top = 265
+      Width = 696
+      Height = 207
+      ControlType.Strings = (
+        'KD_KONSTRUKSI;CustomEdit;LookKonstruksi;F'
+        'KD_CORAK;CustomEdit;LookCorak;F'
+        'MUTU;CustomEdit;LookMutu;F'
+        'SATUAN;CustomEdit;LookSatuan;F'
+        'JENIS;CustomEdit;LookJenis;F')
+      Selected.Strings = (
+        'JENIS'#9'10'#9'JENIS'#9'F'
+        'KD_KONSTRUKSI'#9'6'#9'Kode'#9'F'#9'KONSTRUKSI'
+        'KONSTRUKSI'#9'19'#9'Nama'#9'T'#9'KONSTRUKSI'
+        'KD_CORAK'#9'6'#9'Kode'#9'F'#9'CORAK'
+        'CORAK'#9'14'#9'Nama'#9'T'#9'CORAK'
+        'MUTU'#9'6'#9'MUTU'#9#9
+        'SATUAN'#9'7'#9'SATUAN'#9#9
+        'QTY_ORG'#9'5'#9'Order'#9'F'#9'JUMLAH'
+        'QTY_LALU'#9'8'#9'Sdh. Terima'#9'F'#9'JUMLAH'
+        'QTY'#9'6'#9'Diterima'#9'F'#9'JUMLAH')
+      IniAttributes.Delimiter = ';;'
+      TitleColor = clBtnFace
+      FixedCols = 0
+      ShowHorzScrollBar = True
+      Align = alClient
+      DataSource = dsQDetail
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'MS Sans Serif'
+      Font.Style = [fsBold]
+      ParentFont = False
+      RowHeightPercent = 200
+      TabOrder = 1
+      TitleAlignment = taLeftJustify
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -11
+      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Style = []
+      TitleLines = 2
+      TitleButtons = False
+      UseTFields = False
+      OnEnter = wwDBGrid1Enter
+    end
+    object PanelBanner: TPanel
+      Left = 0
+      Top = 224
+      Width = 696
+      Height = 41
+      Align = alTop
+      BevelWidth = 2
+      Color = 12058623
+      TabOrder = 3
+      object Label1: TLabel
+        Left = 8
+        Top = 2
+        W

@@ -1,0 +1,174 @@
+Show
+      object QuickRep1: TQuickRep
+        Left = 88
+        Top = 88
+        Width = 1123
+        Height = 794
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        DataSet = QBrowse
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Functions.Strings = (
+          'PAGENUMBER'
+          'COLUMNNUMBER'
+          'REPORTTITLE')
+        Functions.DATA = (
+          '0'
+          '0'
+          #39#39)
+        Options = [FirstPageHeader, LastPageFooter]
+        Page.Columns = 1
+        Page.Orientation = poLandscape
+        Page.PaperSize = A4
+        Page.Values = (
+          100.000000000000000000
+          2100.000000000000000000
+          100.000000000000000000
+          2970.000000000000000000
+          100.000000000000000000
+          100.000000000000000000
+          0.000000000000000000)
+        PrinterSettings.Copies = 1
+        PrinterSettings.Duplex = False
+        PrinterSettings.FirstPage = 0
+        PrinterSettings.LastPage = 0
+        PrinterSettings.OutputBin = Auto
+        PrintIfEmpty = True
+        SnapToGrid = True
+        Units = Native
+        Zoom = 100
+        object PageHeaderBand1: TQRBand
+          Left = 38
+          Top = 38
+          Width = 1047
+          Height = 30
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            79.375000000000000000
+            2770.187500000000000000)
+          BandType = rbPageHeader
+          object QRDBText1: TQRDBText
+            Left = 0
+            Top = 2
+            Width = 158
+            Height = 24
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              63.500000000000000000
+              0.000000000000000000
+              5.291666666666667000
+              418.041666666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = DMFrm.QPerusahaan
+            DataField = 'NAMA_PERUSAHAAN'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 14
+          end
+        end
+        object TitleBand1: TQRBand
+          Left = 38
+          Top = 68
+          Width = 1047
+          Height = 37
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          BeforePrint = TitleBand1BeforePrint
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            97.895833333333340000
+            2770.187500000000000000)
+          BandType = rbTitle
+          object QRLTitle: TQRLabel
+            Left = 498
+            Top = 8
+            Width = 50
+            Height = 21
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              55.562500000000000000
+              1317.625000000000000000
+              21.166666666666670000
+              132.291666666666700000)
+            Alignment = taCenter
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'TITLE'
+            Color = clWhite
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold, fsUnderline]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 12
+          end
+        end
+        object ColumnHeaderBand1: TQRBand
+          Left = 38
+          Top = 105
+          Width = 1047
+          Height = 32
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            84.666666666666680000
+            2770.187500000000000000)
+          BandType = rbColumnHeader
+          object QRLabel1: TQRLabel
+            Left = 8
+            Top = 16
+            Width = 17
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = Fa

@@ -1,0 +1,94 @@
+unit DaftarOperator;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, StdCtrls, ComCtrls, Buttons, DB, Wwdatsrc, OracleData,
+  Grids, Wwdbigrd, Wwdbgrid, Registry, wwdbdatetimepicker, Mask, wwdbedit,
+  Wwdotdot, Wwdbcomb, DBCtrls, DateUtils, wwrcdvw, wwSpeedButton,
+  wwDBNavigator, wwclearpanel, wwDialog, wwidlg, QuickRpt, QRCtrls,
+  wwdblook, Wwdbdlg;
+
+type
+  TDaftarOperatorFrm = class(TForm)
+    Panel1: TPanel;
+    Splitter1: TSplitter;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel4: TPanel;
+    BitBtn1: TBitBtn;
+    BitBtn2: TBitBtn;
+    BitBtn3: TBitBtn;
+    Q1: TOracleDataSet;
+    dsQ1: TwwDataSource;
+    wwDBGrid1: TwwDBGrid;
+    wwDBGrid1IButton: TwwIButton;
+    LTitle: TLabel;
+    Q1Total: TOracleDataSet;
+    Q1TotalNDATA: TFloatField;
+    dsQ1Total: TwwDataSource;
+    vColName: TListBox;
+    wwLookupDialog1: TwwLookupDialog;
+    QuickRep1: TQuickRep;
+    TitleBand1: TQRBand;
+    ColumnHeaderBand1: TQRBand;
+    DetailBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    QRDBText1: TQRDBText;
+    QRDBText6: TQRDBText;
+    QRSysData1: TQRSysData;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel7: TQRLabel;
+    PageFooterBand1: TQRBand;
+    QRSysData2: TQRSysData;
+    QRLabel8: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRLabel10: TQRLabel;
+    QRLTitle: TQRLabel;
+    QRLFilter: TQRLabel;
+    QRLabel11: TQRLabel;
+    QRDBText7: TQRDBText;
+    QRDBText8: TQRDBText;
+    QRDBText9: TQRDBText;
+    QRDBText10: TQRDBText;
+    QRDBText11: TQRDBText;
+    PageHeaderBand1: TQRBand;
+    QRDBText12: TQRDBText;
+    Q1OPR: TStringField;
+    Q1NIK: TStringField;
+    Q1KD_DIV: TStringField;
+    LookDivisi: TwwDBLookupComboDlg;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure wwDBGrid1IButtonClick(Sender: TObject);
+    procedure wwDBGrid1CalcCellColors(Sender: TObject; Field: TField;
+      State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+      ABrush: TBrush);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure CheckBox1Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure wwDBGrid1TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure ftrFieldEnter(Sender: TObject);
+    procedure wwDBGrid1DblClick(Sender: TObject);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure TitleBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure Q1BeforeOpen(DataSet: TDataSet);
+    procedure LookDivisiEnter(Sender: TObject);
+    procedure LookDivisiUserButton1Click(Sender: TObject;
+      LookupTable: TDataSet);
+  private
+    { Private declarations }
+    FIniFile: TRegIniFile;
+    cClData,cClDataBG,cClDataRO,cClDataROBG,cClTitle,cClTitleBG : TColor;
+    vpertama : boolean;
+    vrgTanggal, vfilter, vorder, voperand, vkeyword, vtanggal, vfield, vgroup : String;
+    vtglawal, vtglakhir : TDate;
+    vtanggal_idx, vfield_idx : Integer;
+    vDataFont, vTitleFont, vDataStyle,

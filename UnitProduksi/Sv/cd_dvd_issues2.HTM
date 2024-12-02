@@ -1,0 +1,222 @@
+15455414E01000000000008000000
+      4D494E5F53544F4B010000000000090000004B445F53415455414E0100000000
+      000B0000004B445F4A4E535F4954454D010000000000090000004C4541445F54
+      494D450100000000000700000049534649584544010000000000050000005241
+      53494F010000000000070000004E4F5F504152540100000000000A0000004B44
+      5F5355425F4B454C01000000000006000000524153494F32010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    Session = OS
+    BeforeOpen = QItemAllBeforeOpen
+    Left = 208
+    Top = 144
+    object QItemAllNAMA_ITEM: TStringField
+      DisplayLabel = 'NAMA ITEM'
+      DisplayWidth = 35
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemAllKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemAllSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QItemAllMIN_STOK: TFloatField
+      FieldName = 'MIN_STOK'
+      Required = True
+    end
+    object QItemAllKD_SATUAN: TStringField
+      FieldName = 'KD_SATUAN'
+      Required = True
+      Visible = False
+      Size = 2
+    end
+    object QItemAllRASIO: TFloatField
+      FieldName = 'RASIO'
+      Visible = False
+    end
+    object QItemAllRASIO2: TFloatField
+      FieldName = 'RASIO2'
+    end
+  end
+  object QSatuan: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db3.satuan a order by satuan')
+    QBEDefinition.QBEFieldDefs = {
+      04000000020000000600000053415455414E010000000000090000004B445F53
+      415455414E010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    BeforeOpen = QSatuanBeforeOpen
+    Left = 280
+    Top = 152
+    object QSatuanSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QSatuanKD_SATUAN: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 4
+      FieldName = 'KD_SATUAN'
+      Required = True
+      Size = 2
+    end
+  end
+  object MyKonversi1: TMyKonversi
+    HasilKonversi = 'Nol Rupiah'
+    Bahasa = Indonesia
+    Satuan = 'Rupiah'
+    Left = 40
+    Top = 208
+  end
+  object QUser: TOracleDataSet
+    SQL.Strings = (
+      
+        'select a.*, b.nama_divisi from ipisma_db3.vuser a, ipisma_db3.di' +
+        'visi b'
+      'where a.kd_div=b.kd_div and a.vuser=:vuser')
+    Variables.Data = {0300000001000000060000003A5655534552050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000004000000040000005449504501000000000005000000565553455201
+      0000000000060000004B445F4449560100000000000B0000004E414D415F4449
+      56495349010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 344
+    Top = 56
+    object QUserTIPE: TStringField
+      FieldName = 'TIPE'
+      Size = 16
+    end
+    object QUserVUSER: TStringField
+      FieldName = 'VUSER'
+      Required = True
+      Size = 30
+    end
+    object QUserKD_DIV: TStringField
+      FieldName = 'KD_DIV'
+      Size = 5
+    end
+    object QUserNAMA_DIVISI: TStringField
+      FieldName = 'NAMA_DIVISI'
+      Size = 50
+    end
+  end
+  object QMyInfo: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db3.myinfo a')
+    QBEDefinition.QBEFieldDefs = {
+      0400000004000000060000004D59494E464F0100000000000A00000054474C5F
+      494E534552540100000000000A0000004F50525F494E53455254010000000000
+      0C00000054474C5F41504C494B415349010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    BeforePost = QMyInfoBeforePost
+    Left = 408
+    Top = 56
+  end
+  object dsQMyInfo: TwwDataSource
+    DataSet = QMyInfo
+    Left = 408
+    Top = 112
+  end
+  object MyKonversi2: TMyKonversi
+    HasilKonversi = 'Null Dollar'
+    Bahasa = Inggris
+    Satuan = 'Dollar'
+    Left = 144
+    Top = 232
+  end
+  object QUnPost: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  ipisma_db3.unpost(:no_nota);'
+      'end;')
+    Session = OS
+    Variables.Data = {
+      0300000001000000080000003A4E4F5F4E4F5441050000000000000000000000}
+    Left = 400
+    Top = 288
+  end
+  object QJnsItem: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.jns_item'
+      'order by kd_jns_item')
+    QBEDefinition.QBEFieldDefs = {
+      0400000006000000070000004A4E535F4252470100000000000B0000004B445F
+      4A4E535F4954454D0100000000000400000052454B3101000000000004000000
+      52454B320100000000000400000052454B330100000000000400000052454B34
+      010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 272
+    Top = 240
+    object QJnsItemJNS_BRG: TStringField
+      FieldName = 'JNS_BRG'
+      Size = 50
+    end
+    object QJnsItemKD_JNS_ITEM: TStringField
+      FieldName = 'KD_JNS_ITEM'
+      Required = True
+      Size = 6
+    end
+    object QJnsItemREK1: TStringField
+      FieldName = 'REK1'
+      Size = 22
+    end
+    object QJnsItemREK2: TStringField
+      FieldName = 'REK2'
+      Size = 22
+    end
+    object QJnsItemREK3: TStringField
+      FieldName = 'REK3'
+      Size = 22
+    end
+    object QJnsItemREK4: TStringField
+      FieldName = 'REK4'
+      Size = 22
+    end
+  end
+  object dsQJnsItem: TwwDataSource
+    DataSet = QJnsItem
+    Left = 272
+    Top = 296
+  end
+  object RekGL: TOracleDataSet
+    SQL.Strings = (
+      
+        'select a.kd_rek_gl, lpad('#39' '#39',2*(lvl-1))||nama_rekening as nama_r' +
+        'ekening, lvl, isdetail, a.nama_rekening as lnama_rekening from i' +
+        'penta.Rek_gl a'
+      'order by kd_rek_gl')
+    QBEDefinition.QBEFieldDefs = {
+      0400000005000000090000004B445F52454B5F474C0100000000000D0000004E
+      414D415F52454B454E494E47010000000000030000004C564C01000000000008
+      000000495344455441494C0100000000000E0000004C4E414D415F52454B454E
+      494E47010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 104
+    Top = 304
+    object RekGLKD_REK_GL: TStringField
+      FieldName = 'KD_REK_GL'
+      Required = True
+      Size = 15
+    end
+    object RekGLNAMA_REKENING: TStringField
+      FieldName = 'NAMA_REKENING'
+      Size = 4000
+    end
+    object RekGLLVL: TFloatField
+      FieldName = 'LVL'
+    end
+    object RekG

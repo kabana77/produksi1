@@ -1,0 +1,67 @@
+             1780.645833333333000000
+              0.000000000000000000
+              169.333333333333300000)
+            Alignment = taRightJustify
+            AlignToBand = True
+            AutoSize = True
+            Color = clWhite
+            Data = qrsPageNumber
+            Text = 'Hal : '
+            Transparent = False
+            FontSize = 8
+          end
+          object QRDBText22: TQRDBText
+            Left = 0
+            Top = 0
+            Width = 79
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              0.000000000000000000
+              0.000000000000000000
+              209.020833333333300000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = DMFrm.QDateTime
+            DataField = 'VUSER_CETAK'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+        end
+        object QRSubDetail1: TQRSubDetail
+          Left = 38
+          Top = 184
+          Width = 737
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          BeforePrint = QRSubDetail1BeforePrint
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            44.979166666666670000
+            1949.979166666667000000)
+          Master = QuickRep1
+          DataSet = QJurnal
+          FooterBand = QRBand2
+          HeaderBand = DetailBand1
+          PrintBefore = False
+          PrintIfEmpty = True
+          object QRDBText7: TQRDBText
+            Left = 200
+            Top = 0
+            

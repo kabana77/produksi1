@@ -1,0 +1,317 @@
+ private
+    { Private declarations }
+    vfilter, vorder, vfilter2 : String;
+    vnomer, vnomer2 : Integer;
+  public
+    { Public declarations }
+    vkd_jns_item, vkd_jns_kebutuhan, vkd_bag : String;
+    vhak_input : Boolean;
+    vrecord_ke : Integer;
+  end;
+
+var
+  RekapPemakaianPerMesin2Frm: TRekapPemakaianPerMesin2Frm;
+
+implementation
+
+uses DM, MainBrowse, Main, Menus, XPROCS, DateUtils, Keterangan, Sisdur,
+  RekapPemakaianPerMesin2BB, RekapPemakaianPerMesin2KIM;
+
+{$R *.dfm}
+
+procedure TRekapPemakaianPerMesin2Frm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  RekapPemakaianPerMesin2Frm:=Nil;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.FormCreate(Sender: TObject);
+begin
+  DMFrm.QLookSubBagian.Close;
+  QLookItem.Close;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.LookKonstruksiEnter(Sender: TObject);
+begin
+  DMFrm.QKonstruksi.Open;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.wwDBGrid2Enter(Sender: TObject);
+begin
+  if QTransaksi.State<>dsBrowse then
+        try
+          QTransaksi.Post;
+        except
+            on E : Exception do
+            begin
+              ShowMessage(E.Message);
+            end;
+        end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.DBText2Click(Sender: TObject);
+var
+  vno_reg_cari : String;
+begin
+  vno_reg_cari:=InputBox('Cari/ Copy Nomer','Klik Kanan --> Copy : ',QTransaksiNO_REG_PP.AsString);
+  if (vno_reg_cari<>QTransaksiNO_REG_PP.AsString) then
+  begin
+    QTransaksi.Close;
+    QTransaksi.SetVariable('no_reg_pp',StrToInt(vno_reg_cari));
+    QTransaksi.Open;
+//    QDetail.Open;
+  end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QLookItemBeforeOpen(DataSet: TDataSet);
+begin
+  QLookItem.SetVariable('kd_jns_kebutuhan',vkd_jns_kebutuhan);
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.LookItemCloseUp(Sender: TObject; LookupTable,
+  FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+  begin
+    QDetailNO_REG_KEBUTUHAN.AsInteger:=QLookItemNO_REG_KEBUTUHAN.AsInteger;
+    QDetailQTY_KEBUTUHAN.AsFloat:=QLookItemQTY_KEBUTUHAN.AsFloat;
+    QDetailQTY_PP.AsFloat:=QLookItemQTY_PP.AsFloat;
+    QDetailQTY.AsFloat:=QDetailQTY_KEBUTUHAN.AsFloat-QDetailQTY_PP.AsFloat;
+    QDetailTGL_PO.AsDateTime:=QLookItemTGL_KEBUTUHAN.AsDateTime;
+    QDetailKETERANGAN.AsString:=QLookItemNAMA_ITEM.AsString
+  end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.wwDBGrid2CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+    if (Sender as TwwDBGrid).ColumnByName(Field.FieldName).ReadOnly then
+    begin
+      ABrush.Color:=DMFrm.vclGridRead;
+      AFont.Color:=DMFrm.vclGridReadFont;
+    end
+    else
+    begin
+      ABrush.Color:=DMFrm.vclGridEdit;
+      AFont.Color:=DMFrm.vclGridEditFont;
+    end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.BitBtn1Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+  vdd, vmm, vyy : word;
+  vtotal : real;
+  vposisi : integer;
+begin
+  DecodeDate(VTglAwal.Date,vyy,vmm,vdd);
+//  QBrowse.Close;
+  QLookNilai.Close;
+  QLookNilai.SetVariable('BXX','M'+FormatFloat('00',vmm)+'/decode(A'+FormatFloat('00',vmm)+',0,1,A'+FormatFloat('00',vmm)+') as harga');
+  QLookNilai.SetVariable('ptahun',vyy);
+  QLookNilai.Open;
+  vpertama:=True;
+  vfilter:=' where (';
+  if (QBrowse.FieldCount>=1) then
+  begin
+    if dbcField.ItemIndex=0 then
+    begin
+      for i:=0 to wwDBGrid1.Selected.Count-1 do
+  //    for i:=0 to QBrowse.FieldCount-1 do
+      begin
+        if (QBrowse.FieldByName(wwDBGrid1.Columns[i].FieldName).FieldKind=fkData) and (UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL') then
+        begin
+          if vpertama then
+            begin
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                   vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand.Caption='LIKE' then
+         vfilter:=vfilter+dbcField.Text+' like ''%'+ECari.Text+'%'''
+         else
+           vfilter:=vfilter+dbcField.Text+' = '''+ECari.Text+'''';
+    vfilter:=vfilter+')';
+//    vorder:=' order by '+wwDBGrid1.Columns[0].FieldName;
+    if QBrowse.Active then
+      vorder:=' order by '+wwDBGrid1.Columns[0].FieldName
+      else
+        vorder:=' order by bagian';
+
+  end;
+  QBrowse.DisableControls;
+  QBrowse.Close;
+  QBrowse.SetVariable('vjns',DMFrm.QJns_ItemKD_JNS_ITEM.AsString);
+  QBrowse.SetVariable('pawal',VTglAwal.Date);
+  QBrowse.SetVariable('pakhir',VTglAkhir.Date);
+//  ShowMessage(vfilter+vorder);
+  QBrowse.SetVariable('myparam',vfilter+vorder);
+  QBrowse.Open;
+  vtotal:=0;
+  vposisi:=0;
+  ProgressBar1.Max:=QBrowse.RecordCount;
+//  QBrowse.DisableControls;
+  while not QBrowse.Eof do
+  begin
+    vposisi:=vposisi+1;
+    ProgressBar1.Position:=vposisi;
+    vtotal:=vtotal+(QBrowseHARGA.AsFloat*QBrowseQTY_PP.AsFloat);
+    QBrowse.Next;
+  end;
+  QBrowse.First;
+  QBrowse.EnableControls;
+  wwDBGrid1.ColumnByName('SUB_TOTAL').FooterValue:=FormatFloat('#,#;(#,#)',vtotal);
+  LRecords.Caption:='Jml. Record : '+FormatFloat('#,#',QBrowse.RecordCount);
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.FormShow(Sender: TObject);
+begin
+  VTglAwal.Date:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QBrowseBeforeOpen(DataSet: TDataSet);
+begin
+//  QBrowse.SetVariable('kd_transaksi','%');
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLTitle.Caption:=Caption;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.TabSheet1Show(Sender: TObject);
+begin
+  DMFrm.QJns_Item.Open;
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  QBrowse.Open;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  CanClose:=TabSheet1.TabVisible;
+  if not CanClose then
+    if MessageDlg('Data belum di Simpan/ Posting !'+#13+
+       'Anda tetap mau menutup Form ?'+#13+
+       'Jika pilih [YES], maka Form akan ditutup dan data tidak akan tersimpan.',mtWarning,[mbYes,mbNo],0)=mrYes then
+       begin
+         QTransaksi.First;
+         while not QTransaksi.Eof do
+         begin
+           if QTransaksiISPOST.AsString='0' then
+             QTransaksi.Delete
+           else
+             QTransaksi.Next;
+         end;
+         CanClose:=True;
+       end;
+
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QDetailBeforeInsert(DataSet: TDataSet);
+begin
+  if not vhak_input then
+  begin
+      ShowMessage('Maaf, Anda tidak berhak merubah data !');
+      Abort;
+  end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QTransaksiAfterDelete(DataSet: TDataSet);
+begin
+  if QTransaksi.IsEmpty then
+    TabSheet1.TabVisible:=True;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.VTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.Date:=Trunc(EndOfTheMonth(VTglAwal.Date));
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.vTglAkhirChange(Sender: TObject);
+begin
+  if VTglAwal.Date>vTglAkhir.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir.Date:=VTglAwal.Date;
+  end;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.ColumnHeaderBand2BeforePrint(
+  Sender: TQRCustomBand; var PrintBand: Boolean);
+begin
+  vrecord_ke:=0;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.wwDBGrid2DblClick(Sender: TObject);
+var
+  vnama_barang_org : String;
+  vketerangan_org : String;
+  vpos : Integer;
+begin
+  if QDetailKETERANGAN.AsString<>'' then
+  begin
+    vpos:=Pos('**',QDetailKETERANGAN.AsString);
+    if vpos>0 then
+    begin
+       vnama_barang_org:=copy(QDetailKETERANGAN.AsString,1,vpos-1);
+       vketerangan_org:=copy(QDetailKETERANGAN.AsString,vpos+3,255);
+    end
+       else
+       begin
+         vnama_barang_org:=QDetailKETERANGAN.

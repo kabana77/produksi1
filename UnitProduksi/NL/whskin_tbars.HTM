@@ -1,0 +1,121 @@
+ TBAServisFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  1 : wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TBAServisFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=QJnsTransaksiNAMA_TRANSAKSI.AsString;
+     wwDBGrid1.ExportOptions.TitleName:=QJnsTransaksiNAMA_TRANSAKSI.AsString;
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid1.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+end;
+
+procedure TBAServisFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=QJnsTransaksiNAMA_TRANSAKSI.AsString;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TBAServisFrm.vOperandClick(Sender: TObject);
+begin
+  if vOperand.Caption='LIKE' then
+    vOperand.Caption:='='
+    else
+      vOperand.Caption:='LIKE';
+end;
+
+procedure TBAServisFrm.dbcFieldEnter(Sender: TObject);
+var
+  i : Word;
+begin
+  if (QBrowse.Active) and (dbcField.Items.Count=1) then
+  for i:=0 to wwDBGrid1.FieldCount-1 do
+    if UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TGL_JTH_TEMPO' then
+      dbcField.Items.Add(wwDBGrid1.Columns[i].FieldName);
+end;
+
+procedure TBAServisFrm.BtnFormulasiClick(Sender: TObject);
+begin
+  if (QTransaksiKD_REKANAN.AsString='') and  (ENoNota.Text='') and (QTransaksiMU.AsString='') and (QTransaksiKD_PERK.AsString='') then
+    ShowMessage('Rekanan, Jenis Hutang dan Mata Uang harus diisi !')
+    else
+    begin
+        if (QTransaksiISPOST.AsString='0') then
+        begin
+          if QTransaksi.State<>dsBrowse then
+          begin
+            try
+              QTransaksiNO_REFF.AsString:=ENoNota.Text;
+              QTransaksi.Post;
+            except
+                on E : Exception do
+                begin
+                  ShowMessage(E.Message);
+                end;
+            end;
+          end;
+          if QTransaksi.State=dsBrowse then
+          begin
+            try
+              QTransaksi.Edit;
+              QTransaksiNO_REFF.AsString:=ENoNota.Text;
+              QTransaksi.Post;
+              QAmbilNota.Close;
+              QAmbilNota.SetVariable('no_reg_hutang',QTransaksiNO_REG_HUTANG.AsInteger);
+              QAmbilNota.SetVariable('no_nota','%'+ENoNota.Text);
+              QAmbilNota.SetVariable('opr_insert',QTransaksiOPR_INSERT.AsString);
+              QAmbilNota.Execute;
+              QDetail.DisableControls;
+              QDetail.Close;
+              QDetail.Open;
+              QDetail.EnableControls;
+              wwDBGrid2UpdateFooter(nil);
+            except
+                on E : Exception do
+                begin
+                  ShowMessage(E.Message);
+                end;
+            end;
+          end;
+        end
+        else
+          ShowMessage('Data sudah di-POSTING, tidak bisa diubah !');
+    end;
+end;
+
+procedure TBAServisFrm.L

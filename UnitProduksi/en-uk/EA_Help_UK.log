@@ -1,0 +1,157 @@
+ct);
+var
+  vdebet, vkredit : real;
+begin
+  QAwal.Close;
+  QAwal.Open;
+  vdebet:=0;
+  vkredit:=0;
+  QBukuKas.DisableControls;
+  QBukuKas.Close;
+  QBukuKas.Open;
+  while not QBukuKas.Eof do
+  begin
+      vdebet:=vdebet+QBukuKasKREDIT.AsFloat;
+      vkredit:=vkredit+QBukuKasDEBET.AsFloat;
+      QBukuKas.Next;
+  end;
+  QBukuKas.First;
+  QBukuKas.EnableControls;
+  wwDBGrid3.ColumnByName('DEBET').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vkredit);
+  wwDBGrid3.ColumnByName('KREDIT').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vdebet);
+  LBerjalan.Caption:=FormatFloat('0.0,0;(0.0,0)',vdebet-vkredit);
+  LAkhir.Caption:=FormatFloat('0.0,0;(0.0,0)',QAwalAWAL.AsFloat+vdebet-vkredit);
+end;
+
+procedure TJurnalHPPFrm.TabSheet3Show(Sender: TObject);
+begin
+  DMFrm.QKas.Open;
+  VTglAwal.Date:=VTglAwal2.Date;
+  wwDBLookupCombo1.Text:=DMFrm.QKasKD_PERK.AsString;
+end;
+
+procedure TJurnalHPPFrm.QRGroup1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLNomer.Enabled:=True;
+  QRDBNoNota.Enabled:=True;
+  QRDBTanggal.Enabled:=True;
+  vnomer:=vnomer+1;
+  QRLNomer.Caption:=IntTostr(vnomer);
+end;
+
+procedure TJurnalHPPFrm.DetailBand1AfterPrint(Sender: TQRCustomBand;
+  BandPrinted: Boolean);
+begin
+  QRLNomer.Enabled:=False;
+  QRDBNoNota.Enabled:=False;
+  QRDBTanggal.Enabled:=False;
+end;
+
+procedure TJurnalHPPFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+    QRLTitle2.Caption:='JURNAL MEMORIAL'
+end;
+
+procedure TJurnalHPPFrm.TitleBand3BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLAccount.Caption:=DMFrm.QKasKD_PERK.AsString+'/ '+DMFrm.QKasNAMA_PERKIRAAN.AsString;
+  QRLPeriode.Caption:=VTglAwal.Text+' s/d '+vTglAkhir.Text;
+end;
+
+procedure TJurnalHPPFrm.SummaryBand3BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLMutasi.Caption:=FormatFloat('0.0,0;(0.0,0',QRExpr7.Value.dblResult-QRExpr6.Value.dblResult);
+  QRLAkhir.Caption:=FormatFloat('0.0,0;(0.0,0',QAwalAWAL.AsFloat+QRExpr7.Value.dblResult-QRExpr6.Value.dblResult);
+end;
+
+procedure TJurnalHPPFrm.VTglAwal2Change(Sender: TObject);
+begin
+  vTglAkhir2.Date:=Trunc(EndOfTheMonth(VTglAwal2.Date));
+end;
+
+procedure TJurnalHPPFrm.vTglAkhir2Change(Sender: TObject);
+begin
+  if VTglAwal2.Date>vTglAkhir2.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir2.Date:=VTglAwal2.Date;
+  end;
+end;
+
+procedure TJurnalHPPFrm.cbTanggalClick(Sender: TObject);
+begin
+  if cbTanggal.Checked then
+  begin
+    VTglAwal2.Enabled:=cbTanggal.Checked;
+    vTglAkhir2.Enabled:=cbTanggal.Checked;
+    VTglAwal2.SetFocus;
+  end
+  else
+    ECari.SetFocus;
+end;
+
+procedure TJurnalHPPFrm.LookDivisiEnter(Sender: TObject);
+begin
+  DMFrm.QDivisi.Open;
+end;
+
+procedure TJurnalHPPFrm.LookBebanEnter(Sender: TObject);
+begin
+  DMFrm.QKaryawan.Open;
+end;
+
+procedure TJurnalHPPFrm.QDetailBeforeEdit(DataSet: TDataSet);
+begin
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      ShowMessage('Maaf, Transaksi sudah di-POSTING, tidak bisa diubah !');
+      Abort;
+  end;
+end;
+
+procedure TJurnalHPPFrm.cbPostClick(Sender: TObject);
+begin
+  if cbPost.Checked then
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect]
+    else
+       wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect];
+
+end;
+
+procedure TJurnalHPPFrm.LookBebanUserButton1Click(Sender: TObject;
+  LookupTable: TDataSet);
+begin
+  DMFrm.QBeban.Close;
+  DMFrm.QBeban.SetVariable('myparam',' order by kode');
+  DMFrm.QBeban.Open;
+
+end;
+
+procedure TJurnalHPPFrm.LookBebanUserButton2Click(Sender: TObject;
+  LookupTable: TDataSet);
+begin
+  DMFrm.QBeban.Close;
+  DMFrm.QBeban.SetVariable('myparam',' order by keterangan');
+  DMFrm.QBeban.Open;
+end;
+
+procedure TJurnalHPPFrm.QDetailNO_PROYEKChange(Sender: TField);
+begin
+  QDetailKETERANGAN.AsString:=DMFrm.QProyekNAMA_PEKERJAAN.AsString;
+end;
+
+procedure TJurnalHPPFrm.QDetailKD_BEBANChange(Sender: TField);
+begin
+  QDetailKETERANGAN.AsString:=DMFrm.QBebanKETERANGAN.AsString;
+end;
+
+procedure TJurnalHPPFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal2.Date:=Date;
+end;
+
+procedure TJurn

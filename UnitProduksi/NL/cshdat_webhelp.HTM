@@ -1,0 +1,144 @@
+
+        Align = alClient
+        TabOrder = 1
+        object TabSheet1: TTabSheet
+          Caption = 'Lap Produksi'
+          object wwDBGrid1: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 1141
+            Height = 373
+            ControlType.Strings = (
+              'ISFIXED;CheckBox;1;0')
+            Selected.Strings = (
+              'NAMA_ITEM'#9'25'#9'NAMA ITEM'#9'F'
+              'QTY1'#9'15'#9'Kg'#9'F'#9'HASIL SOFTCONE'
+              'QTY2'#9'10'#9'Pcs'#9'F'#9'HASIL SOFTCONE'
+              'QTY3'#9'15'#9'Kg'#9'F'#9'HASIL MESIN~CELUP'
+              'QTY4'#9'10'#9'Pcs'#9'F'#9'HASIL MESIN~CELUP'
+              'QTY5'#9'15'#9'Kg'#9'F'#9'HASIL MESIN~PENGERING'
+              'QTY6'#9'10'#9'Pcs'#9'F'#9'HASIL MESIN~PENGERING'
+              'QTY7'#9'15'#9'Kg'#9'F'#9'HASIL DEPT DYEING~(Serah Terima ke Gudang Warna)'
+              'QTY8'#9'10'#9'Pcs'#9'F'#9'HASIL DEPT DYEING~(Serah Terima ke Gudang Warna)')
+            IniAttributes.Enabled = True
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQBrowse
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            KeyOptions = []
+            Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+            ParentCtl3D = False
+            ParentFont = False
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = ANSI_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'Arial'
+            TitleFont.Style = []
+            TitleLines = 4
+            TitleButtons = True
+            UseTFields = False
+            OnTitleButtonClick = wwDBGrid2TitleButtonClick
+            OnUpdateFooter = wwDBGrid1UpdateFooter
+          end
+        end
+        object TabSheet2: TTabSheet
+          Caption = 'BOP Softcone'
+          ImageIndex = 1
+          object wwDBGrid2: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 1141
+            Height = 373
+            ControlType.Strings = (
+              'ISFIXED;CheckBox;1;0')
+            Selected.Strings = (
+              'NAMA_ITEM'#9'25'#9'NAMA ITEM'#9'F'
+              'QTY1'#9'15'#9'Kg'#9'F'
+              'sc_bale'#9'10'#9'Ball'#9'F'
+              'sc_bale_mtr'#9'10'#9'Ball~per Meter'#9'F'
+              'sc_prod_bale_mtr'#9'12'#9'Produksi~per Meter'#9'F')
+            IniAttributes.Enabled = True
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQBrowse
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            KeyOptions = []
+            Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+            ParentCtl3D = False
+            ParentFont = False
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = ANSI_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'Arial'
+            TitleFont.Style = []
+            TitleLines = 4
+            TitleButtons = True
+            UseTFields = False
+            OnTitleButtonClick = wwDBGrid2TitleButtonClick
+            OnUpdateFooter = wwDBGrid2UpdateFooter
+          end
+        end
+      end
+    end
+    object PanelFooter2: TPanel
+      Left = 0
+      Top = 547
+      Width = 1149
+      Height = 41
+      Align = alBottom
+      BevelOuter = bvNone
+      TabOrder = 3
+      object wwDBNavigator1: TwwDBNavigator
+        Left = 0
+        Top = 0
+        Width = 145
+        Height = 41
+        AutosizeStyle = asSizeNavButtons
+        DataSource = dsQBrowse
+        RepeatInterval.InitialDelay = 500
+        RepeatInterval.Interval = 100
+        Align = alLeft
+        object wwDBNavigator1PriorPage: TwwNavButton
+          Left = 0
+          Top = 0
+          Width = 37
+          Height = 41
+          Hint = 'Move backward 10 records'
+          ImageIndex = -1
+          NumGlyphs = 2
+          Spacing = 4
+          Transparent = False
+          Caption = 'wwDBNavigator1PriorPage'
+          Enabled = False
+          DisabledTextColors.ShadeColor = clGray
+          DisabledTextColors.HighlightColor = clBtnHighlig

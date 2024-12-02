@@ -1,0 +1,126 @@
+Style = nbsPost
+            end
+          end
+        end
+        object PanelBand: TPanel
+          Left = 0
+          Top = 137
+          Width = 792
+          Height = 41
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clSkyBlue
+          TabOrder = 1
+          DesignSize = (
+            792
+            41)
+          object Label14: TLabel
+            Left = 719
+            Top = 2
+            Width = 43
+            Height = 13
+            Anchors = [akTop, akRight, akBottom]
+            Caption = 'Spasi (%)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsUnderline]
+            ParentFont = False
+            OnClick = Label14Click
+          end
+          object Label15: TLabel
+            Left = 8
+            Top = 2
+            Width = 44
+            Height = 13
+            Caption = 'Cari Nota'
+          end
+          object wwDBSpinLine1: TwwDBSpinEdit
+            Left = 719
+            Top = 18
+            Width = 41
+            Height = 19
+            Anchors = [akTop, akRight, akBottom]
+            Increment = 100.000000000000000000
+            MaxValue = 400.000000000000000000
+            MinValue = 100.000000000000000000
+            Value = 100.000000000000000000
+            TabOrder = 0
+            UnboundDataType = wwDefault
+            OnChange = wwDBSpinLine1Change
+          end
+          object EditCari: TEdit
+            Left = 8
+            Top = 19
+            Width = 89
+            Height = 19
+            TabOrder = 1
+            OnKeyDown = EditCariKeyDown
+          end
+          object cbPost: TwwCheckBox
+            Left = 632
+            Top = 19
+            Width = 81
+            Height = 17
+            DisableThemes = False
+            AlwaysTransparent = False
+            ValueChecked = '1'
+            ValueUnchecked = '0'
+            DisplayValueChecked = '1'
+            DisplayValueUnchecked = '0'
+            NullAndBlankState = cbUnchecked
+            Caption = 'Posting'
+            DataField = 'ISPOST'
+            DataSource = dsQMaster
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clRed
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 2
+          end
+          object BtnAmbilData: TBitBtn
+            Left = 104
+            Top = 4
+            Width = 89
+            Height = 35
+            Caption = '&Ambil Data'#13#10'(khusus resep)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            TabOrder = 3
+            OnClick = BtnAmbilDataClick
+            NumGlyphs = 2
+          end
+        end
+      end
+      object TabSheet2: TTabSheet
+        Caption = 'Browse'
+        ImageIndex = 1
+        object LabelBanner: TLabel
+          Left = 0
+          Top = 57
+          Width = 792
+          Height = 13
+          Align = alTop
+          Color = clSkyBlue
+          ParentColor = False
+        end
+        object PanelFilter: TPanel
+          Left = 0
+          Top = 0
+          Width = 792
+          Height = 57
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 0
+          DesignSize = (
+            792
+            57)
+          object Label2: TLabel
+            Left 

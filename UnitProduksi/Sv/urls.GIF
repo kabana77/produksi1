@@ -1,0 +1,35 @@
+        Color = clWhite
+            DataSet = QMaster
+            DataField = 'TGL'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 10
+          end
+          object QRLabel3: TQRLabel
+            Left = 536
+            Top = 8
+            Width = 46
+            Height = 17
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              44.979166666666670000
+              1418.166666666667000000
+              21.166666666666670000
+              121.708333333333300000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'Tanggal'
+            Color = clWhite
+   

@@ -1,0 +1,36 @@
+ 17
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              44.979166666666670000
+              1145.645833333333000000
+              0.000000000000000000
+              156.104166666666700000)
+            Alignment = taRightJustify
+            AlignToBand = False
+            AutoSize = False
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QBrowse
+            DataField = 'MASUK1'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            Mask = '0.0,0;(0.0,0);-'
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 9
+          end
+          object QRDBText18: TQRDBText
+            Left = 502
+            Top = 0
+            Width = 59
+            Height = 17
+            Frame.Color = clBlack
+            Frame.DrawTop =

@@ -1,0 +1,128 @@
+e;
+  QProc_Neraca.SetVariable('ptahun',Round(spTahun.Value));
+  QProc_Neraca.SetVariable('pbulan',FormatFloat('00',LookBulan.ItemIndex+1));
+  QProc_Neraca.SetVariable('plevel',Round(spLevel.Value));
+  QProc_Neraca.Execute;
+  QBrowse.DisableControls;
+  vtot11:=0;
+  vtot12:=0;
+  vtot21:=0;
+  vtot22:=0;
+  QBrowse.Close;
+//  QBrowse.SetVariable('tahun',Round(spTahun.Value));
+  QBrowse.Open;
+  QBrowse.First;
+  QBrowse.EnableControls;
+{  while not QBrowse.Eof do
+  begin
+      vtot11:=vtot11+QBrowseBLN_INI1.AsFloat;
+      vtot12:=vtot12+QBrowseBLN_LALU1.AsFloat;
+      vtot21:=vtot21+QBrowseBLN_INI2.AsFloat;
+      vtot22:=vtot22+QBrowseBLN_LALU2.AsFloat;
+      QBrowse.Next;
+  end;
+
+  wwDBGrid1.ColumnByName('BLN_INI1').FooterValue:=FormatFloat('#.#,#',vtot11);
+  wwDBGrid1.ColumnByName('BLN_LALU1').FooterValue:=FormatFloat('#.#,#',vtot12);
+  wwDBGrid1.ColumnByName('BLN_INI2').FooterValue:=FormatFloat('#.#,#',vtot21);
+  wwDBGrid1.ColumnByName('BLN_LALU2').FooterValue:=FormatFloat('#.#,#',vtot22);}
+end;
+
+procedure TRabRealFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+//        QBrowse.DisableControls;
+        QuickRep1.Preview;
+//        QBrowse.EnableControls;
+      end;
+  end;
+end;
+
+procedure TRabRealFrm.TabSheet1Show(Sender: TObject);
+begin
+  DMFrm.QCloseDate.Open;
+  mYwwDBGrid10.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  QBrowse.Open;
+  spTahun.Value:=StrToInt(FormatDateTime('yyyy', date));
+  LookBulan.ItemIndex:=StrToInt(FormatDateTime('mm', date))-1;
+end;
+
+procedure TRabRealFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : mYwwDBGrid10.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TRabRealFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=Caption;
+     mYwwDBGrid10.ExportOptions.TitleName:=Caption;
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         mYwwDBGrid10.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         mYwwDBGrid10.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+end;
+
+procedure TRabRealFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=Caption;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TRabRealFrm.QDetailAfterScroll(DataSet: TDataSet);
+begin
+//  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TRabRealFrm.BitBtn3Click(Sender: TObject);
+var
+  vtot11, vtot12, vtot21, vtot22 : Real;
+begin
+  isresume:=True;
+  QProc_Neraca2.Close;
+  QProc_Neraca2.SetVariable('ptahun',Round(spTahun.Value));
+  QProc_Neraca2.SetVariable('pbulan',FormatFloat('00',LookBulan.ItemIndex+1));
+  QProc_Neraca2.SetVariable('plevel',3);
+  QProc_Neraca2.Execute;
+  QBrowse.DisableControls;
+  vtot11:=0;
+  vtot12:=0;
+  vtot21:=0;
+  vtot22:=0;
+  QBrowse.Close;
+//  QBrowse.SetVariable('tahun',Round(spTahun.Value));
+  QBrows

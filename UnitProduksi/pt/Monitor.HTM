@@ -1,0 +1,121 @@
+vigator1RestoreBookmark: TwwNavButton;
+    BtnClose2: TBitBtn;
+    BtnExport: TBitBtn;
+    BtnPrintBrowse: TBitBtn;
+    BtnDesign2: TBitBtn;
+    TabSheet3: TTabSheet;
+    wwDBRichEdit1: TwwDBRichEdit;
+    QBrowse2SATUAN: TStringField;
+    LookSatuan: TwwDBComboBox;
+    LTotal: TLabel;
+    LTMtr: TLabel;
+    LTPtg: TLabel;
+    QTotalMeter: TOracleDataSet;
+    QTotalMeterGULUNG_IN: TFloatField;
+    QTotalMeterMTR_IN: TFloatField;
+    QTotalPotong: TOracleDataSet;
+    QTotalPotongGULUNG_IN: TFloatField;
+    QTotalPotongMTR_IN: TFloatField;
+    Label13: TLabel;
+    ppLabel1: TppLabel;
+    ppLabel21: TppLabel;
+    ppLabel28: TppLabel;
+    ppLabel34: TppLabel;
+    ppLabel36: TppLabel;
+    ppLabel37: TppLabel;
+    ppLabel38: TppLabel;
+    ppLabel39: TppLabel;
+    ppLabel40: TppLabel;
+    ppLabel41: TppLabel;
+    ppDBText20: TppDBText;
+    ppLabel13: TppLabel;
+    QBrowse2NO_RESEP: TStringField;
+    QKonstruksiRASIO: TFloatField;
+    QDetail2RASIO: TFloatField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure FormCreate(Sender: TObject);
+    procedure BtnExportClick(Sender: TObject);
+    procedure BtnOkClick(Sender: TObject);
+    procedure wwDBGrid2TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure QBrowseAfterScroll(DataSet: TDataSet);
+    procedure BtnClose1Click(Sender: TObject);
+    procedure BtnClose2Click(Sender: TObject);
+    procedure vTglAwalChange(Sender: TObject);
+    procedure wwDBSpinLine2Change(Sender: TObject);
+    procedure BtnFindClick(Sender: TObject);
+    procedure BtnOk2Click(Sender: TObject);
+    procedure ppHeaderBand1BeforePrint(Sender: TObject);
+    procedure BtnPrintBrowseClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure BtnDesign2Click(Sender: TObject);
+    procedure ppTitleBand1BeforePrint(Sender: TObject);
+    procedure wwDBSpinLine1Change(Sender: TObject);
+    procedure EditCariKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure TabSheet1Exit(Sender: TObject);
+    procedure ppDetailBand2BeforePrint(Sender: TObject);
+    procedure ppFooterBand2BeforePrint(Sender: TObject);
+    procedure BtnPrintInputClick(Sender: TObject);
+    procedure QMasterBeforePost(DataSet: TDataSet);
+    procedure wwDBGrid1Enter(Sender: TObject);
+    procedure wwDBGrid2DblClick(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
+    procedure LookKonstruksiEnter(Sender: TObject);
+    procedure QMasterBeforeDelete(DataSet: TDataSet);
+    procedure QMasterNewRecord(DataSet: TDataSet);
+    procedure QTransaksiBeforeOpen(DataSet: TDataSet);
+    procedure ppPageStyle1BeforePrint(Sender: TObject);
+    procedure Label14Click(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+    procedure QMasterAfterPost(DataSet: TDataSet);
+    procedure QMasterBeforeInsert(DataSet: TDataSet);
+    procedure ppGroupHeaderBand1BeforePrint(Sender: TObject);
+    procedure QItemBeforeQuery(Sender: TOracleDataSet);
+    procedure LookItemCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure QDetailNewRecord(DataSet: TDataSet);
+    procedure QDetailBeforePost(DataSet: TDataSet);
+    procedure QDetailCalcFields(DataSet: TDataSet);
+    procedure TabSheet3Show(Sender: TObject);
+    procedure wwDBGrid1UpdateFooter(Sender: TObject);
+    procedure QMaster2AfterPost(DataSet: TDataSet);
+    procedure QMaster2BeforeDelete(DataSet: TDataSet);
+    procedure QMaster2BeforeEdit(DataSet: TDataSet);
+    procedure QMaster2BeforeInsert(DataSet: TDataSet);
+    procedure QMaster2BeforePost(DataSet: TDataSet);
+    procedure QMaster2NewRecord(DataSet: TDataSet);
+    procedure QDetail2BeforeDelete(DataSet: TDataSet);
+    procedure QDetail2BeforeEdit(DataSet: TDataSet);
+    procedure QDetail2BeforeInsert(DataSet: TDataSet);
+    procedure QDetail2BeforePost(DataSet: TDataSet);
+    procedure QDetail2CalcFields(DataSet: TDataSet);
+    procedure QDetail2NewRecord(DataSet: TDataSet);
+    procedure QBrowse2AfterScroll(DataSet: TDataSet);
+    procedure wwDBLookupComboDlg2CloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
+    procedure wwDBGrid2UpdateFooter(Sender: TObject);
+  private
+    { Private declarations }
+    vshift, vgrup, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi : String;
+  public
+    { Public declarations }
+    procedure totalSatuan;
+  end;
+
+var
+  OrderJetDyeingFrm: TOrderJetDyeingFrm;
+
+procedure ShowForm(pNamaMenu:String; pkode : String; pjudul : string; pjns_brg : String; pjns_lokasi : String);
+
+implementation
+
+uses DM, Pembelian;
+
+{$R *.dfm}
+procedure TOrderJetDyeingFrm.totalSatuan;
+begin
+  QTotalMeter.Close;
+  QTotalPotong.Close;
+  QTot

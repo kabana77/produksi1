@@ -1,0 +1,79 @@
+op = 0
+            Width = 465
+            Height = 335
+            ControlType.Strings = (
+              'HAK_INPUT;CheckBox;1;0'
+              'HAK_LIHAT;CheckBox;1;0')
+            Selected.Strings = (
+              'ID_MENU'#9'2'#9'ID'#9'T'
+              'NAMA_MENU'#9'55'#9'NAMA_MENU'#9'T'
+              'HAK_INPUT'#9'5'#9'Input'#9'F'#9'HAK'
+              'HAK_LIHAT'#9'5'#9'Lihat'#9'F'#9'HAK')
+            IniAttributes.Enabled = True
+            IniAttributes.SaveToRegistry = True
+            IniAttributes.FileName = 'Pismatex Master'
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clSkyBlue
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            Align = alLeft
+            DataSource = dsQMaster4
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+            ParentFont = False
+            ReadOnly = True
+            RowHeightPercent = 125
+            TabOrder = 0
+            TitleAlignment = taLeftJustify
+            TitleFont.Charset = ANSI_CHARSET
+            TitleFont.Color = clWindowText
+            TitleFont.Height = -11
+            TitleFont.Name = 'Lucida Sans'
+            TitleFont.Style = [fsBold]
+            TitleLines = 2
+            TitleButtons = True
+            UseTFields = False
+            OnCalcCellColors = wwDBGrid4CalcCellColors
+            OnTitleButtonClick = wwDBGrid4TitleButtonClick
+            OnDblClick = wwDBGrid1DblClick
+            PaintOptions.ActiveRecordColor = clGreen
+          end
+        end
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 769
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    object LTitle: TLabel
+      Left = 16
+      Top = 8
+      Width = 169
+      Height = 23
+      Cursor = crHandPoint
+      Caption = 'OTORITAS USER'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Georgia'
+      Font.Style = [fsBold]
+      Pare

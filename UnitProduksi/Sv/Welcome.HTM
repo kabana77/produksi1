@@ -1,0 +1,383 @@
+ PageControl1: TPageControl
+    Left = 0
+    Top = 41
+    Width = 818
+    Height = 488
+    ActivePage = TabSheet1
+    Align = alClient
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clNavy
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 1
+    object TabSheet1: TTabSheet
+      Caption = '&Daftar Bon Pemakaian'
+      OnShow = TabSheet1Show
+      object QuickRep2: TQuickRep
+        Left = 8
+        Top = 24
+        Width = 794
+        Height = 528
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        DataSet = QDetail
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Microsoft Sans Serif'
+        Font.Style = []
+        Functions.Strings = (
+          'PAGENUMBER'
+          'COLUMNNUMBER'
+          'REPORTTITLE')
+        Functions.DATA = (
+          '0'
+          '0'
+          #39#39)
+        Options = [FirstPageHeader, LastPageFooter]
+        Page.Columns = 1
+        Page.Orientation = poPortrait
+        Page.PaperSize = Default
+        Page.Values = (
+          63.500000000000000000
+          1397.000000000000000000
+          76.200000000000000000
+          2100.580000000000000000
+          99.060000000000000000
+          99.060000000000000000
+          0.000000000000000000)
+        PrinterSettings.Copies = 1
+        PrinterSettings.Duplex = False
+        PrinterSettings.FirstPage = 0
+        PrinterSettings.LastPage = 0
+        PrinterSettings.OutputBin = Auto
+        PrintIfEmpty = True
+        SnapToGrid = True
+        Units = Inches
+        Zoom = 100
+        object TitleBand2: TQRBand
+          Left = 37
+          Top = 73
+          Width = 719
+          Height = 67
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          BeforePrint = TitleBand2BeforePrint
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            177.270833333333300000
+            1902.354166666667000000)
+          BandType = rbTitle
+          object QRLTitle2: TQRLabel
+            Left = 300
+            Top = 8
+            Width = 118
+            Height = 21
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              55.562500000000000000
+              793.750000000000000000
+              21.166666666666670000
+              312.208333333333400000)
+            Alignment = taCenter
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'NAMA TRANSAKSI'
+            Color = clWhite
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Arial Narrow'
+            Font.Style = [fsBold, fsUnderline]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 12
+          end
+          object QRExpr2: TQRExpr
+            Left = 324
+            Top = 32
+            Width = 70
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              857.250000000000000000
+              84.666666666666680000
+              185.208333333333300000)
+            Alignment = taCenter
+            AlignToBand = True
+            AutoSize = False
+            AutoStretch = False
+            Color = clWhite
+            Master = QuickRep1
+            ResetAfterPrint = False
+            Transparent = False
+            WordWrap = True
+            Expression = #39'Kode : '#39'+QJnsTransaksi.KD_TRANSAKSI'
+            FontSize = 8
+          end
+          object QRDBText27: TQRDBText
+            Left = 592
+            Top = 26
+            Width = 71
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1566.333333333333000000
+              68.791666666666680000
+              187.854166666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = False
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QTransaksi
+            DataField = 'TANGGAL'
+            Mask = 'dd mmm yyyy'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRDBText28: TQRDBText
+            Left = 0
+            Top = 48
+            Width = 75
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              0.000000000000000000
+              127.000000000000000000
+              198.437500000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QTransaksi
+            DataField = 'KETERANGAN'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel24: TQRLabel
+            Left = 0
+            Top = 32
+            Width = 56
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              0.000000000000000000
+              84.666666666666680000
+              148.166666666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'Keterangan'
+            Color = clWhite
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsUnderline]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel26: TQRLabel
+            Left = 537
+            Top = 26
+            Width = 46
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1420.812500000000000000
+              68.791666666666680000
+              121.708333333333300000)
+            Alignment = taRightJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'Tanggal :'
+            Color = clWhite
+            Transparent = True
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRDBText16: TQRDBText
+            Left = 592
+            Top = 48
+            Width = 50
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1566.333333333333000000
+              127.000000000000000000
+              132.291666666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QTransaksi
+            DataField = 'NO_REFF'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel27: TQRLabel
+            Left = 536
+            Top = 48
+            Width = 47
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1418.166666666667000000
+              127.000000000000000000
+              124.354166666666700000)
+            Alignment = taRightJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'No. Reff :'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+        end
+        object PageHeaderBand2: TQRBand
+          Left = 37
+          Top = 29
+          Width = 719
+          Height = 44
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            116.416666666666700000
+            1902.354166666667000000)
+          BandType = rbPageHeader
+          object QRDBText13: TQRDBText
+            Left = 0
+            Top = 5
+            Width = 112
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              0.000000000000000000
+              13.229166666666670000
+              296.333333333333400000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = DMFrm.QPerusahaan
+            DataField = 'NAMA_PERUSAHAAN'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRDBText43: TQRDBText
+            Left = 590
+            Top = 18
+            Width = 63
+            Height = 21
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              55.562500000000000000
+              1561.041666666667000000
+              47.625000000000000000
+              166.687500000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QTransaksi
+            DataField = 'NO_NOTA'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -16
+            Font.Name = 'Arial Narrow'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 12
+          end
+          object QRLabel28: TQRLabel
+            Left = 533
+            Top = 21
+            Width = 50
+            Height = 14
+            Frame.Color = clBlack
+            

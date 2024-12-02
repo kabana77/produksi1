@@ -1,0 +1,35 @@
+000000}
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    Session = DMFrm.OS
+    BeforeInsert = QMasterBeforeDelete
+    BeforeEdit = QMasterBeforeDelete
+    BeforePost = QDetailBeforePost
+    BeforeDelete = QMasterBeforeDelete
+    OnNewRecord = QDetailNewRecord
+    Left = 32
+    Top = 112
+    object QDetailIBUKTI_DETAIL: TFloatField
+      FieldName = 'IBUKTI_DETAIL'
+    end
+    object QDetailKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+    end
+    object QDetailLSATUAN: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LSATUAN'
+      LookupDataSet = DMFrm.QItemAll
+      LookupKeyFields = 'KD_SATUAN'
+      LookupResultField = 'SATUAN'
+      KeyFields = 'KD_SATUAN'
+      Size = 10
+      Lookup = True
+    end
+    object QDetailIBUKTI: TFloatField
+      FieldName = 'IBUKTI'
+    end
+    object QDetailKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QDetailKD_SUB_LOKASI: TStringField
+      Field

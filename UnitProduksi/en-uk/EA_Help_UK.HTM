@@ -1,0 +1,154 @@
+d;
+end;
+
+procedure TJurnalHPPFrm.TabSheet1Show(Sender: TObject);
+begin
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal2.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir2.Date)+''',''dd/mm/yyyy'')+1-1/86400))';
+  QBrowse.Open;
+end;
+
+procedure TJurnalHPPFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TJurnalHPPFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=Caption;
+     wwDBGrid1.ExportOptions.TitleName:=Caption;
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid1.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+end;
+
+procedure TJurnalHPPFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=Caption;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TJurnalHPPFrm.vOperandClick(Sender: TObject);
+begin
+  if vOperand.Caption='LIKE' then
+    vOperand.Caption:='='
+    else
+      vOperand.Caption:='LIKE';
+end;
+
+procedure TJurnalHPPFrm.dbcFieldEnter(Sender: TObject);
+var
+  i : Word;
+begin
+  if (QBrowse.Active) and (dbcField.Items.Count=1) then
+  for i:=0 to wwDBGrid1.FieldCount-1 do
+    if UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL' then
+      dbcField.Items.Add(wwDBGrid1.Columns[i].FieldName);
+end;
+
+procedure TJurnalHPPFrm.QDetailAfterScroll(DataSet: TDataSet);
+begin
+//  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TJurnalHPPFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLTitle.Caption:=Caption;
+  vnomer:=0;
+end;
+
+procedure TJurnalHPPFrm.QTransaksiNewRecord(DataSet: TDataSet);
+begin
+  QTransaksiTANGGAL.AsDateTime:=Date;
+  QTransaksiJENIS.AsString:='MEM';
+  QTransaksiKETERANGAN.AsString:='-';
+  QTransaksiISPOST.AsString:='0';
+  DBMemo1.SetFocus;
+end;
+
+procedure TJurnalHPPFrm.DBMemo1KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      if Not (ActiveControl is TwwDBGrid) then
+      begin
+        Key := #0 ;
+        Perform (WM_NEXTDLGCTL, 0, 0) ;
+      end;
+end;
+
+procedure TJurnalHPPFrm.wwDBDateTimePicker1KeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if Key = #13 then
+   begin
+      wwDBGrid2.SetFocus;
+      wwDBGrid2.SetActiveField('NO_BUKTI');
+   end;
+end;
+
+procedure TJurnalHPPFrm.QTransaksiBeforePost(DataSet: TDataSet);
+begin
+  if copy(QTransaksiNO_NOTA.AsString,1,1)<>'#' then
+     if (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+       QTransaksiNO_NOTA.AsString:='#'+QTransaksiNO_KAS.AsString;
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      if (copy(QTransaksiNO_NOTA.AsString,1,1)='#') or (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+      begin
+          DMFrm.FNo_Nota.Close;
+          DMFrm.FNo_Nota.SetVariable('pkode',QTransaksiJENIS.AsString);
+          DMFrm.FNo_Nota.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
+          DMFrm.FNo_Nota.Open;
+          QTransaksiNO_NOTA.AsString:=DMFrm.FNo_NotaNO_NOTA.AsString;
+      end;
+  end;
+
+end;
+
+procedure TJurnalHPPFrm.TabSheet2Show(Sender: TObject);
+begin
+  DMFrm.QProyek.Open;
+  DMFrm.QRAB.Open;
+  DMFrm.QDivisi.Open;
+  DMFrm.QBeban.Open;
+  QTransaksi.Close;
+  QTransaksi.SetVariable('no_reg',QBrowseNO_REG.AsInteger);
+  QTransaksi.Open;
+  QDetail.Open;
+end;
+
+procedure TJurnalHPPFrm.wwDBGrid2UpdateFooter(Sender: TOb

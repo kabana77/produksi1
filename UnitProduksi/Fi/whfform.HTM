@@ -1,0 +1,104 @@
+utuhanBBBenangFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  1 : begin
+        DMFrm.QLookSubBagian.Open;
+        QuickRep2.Page.Units:=Inches;
+    {    case RadioGroup1.ItemIndex of
+        0 : begin
+              QuickRep2.Page.Length:=11.67;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        1 : begin
+              QuickRep2.Page.Length:=5.83;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        end;  }
+        if cbPreview.Checked then
+           QuickRep2.Preview
+           else
+             QuickRep2.Print;
+      end;
+  end;
+end;
+
+procedure TKebutuhanBBBenangFrm.QLookSubBagianBeforeOpen(DataSet: TDataSet);
+begin
+  QLookSubBagian.SetVariable('kd_bag',vkd_bag);
+end;
+
+procedure TKebutuhanBBBenangFrm.TabSheet1Show(Sender: TObject);
+begin
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir.Date)+''',''dd/mm/yyyy'')+1-1/86400))';
+  QBrowse.Open;
+end;
+
+procedure TKebutuhanBBBenangFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TKebutuhanBBBenangFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if QTransaksiISPOST.AsString='1' then
+    QRLTitle2.Caption:=UpperCase(QJnsTransaksiNAMA_TRANSAKSI.AsString)
+    else
+    QRLTitle2.Caption:='DRAFT';    
+end;
+
+procedure TKebutuhanBBBenangFrm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  CanClose:=TabSheet1.TabVisible;
+  if not CanClose then
+    if MessageDlg('Data belum di Simpan/ Posting !'+#13+
+       'Anda tetap mau menutup Form ?'+#13+
+       'Jika pilih [YES], maka Form akan ditutup dan data tidak akan tersimpan.',mtWarning,[mbYes,mbNo],0)=mrYes then
+       begin
+         QTransaksi.First;
+         while not QTransaksi.Eof do
+         begin
+           if QTransaksiISPOST.AsString='0' then
+             QTransaksi.Delete
+           else
+             QTransaksi.Next;
+         end;
+         CanClose:=True;
+       end;
+
+end;
+
+procedure TKebutuhanBBBenangFrm.QDetailBeforeInsert(DataSet: TDataSet);
+begin
+  if not vhak_input then
+  begin
+      ShowMessage('Maaf, Anda tidak berhak merubah data !');
+      Abort;
+  end;
+end;
+
+procedure TKebutuhanBBBenangFrm.QTransaksiAfterDelete(DataSet: TDataSet);
+begin
+  if QTransaksi.IsEmpty then
+    TabSheet1.TabVisible:=True;
+end;
+
+procedure TKebutuhanBBBenangFrm.DetailBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  inc(vrecord_ke);
+//  DetailBand2.ForceNewPage:=(vrecord_ke>Round(vRecord.Value)-1);
+  QRLSubBagian.Caption:=DMFrm.QLookSubBagian.Lookup('KODE',QDetailID_BAG.AsString+QDetailID_SUB_BAG.AsString,'SUB_BAGIAN');
+end;
+
+procedure TKebutuhan

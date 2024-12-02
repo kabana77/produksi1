@@ -1,0 +1,364 @@
+0000
+              82.020833333333340000)
+            Alignment = taCenter
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QJurnal
+            DataField = 'KURS'
+            Mask = '#.#,#;(#.#,#)'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRDBText15: TQRDBText
+            Left = 580
+            Top = 0
+            Width = 37
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1534.583333333333000000
+              0.000000000000000000
+              97.895833333333340000)
+            Alignment = taRightJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QJurnal
+            DataField = 'DEBET'
+            Mask = '#.#,#;(#.#,#)'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRDBText19: TQRDBText
+            Left = 688
+            Top = 0
+            Width = 41
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              1820.333333333333000000
+              0.000000000000000000
+              108.479166666666700000)
+            Alignment = taRightJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QJurnal
+            DataField = 'KREDIT'
+            Mask = '#.#,#;(#.#,#)'
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+        end
+        object QRBand2: TQRBand
+          Left = 38
+          Top = 201
+          Width = 737
+          Height = 8
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          Color = clWhite
+          ForceNewColumn = False
+          ForceNewPage = False
+          Size.Values = (
+            21.166666666666670000
+            1949.979166666667000000)
+          BandType = rbGroupFooter
+        end
+      end
+      object Panel2: TPanel
+        Left = 0
+        Top = 0
+        Width = 891
+        Height = 52
+        Align = alTop
+        BevelInner = bvLowered
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 0
+        object GroupBox1: TGroupBox
+          Left = 2
+          Top = 2
+          Width = 287
+          Height = 48
+          Align = alLeft
+          Caption = 'Filter Tanggal'
+          TabOrder = 0
+          TabStop = True
+          object Label2: TLabel
+            Left = 132
+            Top = 22
+            Width = 24
+            Height = 13
+            Caption = 'S/D'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object VTglAwal: TwwDBDateTimePicker
+            Left = 8
+            Top = 16
+            Width = 121
+            Height = 24
+            DisableThemes = True
+            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+            CalendarAttributes.Font.Color = clWindowText
+            CalendarAttributes.Font.Height = -11
+            CalendarAttributes.Font.Name = 'MS Sans Serif'
+            CalendarAttributes.Font.Style = []
+            Color = clGreen
+            Epoch = 1950
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ShowButton = True
+            TabOrder = 0
+            DisplayFormat = 'dd mmm yyyy'
+            OnChange = VTglAwalChange
+          end
+          object vTglAkhir: TwwDBDateTimePicker
+            Left = 160
+            Top = 16
+            Width = 121
+            Height = 24
+            DisableThemes = True
+            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+            CalendarAttributes.Font.Color = clWindowText
+            CalendarAttributes.Font.Height = -11
+            CalendarAttributes.Font.Name = 'MS Sans Serif'
+            CalendarAttributes.Font.Style = []
+            Color = clGreen
+            Epoch = 1950
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ShowButton = True
+            TabOrder = 1
+            DisplayFormat = 'dd mmm yyyy'
+            OnChange = vTglAkhirChange
+          end
+        end
+        object Panel3: TPanel
+          Left = 289
+          Top = 2
+          Width = 616
+          Height = 48
+          Align = alLeft
+          BevelOuter = bvNone
+          TabOrder = 1
+          object vOperand: TLabel
+            Left = 150
+            Top = 20
+            Width = 44
+            Height = 24
+            Cursor = crHandPoint
+            Alignment = taCenter
+            AutoSize = False
+            Caption = 'LIKE'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clNavy
+            Font.Height = -19
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            OnClick = vOperandClick
+          end
+          object Label1: TLabel
+            Left = 424
+            Top = 8
+            Width = 53
+            Height = 13
+            Caption = 'Mata Uang'
+          end
+          object cbTanggal: TCheckBox
+            Left = 200
+            Top = 5
+            Width = 129
+            Height = 17
+            Caption = 'Ikutkan Filter &Tanggal'
+            Checked = True
+            State = cbChecked
+            TabOrder = 1
+            OnClick = cbTanggalClick
+          end
+          object BitBtn1: TBitBtn
+            Left = 328
+            Top = 20
+            Width = 75
+            Height = 25
+            Caption = 'Filte&r'
+            Default = True
+            ModalResult = 1
+            TabOrder = 3
+            OnClick = BitBtn1Click
+            Glyph.Data = {
+              76010000424D7601000000000000760000002800000020000000100000000100
+              04000000000000010000120B0000120B00001000000000000000000000000000
+              800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00555555555555
+              555555555555555555555555555555555555555555FF55555555555559055555
+              55555555577FF5555555555599905555555555557777F5555555555599905555
+              555555557777FF5555555559999905555555555777777F555555559999990555
+              5555557777777FF5555557990599905555555777757777F55555790555599055
+              55557775555777FF5555555555599905555555555557777F5555555555559905
+              555555555555777FF5555555555559905555555555555777FF55555555555579
+              05555555555555777FF5555555555557905555555555555777FF555555555555
+              5990555555555555577755555555555555555555555555555555}
+            NumGlyphs = 2
+          end
+          object ECari: TEdit
+            Left = 200
+            Top = 23
+            Width = 121
+            Height = 19
+            Ctl3D = False
+            ParentCtl3D = False
+            TabOrder = 2
+            OnChange = ECariChange
+          end
+          object cbOtomatis: TCheckBox
+            Left = 7
+            Top = 5
+            Width = 98
+            Height = 17
+            Caption = 'Cari &Otomatis'
+            TabOrder = 0
+            OnClick = cbOtomatisClick
+          end
+          object dbcField: TwwDBComboBox
+            Left = 8
+            Top = 23
+            Width = 137
+            Height = 19
+            ShowButton = True
+            Style = csDropDown
+            MapList = False
+            AllowClearKey = False
+            Color = clYellow
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              'SEMUA KOLOM')
+            ItemIndex = 0
+            Sorted = False
+            TabOrder = 4
+            UnboundDataType = wwDefault
+            OnEnter = dbcFieldEnter
+          end
+          object CheckBox1: TCheckBox
+            Left = 488
+            Top = 23
+            Width = 121
+            Height = 17
+            Caption = 'Tampilkan Jurnal'
+            TabOrder = 5
+            OnClick = CheckBox1Click
+          end
+          object LookMU: TwwDBLookupCombo
+            Left = 424
+            Top = 23
+            Width = 57
+            Height = 19
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            DropDownAlignment = taLeftJustify
+            Selected.Strings = (
+              'MU'#9'3'#9'MU'#9#9)
+            LookupTable = DMFrm.QMU
+            LookupField = 'MU'
+            Options = [loColLines, loRowLines, loTitles]
+            ParentFont = False
+            TabOrder = 6
+            AutoDropDown = True
+            ShowButton = True
+            PreciseEditRegion = False
+            AllowClearKey = False
+            OnEnter = wwDBLookupCombo1Enter
+          end
+        end
+      end
+      object wwDBGrid1: TwwDBGrid
+        Left = 0
+        Top = 52
+        Width = 891
+        Height = 501
+        ControlType.Strings = (
+          'ISPOST;CheckBox;1;0')
+        Selected.Strings = (
+          'NO_NOTA'#9'15'#9'NO_LPB'#9'F'
+          'TANGGAL'#9'11'#9'TANGGAL'#9'F'
+          'NO_SURAT_JALAN'#9'12'#9'SURAT_JALAN'#9'F'
+          'KD_REKANAN'#9'7'#9'Kode'#9'F'#9'SUPLIER'
+          'REKANAN'#9'48'#9'Nama'#9'F'#9'SUPLIER'
+          'MU'#9'3'#9'MU'#9'F'
+          'UM'#9'6'#9'UM'#9'F'
+          'PPN'#9'3'#9'PPN'#9'F'
+          'DPP'#9'10'#9'DPP'#9'F'#9'NILAI'
+          'PPNRP'#9'9'#9'PPn10%'#9'F'#9'NILAI'
+          'TOTAL'#9'10'#9'Total'#9'F'#9'NILAI'
+          'TGL_JTH_TEMPO'#9'12'#9'JTH_TEMPO'#9'F')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Pismatex Master'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetSYLK
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQBrowse
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        ReadOnly = True
+        RowHeightPercent = 300
+        TabOrder = 1
+        TitleAlignment = taLeftJustify
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        OnTitleButtonClick = wwDBGrid1TitleButto

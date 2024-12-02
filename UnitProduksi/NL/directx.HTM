@@ -1,0 +1,150 @@
+lick(Sender: TObject);
+    procedure SaldoRekeningAnggaran1Click(Sender: TObject);
+    procedure Neraca1Click(Sender: TObject);
+    procedure BebanKendaraan1Click(Sender: TObject);
+    procedure BebanPeralatan1Click(Sender: TObject);
+    procedure RekeningKaryawanSales1Click(Sender: TObject);
+    procedure RekeningRekanan1Click(Sender: TObject);
+    procedure BukuKasSetoran1Click(Sender: TObject);
+    procedure BukuKasBon1Click(Sender: TObject);
+    procedure UrutkanNota1Click(Sender: TObject);
+    procedure CashFlow2Click(Sender: TObject);
+    procedure RugiLaba1Click(Sender: TObject);
+    procedure BukuKasBank1Click(Sender: TObject);
+    procedure utupTahun1Click(Sender: TObject);
+    procedure AmbilData1Click(Sender: TObject);
+    procedure JurnalHPP1Click(Sender: TObject);
+    procedure RealisasiAnggaran1Click(Sender: TObject);
+    procedure BukuPembelian1Click(Sender: TObject);
+    procedure BukuPenjualan1Click(Sender: TObject);
+  private
+    { Private declarations }
+    vShowSplash : Boolean;
+    vAppDir : String;
+  public
+    { Public declarations }
+  end;
+
+const
+  cserver = 'http://localhost/minak/pnm10/';
+//  cserver = 'http://localhost/minak/pnm10/';
+var
+  MainFrm: TMainFrm;
+
+implementation
+
+uses DM, OtoritasUser, LogPesan, MyColor, Splash2, MainBrowse, Perkiraan,
+  Rekanan, Karyawan, Proyek, Alat, ItemBarang, RAB, CashFlow, BukuKas,
+  BukuBank, BukuBank2, JurnalMemorial, Kendaraan, SaldoPerkiraan,
+  SaldoCashFlow, SaldoRAB, Oracle, Neraca, RabReal, BebanKendaraan,
+  BebanAlat, RekeningKaryawan, RekeningRekanan, BukuKas2, BukuKas3,
+  UrutkanNota, CashFlow2, LabaRugi, BukuKasBank, TutupTahun, AmbilData,
+  JurnalHPP, HPP, FakturPembelian, FakturPenjualan;
+
+{$R *.dfm}
+
+procedure TMainFrm.Proc_HapusMenu;
+var
+  i : integer;
+begin
+  for i:=0 to ComponentCount-1 do
+  begin
+      if Components[i] is TMenuItem then
+      begin
+          (Components[i] as TMenuItem).Visible:=False;
+      end;
+  end;
+end;
+
+procedure TMainFrm.OtoritasUserOperator1Click(Sender: TObject);
+begin
+  OtoritasUserFrm:=TOtoritasUserFrm.Create(Application);
+  if UpperCase(DMFrm.OSUser.LogonUsername)<>'SYSTEM' then
+  begin
+    OtoritasUserFrm.BtnEditing.Enabled:=(Sender as TMenuItem).Checked;
+    OtoritasUserFrm.BtnEditing2.Enabled:=(Sender as TMenuItem).Checked;
+    OtoritasUserFrm.BtnEditing3.Enabled:=(Sender as TMenuItem).Checked;
+    OtoritasUserFrm.BtnEditing4.Enabled:=(Sender as TMenuItem).Checked;
+  end;
+  if MDIChildCount=1 then
+  begin
+     OtoritasUserFrm.Left:=0;
+     OtoritasUserFrm.Top:=0;
+  end;
+    OtoritasUserFrm.Show;
+end;
+
+procedure TMainFrm.FormCreate(Sender: TObject);
+begin
+  Proc_HapusMenu;
+  vShowSplash:=True;
+  vAppDir:=GetCurrentDir;
+
+end;
+
+procedure TMainFrm.BtnLoginClick(Sender: TObject);
+var
+  i : Integer;
+  vtgl_aplikasi, vtgl_aplikasi_baru : String;
+    wVersionRequested : WORD;
+    wsaData : TWSAData;
+    ss : array[0..128] of char;
+    p : PHostEnt;
+    p2: PChar;
+    vipaddr, vlogin_windows : String;
+    buffsize : DWORD;
+    buffer : String;
+    vdivisi : String;
+Begin
+  vdivisi :='';
+  vdivisi:=InputBox('Divisi','Divisi : ',vdivisi);
+  buffsize := 128;
+  Setlength(buffer,buffsize);
+  Getusername(Pchar(buffer),buffsize);
+  if MDIChildCount>0 then
+    ShowMessage('Tutup dulu semua Form !')
+    else
+    begin
+      DMFrm.OS.Commit;
+      DMFrm.OSUser.LogonPassword:='';
+      if DMFrm.OL.Execute then
+      begin
+        if DMFrm.OSUser.Connected then
+        begin
+        // Get IPAddr
+          wVersionRequested := MAKEWORD(1, 1);
+          WSAStartup(wVersionRequested, wsaData);
+
+          GetHostName(@ss, 128);
+          p := GetHostByName(@ss);
+          p2 := iNet_NtoA(PInAddr(p^.h_addr_list^)^);
+          WSACleanup;
+          vipaddr:=p2;
+//          vlogin_windows:=ss;
+          DMFrm.OS.Connected:=False;
+          DMFrm.OS.LogonDatabase:=DMFrm.OSUser.LogonDatabase;
+          DMFrm.OS.LogonUsername:='cip_gl_'+vdivisi;
+          DMFrm.OS.LogonPassword:='cip_gl_'+vdivisi;
+          DMFrm.OS.Connected:=True;
+          DMFrm.QPerusahaan.Close;
+          DMFrm.QPerusahaan.Open;
+          DMFrm.QDateTime.Close;
+          DMFrm.QDateTime.Open;
+          DMFrm.QUser.Close;
+          DMFrm.QUser.SetVariable('nama_user',upperCase(DMFrm.OSUser.LogonUsername));
+          DMFrm.QUser.Open;
+          LMDScrollText1.Lines.Text:=DMFrm.QPerusahaanBANNER1.AsString;
+          LMDScrollText2.Lines.Text:=DMFrm.QPerusahaanBANNER2.AsString;
+          LMDScrollText1.Scroll:=((DMFrm.QPerusahaanBANNER1.AsString<>'') and
+            (Trunc(DMFrm.QPerusahaanTGL_FINISH1.AsDateTime)>=trunc(DMFrm.QUserTGL_SERVER.AsDateTime)));
+          LMDScrollText2.Scroll:=((DMFrm.QPerusahaanBANNER2.AsString<>'') and
+            (Trunc(DMFrm.QPerusahaanTGL_FINISH2.AsDateTime)>=trunc(DMFrm.QUserTGL_SERVER.AsDateTime)));
+          if not DMFrm.QUser.IsEmpty then
+          begin
+              vtgl_aplikasi:=FormatDateTime('dd mmmm yyyy HH:MM',FileDateToDateTime(FileAge(Application.ExeName)));
+              vtgl_aplikasi_baru:=FormatDateTime('dd mmmm yyyy HH:MM',DMFrm.QPerusahaanTGL_APLIKASI.AsDateTime);
+              StatusBar1.Panels[0].Text:=vlogin_windows+'/'+DMFrm.QUserNAMA_USER.AsString+' ('+
+                DMFrm.QUserID_USER.AsString+')@'+
+                UpperCase(DMFrm.OSUser.LogonDatabase);
+              StatusBar1.Panels[1].Text:='Client : '+
+        

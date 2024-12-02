@@ -1,0 +1,155 @@
+   HelpContext = 1000
+        OnClick = LogoutExecute
+      end
+      object N1: TMenuItem
+        Caption = '-'
+        GroupIndex = 1
+        HelpContext = 1000
+      end
+      object Exit1: TMenuItem
+        Caption = 'Exit'
+        GroupIndex = 1
+        HelpContext = 1000
+        OnClick = Exit1Click
+      end
+    end
+    object Master1: TMenuItem
+      Caption = 'Master'
+      object Perkiraan1: TMenuItem
+        Caption = 'Perkiraan'
+        GroupIndex = 1
+        OnClick = Perkiraan1Click
+      end
+      object Cashflow1: TMenuItem
+        Caption = 'Cashflow'
+        GroupIndex = 1
+        OnClick = Cashflow1Click
+      end
+      object Anggaran1: TMenuItem
+        Caption = 'Anggaran'
+        GroupIndex = 1
+        OnClick = Anggaran1Click
+      end
+      object Rekanan1: TMenuItem
+        Caption = 'Rekanan'
+        GroupIndex = 1
+        OnClick = Rekanan1Click
+      end
+      object Karyawan1: TMenuItem
+        Caption = 'Karyawan'
+        GroupIndex = 1
+        OnClick = Karyawan1Click
+      end
+      object Proyek1: TMenuItem
+        Caption = 'Proyek'
+        GroupIndex = 1
+        OnClick = Proyek1Click
+      end
+      object MesindanAlat1: TMenuItem
+        Caption = 'Mesin dan Alat'
+        GroupIndex = 1
+        OnClick = MesindanAlat1Click
+      end
+      object Kendaraan1: TMenuItem
+        Caption = 'Kendaraan'
+        GroupIndex = 1
+        OnClick = Kendaraan1Click
+      end
+      object ItemBarang1: TMenuItem
+        Caption = 'Item Barang'
+        GroupIndex = 1
+        OnClick = ItemBarang1Click
+      end
+    end
+    object ransaksi1: TMenuItem
+      Caption = 'Transaksi'
+      object BukuKas1: TMenuItem
+        Caption = 'Buku Kas Kecil'
+        GroupIndex = 1
+        OnClick = BukuKas1Click
+      end
+      object BukuKasSetoran1: TMenuItem
+        Caption = 'Buku Kas Setoran'
+        GroupIndex = 1
+        OnClick = BukuKasSetoran1Click
+      end
+      object BukuKasBon1: TMenuItem
+        Caption = 'Buku Kas Bon'
+        GroupIndex = 1
+        OnClick = BukuKasBon1Click
+      end
+      object Bank1: TMenuItem
+        Caption = 'Bank'
+        GroupIndex = 1
+        OnClick = Bank1Click
+      end
+      object Memorial1: TMenuItem
+        Caption = 'Jurnal Memorial'
+        GroupIndex = 1
+        OnClick = Memorial1Click
+      end
+      object BukuPembelian1: TMenuItem
+        Caption = 'Buku Pembelian'
+        GroupIndex = 1
+        OnClick = BukuPembelian1Click
+      end
+      object BukuPenjualan1: TMenuItem
+        Caption = 'Buku Penjualan'
+        GroupIndex = 1
+        OnClick = BukuPenjualan1Click
+      end
+      object N8: TMenuItem
+        Caption = '-'
+        GroupIndex = 1
+      end
+      object JurnalHPP1: TMenuItem
+        Caption = 'Semua Jurnal'
+        GroupIndex = 1
+        OnClick = JurnalHPP1Click
+      end
+      object N3: TMenuItem
+        Caption = '-'
+        GroupIndex = 1
+      end
+      object AmbilData1: TMenuItem
+        Caption = 'Ambil Data'
+        GroupIndex = 1
+        OnClick = AmbilData1Click
+      end
+      object UrutkanNota1: TMenuItem
+        Caption = 'Urutkan Nota'
+        GroupIndex = 1
+        OnClick = UrutkanNota1Click
+      end
+      object SaldoPerkiraan1: TMenuItem
+        Caption = 'Saldo Rekening Perkiraan'
+        GroupIndex = 1
+        OnClick = SaldoPerkiraan1Click
+      end
+      object SaldoRekeningCashFlow1: TMenuItem
+        Caption = 'Saldo Rekening CashFlow'
+        GroupIndex = 1
+        OnClick = SaldoRekeningCashFlow1Click
+      end
+      object SaldoRekeningAnggaran1: TMenuItem
+        Caption = 'Saldo Rekening Anggaran'
+        GroupIndex = 1
+        OnClick = SaldoRekeningAnggaran1Click
+      end
+      object N4: TMenuItem
+        Caption = '-'
+        GroupIndex = 1
+      end
+      object utupTahun1: TMenuItem
+        Caption = 'Tutup Tahun'
+        GroupIndex = 1
+        OnClick = utupTahun1Click
+      end
+    end
+    object Laporan1: TMenuItem
+      Caption = 'Laporan'
+      object BukuBesarSaldoRekeningPerkiraan1: TMenuItem
+        Caption = 'Buku Besar/ Saldo Rekening Perkiraan'
+        GroupIndex = 1
+      end
+      object N

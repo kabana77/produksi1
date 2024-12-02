@@ -1,0 +1,21 @@
+at:=QBrowse_PakaiKOREKSI_OUT.AsFloat/0181.44;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat/181.44;
+        end
+        else
+         if QBrowse_PakaiSATUAN.AsString='TON' then
+        begin
+          QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat/0.181440;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat/0.181440;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat/0.181440;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat/0.181440;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat/0.181440;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat/0.181440;
+             end
+        else
+                begin
+          QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_

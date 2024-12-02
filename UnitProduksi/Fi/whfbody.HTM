@@ -1,0 +1,35 @@
+02.Close;
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pkode',QTransaksiKD_TRANSAKSI.AsString);
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk','0');
+          DMFrm.FNo_Nota_PMTX02.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
+          DMFrm.FNo_Nota_PMTX02.Open;
+          QTransaksiNO_NOTA.AsString:=DMFrm.FNo_Nota_PMTX02NO_NOTA.AsString;
+      end;
+  end;
+end;
+
+procedure TKebutuhanBBBenangFrm.TabSheet2Show(Sender: TObject);
+begin
+  DMFrm.QJnsKebutuhan.Open;
+  BtnExport.Enabled:=False;
+  wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+  QTransaksi.Close;
+  QTransaksi.SetVariable('no_reg_kebutuhan',QBrowseNO_REG_KEBUTUHAN.AsInteger);
+  QTransaksi.Open;
+  QDetail.Open;
+  wwDBNavigator1.Enabled:=vhak_input;
+end;
+
+procedure TKebutuhanBBBenangFrm.QDetailNewRecord(DataSet: TDataSet);
+begin
+  QDetailOPR_INSERT.AsString:=DMFrm.QUserNAMA_USER.AsString;
+  if QLookSubBagian.Active then
+  begin
+    QDetailID_BAG.AsString:=QLookSubBagianID_BAG.AsString;
+    QDetailID_SUB_BAG.AsString:=QLookSubBagianID_SUB_BAG.AsString;
+  end;
+  QDetailQTY.AsFloat:=0;
+  QDetailQTY2.AsFloat:=0;
+end;
+
+procedure TKebutuhanBBBenangFrm.QTransaksiBeforeInsert(DataSet: TDataSet);

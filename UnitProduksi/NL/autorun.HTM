@@ -1,0 +1,342 @@
+A_BAYAR.AsString:='KREDIT';
+  LookRekanan.SetFocus;
+end;
+
+procedure TReturPenjualanFrm.DBMemo1KeyPress(Sender: TObject; var Key: Char);
+begin
+   if Key = #13 then
+      if Not (ActiveControl is TwwDBGrid) then
+      begin
+        Key := #0 ;
+        Perform (WM_NEXTDLGCTL, 0, 0) ;
+      end;
+end;
+
+procedure TReturPenjualanFrm.QTransaksiBeforePost(DataSet: TDataSet);
+begin
+  if copy(QTransaksiNO_NOTA.AsString,1,1)<>'#' then
+     if (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,6,4)) then
+       QTransaksiNO_NOTA.AsString:='#'+QTransaksiNO_KAS.AsString;
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      if (copy(QTransaksiNO_NOTA.AsString,1,1)='#') or (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,6,4)) then
+      begin
+          DMFrm.FNo_Nota.Close;
+          DMFrm.FNo_Nota.SetVariable('pkode',QTransaksiJENIS.AsString);
+          DMFrm.FNo_Nota.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
+          DMFrm.FNo_Nota.Open;
+          QTransaksiNO_NOTA.AsString:=DMFrm.FNo_NotaNO_NOTA.AsString;
+      end;
+  end;
+
+end;
+
+procedure TReturPenjualanFrm.TabSheet2Show(Sender: TObject);
+begin
+  DMFrm.QDivisi.Open;
+  QTransaksi.Close;
+  QTransaksi.SetVariable('no_reg',QBrowseNO_REG.AsInteger);
+  QTransaksi.Open;
+  QDetail.Open;
+end;
+
+procedure TReturPenjualanFrm.MywwDBGrid2UpdateFooter(Sender: TObject);
+begin
+  QTotal.Close;
+  QTotal.Open;
+  MywwDBGrid2.ColumnByName('NILAI').FooterValue:=FormatFloat('0.0,0;(0.0,0)',QTotalTOTAL.AsFloat);
+end;
+
+procedure TReturPenjualanFrm.MywwDBGrid2Enter(Sender: TObject);
+begin
+  if QTransaksi.State<>dsBrowse then QTransaksi.Post;
+end;
+
+procedure TReturPenjualanFrm.QDetailNewRecord(DataSet: TDataSet);
+begin
+  if vno_bukti<>'' then
+    QDetailNO_BUKTI.AsString:=vno_bukti;
+  QDetailKURS.AsFloat:=1;
+  QDetailKD_DIV.AsString:='UTAMA';
+  QDetailNILAI.AsFloat:=0;
+//  QDetailDEBET.AsFloat:=0;
+//  QDetailKREDIT.AsFloat:=0;
+  QDetailISHEAD.AsString:='0';
+  QDetailQTY_OUT.AsFloat:=1;
+  if QTransaksiJENIS.AsString='PIU' then
+    QDetailKD_PERK.AsString:=DMFrm.ckd_perk_penjualan
+    else
+      QDetailKD_PERK.AsString:=DMFrm.ckd_perk_rej;
+  QDetailNO_PROYEK.AsInteger:=1;
+  QDetailKD_RAB.AsString:=QDetailKD_PERK.AsString;
+
+end;
+
+procedure TReturPenjualanFrm.QDetailBeforePost(DataSet: TDataSet);
+begin
+  vno_bukti:=QDetailNO_BUKTI.AsString;
+  if QDetailISDETAIL.AsString='0' then
+  begin
+      ShowMessage('Rekening Perkiraan harus dipilih yang DETAIL !');
+      Abort;
+  end;
+  if QDetailNO_BUKTI.AsString='' then
+    QDetailNO_BUKTI.AsString:=IntToStr(QDetailNO_JURNAL.AsInteger);
+end;
+
+procedure TReturPenjualanFrm.QTransaksiAfterScroll(DataSet: TDataSet);
+begin
+  if QDetail.Active then
+    MywwDBGrid2UpdateFooter(nil);
+end;
+
+procedure TReturPenjualanFrm.vTglAkhirChange(Sender: TObject);
+begin
+  if VTglAwal.Date>vTglAkhir.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir.Date:=VTglAwal.Date;
+  end;
+end;
+
+procedure TReturPenjualanFrm.VTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.Date:=Trunc(EndOfTheMonth(VTglAwal.Date));
+end;
+
+procedure TReturPenjualanFrm.QAwalBeforeOpen(DataSet: TDataSet);
+begin
+  QAwal.SetVariable('pawal',trunc(VTglAwal.Date));
+  QAwal.SetVariable('kd_perk',QRekananKD_REKANAN.AsInteger);
+end;
+
+procedure TReturPenjualanFrm.QBukuKasBeforeOpen(DataSet: TDataSet);
+begin
+  QBukuKas.SetVariable('kd_perk_kas',QRekananKD_REKANAN.AsInteger);
+  QBukuKas.SetVariable('pawal',trunc(VTglAwal.Date));
+  QBukuKas.SetVariable('pakhir',trunc(VTglAkhir.Date)+1/86400);
+end;
+
+procedure TReturPenjualanFrm.BitBtn2Click(Sender: TObject);
+var
+  vdebet, vkredit : real;
+begin
+  QAwal.Close;
+  QAwal.Open;
+  vdebet:=0;
+  vkredit:=0;
+  QBukuKas.DisableControls;
+  QBukuKas.Close;
+  QBukuKas.Open;
+  while not QBukuKas.Eof do
+  begin
+      vdebet:=vdebet+QBukuKasKREDIT.AsFloat;
+      vkredit:=vkredit+QBukuKasDEBET.AsFloat;
+      QBukuKas.Next;
+  end;
+  QBukuKas.First;
+  QBukuKas.EnableControls;
+  wwDBGrid3.ColumnByName('DEBET').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vkredit);
+  wwDBGrid3.ColumnByName('KREDIT').FooterValue:=FormatFloat('0.0,0;(0.0,0)',vdebet);
+  LBerjalan.Caption:=FormatFloat('0.0,0;(0.0,0)',vdebet-vkredit);
+  LAkhir.Caption:=FormatFloat('0.0,0;(0.0,0)',QAwalAWAL.AsFloat+vdebet-vkredit);
+end;
+
+procedure TReturPenjualanFrm.TabSheet3Show(Sender: TObject);
+begin
+  DMFrm.QRekanan.Open;
+  LookRekanan2.Text:=QRekananKD_REKANAN.AsString;
+  VTglAwal.Date:=VTglAwal2.Date;
+end;
+
+procedure TReturPenjualanFrm.QRGroup1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLNomer.Enabled:=True;
+  QRDBNoNota.Enabled:=True;
+  QRDBTanggal.Enabled:=True;
+  vnomer:=vnomer+1;
+  QRLNomer.Caption:=IntTostr(vnomer);
+end;
+
+procedure TReturPenjualanFrm.DetailBand1AfterPrint(Sender: TQRCustomBand;
+  BandPrinted: Boolean);
+begin
+  QRLNomer.Enabled:=False;
+  QRDBNoNota.Enabled:=False;
+  QRDBTanggal.Enabled:=False;
+end;
+
+procedure TReturPenjualanFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if LookJenis.Text='FAKTUR' then
+    QRLTitle2.Caption:='FAKTUR PENJUALAN'
+    else
+      QRLTitle2.Caption:='RETUR PENJUALAN';
+end;
+
+procedure TReturPenjualanFrm.TitleBand3BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLAccount.Caption:=DMFrm.QRekananNAMA_REKANAN.AsString+' ('+
+    DMFrm.QRekananKD_REKANAN.AsString+')';
+  QRLPeriode.Caption:=VTglAwal.Text+' s/d '+vTglAkhir.Text;
+end;
+
+procedure TReturPenjualanFrm.SummaryBand3BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLMutasi.Caption:=FormatFloat('0.0,0;(0.0,0',QRExpr7.Value.dblResult-QRExpr6.Value.dblResult);
+  QRLAkhir.Caption:=FormatFloat('0.0,0;(0.0,0',QAwalAWAL.AsFloat+QRExpr7.Value.dblResult-QRExpr6.Value.dblResult);
+end;
+
+procedure TReturPenjualanFrm.VTglAwal2Change(Sender: TObject);
+begin
+  vTglAkhir2.Date:=Trunc(EndOfTheMonth(VTglAwal2.Date));
+end;
+
+procedure TReturPenjualanFrm.vTglAkhir2Change(Sender: TObject);
+begin
+  if VTglAwal2.Date>vTglAkhir2.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir2.Date:=VTglAwal2.Date;
+  end;
+end;
+
+procedure TReturPenjualanFrm.cbTanggalClick(Sender: TObject);
+begin
+  if cbTanggal.Checked then
+  begin
+    VTglAwal2.Enabled:=cbTanggal.Checked;
+    vTglAkhir2.Enabled:=cbTanggal.Checked;
+    VTglAwal2.SetFocus;
+  end
+  else
+    ECari.SetFocus;
+end;
+
+procedure TReturPenjualanFrm.LookDivisiEnter(Sender: TObject);
+begin
+  DMFrm.QDivisi.Open;
+end;
+
+procedure TReturPenjualanFrm.QDetailKD_BEBANChange(Sender: TField);
+begin
+  QDetailKETERANGAN.AsString:=DMFrm.QBebanKETERANGAN.AsString;
+end;
+
+procedure TReturPenjualanFrm.QDetailNO_PROYEKChange(Sender: TField);
+begin
+  QDetailKETERANGAN.AsString:=DMFrm.QProyekNAMA_PEKERJAAN.AsString;
+end;
+
+procedure TReturPenjualanFrm.cbPostClick(Sender: TObject);
+begin
+  if cbPost.Checked then
+    MywwDBGrid2.Options:=MywwDBGrid2.Options+[dgRowSelect]
+    else
+       MywwDBGrid2.Options:=MywwDBGrid2.Options-[dgRowSelect];
+end;
+
+procedure TReturPenjualanFrm.QDetailBeforeEdit(DataSet: TDataSet);
+begin
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      ShowMessage('Maaf, Transaksi sudah di-POSTING, tidak bisa diubah !');
+      Abort;
+  end;
+
+end;
+
+procedure TReturPenjualanFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal2.Date:=Date;
+end;
+
+procedure TReturPenjualanFrm.QDetailCalcFields(DataSet: TDataSet);
+begin
+  QDetailSUB_TOTAL.AsFloat:=QDetailNILAI.AsFloat*QDetailQTY_OUT.AsFloat;
+end;
+
+procedure TReturPenjualanFrm.LookKaryawanEnter(Sender: TObject);
+begin
+  DMFrm.QKaryawan.Open;
+end;
+
+procedure TReturPenjualanFrm.QTransaksiNHARIChange(Sender: TField);
+begin
+  QTransaksiJTH_TEMPO.AsDateTime:=QTransaksiTANGGAL.AsDateTime+QTransaksiNHARI.AsInteger;
+end;
+
+procedure TReturPenjualanFrm.LookItemCloseUp(Sender: TObject; LookupTable,
+  FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+  begin
+      QDetailKETERANGAN.AsString:=QItemNAMA_ITEM.AsString;
+      QDetailNILAI.AsFloat:=QItemHRG_JUAL.AsFloat;
+      QDetailSTOK_ORG.AsFloat:=QItemSTOK.AsFloat;
+      QDetailHRG_BELI.AsFloat:=QItemHRG_BELI.AsFloat;
+  end;
+end;
+
+procedure TReturPenjualanFrm.LookRekanan2Enter(Sender: TObject);
+begin
+  QRekanan.Open;
+end;
+
+procedure TReturPenjualanFrm.LookItemUserButton1Click(Sender: TObject;
+  LookupTable: TDataSet);
+begin
+  DMFrm.QItem.Close;
+  DMFrm.QItem.Open;
+end;
+
+procedure TReturPenjualanFrm.LookItemEnter(Sender: TObject);
+begin
+  QItem.Close;
+  if QDetailKD_DIV.AsString='UTAMA' then
+    QItem.SetVariable('myparam','vitem_stok_utama')
+    else
+  if QDetailKD_DIV.AsString='RETUR' then
+    QItem.SetVariable('myparam','vitem_stok_retur')
+    else
+  if QDetailKD_DIV.AsString='RUSAK' then
+    QItem.SetVariable('myparam','vitem_stok_rusak')
+    else
+  if QDetailKD_DIV.AsString='SALES' then
+    QItem.SetVariable('myparam','vitem_stok_sales')
+    else
+  if QDetailKD_DIV.AsString='CUST' then
+    QItem.SetVariable('myparam','vitem_stok_cust')
+    else
+  if QDetailKD_DIV.AsString='SUP' then
+    QItem.SetVariable('myparam','vitem_stok_sup')
+    else
+  if QDetailKD_DIV.AsString='LAIN' then
+    QItem.SetVariable('myparam','vitem_stok_lain');
+  QItem.Open;
+end;
+
+procedure TReturPenjualanFrm.LookRekananCloseUp(Sender: TObject;
+  LookupTable, FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+    QTransaksiKD_AREA.AsString:=QRekananKD_AREA.AsString;
+end;
+
+procedure TReturPenjualanFrm.LookLokasiEnter(Sender: TObject);
+begin
+  DMFrm.QLokasi.Open;
+end;
+
+procedure TReturPenjualanFrm.LookDivisiKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if Key = #13 then
+   begin
+      MywwDBGrid2.SetFocus;
+      QDetail.Insert;
+      MywwDBGrid2.SetActive

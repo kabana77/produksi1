@@ -1,0 +1,318 @@
+2Click(Sender: TObject);
+begin
+  rvdTTD.Execute;
+end;
+
+procedure TBonPemakaianSparepartFrm.LookBagianCloseUp(Sender: TObject; LookupTable,
+  FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+    QDetailID_SUB_BAG.AsString:=QLookSubBagianID_SUB_BAG.AsString;
+end;
+
+procedure TBonPemakaianSparepartFrm.LookItemEnter(Sender: TObject);
+begin
+  QLookItem.Open;
+end;
+
+procedure TBonPemakaianSparepartFrm.QLookItemBeforeOpen(DataSet: TDataSet);
+var
+  vdd,vmm,vyy : word;
+  vtgl_awal : TDate;
+begin
+  DecodeDate(QTransaksiTANGGAL.AsDateTime,vyy,vmm,vdd);
+  vtgl_awal:=EncodeDate(vyy,1,1);
+  QLookItem.SetVariable('kd_jns_item',vkd_jns_item);
+  QLookItem.SetVariable('TGL_AWAL',vtgl_awal);
+  QLookItem.SetVariable('TGL_AKHIR',QTransaksiTANGGAL.AsDateTime);
+  QLookItem.SetVariable('TAHUN',vyy);
+end;
+
+procedure TBonPemakaianSparepartFrm.LookBagianEnter(Sender: TObject);
+begin
+  QLookSubBagian.Open;
+end;
+
+procedure TBonPemakaianSparepartFrm.LookItemCloseUp(Sender: TObject; LookupTable,
+  FillTable: TDataSet; modified: Boolean);
+begin
+  if modified then
+  begin
+    QDetailQTY_STOK.AsFloat:=QLookItemSTOK.AsFloat;
+    if QLookItemNO_PART.AsString='' then
+      QDetailKETERANGAN.AsString:=QLookItemNAMA_ITEM.AsString
+      else
+        QDetailKETERANGAN.AsString:=QLookItemNAMA_ITEM.AsString+', No. Part : '+QLookItemNO_PART.AsString;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.wwDBGrid2CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+    if (Sender as TwwDBGrid).ColumnByName(Field.FieldName).ReadOnly then
+    begin
+      ABrush.Color:=DMFrm.vclGridRead;
+      AFont.Color:=DMFrm.vclGridReadFont;
+    end
+    else
+    begin
+      ABrush.Color:=DMFrm.vclGridEdit;
+      AFont.Color:=DMFrm.vclGridEditFont;
+    end;
+end;
+
+procedure TBonPemakaianSparepartFrm.wwDBGrid1DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+end;
+
+procedure TBonPemakaianSparepartFrm.ECariChange(Sender: TObject);
+begin
+  if cbOtomatis.Checked then
+  begin
+      QBrowse.SearchRecord(wwDBGrid1.Columns[0].FieldName,ECari.Text,[srFromBeginning, srPartialMatch, srIgnoreCase]);
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.cbOtomatisClick(Sender: TObject);
+begin
+  if cbOtomatis.Checked then
+  begin
+    ShowMessage('Mencari data pada kolom paling kiri.'+#13+'Urutkan data terlebih dahulu supaya mudah mencari !');
+    wwDBGrid1.Options:=wwDBGrid1.Options+[dgAlwaysShowSelection];
+  end
+    else
+    wwDBGrid1.Options:=wwDBGrid1.Options-[dgAlwaysShowSelection];
+  ECari.SetFocus;
+end;
+
+procedure TBonPemakaianSparepartFrm.BitBtn1Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+begin
+  vpertama:=True;
+  if cbTanggal.Checked then
+    vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir.Date)+''',''dd/mm/yyyy'')+1-1/86400)) and ('
+  else
+    vfilter:=' where (';
+  if (QBrowse.FieldCount>=1) then
+  begin
+    if dbcField.ItemIndex=0 then
+    begin
+      for i:=0 to wwDBGrid1.Selected.Count-1 do
+  //    for i:=0 to QBrowse.FieldCount-1 do
+      begin
+        if (QBrowse.FieldByName(wwDBGrid1.Columns[i].FieldName).FieldKind=fkData) and (UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL') then
+        begin
+          if vpertama then
+            begin
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                   vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand.Caption='LIKE' then
+         vfilter:=vfilter+dbcField.Text+' like ''%'+ECari.Text+'%'''
+         else
+           vfilter:=vfilter+dbcField.Text+' = '''+ECari.Text+'''';
+    vfilter:=vfilter+')';
+//    vorder:=' order by '+wwDBGrid1.Columns[0].FieldName;
+    if QBrowse.Active then
+      vorder:=' order by '+wwDBGrid1.Columns[0].FieldName
+      else
+        vorder:=' order by no_nota';
+
+  end;
+  QBrowse.DisableControls;
+  QBrowse.Close;
+  QBrowse.SetVariable('myparam',vfilter+vorder);
+  QBrowse.Open;
+  QBrowse.EnableControls;
+
+end;
+
+procedure TBonPemakaianSparepartFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal.Date:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+  QJnsTransaksi.Open;
+end;
+
+procedure TBonPemakaianSparepartFrm.QBrowseBeforeOpen(DataSet: TDataSet);
+begin
+  QBrowse.SetVariable('kd_transaksi',QJnsTransaksiKD_TRANSAKSI.AsString);
+end;
+
+procedure TBonPemakaianSparepartFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLTitle.Caption:=UpperCase(QJnsTransaksiNAMA_TRANSAKSI.AsString);
+end;
+
+procedure TBonPemakaianSparepartFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  1 : begin
+        DMFrm.QLookSubBagian.Open;
+        QuickRep2.Page.Units:=Inches;
+        case RadioGroup1.ItemIndex of
+        0 : begin
+              QuickRep2.Page.Length:=11.00;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        1 : begin
+              QuickRep2.Page.Length:=5.50;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        end;
+        if cbPreview.Checked then
+           QuickRep2.Preview
+           else
+             QuickRep2.Print;
+      end;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.QLookSubBagianBeforeOpen(DataSet: TDataSet);
+begin
+  QLookSubBagian.SetVariable('kd_bag',vkd_bag);
+end;
+
+procedure TBonPemakaianSparepartFrm.TabSheet1Show(Sender: TObject);
+begin
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir.Date)+''',''dd/mm/yyyy'')+1-1/86400))';
+  QBrowse.Open;
+end;
+
+procedure TBonPemakaianSparepartFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TBonPemakaianSparepartFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if QTransaksiISPOST.AsString='1' then
+  begin
+    if QTransaksiJNS_KOREKSI.AsString<>'' then
+       QRLTitle2.Caption:=UpperCase(QTransaksiJNS_KOREKSI.AsString)
+    else
+       QRLTitle2.Caption:=UpperCase(QJnsTransaksiNAMA_TRANSAKSI.AsString);
+  end
+    else
+    QRLTitle2.Caption:='DRAFT';
+end;
+
+procedure TBonPemakaianSparepartFrm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  CanClose:=TabSheet1.TabVisible;
+  if not CanClose then
+    if MessageDlg('Data belum di Simpan/ Posting !'+#13+
+       'Anda tetap mau menutup Form ?'+#13+
+       'Jika pilih [YES], maka Form akan ditutup dan data tidak akan tersimpan.',mtWarning,[mbYes,mbNo],0)=mrYes then
+       begin
+         QTransaksi.First;
+         while not QTransaksi.Eof do
+         begin
+           if QTransaksiISPOST.AsString='0' then
+             QTransaksi.Delete
+           else
+             QTransaksi.Next;
+         end;
+         CanClose:=True;
+       end;
+
+end;
+
+procedure TBonPemakaianSparepartFrm.QDetailBeforeInsert(DataSet: TDataSet);
+begin
+  if not vhak_input then
+  begin
+      ShowMessage('Maaf, Anda tidak berhak merubah data !');
+      Abort;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.QTransaksiAfterDelete(DataSet: TDataSet);
+begin
+  if QTransaksi.IsEmpty then
+    TabSheet1.TabVisible:=True;
+end;
+
+procedure TBonPemakaianSparepartFrm.DetailBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  inc(vrecord_ke);
+//  DetailBand2.ForceNewPage:=(vrecord_ke>Round(vRecord.Value)-1);
+  QRLSubBagian.Caption:=DMFrm.QLookSubBagian.Lookup('KODE',QDetailID_BAG.AsString+QDetailID_SUB_BAG.AsString,'SUB_BAGIAN');
+end;
+
+procedure TBonPemakaianSparepartFrm.VTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.Date:=Trunc(EndOfTheMonth(VTglAwal.Date));
+end;
+
+procedure TBonPemakaianSparepartFrm.vTglAkhirChange(Sender: TObject);
+begin
+  if VTglAwal.Date>vTglAkhir.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir.Date:=VTglAwal.Date;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.RadioGroup1Click(Sender: TObject);
+begin
+  case RadioGroup1.ItemIndex of
+  0 : vRecord.Value:=40;
+  1 : vRecord.Value:=20;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.ColumnHeaderBand2BeforePrint(
+  Sender: TQRCustomBand; var PrintBand: Boolean);
+begin
+  vrecord_ke:=0;
+end;
+
+procedure TBonPemakaianSparepartFrm.wwDBGrid2DblClick(Sender: TObject);
+var
+  vnama_barang_org : String;
+  vketerangan_org : String;
+  vpos : Integer;
+begin
+  if QDetailKETERANGAN.AsString<>'

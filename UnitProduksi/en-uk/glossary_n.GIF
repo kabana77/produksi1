@@ -1,0 +1,35 @@
+]
+        ParentFont = False
+        Transparent = True
+      end
+      object DBText2: TDBText
+        Left = 13
+        Top = 7
+        Width = 53
+        Height = 33
+        Color = clWhite
+        DataField = 'KD_TRANSAKSI'
+        DataSource = dsQTransaksi
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -24
+        Font.Name = 'Arial Black'
+        Font.Style = []
+        ParentColor = False
+        ParentFont = False
+        Transparent = True
+      end
+      object DBText3: TDBText
+        Left = 86
+        Top = 7
+        Width = 114
+        Height = 33
+        AutoSize = True
+        Color = clWhite
+        DataField = 'NAMA_TRANSAKSI'
+        DataSource = dsQTransaksi
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWhite
+        Font.Height = -24
+        Font.Name = 'Arial Black'
+        Font.Style =

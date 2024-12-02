@@ -1,0 +1,36 @@
+4.937500000000000000
+              21.166666666666670000
+              84.666666666666680000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'KODE'
+            Color = clWhite
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Arial Narrow'
+            Font.Style = [fsBold]
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 10
+          end
+          object QRLabel30: TQRLabel
+            Left = 291
+            Top = 1
+            Width = 105
+            Height = 17
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              44.979166666666670000
+              769.937500000000000000
+              2.645833333333333000
+              277.812500000000000000)
+            Alignment = taCenter
+            AlignToBand = False

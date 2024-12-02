@@ -1,0 +1,29 @@
+-b.qty_out) as qty from ipisma_db2.item a, ipisma_db' +
+        '2.gd_stok b,ipisma_db2.sub_lokasi c, ipisma_db2.satuan d'
+      
+        'where a.kd_item=b.kd_item and b.kd_sub_lokasi=c.kd_sub_lokasi an' +
+        'd'
+      
+        'a.kd_satuan=d.kd_satuan and c.jns_lokasi in ('#39'READY'#39','#39'SEMENTARA'#39 +
+        ','#39'PEMAKAIAN'#39') and '
+      
+        'b.tgl<=:tgl group by a.kd_item, a.nama_item, a.kd_satuan, d.satu' +
+        'an, a.min_stok)'
+      ':myparam')
+    Variables.Data = {
+      0300000002000000040000003A54474C0C000000000000000000000008000000
+      3A4D59504152414D010000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000006000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D010000000000080000004D494E5F53544F4B0100000000000600
+      000053415455414E010000000000090000004B445F53415455414E0100000000
+      0003000000515459010000000000}
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemBeforeQuery
+    Session = DMFrm.OS
+    Active = True
+    Left = 304
+    Top = 144
+    object QItemNAMA_ITEM2: TStringField
+      DisplayLabel = 'N

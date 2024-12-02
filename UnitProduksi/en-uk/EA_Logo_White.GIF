@@ -1,0 +1,127 @@
+    QRLabel48: TQRLabel;
+    QRLabel52: TQRLabel;
+    QRLabel20: TQRLabel;
+    QRLabel18: TQRLabel;
+    QRDBText31: TQRDBText;
+    QDetailKD_PERK2: TStringField;
+    QBrowseKD_REKANAN: TIntegerField;
+    QRDBText18: TQRDBText;
+    QRLabel25: TQRLabel;
+    QDetailKREDIT: TFloatField;
+    QDetailDEBET: TFloatField;
+    QBrowseKREDIT: TFloatField;
+    QBrowseDEBET: TFloatField;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure wwDBGrid1TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2CalcCellColors(Sender: TObject; Field: TField;
+      State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+      ABrush: TBrush);
+    procedure ECariChange(Sender: TObject);
+    procedure cbOtomatisClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure vHeightAfterUpClick(Sender: TObject);
+    procedure BtnExportClick(Sender: TObject);
+    procedure DBText5Click(Sender: TObject);
+    procedure vOperandClick(Sender: TObject);
+    procedure dbcFieldEnter(Sender: TObject);
+    procedure QDetailAfterScroll(DataSet: TDataSet);
+    procedure TitleBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QTransaksiNewRecord(DataSet: TDataSet);
+    procedure DBMemo1KeyPress(Sender: TObject; var Key: Char);
+    procedure wwDBDateTimePicker1KeyPress(Sender: TObject; var Key: Char);
+    procedure QTransaksiBeforePost(DataSet: TDataSet);
+    procedure TabSheet2Show(Sender: TObject);
+    procedure wwDBGrid2UpdateFooter(Sender: TObject);
+    procedure wwDBGrid2Enter(Sender: TObject);
+    procedure QDetailNewRecord(DataSet: TDataSet);
+    procedure QDetailBeforePost(DataSet: TDataSet);
+    procedure LookProyekEnter(Sender: TObject);
+    procedure LookRABEnter(Sender: TObject);
+    procedure QDetailKD_RABChange(Sender: TField);
+    procedure LookCashflowEnter(Sender: TObject);
+    procedure LookPerkiraanEnter(Sender: TObject);
+    procedure LookRABUserButton1Click(Sender: TObject;
+      LookupTable: TDataSet);
+    procedure QTransaksiAfterScroll(DataSet: TDataSet);
+    procedure vTglAkhirChange(Sender: TObject);
+    procedure VTglAwalChange(Sender: TObject);
+    procedure QAwalBeforeOpen(DataSet: TDataSet);
+    procedure QBukuKasBeforeOpen(DataSet: TDataSet);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure TabSheet3Show(Sender: TObject);
+    procedure QRGroup1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure DetailBand1AfterPrint(Sender: TQRCustomBand;
+      BandPrinted: Boolean);
+    procedure TitleBand2BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure TitleBand3BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure SummaryBand3BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure VTglAwal2Change(Sender: TObject);
+    procedure vTglAkhir2Change(Sender: TObject);
+    procedure cbTanggalClick(Sender: TObject);
+    procedure LookDivisiEnter(Sender: TObject);
+    procedure LookBebanEnter(Sender: TObject);
+    procedure QDetailBeforeEdit(DataSet: TDataSet);
+    procedure cbPostClick(Sender: TObject);
+    procedure LookBebanUserButton1Click(Sender: TObject;
+      LookupTable: TDataSet);
+    procedure LookBebanUserButton2Click(Sender: TObject;
+      LookupTable: TDataSet);
+    procedure QDetailNO_PROYEKChange(Sender: TField);
+    procedure QDetailKD_BEBANChange(Sender: TField);
+    procedure FormShow(Sender: TObject);
+    procedure wwDBLookupCombo1Enter(Sender: TObject);
+
+  private
+    { Private declarations }
+    vfilter, vfilter2, vorder, vno_bukti : String;
+    vnomer : Integer;
+    vselisih : Real;
+  public
+    { Public declarations }
+  end;
+
+var
+  JurnalMemorialFrm: TJurnalMemorialFrm;
+
+implementation
+
+uses DM, Main, XPROCS, DateUtils;
+
+{$R *.dfm}
+
+procedure TJurnalMemorialFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  JurnalMemorialFrm:=Nil;
+end;
+
+procedure TJurnalMemorialFrm.wwDBGrid1TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowM

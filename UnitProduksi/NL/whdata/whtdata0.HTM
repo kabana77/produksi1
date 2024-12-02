@@ -1,0 +1,57 @@
+2.Options:=wwDBGrid2.Options+[dgRowSelect]
+     else
+     wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect];
+end;
+
+procedure TBonPemakaianSparepartFrm.QTransaksiNewRecord(DataSet: TDataSet);
+begin
+  QLookItem.Close;
+  QTransaksiTANGGAL.AsDateTime:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+  QTransaksiSTATUS.AsString:='CREATE';
+  QTransaksiKD_TRANSAKSI.AsString:=QJnsTransaksiKD_TRANSAKSI.AsString;
+  QTransaksiOPR_INSERT.AsString:=DMFrm.QUserNAMA_USER.AsString;
+  QTransaksiTTD1.AsString:=QJnsTransaksiTTD1.AsString+'; '+QJnsTransaksiJAB1.AsString;
+  QTransaksiTTD2.AsString:=QJnsTransaksiTTD2.AsString+'; '+QJnsTransaksiJAB2.AsString;
+  QTransaksiTTD3.AsString:=QJnsTransaksiTTD3.AsString+'; '+QJnsTransaksiJAB3.AsString;
+  QTransaksiTTD4.AsString:=QJnsTransaksiTTD4.AsString+'; '+QJnsTransaksiJAB4.AsString;
+  wwDBEdit1.SetFocus;
+end;
+
+procedure TBonPemakaianSparepartFrm.QTransaksiBeforePost(DataSet: TDataSet);
+begin
+  if QTransaksiNO_NOTA.AsString<>'' then
+     if (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+       QTransaksiNO_NOTA.AsString:='';
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      QTransaksiSTATUS.AsString:='OPEN';
+      if (QTransaksiNO_NOTA.AsString='') or (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+      begin
+          DMFrm.FNo_Nota_PMTX02.Close;
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pkode',QTransaksiKD_TRANSAKSI.AsString);
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk','0');
+          DMFrm.FNo_Nota_PMTX02.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
+          DMFrm.FNo_Nota_PMTX02.Open;
+          QTransaksiNO_NOTA.AsString:=DMFrm.FNo_Nota_PMTX02NO_NOTA.AsString;
+      end;
+  end;
+end;
+
+procedure TBonPemakaianSparepartFrm.TabSheet2Show(Sender: TObject);
+begin
+  if copy(QJnsTransaksiKD_TRANSAKSI.AsString,1,1)='K' then
+  begin
+    LookKoreksi.Visible:=True;
+    LK1.Visible:=True;
+//    LK2.Visible:=True;
+  end
+  else
+  begin
+    LookKoreksi.Visible:=False;
+    LK1.Visible:=False;
+//    LK2.Visible:=False;
+  end;
+  DMFrm.QJnsKebutuhan.Open;
+  wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+  QTransaksi.Close;
+  QTransaks

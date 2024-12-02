@@ -1,0 +1,35 @@
+Caption:='>';
+end;
+
+procedure TBonPemakaianSparepartFrm.cbTanggal2Click(Sender: TObject);
+begin
+  if cbTanggal2.Checked then
+  begin
+    VTglAwal2.Enabled:=cbTanggal2.Checked;
+    vTglAkhir2.Enabled:=cbTanggal2.Checked;
+    VTglAwal2.SetFocus;
+  end
+  else
+    ECari3.SetFocus;
+end;
+
+procedure TBonPemakaianSparepartFrm.BitBtn6Click(Sender: TObject);
+begin
+
+  if cbTanggal2.Checked then
+    vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal2.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir2.Date)+''',''dd/mm/yyyy'')+1-1/86400)) and ('
+  else
+   vfilter:=' where (';
+  if (ODSTGL.FieldCount>=1) then
+  begin
+    if vOperand2.Caption='>' then
+         vfilter:=vfilter+'SLSHTGL'+' > '''+ECari3.Text+''''
+         else
+           vfilter:=vfilter+'SLSHTGL'+' < '''+ECari3.Text+'''';
+   vfilter:=vfilter+')';
+
+  end;
+  ODSTGL.DisableControls;
+  ODSTGL.Close;
+  ODSTGL.SetVariable('myparam',vfilter);
+  ODSTGL.O

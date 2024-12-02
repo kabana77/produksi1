@@ -1,0 +1,406 @@
+Source = dsQBrowse
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label1: TLabel
+          Left = 8
+          Top = 37
+          Width = 25
+          Height = 13
+          Caption = 'Kode'
+        end
+        object DBText3: TDBText
+          Left = 88
+          Top = 56
+          Width = 80
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = True
+          DataField = 'SATUAN'
+          DataSource = dsQBrowse
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label3: TLabel
+          Left = 8
+          Top = 61
+          Width = 34
+          Height = 13
+          Caption = 'Satuan'
+        end
+        object DBText4: TDBText
+          Left = 256
+          Top = 56
+          Width = 80
+          Height = 22
+          Cursor = crHandPoint
+          AutoSize = True
+          DataField = 'NO_PART'
+          DataSource = dsQBrowse
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clYellow
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label4: TLabel
+          Left = 208
+          Top = 61
+          Width = 39
+          Height = 13
+          Caption = 'No. Part'
+        end
+      end
+      object Panel6: TPanel
+        Left = 0
+        Top = 346
+        Width = 1020
+        Height = 44
+        Align = alBottom
+        BevelInner = bvLowered
+        Ctl3D = False
+        ParentCtl3D = False
+        TabOrder = 2
+        object Label14: TLabel
+          Left = 120
+          Top = 8
+          Width = 120
+          Height = 13
+          Caption = 'Jml. Record Per Halaman'
+        end
+        object DBText6: TDBText
+          Left = 712
+          Top = 11
+          Width = 80
+          Height = 22
+          Cursor = crHandPoint
+          Alignment = taRightJustify
+          AutoSize = True
+          DataField = 'AKHIR'
+          DataSource = dsQBrowse
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clRed
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label6: TLabel
+          Left = 608
+          Top = 16
+          Width = 54
+          Height = 13
+          Caption = 'Saldo Akhir'
+        end
+        object RadioGroup1: TRadioGroup
+          Left = 2
+          Top = 2
+          Width = 112
+          Height = 40
+          Align = alLeft
+          Caption = 'Ukuran Ketas'
+          Columns = 2
+          ItemIndex = 1
+          Items.Strings = (
+            'A4'
+            'A5')
+          TabOrder = 0
+          OnClick = RadioGroup1Click
+        end
+        object vRecord: TwwDBSpinEdit
+          Left = 120
+          Top = 22
+          Width = 41
+          Height = 19
+          Increment = 1.000000000000000000
+          Value = 20.000000000000000000
+          TabOrder = 1
+          UnboundDataType = wwDefault
+        end
+        object cbPreview: TCheckBox
+          Left = 168
+          Top = 24
+          Width = 73
+          Height = 17
+          Caption = 'Pre&view'
+          TabOrder = 2
+        end
+      end
+      object Panel7: TPanel
+        Left = 0
+        Top = 97
+        Width = 1020
+        Height = 41
+        Align = alTop
+        BevelOuter = bvNone
+        Color = clMoneyGreen
+        TabOrder = 3
+        object Label5: TLabel
+          Left = 608
+          Top = 16
+          Width = 53
+          Height = 13
+          Caption = 'Saldo Awal'
+        end
+        object DBText5: TDBText
+          Left = 712
+          Top = 11
+          Width = 80
+          Height = 22
+          Cursor = crHandPoint
+          Alignment = taRightJustify
+          AutoSize = True
+          DataField = 'AWAL'
+          DataSource = dsQBrowse
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clRed
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+      end
+      object wwDBGrid2: TwwDBGrid
+        Left = 0
+        Top = 138
+        Width = 1020
+        Height = 208
+        ControlType.Strings = (
+          'ISAKTIF;CheckBox;1;0'
+          'ID_HAK;CustomEdit;LookJnsMenu;F')
+        PictureMasks.Strings = (
+          'ID_BAG'#9'*2{#,&}'#9'T'#9'T'
+          'KD_JNS_ITEM'#9'#,&'#9'T'#9'T'
+          'KD_SATUAN'#9'#,&'#9'T'#9'T'
+          'ID_USER'#9'*3{&,#}'#9'T'#9'T')
+        Selected.Strings = (
+          'NO_NOTA'#9'15'#9'NO_NOTA'#9'F'
+          'TANGGAL'#9'12'#9'TANGGAL'#9'F'
+          'NO_REFF'#9'15'#9'NO_REFF'#9'F'
+          'KETERANGAN'#9'38'#9'KETERANGAN'#9'F'
+          'TGL_INSERT'#9'18'#9'TGL_INSERT'#9'F'
+          'OPR_INSERT'#9'15'#9'OPR_INSERT'#9'F'
+          'QTY_IN'#9'10'#9'MASUK'#9'F'
+          'QTY_OUT'#9'10'#9'KELUAR'#9'F'
+          'HARGA2'#9'10'#9'Nota'#9'F'#9'HARGA'
+          'HARGA_AVG'#9'10'#9'AVG'#9'F'#9'HARGA')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Pismatex Master'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQRiwayatTransaksi
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        RowHeightPercent = 125
+        TabOrder = 1
+        TitleAlignment = taLeftJustify
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        OnDblClick = wwDBGrid2DblClick
+        OnUpdateFooter = wwDBGrid2UpdateFooter
+        PaintOptions.AlternatingRowColor = clMoneyGreen
+        PaintOptions.ActiveRecordColor = clGreen
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 1028
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    object LTitle: TLabel
+      Left = 16
+      Top = 8
+      Width = 7
+      Height = 24
+      Color = 206
+      ParentColor = False
+    end
+  end
+  object dsQRiwayatTransaksi: TwwDataSource
+    DataSet = QRiwayatTransaksi
+    Left = 676
+    Top = 273
+  end
+  object dsQJnsTransaksi: TwwDataSource
+    Left = 416
+    Top = 48
+  end
+  object QLookItem: TOracleDataSet
+    SQL.Strings = (
+      'select * from pmtx01.vitem'
+      'where kd_jns_item in (:kd_jns_item)')
+    Variables.Data = {
+      03000000010000000C0000003A4B445F4A4E535F4954454D0500000002000000
+      320000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000060000000B0000004B445F4A4E535F4954454D010000000000070000
+      004B445F4954454D010000000000090000004E414D415F4954454D0100000000
+      000400000053415431010000000000070000004E4F5F50415254010000000000
+      080000004B454C4F4D504F4B010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QLookItemBeforeOpen
+    Left = 116
+    Top = 113
+    object QLookItemKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QLookItemNAMA_ITEM: TStringField
+      DisplayWidth = 40
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 80
+    end
+    object QLookItemSAT1: TStringField
+      DisplayLabel = 'SATUAN'
+      DisplayWidth = 12
+      FieldName = 'SAT1'
+      Required = True
+      Size = 12
+    end
+    object QLookItemNO_PART: TStringField
+      DisplayWidth = 12
+      FieldName = 'NO_PART'
+    end
+    object QLookItemKELOMPOK: TStringField
+      DisplayWidth = 20
+      FieldName = 'KELOMPOK'
+      Required = True
+      Size = 50
+    end
+    object QLookItemKD_JNS_ITEM: TStringField
+      FieldName = 'KD_JNS_ITEM'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select * from pmtx02.vtemp_mutasi_barang'
+      ':myparam')
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D010000001D0000006F726465
+      72206279204B454C4F4D504F4B2C204E414D415F4954454D0000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000C000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D010000000000070000004E4F5F50415254010000000000060000
+      0053415455414E010000000000080000004B454C4F4D504F4B0100000000000B
+      0000004B445F4A4E535F4954454D010000000000040000004157414C01000000
+      00000900000050454D42454C49414E0100000000000A0000004B4F52454B5349
+      5F494E0100000000000900000050454D414B4149414E0100000000000B000000
+      4B4F52454B53495F4F555401000000000005000000414B484952010000000000}
+    CountAllRecords = True
+    Session = DMFrm.OS
+    BeforeOpen = QBrowseBeforeOpen
+    AfterScroll = QBrowseAfterScroll
+    OnCalcFields = QBrowseCalcFields
+    OnFilterRecord = QBrowseFilterRecord
+    Left = 388
+    Top = 145
+    object QBrowseKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Size = 16
+    end
+    object QBrowseNO_PART: TStringField
+      FieldName = 'NO_PART'
+    end
+    object QBrowseNAMA_ITEM: TStringField
+      FieldName = 'NAMA_ITEM'
+      Size = 80
+    end
+    object QBrowseSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QBrowseKELOMPOK: TStringField
+      FieldName = 'KELOMPOK'
+      Size = 50
+    end
+    object QBrowseKD_JNS_ITEM: TStringField
+      FieldName = 'KD_JNS_ITEM'
+      Size = 1
+    end
+    object QBrowseAWAL: TFloatField
+      FieldName = 'AWAL'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowsePEMBELIAN: TFloatField
+      FieldName = 'PEMBELIAN'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowseKOREKSI_IN: TFloatField
+      FieldName = 'KOREKSI_IN'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowsePEMAKAIAN: TFloatField
+      FieldName = 'PEMAKAIAN'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowseKOREKSI_OUT: TFloatField
+      FieldName = 'KOREKSI_OUT'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowseAKHIR: TFloatField
+      FieldName = 'AKHIR'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QBrowseNILAI_BELI: TFloatField
+      FieldKind = fkLookup
+      FieldName = 'NILAI_BELI'
+      LookupDataSet = QNilaiMasuk
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'NILAI_BELI'
+      KeyFields = 'KD_ITEM'
+      DisplayFormat = '0.0,0;(0.0,0)'
+      Lookup = True
+    end
+    object QBrowseNILAI_KOREKSI: TFloatField
+      FieldKind = fkLookup
+      FieldName = 'NILAI_KOREKSI'
+      LookupDataSet = QNilaiMasuk
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'NILAI_KOREKSI'
+      KeyFields = 'KD_ITEM'
+      DisplayFormat = '0.

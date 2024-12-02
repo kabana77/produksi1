@@ -1,0 +1,400 @@
+t QMaster: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from bukti a'
+      'where a.no_nota=:pno_nota')
+    ReadBuffer = 25
+    Optimize = True
+    Debug = False
+    Variables.Data = {
+      0300000001000000090000003A504E4F5F4E4F5441050000000F000000313333
+      2D303730322D30303030320000000000}
+    StringFieldsOnly = False
+    SequenceField.ApplyMoment = amOnPost
+    OracleDictionary.EnforceConstraints = False
+    OracleDictionary.UseMessageTable = False
+    OracleDictionary.DefaultValues = False
+    OracleDictionary.DynamicDefaults = False
+    OracleDictionary.FieldKinds = False
+    OracleDictionary.DisplayFormats = False
+    OracleDictionary.RangeValues = False
+    OracleDictionary.RequiredFields = True
+    QBEDefinition.SaveQBEValues = True
+    QBEDefinition.AllowFileWildCards = True
+    QBEDefinition.QBEFontColor = clNone
+    QBEDefinition.QBEBackgroundColor = clNone
+    QBEDefinition.QBEFieldDefs = {
+      0300000026000000070000004E4F5F4E4F544101000000000C0000004B445F54
+      52414E53414B534901000000000A0000004B445F52454B414E414E0100000000
+      0300000054474C01000000000A0000004B45544552414E47414E01000000000A
+      00000054474C5F494E5345525401000000000A0000004F50525F494E53455254
+      0100000000060000004953504F535401000000000A000000434152415F424159
+      41520100000000050000004E4841524901000000000D00000054474C5F4A5448
+      5F54454D504F010000000007000000494E435F50504E01000000000200000055
+      4D0100000000080000004E4F5F42554B54490100000000060000004942554B54
+      490100000000080000004E4F5F524553455001000000000900000054474C5F4B
+      4952494D0100000000080000004B4952494D5F4B4501000000000B0000005447
+      4C5F4245524C414B550100000000060000005354415455530100000000060000
+      004B445F44495601000000000500000053484946540100000000040000004752
+      5550010000000004000000545444310100000000040000005454443201000000
+      000400000054544433010000000004000000545444340100000000020000004D
+      550100000000040000004B5552530100000000090000005355425F544F54414C
+      01000000000300000044505001000000000300000050504E0100000000050000
+      00414B4849520100000000050000004E4F5F574F010000000009000000515459
+      5F524553455001000000000C00000042415441535F4B52454449540100000000
+      0B0000004F55545354414E44494E470100000000090000004B445F52454B5F47
+      4C0100000000}
+    Cursor = crDefault
+    ReadOnly = False
+    LockingMode = lmCheckImmediate
+    QueryAllRecords = True
+    CountAllRecords = False
+    RefreshOptions = []
+    CommitOnPost = True
+    CachedUpdates = False
+    QBEMode = False
+    Session = DMFrm.OS
+    DesignActivation = False
+    Active = False
+    BeforeInsert = QMasterBeforeInsert
+    BeforeEdit = QMasterBeforeDelete
+    BeforeDelete = QMasterBeforeDelete
+    Left = 32
+    Top = 40
+    object QMasterIBUKTI: TFloatField
+      FieldName = 'IBUKTI'
+      Required = True
+    end
+    object QMasterNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+    end
+    object QMasterKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Size = 3
+    end
+    object QMasterTGL: TDateTimeField
+      FieldName = 'TGL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QMasterKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QMasterISPOST: TStringField
+      FieldName = 'ISPOST'
+      Size = 1
+    end
+    object QMasterNO_BUKTI: TStringField
+      FieldName = 'NO_BUKTI'
+      Size = 25
+    end
+    object QMasterTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 30
+    end
+    object QMasterTTD2: TStringField
+      FieldName = 'TTD2'
+      Size = 30
+    end
+    object QMasterTTD3: TStringField
+      FieldName = 'TTD3'
+      Size = 30
+    end
+    object QMasterTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 30
+    end
+    object QMasterSHIFT: TStringField
+      FieldName = 'SHIFT'
+      Size = 1
+    end
+    object QMasterGRUP: TStringField
+      FieldName = 'GRUP'
+      Size = 1
+    end
+    object QMasterKD_DIV: TStringField
+      FieldName = 'KD_DIV'
+      Size = 5
+    end
+    object QMasterLDIVISI: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LDIVISI'
+      LookupDataSet = DMFrm.QDivisi
+      LookupKeyFields = 'KD_DIV'
+      LookupResultField = 'NAMA_DIVISI'
+      KeyFields = 'KD_DIV'
+      Size = 50
+      Lookup = True
+    end
+    object QMasterSTATUS: TStringField
+      FieldName = 'STATUS'
+      Size = 10
+    end
+    object QMasterKD_REK_GL: TStringField
+      FieldName = 'KD_REK_GL'
+      Size = 22
+    end
+  end
+  object dsQMaster: TwwDataSource
+    DataSet = QMaster
+    Left = 32
+    Top = 72
+  end
+  object QDetail: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from bukti_detail a'
+      'where a.ibukti=4363')
+    ReadBuffer = 25
+    Optimize = True
+    Debug = False
+    StringFieldsOnly = False
+    SequenceField.ApplyMoment = amOnPost
+    OracleDictionary.EnforceConstraints = False
+    OracleDictionary.UseMessageTable = False
+    OracleDictionary.DefaultValues = False
+    OracleDictionary.DynamicDefaults = False
+    OracleDictionary.FieldKinds = False
+    OracleDictionary.DisplayFormats = False
+    OracleDictionary.RangeValues = False
+    OracleDictionary.RequiredFields = True
+    QBEDefinition.SaveQBEValues = True
+    QBEDefinition.AllowFileWildCards = True
+    QBEDefinition.QBEFontColor = clNone
+    QBEDefinition.QBEBackgroundColor = clNone
+    QBEDefinition.QBEFieldDefs = {
+      0300000022000000070000004B445F4954454D01000000000400000044495343
+      01000000000A00000054474C5F494E5345525401000000000A0000004F50525F
+      494E534552540100000000060000004942554B544901000000000D0000004942
+      554B54495F44455441494C0100000000080000004E4F5F42554B544901000000
+      000A0000004B45544552414E47414E0100000000040000005154593101000000
+      0004000000515459320100000000040000005154593301000000000400000051
+      5459340100000000040000005154593501000000000400000051545936010000
+      000003000000485247010000000008000000535542544F54414C01000000000D
+      0000004B445F5355425F4C4F4B41534901000000000E0000004B445F5355425F
+      4C4F4B4153493201000000000400000051545937010000000004000000515459
+      3801000000000400000051545939010000000005000000515459313001000000
+      000D00000054474C5F4B454255545548414E0100000000070000004942554B54
+      4932010000000007000000495356414C49440100000000060000005354415455
+      530100000000090000004B445F53415455414E01000000000500000052415349
+      4F0100000000060000004B445F4449560100000000080000004E4F5F4D455349
+      4E010000000004000000485247320100000000070000004942554B5449330100
+      000000090000004B445F52454B5F474C0100000000080000004B445F4954454D
+      320100000000}
+    Cursor = crDefault
+    ReadOnly = False
+    LockingMode = lmCheckImmediate
+    QueryAllRecords = True
+    CountAllRecords = False
+    RefreshOptions = []
+    CommitOnPost = True
+    CachedUpdates = False
+    QBEMode = False
+    Session = DMFrm.OS
+    DesignActivation = False
+    Active = False
+    BeforeInsert = QMasterBeforeDelete
+    BeforeEdit = QMasterBeforeDelete
+    BeforeDelete = QMasterBeforeDelete
+    OnCalcFields = QDetailCalcFields
+    Left = 32
+    Top = 112
+    object QDetailIBUKTI_DETAIL: TFloatField
+      FieldName = 'IBUKTI_DETAIL'
+      Required = True
+    end
+    object QDetailKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      ReadOnly = True
+      Required = True
+    end
+    object QDetailLSATUAN: TStringField
+      FieldKind = fkLookup
+      FieldName = 'LSATUAN'
+      LookupDataSet = DMFrm.QSatuan
+      LookupKeyFields = 'KD_SATUAN'
+      LookupResultField = 'SATUAN'
+      KeyFields = 'KD_SATUAN'
+      Size = 10
+      Lookup = True
+    end
+    object QDetailIBUKTI: TFloatField
+      FieldName = 'IBUKTI'
+    end
+    object QDetailQTY1: TFloatField
+      FieldName = 'QTY1'
+      DisplayFormat = '0.0,0'
+    end
+    object QDetailKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      ReadOnly = True
+      Size = 255
+    end
+    object QDetailKD_SUB_LOKASI: TStringField
+      FieldName = 'KD_SUB_LOKASI'
+      ReadOnly = True
+      Size = 12
+    end
+    object QDetailKD_SATUAN: TStringField
+      FieldName = 'KD_SATUAN'
+      ReadOnly = True
+      Size = 2
+    end
+    object QDetailRASIO: TFloatField
+      FieldName = 'RASIO'
+    end
+    object QDetailKD_REK_GL: TStringField
+      FieldName = 'KD_REK_GL'
+      Size = 22
+    end
+    object QDetailHRG: TFloatField
+      FieldName = 'HRG'
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QDetailSUBTOTAL: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'SUBTOTAL'
+      DisplayFormat = '0.0,0;(0.0,0)'
+      Calculated = True
+    end
+  end
+  object dsQDetail: TwwDataSource
+    DataSet = QDetail
+    Left = 32
+    Top = 144
+  end
+  object ppReportInput: TppReport
+    AutoStop = False
+    DataPipeline = ppDBQDetail
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'Report'
+    PrinterSetup.PaperName = 'Custom'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight = 6350
+    PrinterSetup.mmMarginTop = 6350
+    PrinterSetup.mmPaperHeight = 139700
+    PrinterSetup.mmPaperWidth = 210000
+    PrinterSetup.PaperSize = 256
+    Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
+    Units = utMillimeters
+    DeviceType = 'Screen'
+    Left = 152
+    Top = 40
+    Version = '6.02'
+    mmColumnWidth = 197300
+    DataPipelineName = 'ppDBQDetail'
+    object ppTitleBand2: TppTitleBand
+      BeforePrint = ppTitleBand1BeforePrint
+      PrintHeight = phDynamic
+      mmBottomOffset = 0
+      mmHeight = 0
+      mmPrintPosition = 0
+    end
+    object ppHeaderBand2: TppHeaderBand
+      BeforePrint = ppHeaderBand1BeforePrint
+      mmBottomOffset = 0
+      mmHeight = 48419
+      mmPrintPosition = 0
+      object ppLabel22: TppLabel
+        UserName = 'Label2'
+        Caption = 'ITEM'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 11377
+        mmTop = 43921
+        mmWidth = 8467
+        BandType = 0
+      end
+      object ppLabel24: TppLabel
+        UserName = 'Label4'
+        Caption = 'SATUAN'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        TextAlignment = taCentered
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 87842
+        mmTop = 44450
+        mmWidth = 14552
+        BandType = 0
+      end
+      object ppLabel26: TppLabel
+        UserName = 'Label6'
+        Caption = 'NO'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        TextAlignment = taCentered
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 3175
+        mmTop = 43921
+        mmWidth = 5292
+        BandType = 0
+      end
+      object ppLabel27: TppLabel
+        UserName = 'Label7'
+        Caption = 'QTY'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        TextAlignment = taCentered
+        Transparent = True
+        mmHeight = 4233
+        mmLeft = 107421
+        mmTop = 43921
+        mmWidth = 7408
+        BandType = 0
+      end
+      object ppLabel28: TppLabel
+        UserName = 'Label8'
+        Caption = 'PERKIRAAN'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        TextAlignment = taCentered
+        Transparent = True
+        mmHeight = 4221
+        mmLeft = 169886
+        mmTop = 44186
+        mmWidth = 20597
+        BandType = 0
+      end
+      object ppDBText26: TppDBText
+        UserName = 'DBText4'
+        AutoSize = True
+        DataField = 'NO_BUKTI'
+        DataPipeline = ppDBQMaster
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = [fsBold]
+        ParentDataPipeline = False
+        SuppressRepeatedValues = True
+        Transparent = True
+        DataPipelineName = 'ppDBQMaster'
+        mmHeight = 4294
+        mmLeft = 22225
+        mmTop = 24077
+        mmWidth = 11718
+        BandType = 0
+      end
+      object ppLabel25: TppLabel
+        UserName = 'Label25'
+        Caption = 'Telah diterima barang-barang berikut :'
+   

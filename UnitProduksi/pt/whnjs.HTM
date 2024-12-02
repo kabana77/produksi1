@@ -1,0 +1,44 @@
+      Required = True
+      Visible = False
+      Size = 3
+    end
+    object QMasterTTD1: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD1'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTTD2: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD2'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTTD3: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD3'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QMasterOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QMasterNO_BUKTI: TStringField
+      FieldName = 'NO_BUKTI'
+    end
+    object QMasterNO_ORDER: TStringField
+      FieldName = 'NO_ORDER'
+    end
+  end
+  object QDetail: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db4.bukti2_detail a'
+      'where a.no_reg = :no_reg'
+      ':vorder')
+    Variables.Data = {
+      0300000002000000070000003A4E4F5F52454704000000080000000000000000
+      00004000000000070000003A564F5244455201000000190000006F726465722

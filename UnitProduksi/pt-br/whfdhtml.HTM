@@ -1,0 +1,35 @@
+unit NotaLain;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, Oracle, wwDialog, wwrcdvw, Wwdatsrc, OracleData, wwdblook,
+  Wwdbdlg, wwcheckbox, wwSpeedButton, wwDBNavigator, wwclearpanel,
+  ExtCtrls, wwdbedit, StdCtrls, DBCtrls, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, wwdbdatetimepicker, QuickRpt, QRCtrls, ComCtrls,
+  Mask, Wwdbspin, Buttons;
+
+type
+  TNotaLainFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    QTransaksi: TOracleDataSet;
+    dsQTransaksi: TwwDataSource;
+    BitBtn5: TBitBtn;
+    LRecords: TLabel;
+    TabSheet2: TTabSheet;
+    Panel5: TPanel;
+    QDetail: TOracleDataSet;
+    dsQDetail: TwwDataSource;
+    GroupBox1: TGroupBox;
+    Panel3: TPanel;
+    cbTanggal: TCheckBox;
+    VTglAwal: TwwDBDateTimePicker;
+    vTglAkhir: TwwDBDateTimePicker;
+    Label2: TLabel;
+    B

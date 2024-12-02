@@ -1,0 +1,35 @@
+3300000
+                298.979166666666700000
+                531.812500000000000000)
+              Alignment = taCenter
+              AlignToBand = False
+              AutoSize = False
+              AutoStretch = False
+              Color = clWhite
+              DataSet = QTransaksi
+              DataField = 'JAB1'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+              Transparent = False
+              WordWrap = True
+              FontSize = 8
+            end
+          end
+          object PageFooterBand1: TQRBand
+            Left = 76
+            Top = 461
+            Width = 670
+            Height = 20
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            AlignToBottom = False
+            Color = clWhite
+            ForceNewColumn = False
+            ForceNe

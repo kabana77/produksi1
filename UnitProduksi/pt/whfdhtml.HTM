@@ -1,0 +1,27 @@
+bled:=False;
+  QRiwayatTransaksi.DisableControls;
+  QRiwayatTransaksi.Close;
+  QRiwayatTransaksi.SetVariable('kd_item',QBrowseKD_ITEM.AsString);
+  QRiwayatTransaksi.SetVariable('pawal',trunc(VTglAwal.Date));
+  QRiwayatTransaksi.SetVariable('pakhir',trunc(VTglAkhir.Date)+1-1/86400);
+  QRiwayatTransaksi.Open;
+  QRiwayatTransaksi.EnableControls;
+end;
+
+procedure TNilaiKartuStokNBBFrm.QLookItemBeforeOpen(DataSet: TDataSet);
+begin
+  QLookItem.SetVariable('kd_jns_item',vkd_jns_item);
+end;
+
+procedure TNilaiKartuStokNBBFrm.wwDBGrid1DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvo

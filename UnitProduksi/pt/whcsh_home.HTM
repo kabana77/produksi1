@@ -1,0 +1,335 @@
+    Size = 1
+    end
+    object QLookSubBagianID_SUB_BAG: TStringField
+      DisplayWidth = 1
+      FieldName = 'ID_SUB_BAG'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+  end
+  object QProses: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      'commit;'
+      '  pmtx02.proc_temp_mutasi_barang(:kd_jns_item,:pawal,:pakhir);'
+      ''
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      03000000030000000C0000003A4B445F4A4E535F4954454D0500000002000000
+      330000000000060000003A504157414C0C00000007000000786C0C0101010100
+      000000070000003A50414B4849520C00000007000000786C0C1E010101000000
+      00}
+    Left = 532
+    Top = 209
+  end
+  object QRiwayatTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select * from pmtx02.vkartu_stok'
+      'where kd_item=:kd_item and tanggal>=:pawal and tanggal<=:pakhir')
+    Variables.Data = {
+      0300000003000000080000003A4B445F4954454D050000000A0000003330332D
+      31313331330000000000060000003A504157414C0C00000007000000786C0101
+      01010100000000070000003A50414B4849520C00000007000000786D01010101
+      0100000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000D000000070000004B445F4954454D010000000000070000004E4F5F
+      4E4F54410100000000000700000054414E4747414C010000000000070000004E
+      4F5F524546460100000000000A0000004B45544552414E47414E010000000000
+      060000005154595F494E010000000000070000005154595F4F55540100000000
+      000A00000054474C5F494E534552540100000000000A0000004F50525F494E53
+      4552540100000000000E0000004E4F5F5245475F53544F4B5F47440100000000
+      000C0000004B445F5452414E53414B5349010000000000060000004841524741
+      32010000000000050000004841524741010000000000}
+    Session = DMFrm.OS
+    OnCalcFields = QRiwayatTransaksiCalcFields
+    Left = 636
+    Top = 273
+    object QRiwayatTransaksiKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Size = 16
+    end
+    object QRiwayatTransaksiNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QRiwayatTransaksiTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QRiwayatTransaksiNO_REFF: TStringField
+      FieldName = 'NO_REFF'
+    end
+    object QRiwayatTransaksiKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 306
+    end
+    object QRiwayatTransaksiQTY_IN: TFloatField
+      FieldName = 'QTY_IN'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QRiwayatTransaksiQTY_OUT: TFloatField
+      FieldName = 'QTY_OUT'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QRiwayatTransaksiTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QRiwayatTransaksiOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QRiwayatTransaksiNO_REG_STOK_GD: TFloatField
+      FieldName = 'NO_REG_STOK_GD'
+      Required = True
+    end
+    object QRiwayatTransaksiKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Size = 3
+    end
+    object QRiwayatTransaksiHARGA2: TFloatField
+      Alignment = taCenter
+      FieldName = 'HARGA2'
+      DisplayFormat = '#.#,#;(#.#,#); 0'
+    end
+    object QRiwayatTransaksiHARGA_AVG: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'HARGA_AVG'
+      DisplayFormat = '#.#,#;(#.#,#); 0'
+      Calculated = True
+    end
+  end
+  object QNilaiMasuk: TOracleDataSet
+    SQL.Strings = (
+      'select a.kd_item, :mybulan from pmtx01.item a'
+      
+        'left outer join pmtx02.item_hrg_beli p on (p.kd_item=a.kd_item a' +
+        'nd p.tahun=:ptahun)'
+      
+        'left outer join pmtx02.item_hrg_koreksi q on (q.kd_item=a.kd_ite' +
+        'm and q.tahun=:ptahun)'
+      'where a.kd_jns_item=:pkd_jns_item'
+      '')
+    Variables.Data = {
+      0300000003000000080000003A4D5942554C414E010000002C000000702E6E30
+      35206173206E696C61695F62656C692C20712E6E3035206173206E696C61695F
+      6B6F72656B73690000000000070000003A50544148554E0300000004000000D9
+      070000000000000D0000003A504B445F4A4E535F4954454D0500000002000000
+      340000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000003000000070000004B445F4954454D0100000000000A0000004E494C
+      41495F42454C490100000000000D0000004E494C41495F4B4F52454B53490100
+      00000000}
+    Session = DMFrm.OS
+    BeforeOpen = QNilaiMasukBeforeOpen
+    Left = 292
+    Top = 321
+    object QNilaiMasukKD_ITEM: TStringField
+      DisplayWidth = 16
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QNilaiMasukNILAI_BELI: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NILAI_BELI'
+    end
+    object QNilaiMasukNILAI_KOREKSI: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NILAI_KOREKSI'
+    end
+  end
+  object QNilaiAwal: TOracleDataSet
+    SQL.Strings = (
+      'select a.kd_item, :mybulan from pmtx01.item a'
+      
+        'left outer join pmtx01.item_saldo p on (p.kd_item=a.kd_item and ' +
+        'p.tahun=:ptahun)'
+      'where a.kd_jns_item=:pkd_jns_item'
+      '')
+    Variables.Data = {
+      0300000003000000080000003A4D5942554C414E0100000014000000702E6E31
+      32206173206E696C61695F6177616C0000000000070000003A50544148554E03
+      00000000000000000000000D0000003A504B445F4A4E535F4954454D05000000
+      0000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000070000004B445F4954454D0100000000000A0000004E494C
+      41495F4157414C010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QNilaiAwalBeforeOpen
+    Left = 292
+    Top = 353
+    object QNilaiAwalKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QNilaiAwalNILAI_AWAL: TFloatField
+      FieldName = 'NILAI_AWAL'
+    end
+  end
+  object QUpdate: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      'update pmtx01.item_saldo'
+      
+        '  set :myparam=:pnilai, :myparam2=:pqty, :myparam3=:pnilai2, :my' +
+        'param4=:pqty2'
+      'where kd_item=:pkd_item and tahun=:ptahun;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      030000000A000000080000003A4D59504152414D010000000000000000000000
+      090000003A504B445F4954454D050000000000000000000000070000003A5054
+      4148554E030000000000000000000000070000003A504E494C41490400000000
+      00000000000000090000003A4D59504152414D32010000000000000000000000
+      050000003A50515459040000000000000000000000090000003A4D5950415241
+      4D33010000000000000000000000080000003A504E494C414932040000000000
+      000000000000090000003A4D59504152414D3401000000000000000000000006
+      0000003A5051545932040000000000000000000000}
+    Left = 692
+    Top = 337
+  end
+  object QUpdateMutasi: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  pmtx02.proc_tutup_beli(:pbulan, :pjns_item);'
+      '  pmtx02.proc_tutup_koreksi(:pbulan, :pjns_item);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000070000003A5042554C414E0C00000007000000786C0B1E01
+      0101000000000A0000003A504A4E535F4954454D050000000200000033000000
+      0000}
+    Left = 508
+    Top = 337
+  end
+  object QTutupTahun: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  if to_char(:ptgl,'#39'mm'#39')='#39'12'#39' then'
+      '    pmtx01.tutup_stok_tahun(to_number(to_char(:ptgl,'#39'yyyy'#39')));'
+      '  end if;'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {0300000001000000050000003A5054474C0C0000000000000000000000}
+    Left = 668
+    Top = 393
+  end
+  object QTutupTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select a.tutup, a.rowid from pmtx01.jns_item a'
+      'where kd_jns_item=:pjns_item')
+    Variables.Data = {
+      03000000010000000A0000003A504A4E535F4954454D05000000020000003100
+      00000000}
+    QBEDefinition.QBEFieldDefs = {0400000001000000050000005455545550010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QTutupTransaksiBeforeOpen
+    Left = 732
+    Top = 249
+    object QTutupTransaksiTUTUP: TDateTimeField
+      FieldName = 'TUTUP'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+  end
+  object dsQTutupTransaksi: TwwDataSource
+    DataSet = QTutupTransaksi
+    Left = 780
+    Top = 257
+  end
+  object QTotal: TOracleDataSet
+    SQL.Strings = (
+      
+        'select sum(qty_in)/sum(harga) as harga_po, sum(qty_out)/sum(harg' +
+        'a2) as harga_nota from pmtx02.vkartu_stok'
+      'where kd_item=:kd_item')
+    Variables.Data = {
+      0300000001000000080000003A4B445F4954454D610000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000020000000800000048415247415F504F0100000000000A0000004841
+      5247415F4E4F5441010000000000}
+    Session = DMFrm.OS
+    Left = 836
+    Top = 377
+    object QTotalHARGA_PO: TFloatField
+      FieldName = 'HARGA_PO'
+    end
+    object QTotalHARGA_NOTA: TFloatField
+      FieldName = 'HARGA_NOTA'
+    end
+  end
+  object QJurnal: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      
+        '  cip_gl_pisma.proc_jurnal_hpp_bb(:ptgl_tutup, :pawal, :pbeli, :' +
+        'pretur, :pjual, :pkoreksi, :pakhir);'
+      '  commit;'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      03000000070000000B0000003A5054474C5F54555455500C0000000700000078
+      6E011F01010100000000060000003A504157414C040000000800000000000000
+      65CDCD4100000000060000003A5042454C490400000008000000000000C00B5A
+      E64100000000070000003A505245545552040000000800000000000000000000
+      0000000000060000003A504A55414C04000000080000000000000065CDCD4100
+      000000090000003A504B4F52454B534904000000080000000000000000000000
+      00000000070000003A50414B48495204000000080000000000000065CDCD4100
+      000000}
+    Left = 852
+    Top = 233
+  end
+end
+                                                                                                                                                                                                                                                                                                                                                                       4000000000000010000130B0000130B00001000000000000000000000000000
+                800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+                FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333333333
+                333333333333333333FF33333333333330003FF3FFFFF3333777003000003333
+                300077F777773F333777E00BFBFB033333337773333F7F33333FE0BFBF000333
+                330077F3337773F33377E0FBFBFBF033330077F3333FF7FFF377E0BFBF000000
+                333377F3337777773F3FE0FBFBFBFBFB039977F33FFFFFFF7377E0BF00000000
+                339977FF777777773377000BFB03333333337773FF733333333F333000333333
+                3300333777333333337733333333333333003333333333333377333333333333
+                333333333333333333FF33333333333330003333333333333777333333333333
+                3000333333333333377733333333333333333333333333333333}
+              NumGlyphs = 2
+            end
+            object CheckBox2: TCheckBox
+              Left = 200
+              Top = 16
+              Width = 81
+              Height = 17
+              Caption = 'Mode Edit'
+              TabOrder = 2
+            end
+            object Panel13: TPanel
+              Left = 2
+              Top = 46
+              Width = 615
+              Height = 18
+              Align = alBottom
+              BevelOuter = bvNone
+              Color = clGray
+              TabOrder = 3
+              object Label5: TLabel
+                Left = 0
+                Top = 0
+                Width = 72
+                Height = 15
+                Align = alLeft
+                Caption = '  n Records : '
+              end
+              object DBText2: TDBText
+                Left = 72
+                Top = 0
+                Width = 543
+                Height = 18
+                Align = alClient
+                DataField = 'NDATA'
+                DataSource = dsQ2Total
+                Font.Charset = ANSI_CHARSET
+                Font.Color = clYellow
+              

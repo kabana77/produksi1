@@ -1,0 +1,38 @@
+ 2
+          end
+          object ECari: TEdit
+            Left = 200
+            Top = 23
+            Width = 121
+            Height = 19
+            Ctl3D = False
+            ParentCtl3D = False
+            TabOrder = 2
+          end
+          object cbOtomatis: TCheckBox
+            Left = 7
+            Top = 5
+            Width = 98
+            Height = 17
+            Caption = 'Cari &Otomatis'
+            TabOrder = 0
+            OnClick = cbOtomatisClick
+          end
+          object dbcField: TwwDBComboBox
+            Left = 8
+            Top = 23
+            Width = 137
+            Height = 19
+            ShowButton = True
+            Style = csDropDown
+            MapList = False
+            AllowClearKey = False
+            Color = clYellow
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              'SEMUA KOLOM')
+            ItemIndex = 0
+            Sorted = False
+            TabOrder = 4
+        

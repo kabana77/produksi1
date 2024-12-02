@@ -1,0 +1,66 @@
+SI1.AsFloat:=QBrowseKOREKSI_IN.AsFloat/0.181440;
+            QBrowseCQTY_PAKAI.AsFloat:=QBrowsePEMAKAIAN.AsFloat/0.181440;
+            QBrowseCQTY_KOREKSI2.AsFloat:=QBrowseKOREKSI_OUT.AsFloat/0.181440;
+            QBrowseC_AKHIR.AsFloat:=QBrowseAKHIR.AsFloat/0.181440;
+             end
+        else
+                begin
+          QBrowseCQTY_AWAL.AsFloat:=QBrowseAWAL.AsFloat;
+            QBrowseCQTY_BELI.AsFloat:=QBrowsePEMBELIAN.AsFloat;
+            QBrowseCQTY_KOREKSI1.AsFloat:=QBrowseKOREKSI_IN.AsFloat;
+            QBrowseCQTY_PAKAI.AsFloat:=QBrowsePEMAKAIAN.AsFloat;
+            QBrowseCQTY_KOREKSI2.AsFloat:=QBrowseKOREKSI_OUT.AsFloat;
+            QBrowseC_AKHIR.AsFloat:=QBrowseAKHIR.AsFloat;
+        end;
+      end;
+
+
+
+     //BALE
+
+
+  end;
+
+end;
+
+procedure TKartuStokNBBFrm.wwDBGrid2DblClick(Sender: TObject);
+var
+  myrvdDialog : TwwRecordViewDialog;
+begin
+  myrvdDialog:=TwwRecordViewDialog.Create(Nil);
+  myrvdDialog.NavigatorButtons:=[nbsPrior, nbsNext];
+  myrvdDialog.EditFrame.Enabled:=True;
+  myrvdDialog.EditFrame.NonFocusColor:=clYellow;
+  myrvdDialog.Style:=rvsHorizontal;
+  myrvdDialog.BorderStyle:=bsDialog;
+  myrvdDialog.OKCancelOptions:=[rvokAutoCancelRec];
+  myrvdDialog.Options:=[rvoUseCustomControls,rvoShortenEditBox,rvoModalForm,rvoCloseIsCancel,rvoMaximizeMemoWidth,rvoUseDateTimePicker];
+  myrvdDialog.DataSource:=(Sender as TwwDBGrid).DataSource;
+  myrvdDialog.Selected:=(Sender as TwwDBGrid).Selected;
+  myrvdDialog.Execute;
+
+
+end;
+
+procedure TKartuStokNBBFrm.QBrowseFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+  { Accept:=(QBrowseCQTY_AWAL.AsFloat<>0) or
+     (QBrowseCQTY_BELI.AsFloat<>0) or
+     (QBrowseCQTY_KOREKSI1.AsFloat<>0) or
+     (QBrowseCQTY_PAKAI.AsFloat<>0) or
+     (QBrowseCQTY_KOREKSI2.AsFloat<>0) or
+     (QBrowseC_AKHIR.AsFloat<>0);          }
+
+        Accept:=(QBrowseAWAL.AsFloat<>0) or
+     (QBrowsePEMBELIAN.AsFloat<>0) or
+     (QBrowseKOREKSI_IN.AsFloat<>0) or
+     (QBrowsePEMAKAIAN.AsFloat<>0) or
+     (QBrowseKOREKSI_OUT.AsFloat<>0) or
+     (QBrowseAKHIR.AsFloat<>0);
+
+
+end;
+
+procedure TKartuStokNBBFrm.cbStokClick(Sender: TObject);
+begi

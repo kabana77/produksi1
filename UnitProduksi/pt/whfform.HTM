@@ -1,0 +1,105 @@
+tFloat('#,##0.##;(#,##0.##)',vkredit);
+//  wwDBGrid1.ColumnByName('KREDIT').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',vdebet);
+//  LMutasi.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vberjalan);
+//  LSaldoAkhir.Caption:=FormatFloat('#,##0.##;(#,##0.##)',vakhir);
+  QBrowse.EnableControls;
+  wwDBGrid2.ColumnByName('Nilai').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',Qbrowsenilai_akhir.AsFloat);
+
+//arif
+end;
+
+procedure TNilaiKartuStokNBBFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal.Date:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+  vfilter:='';
+
+end;
+
+procedure TNilaiKartuStokNBBFrm.QBrowseBeforeOpen(DataSet: TDataSet);
+begin
+//  QBrowse.SetVariable('kd_transaksi',QJnsTransaksiKD_TRANSAKSI.AsString);
+end;
+
+procedure TNilaiKartuStokNBBFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        // arif
+    if rgKonversi.ItemIndex=0 then
+        NilaiKartuStokNBBFrm.sat_konv.Caption:='-';
+   if rgKonversi.ItemIndex=1 then
+//  1 : begin
+       NilaiKartuStokNBBFrm.sat_konv.Caption:='Gram';
+
+ if rgKonversi.ItemIndex=2 then
+       NilaiKartuStokNBBFrm.sat_konv.Caption:='KG';
+ if rgKonversi.ItemIndex=3 then
+       NilaiKartuStokNBBFrm.sat_konv.Caption:='TON';
+      // end;
+        //arif
+
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  1 : begin
+        DMFrm.QLookSubBagian.Open;
+        QuickRep2.Page.Units:=Inches;
+        case RadioGroup1.ItemIndex of
+        0 : begin
+              QuickRep2.Page.Length:=11.67;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        1 : begin
+              QuickRep2.Page.Length:=5.50;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        end;
+        if cbPreview.Checked then
+           QuickRep2.Preview
+           else
+             QuickRep2.Print;
+      end;
+  end;
+end;
+
+procedure TNilaiKartuStokNBBFrm.QLookSubBagianBeforeOpen(DataSet: TDataSet);
+begin
+  QLookSubBagian.SetVariable('kd_bag',vkd_bag);
+end;
+
+procedure TNilaiKartuStokNBBFrm.TabSheet1Show(Sender: TObject);
+begin
+  if ((upperCase(DMFrm.OSUser.LogonUsername)='ARIF') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='NAJIB') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='MIFTAH') or
+  (upperCase(DMFrm.OSUser.LogonUsername)='EKO_AKT')) then
+  begin
+    BitBtn3.Enabled:=True;
+    BitBtn4.Enabled:=True;
+  end
+  else
+  begin
+    BitBtn3.Enabled:=False;
+    BitBtn4.Enabled:=False;
+  end;
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  QBrowse.Open;
+  QTutupTransaksi.SetVariable('pjns_item',vkd_jns_item);
+  QTutupTransaksi.Open;
+end;
+
+procedure TNilaiKartuStokNBBFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TNilaiKartuStokNBBFrm.DetailBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  inc(vrecord_ke);
+  DetailBand2.ForceNewPage:=(vrecord_ke>Round(vRecord.Value)-1);
+  vberjalan:=vberjalan+QRiwayatTransaksiQTY_IN.AsFloat-QRiwayatTransaksiQTY_OUT

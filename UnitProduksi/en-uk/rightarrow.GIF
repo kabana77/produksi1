@@ -1,0 +1,49 @@
+object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
+  Left = 286
+  Top = 137
+  Width = 1054
+  Height = 608
+  Caption = 'Info Kebutuhan Non BB'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Position = poDefault
+  Scaled = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PanelMain: TPanel
+    Left = 0
+    Top = 0
+    Width = 1046
+    Height = 581
+    Align = alClient
+    BevelOuter = bvNone
+    Ctl3D = False
+    ParentCtl3D = False
+    TabOrder = 0
+    object Label1: TLabel
+      Left = 0
+      Top = 568
+      Width = 1046
+      Height = 13
+      Align = alBottom
+      Color = clSkyBlue
+      ParentColor = False
+    end
+    object DBText3: TDBText
+      Left = 0
+      Top = 49
+      Width = 1046
+      Height = 27
+      Align = alTop
+     

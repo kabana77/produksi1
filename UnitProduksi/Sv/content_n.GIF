@@ -1,0 +1,34 @@
+meVUSER_CETAK: TStringField
+      FieldName = 'VUSER_CETAK'
+      Size = 48
+    end
+    object QDateTimeTGL: TStringField
+      FieldName = 'TGL'
+      Size = 10
+    end
+    object QDateTimeUSER: TStringField
+      FieldName = 'USER'
+      Size = 30
+    end
+  end
+  object QMitra_Kerja: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.pabrik_mitra')
+    QBEDefinition.QBEFieldDefs = {
+      0400000004000000080000004B445F4D495452410100000000000A0000004E41
+      4D415F4D4954524101000000000006000000414C414D41540100000000000700
+      0000494E495349414C010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = OS
+    BeforeOpen = QDivisiBeforeOpen
+    Left = 256
+    Top = 360
+    object QMitra_KerjaNAMA_MITRA: TStringField
+      DisplayWidth = 50
+      FieldName = 'NAMA_MITRA'
+      Size = 50
+    end
+    object QMitra_KerjaKD_MITRA: TStringField
+      Dis

@@ -1,0 +1,31 @@
+lse
+                   vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand.Caption='LIKE' then
+         vfilter:=vfilter+dbcField.Text+' like ''%'+ECari.Text+'%'''
+         else
+           vfilter:=vfilter+dbcField.Text+' = '''+ECari.Text+'''';
+    vfilter:=vfilter+')';
+    vorder:=' order by tanggal, no_nota, kredit';
+
+  end;
+  QBrowse.DisableControls;
+  vdebet:=0;
+  vkredit:=0;
+  QBrowse.Close;
+  QBrowse.SetVariable('myparam',vfilter+vorder);
+  QBrowse.Open;
+  while not QBrowse.Eof do
+  begin
+      vdebet:=vdebet+QBrowseDEBET.AsFloat;
+      vkredit:=vkred

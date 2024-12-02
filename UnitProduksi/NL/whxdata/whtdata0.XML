@@ -1,0 +1,92 @@
+   FieldName = 'TTD3'
+      Size = 30
+    end
+    object QTransaksiTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 30
+    end
+    object QTransaksiDIV1: TStringField
+      FieldName = 'DIV1'
+      Size = 30
+    end
+    object QTransaksiDIV2: TStringField
+      FieldName = 'DIV2'
+      Size = 30
+    end
+    object QTransaksiDIV3: TStringField
+      FieldName = 'DIV3'
+      Size = 30
+    end
+    object QTransaksiDIV4: TStringField
+      FieldName = 'DIV4'
+      Size = 30
+    end
+    object QTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 30
+    end
+    object QTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 30
+    end
+    object QTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 30
+    end
+    object QTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 30
+    end
+  end
+  object ppDBQTransaksi: TppDBPipeline
+    DataSource = dsQTransaksi
+    OpenDataSource = False
+    UserName = 'DBQTransaksi'
+    Left = 376
+    Top = 16
+    object ppDBQTransaksippField1: TppField
+      FieldAlias = 'NAMA_TRANSAKSI'
+      FieldName = 'NAMA_TRANSAKSI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 0
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField2: TppField
+      FieldAlias = 'KD_TRANSAKSI'
+      FieldName = 'KD_TRANSAKSI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 1
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField3: TppField
+      FieldAlias = 'PREFIX'
+      FieldName = 'PREFIX'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 2
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField4: TppField
+      FieldAlias = 'PLINE'
+      FieldName = 'PLINE'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 3
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField5: TppField
+      FieldAlias = 'PHEADER'
+      FieldName = 'PHEADER'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0

@@ -1,0 +1,274 @@
+ect DSQStatistikTransaksi: TwwDataSource
+    DataSet = QStatistikTransaksi
+    Left = 384
+    Top = 224
+  end
+  object QTutupBuku: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db3.tutup_buku a')
+    QBEDefinition.QBEFieldDefs = {
+      0400000004000000090000005452414E53414B53490100000000000400000042
+      554B550100000000000A0000004F50525F5550444154450100000000000A0000
+      0054474C5F555044415445010000000000}
+    Cursor = crSQLWait
+    RefreshOptions = [roAfterUpdate]
+    Session = OS
+    BeforePost = QTutupBukuBeforePost
+    Left = 304
+    Top = 8
+    object QTutupBukuTRANSAKSI: TDateTimeField
+      FieldName = 'TRANSAKSI'
+      DisplayFormat = 'dd mmm yyyy hh:mm'
+    end
+    object QTutupBukuBUKU: TDateTimeField
+      FieldName = 'BUKU'
+      DisplayFormat = 'dd mmm yyyy hh:mm'
+    end
+    object QTutupBukuOPR_UPDATE: TStringField
+      FieldName = 'OPR_UPDATE'
+      Size = 30
+    end
+    object QTutupBukuTGL_UPDATE: TDateTimeField
+      FieldName = 'TGL_UPDATE'
+      DisplayFormat = 'dd mmm yyyy hh:mm'
+    end
+  end
+  object dsQTutupBuku: TwwDataSource
+    DataSet = QTutupBuku
+    Left = 352
+    Top = 16
+  end
+  object QBenang: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db1.sub_kelompok'
+      'where kd_kel='#39'10'#39)
+    QBEDefinition.QBEFieldDefs = {
+      0400000003000000110000004E414D415F5355425F4B454C4F4D504F4B010000
+      000000060000004B445F4B454C0100000000000A0000004B445F5355425F4B45
+      4C010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 192
+    Top = 296
+    object QBenangKD_SUB_KEL: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 6
+      FieldName = 'KD_SUB_KEL'
+      Required = True
+      Size = 12
+    end
+    object QBenangNAMA_SUB_KELOMPOK: TStringField
+      DisplayLabel = 'BENANG'
+      DisplayWidth = 30
+      FieldName = 'NAMA_SUB_KELOMPOK'
+      Required = True
+      Size = 50
+    end
+    object QBenangKD_KEL: TStringField
+      DisplayWidth = 6
+      FieldName = 'KD_KEL'
+      Required = True
+      Visible = False
+      Size = 6
+    end
+  end
+  object QWarna: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db3.warna a'
+      'order by a.warna')
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000050000005741524E41010000000000080000004B445F5741
+      524E41010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 40
+    Top = 296
+    object QWarnaWARNA: TStringField
+      DisplayWidth = 30
+      FieldName = 'WARNA'
+      Size = 50
+    end
+    object QWarnaKD_WARNA: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 6
+      FieldName = 'KD_WARNA'
+      Required = True
+      Size = 6
+    end
+  end
+  object dsQWarna: TwwDataSource
+    DataSet = QWarna
+    Left = 328
+    Top = 344
+  end
+  object QMesin: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.sub_lokasi'
+      'where jns_lokasi='#39'MESIN'#39)
+    QBEDefinition.QBEFieldDefs = {
+      0400000009000000090000004B445F4C4F4B4153490100000000000D0000004B
+      445F5355425F4C4F4B4153490100000000000A0000004A4E535F4C4F4B415349
+      0100000000000B000000535045534946494B4153490100000000000300000045
+      4646010000000000030000004B50530100000000000600000053415455414E01
+      0000000000030000004A4D4C010000000000090000004B445F42454E414E4701
+      0000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 168
+    Top = 344
+    object QMesinKD_LOKASI: TStringField
+      FieldName = 'KD_LOKASI'
+      Size = 6
+    end
+    object QMesinKD_SUB_LOKASI: TStringField
+      FieldName = 'KD_SUB_LOKASI'
+      Required = True
+      Size = 12
+    end
+    object QMesinJNS_LOKASI: TStringField
+      FieldName = 'JNS_LOKASI'
+      Required = True
+      Size = 10
+    end
+    object QMesinSPESIFIKASI: TStringField
+      FieldName = 'SPESIFIKASI'
+      Size = 50
+    end
+    object QMesinEFF: TFloatField
+      FieldName = 'EFF'
+    end
+    object QMesinKPS: TFloatField
+      FieldName = 'KPS'
+    end
+    object QMesinSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 30
+    end
+    object QMesinJML: TFloatField
+      FieldName = 'JML'
+    end
+    object QMesinKD_BENANG: TStringField
+      FieldName = 'KD_BENANG'
+      Size = 12
+    end
+  end
+  object QT: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db2.vitem')
+    QBEDefinition.QBEFieldDefs = {
+      040000000E000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000A0000004E414D415F4954454D32010000000000
+      0F0000004E414D415F4B4F4E535452554B53490100000000000A0000004E414D
+      415F434F52414B0100000000000C0000004E414D415F4B454D4153414E010000
+      0000000600000053415455414E01000000000005000000524153494F01000000
+      00000A00000054474C5F494E534552540100000000000A0000004B445F4B454D
+      4153414E010000000000090000004B445F53415455414E010000000000090000
+      004852475F504F4B4F4B010000000000080000004852475F4A55414C01000000
+      00000700000049534649584544010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 472
+    Top = 128
+    object QTNAMA_KONSTRUKSI: TStringField
+      DisplayLabel = 'KONSTRUKSI'
+      DisplayWidth = 20
+      FieldName = 'NAMA_KONSTRUKSI'
+      Required = True
+      Size = 50
+    end
+    object QTNAMA_CORAK: TStringField
+      DisplayLabel = 'CORAK'
+      DisplayWidth = 20
+      FieldName = 'NAMA_CORAK'
+      Required = True
+      Size = 50
+    end
+    object QTNAMA_KEMASAN: TStringField
+      DisplayLabel = 'KEMASAN'
+      DisplayWidth = 20
+      FieldName = 'NAMA_KEMASAN'
+      Required = True
+      Size = 50
+    end
+    object QTSATUAN: TStringField
+      DisplayWidth = 10
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QTKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+  end
+  object QLookRAB: TOracleDataSet
+    SQL.Strings = (
+      'select a.* from ipisma_db3.rab a')
+    QBEDefinition.QBEFieldDefs = {
+      04000000110000000600000049445F5241420100000000000900000049445F50
+      524F59454B010000000000080000004E414D415F524142010000000000050000
+      0056455253490100000000000A00000054474C5F494E53455254010000000000
+      0A0000004F50525F494E5345525401000000000005000000544F54414C010000
+      000000060000004953504F53540100000000000300000054474C010000000000
+      0A00000054474C5F555044415445010000000000030000005154590100000000
+      000A0000004B4F4E535452554B534901000000000005000000434F52414B0100
+      000000000100000050010000000000010000004C010000000000050000004E4C
+      555349010000000000060000004E50414B414E010000000000}
+    Cursor = crSQLWait
+    QueryAllRecords = False
+    Session = OS
+    Left = 568
+    Top = 16
+    object QLookRABID_RAB: TFloatField
+      DisplayLabel = 'ID RAB'
+      DisplayWidth = 10
+      FieldName = 'ID_RAB'
+      Required = True
+    end
+    object QLookRABNAMA_RAB: TStringField
+      DisplayLabel = 'NAMA RAB'
+      DisplayWidth = 40
+      FieldName = 'NAMA_RAB'
+      Required = True
+      Size = 255
+    end
+    object QLookRABQTY: TFloatField
+      DisplayLabel = 'KODI'
+      DisplayWidth = 5
+      FieldName = 'QTY'
+    end
+    object QLookRABVERSI: TStringField
+      DisplayWidth = 6
+      FieldName = 'VERSI'
+      Required = True
+      Size = 10
+    end
+    object QLookRABTGL: TDateTimeField
+      DisplayWidth = 12
+      FieldName = 'TGL'
+      Required = True
+    end
+    object QLookRABTGL_UPDATE: TDateTimeField
+      DisplayLabel = 'UPDATE'
+      DisplayWidth = 12
+      FieldName = 'TGL_UPDATE'
+      Visible = False
+    end
+    object QLookRABID_PROYEK: TStringField
+      DisplayWidth = 50
+      FieldName = 'ID_PROYEK'
+      Required = True
+      Visible = False
+      Size = 50
+    end
+    object QLookRABTGL_INSERT: TDateTimeField
+      DisplayWidth = 18
+      FieldName = 'TGL_INSERT'
+      Required = True
+      Visible = False
+    end
+    object QLookRABOPR_INSERT: TStringField
+      DisplayWidth = 30
+      FieldName = 'OPR_INSERT'
+      Required = True
+      Visible = False

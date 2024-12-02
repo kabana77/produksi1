@@ -1,0 +1,109 @@
+tNotKnown
+      DisplayWidth = 0
+      Position = 4
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField6: TppField
+      FieldAlias = 'DISTRIBUSI'
+      FieldName = 'DISTRIBUSI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 5
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField7: TppField
+      FieldAlias = 'TTD1'
+      FieldName = 'TTD1'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 6
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField8: TppField
+      FieldAlias = 'TTD2'
+      FieldName = 'TTD2'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 7
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField9: TppField
+      FieldAlias = 'TTD3'
+      FieldName = 'TTD3'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 8
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField10: TppField
+      FieldAlias = 'TTD4'
+      FieldName = 'TTD4'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 9
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField11: TppField
+      FieldAlias = 'DIV1'
+      FieldName = 'DIV1'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 10
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField12: TppField
+      FieldAlias = 'DIV2'
+      FieldName = 'DIV2'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 11
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField13: TppField
+      FieldAlias = 'DIV3'
+      FieldName = 'DIV3'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 12
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField14: TppField
+      FieldAlias = 'DIV4'
+      FieldName = 'DIV4'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 13
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField15: TppField
+      FieldAlias = 'JAB1'
+      FieldName = 'JAB1'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 14
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQTransaksippField16: TppField
+      FieldAlias = 'JAB2'
+      FieldName 

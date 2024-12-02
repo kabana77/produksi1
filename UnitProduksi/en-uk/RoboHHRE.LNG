@@ -1,0 +1,122 @@
+bsNone
+        CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+        CalendarAttributes.Font.Color = clWindowText
+        CalendarAttributes.Font.Height = -11
+        CalendarAttributes.Font.Name = 'MS Sans Serif'
+        CalendarAttributes.Font.Style = []
+        Epoch = 1950
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ShowButton = True
+        TabOrder = 2
+        DisplayFormat = 'dd mmm yyyy'
+        OnChange = vTglAwalChange
+      end
+      object vTglAkhir: TwwDBDateTimePicker
+        Left = 136
+        Top = 27
+        Width = 113
+        Height = 22
+        BorderStyle = bsNone
+        CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+        CalendarAttributes.Font.Color = clWindowText
+        CalendarAttributes.Font.Height = -11
+        CalendarAttributes.Font.Name = 'MS Sans Serif'
+        CalendarAttributes.Font.Style = []
+        Epoch = 1950
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'MS Sans Serif'
+        Font.Style = [fsBold]
+        ParentFont = False
+        ShowButton = True
+        TabOrder = 3
+        DisplayFormat = 'dd mmm yyyy'
+      end
+      object RadioGroup1: TRadioGroup
+        Left = 312
+        Top = 6
+        Width = 121
+        Height = 49
+        Caption = 'Jenis WIP'
+        ItemIndex = 0
+        Items.Strings = (
+          'Dalam Proses'
+          'Hasil Proses')
+        TabOrder = 4
+      end
+      object cbAdaTransaksi: TCheckBox
+        Left = 440
+        Top = 8
+        Width = 161
+        Height = 17
+        Caption = 'Yang ada transaksinya saja'
+        TabOrder = 5
+        OnClick = cbAdaTransaksiClick
+      end
+    end
+    object PanelBrowse: TPanel
+      Left = 0
+      Top = 146
+      Width = 1046
+      Height = 381
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 2
+      object QuickRep2: TQuickRep
+        Left = -160
+        Top = 7
+        Width = 1248
+        Height = 816
+        Frame.Color = clBlack
+        Frame.DrawTop = True
+        Frame.DrawBottom = True
+        Frame.DrawLeft = True
+        Frame.DrawRight = True
+        DataSet = QBrowse
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Style = []
+        Functions.Strings = (
+          'PAGENUMBER'
+          'COLUMNNUMBER'
+          'REPORTTITLE')
+        Functions.DATA = (
+          '0'
+          '0'
+          #39#39)
+        Options = [FirstPageHeader, LastPageFooter]
+        Page.Columns = 1
+        Page.Orientation = poLandscape
+        Page.PaperSize = Folio
+        Page.Values = (
+          127.000000000000000000
+          2159.000000000000000000
+          80.000000000000000000
+          3302.000000000000000000
+          100.000000000000000000
+          80.000000000000000000
+          0.000000000000000000)
+        PrinterSettings.Copies = 1
+        PrinterSettings.Duplex = False
+        PrinterSettings.FirstPage = 0
+        PrinterSettings.LastPage = 0
+        PrinterSettings.OutputBin = Auto
+        PrintIfEmpty = True
+        SnapToGrid = True
+        Units = Native
+        Zoom = 100
+        object QRBand6: TQRBand
+          Left = 38
+          Top = 362
+          Width = 1180
+          Height = 23
+          Frame.Color = clBlack
+          Frame.Dra

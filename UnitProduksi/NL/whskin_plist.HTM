@@ -1,0 +1,166 @@
+alMatch, srIgnoreCase]);
+  end;
+end;
+
+procedure TBAServisFrm.cbOtomatisClick(Sender: TObject);
+begin
+  if cbOtomatis.Checked then
+  begin
+    ShowMessage('Mencari data pada kolom paling kiri.'+#13+'Urutkan data terlebih dahulu supaya mudah mencari !');
+    wwDBGrid1.Options:=wwDBGrid1.Options+[dgAlwaysShowSelection];
+  end
+    else
+    wwDBGrid1.Options:=wwDBGrid1.Options-[dgAlwaysShowSelection];
+  ECari.SetFocus;
+end;
+
+procedure TBAServisFrm.BitBtn1Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+begin
+  vpertama:=True;
+  if cbTanggal.Checked then
+    vfilter:=' where (tgl_jth_tempo>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal.Date)+''',''dd/mm/yyyy'') and tgl_jth_tempo<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir.Date)+''',''dd/mm/yyyy'')+1-1/86400)) and ('
+  else
+    vfilter:=' where (';
+  if (QBrowse.FieldCount>=1) then
+  begin
+    if dbcField.ItemIndex=0 then
+    begin
+      for i:=0 to wwDBGrid1.Selected.Count-1 do
+  //    for i:=0 to QBrowse.FieldCount-1 do
+      begin
+        if (QBrowse.FieldByName(wwDBGrid1.Columns[i].FieldName).FieldKind=fkData) and (UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TGL_JTH_TEMPO') and (UpperCase(wwDBGrid1.Columns[i].FieldName)<>'SISA')then
+        begin
+          if vpertama then
+            begin
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                   vfilter:=vfilter+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' like ''%'+ECari.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid1.Columns[i].FieldName+' = '''+ECari.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand.Caption='LIKE' then
+         vfilter:=vfilter+dbcField.Text+' like ''%'+ECari.Text+'%'''
+         else
+           vfilter:=vfilter+dbcField.Text+' = '''+ECari.Text+'''';
+    vfilter:=vfilter+')';
+//    vorder:=' order by '+wwDBGrid1.Columns[0].FieldName;
+    if QBrowse.Active then
+      vorder:=' order by '+wwDBGrid1.Columns[0].FieldName
+      else
+        vorder:=' order by no_nota';
+
+  end;
+  QBrowse.DisableControls;
+  QBrowse.Close;
+  QBrowse.SetVariable('myparam',vfilter+vorder);
+  QBrowse.Open;
+  QBrowse.EnableControls;
+  QTotalBrowse.Close;
+  QTotalBrowse.SetVariable('myparam',vfilter);
+  QTotalBrowse.Open;
+  wwDBGrid1.ColumnByName('NILAI').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalBrowseNILAI.AsFloat);
+  wwDBGrid1.ColumnByName('DIBAYAR').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalBrowseDIBAYAR.AsFloat);
+  wwDBGrid1.ColumnByName('SISA').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalBrowseSISA.AsFloat);
+end;
+
+procedure TBAServisFrm.FormShow(Sender: TObject);
+begin
+  VTglAwal.Date:=Trunc(DMFrm.QDateTimeVNOW.AsDateTime);
+  QJnsTransaksi.Open;
+end;
+
+procedure TBAServisFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  vnomer:=0;
+  QRLTitle.Caption:=UpperCase(QJnsTransaksiNAMA_TRANSAKSI.AsString);
+end;
+
+procedure TBAServisFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+//        QBrowse.DisableControls;
+        QBrowseDetail.Open;
+        QuickRep1.Preview;
+//        QBrowse.EnableControls;
+      end;
+  1 : begin
+        QJurnal2.DisableControls;
+        QJurnal2.Close;
+        QJurnal2.Open;
+        QuickRep2.Page.Units:=Inches;
+        PageHeaderBand2.Enabled:=True;
+        case RadioGroup1.ItemIndex of
+        0 : begin
+              QuickRep2.Page.Length:=11.00;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        1 : begin
+              QuickRep2.Page.Length:=5.50;
+              QuickRep2.Page.Width:=8.27;
+            end;
+        end;
+        if cbPreview.Checked then
+           QuickRep2.Preview
+           else
+             QuickRep2.Print;
+        QDetail.EnableControls;
+      end;
+  end;
+end;
+
+procedure TBAServisFrm.TabSheet1Show(Sender: TObject);
+begin
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  vfilter:=' where (tanggal>=to_date('''+FormatDateTime('dd/mm/yyyy',VTglAwal.Date)+''',''dd/mm/yyyy'') and tanggal<=(to_date('''+FormatDateTime('dd/mm/yyyy',VTglAkhir.Date)+''',''dd/mm/yyyy'')+1-1/86400))';
+  QBrowse.Open;
+end;
+
+procedure TBAServisFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TBAServisFrm.TitleBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if QTransaksiISPOST.AsString='1' then
+    QRLTitle2.Caption:='JURNAL HUTANG'
+    else
+    QRLTitle2.Caption:='DRAFT';    
+end;
+
+procedure TBAServisFrm.FormCloseQuery(Sender: TObject;
+  var CanClose: Boolean);
+begin
+  CanClose:=TabSheet1.TabVisible;
+  if not CanClose then
+    if MessageDlg('Data belum di Simpan/ Posting !'+#13+
+       'Anda tetap mau menutup Form ?'+#13+
+       'Jika pilih [YES], maka Form akan ditutup dan data tidak akan tersimpan.',mtWarning,[mbYes,mbNo],0)=mrYes then
+       begin
+         QTransaksi.First;
+         while not QTransaksi.Eof do
+         begin
+           if QTransaksiISPOST.AsString='0' then
+             QTransaksi.Delete
+           else
+             QTransaksi.Next;
+         end;
+         CanClose:=Tr

@@ -1,0 +1,71 @@
+'
+      Size = 61
+    end
+    object QLookLokasiProsesLOKASI: TStringField
+      FieldName = 'LOKASI'
+      Visible = False
+      Size = 61
+    end
+    object QLookLokasiProsesPROSES: TStringField
+      FieldName = 'PROSES'
+      Required = True
+      Visible = False
+      Size = 30
+    end
+    object QLookLokasiProsesKD_LOKASI: TStringField
+      FieldName = 'KD_LOKASI'
+      Size = 6
+    end
+  end
+  object RVLokasiProses: TwwRecordViewDialog
+    DataSource = dsQLokasiProses
+    BorderStyle = bsDialog
+    FormPosition.Left = 0
+    FormPosition.Top = 0
+    FormPosition.Width = 0
+    FormPosition.Height = 0
+    NavigatorButtons = [nbsPrior, nbsNext, nbsInsert, nbsDelete, nbsEdit, nbsPost, nbsCancel, nbsSearchDialog]
+    ControlOptions = []
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Caption = 'Record View'
+    Selected.Strings = (
+      'LOKASI'#9'30'#9'LOKASI'#9'F'
+      'PROSES'#9'30'#9'PROSES'#9'F')
+    NavigatorFlat = True
+    Left = 528
+    Top = 432
+  end
+  object dsQLokasiProses: TwwDataSource
+    DataSet = QLokasiProses
+    Left = 480
+    Top = 416
+  end
+  object MKaryawanAktif: TOracleDataSet
+    SQL.Strings = (
+      'select a.nik_lama, a.nik, a.nama_karyawan, a.jns_kel,'
+      'a.sts_kawin, a.n_anak, a.tgl_masuk_kontrak,'
+      'a.agama,b.bagian, c.sub_bagian, d.jabatan'
+      
+        'from IHRD.Karyawan a, IHRD.Bagian b, IHRD.Sub_bagian c, IHRD.Jab' +
+        'atan d'
+      'where b.kd_bag=a.kd_bag and'
+      'c.kd_bag=a.kd_bag and'
+      'c.kd_sub_bag=a.kd_sub_bag and'
+      'd.kd_bag=a.kd_bag and'
+      'd.kd_jab=a.kd_jab and'
+      'a.sts_aktif='#39'1'#39
+      'order by a.nama_karyawan, b.bagian, c.sub_bagian')
+    QBEDefinition.QBEFieldDefs = {
+      040000000B000000030000004E494B0100000000000D0000004E414D415F4B41
+      52594157414E010000000000070000004A4E535F4B454C010000000000090000
+      005354535F4B4157494E010000000000060000004E5F414E414B010000000000
+      1100000054474C5F4D4153554B5F4B4F4E54

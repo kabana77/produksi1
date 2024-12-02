@@ -1,0 +1,260 @@
+12;
+     DMFrm.FontToUse.Name := SelectedFont;
+     LBarcode.Font := DMFrm.FontToUse;
+//     QRBarcode11.Font := LoginFrm.FontToUse;
+     DMFrm.BType := DMFrm.BType + '-';
+     DMFrm.BType := DMFrm.BType + DMFrm.Format;
+     DMFrm.BType := DMFrm.BType + '.BH';
+// end barcode
+
+//  PanelHeader.Caption:=UpperCase(Caption);
+//  BtnAmbilData.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\COPY.Bmp');
+  BtnPrintInput.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\PRINT.Bmp');
+  BtnClose1.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CLOSE.Bmp');
+  BtnOk.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CHECK.Bmp');
+  BtnOk2.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CHECK.Bmp');
+  BtnFind.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\FIND.Bmp');
+  BtnDesign2.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\DESIGN.Bmp');
+  BtnPrintBrowse.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\PRINT.Bmp');
+  BtnExport.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\EXPORT.Bmp');
+  BtnClose2.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CLOSE.Bmp');
+  vTglAwal.Date:=Trunc(Date);
+//Otoritas Button
+  BtnExport.Visible:=DMFrm.cBtnExport;
+  BtnDesign2.Visible:=DMFrm.cBtnDesign;
+end;
+
+procedure TOrderJetDyeingFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse2.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=PanelHeader.Caption+' '+ vTglAwal.Text+' sd '+vTglAkhir.Text+'.xlK';
+     wwDBGrid2.ExportOptions.TitleName:='TRANSAKSI LAINNYA SOFTCONES';
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid2.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid2.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+end;
+
+procedure TOrderJetDyeingFrm.BtnOkClick(Sender: TObject);
+begin
+  if vTglAwal.Date>vTglAkhir.DateTime then
+    ShowMessage('Tgl. Akhir harus lebih besar dari Tgl. Awal !')
+    else
+    begin
+    {  if QBrowse.QBEMode then
+        QBrowse.QBEMode:=False;
+      QBrowse.DisableControls;
+      QBrowse.Close;
+      QBrowse.DeclareVariable('pawal',otDate);
+      QBrowse.DeclareVariable('pakhir',otDate);
+      QBrowse.DeclareVariable('kd_transaksi',otString);
+      QBrowse.DeclareVariable('porder',otSubst);
+      QBrowse.SQL.Text:='select * from '+cUserTabel+'v'+Name+
+        ' where tanggal>=:pawal and tanggal<=:pakhir and kd_transaksi=:kd_transaksi :porder';
+  		QBrowse.SetVariable('pawal',Trunc(vTglAwal.Date));
+  		QBrowse.SetVariable('pakhir',Trunc(vTglAkhir.Date)+1-1/86400);
+			QBrowse.SetVariable('kd_transaksi',vkode);
+  		QBrowse.SetVariable('porder',vorder);
+//      ShowMessage(QBrowse.SQL.Text);
+      QBrowse.Open;
+      QBrowse.EnableControls;
+      LabelBanner.Caption:='Data : '+FormatFloat('#,#',QBrowse.RecordCount)+' Records'; }
+
+      if QBrowse2.QBEMode then
+      QBrowse2.QBEMode:=False;
+      QBrowse2.DisableControls;
+      QBrowse2.Close;
+      QBrowse2.DeclareVariable('pawal',otDate);
+      QBrowse2.DeclareVariable('pakhir',otDate);
+      QBrowse2.DeclareVariable('kd_transaksi',otString);
+      QBrowse2.DeclareVariable('porder',otSubst);
+      QBrowse2.SQL.Text:='select * from '+cUserTabel+'v'+Name+
+        ' where tanggal>=:pawal and tanggal<=:pakhir and kd_transaksi=:kd_transaksi :porder';
+  		QBrowse2.SetVariable('pawal',Trunc(vTglAwal.Date));
+  		QBrowse2.SetVariable('pakhir',Trunc(vTglAkhir.Date)+1-1/86400);
+			QBrowse2.SetVariable('kd_transaksi',vkode);
+  		QBrowse2.SetVariable('porder',vorder);
+//      ShowMessage(QBrowse2.SQL.Text);
+      QBrowse2.Open;
+      QBrowse2.EnableControls;
+      LabelBanner.Caption:='Data : '+FormatFloat('#,#',QBrowse2.RecordCount)+' Records';
+      totalSatuan;
+
+      {
+      QTotal.Close;
+      QTotal.SetVariable('pawal',vTglAwal.Date);
+      QTotal.SetVariable('pakhir',vTglAkhir.Date);
+      QTotal.Open;
+      wwDBGrid2.ColumnByName('QTY1').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotalGULUNG_IN.AsFloat);
+      wwDBGrid2.ColumnByName('QTY2').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotalMTR_IN.AsFloat);
+      }
+    end;
+end;
+
+procedure TOrderJetDyeingFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if QBrowse2.FieldByName(AFieldName).FieldKind=fkData then
+  begin
+    vorder:='order by '+AFieldName;
+    BtnOkClick(Nil);
+  end
+  else
+    ShowMessage('Maaf, tidak bisa Urut menurut kolom '+AFieldName+' !');
+end;
+
+procedure TOrderJetDyeingFrm.QBrowseAfterScroll(DataSet: TDataSet);
+begin
+  LabelBanner.Caption:='Record ke '+IntToStr(QBrowse2.RecNo)+' dari '+FormatFloat('#,#',QBrowse2.RecordCount)+' Records';
+end;
+
+procedure TOrderJetDyeingFrm.BtnClose1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TOrderJetDyeingFrm.BtnClose2Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TOrderJetDyeingFrm.vTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.DateTime:=EndOfTheMonth(vTglAwal.Date);
+end;
+
+procedure TOrderJetDyeingFrm.wwDBSpinLine2Change(Sender: TObject);
+begin
+    wwDBGrid2.RowHeightPercent:=Round(wwDBSpinLine2.Value);
+end;
+
+procedure TOrderJetDyeingFrm.BtnFindClick(Sender: TObject);
+begin
+{	wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowse.QBEMode then
+  begin
+    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowse.QBEMode:=TRUE;
+  end
+  else
+    QBrowse.ClearQBE;}
+
+  wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowse2.QBEMode then
+  begin
+    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowse2.QBEMode:=TRUE;
+  end
+  else
+    QBrowse2.ClearQBE;
+end;
+
+procedure TOrderJetDyeingFrm.BtnOk2Click(Sender: TObject);
+begin
+{  if QBrowse.QBEMode then
+  begin
+    QBrowse.ExecuteQBE;
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+  end; }
+
+  if QBrowse2.QBEMode then
+  begin
+    QBrowse2.ExecuteQBE;
+    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+  end;
+end;
+
+procedure TOrderJetDyeingFrm.ppHeaderBand1BeforePrint(Sender: TObject);
+begin
+  ppNo.AsInteger:=0;
+end;
+
+procedure TOrderJetDyeingFrm.BtnPrintBrowseClick(Sender: TObject);
+begin
+  if vTglAwal.Date>vTglAkhir.DateTime then
+    ShowMessage('Tgl. Akhir harus lebih besar dari Tgl. Awal !')
+    else
+    begin
+      ppReportBrowse.Print;
+    end;
+end;
+
+procedure TOrderJetDyeingFrm.Button1Click(Sender: TObject);
+begin
+  ppDesigner1.ShowModal;
+end;
+
+procedure TOrderJetDyeingFrm.BtnDesign2Click(Sender: TObject);
+begin
+  ppDesigner1.ShowModal;
+end;
+
+procedure TOrderJetDyeingFrm.ppTitleBand1BeforePrint(Sender: TObject);
+begin
+  ppNamaLaporan.Caption:=Caption;
+  ppNo2.AsInteger:=0;
+  ppPeriode.Caption:=vTglAwal.Text+' s/d '+vTglAkhir.Text;
+  DMFrm.QTime.Close;
+  DMFrm.QTime.Open;
+  ppUserCetak.Caption:=DMFrm.QTimeVUSER_CETAK.AsString;
+end;
+
+procedure TOrderJetDyeingFrm.wwDBSpinLine1Change(Sender: TObject);
+begin
+    wwDBGrid1.RowHeightPercent:=Round(wwDBSpinLine1.Value);
+end;
+
+procedure TOrderJetDyeingFrm.EditCariKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key=13 then
+  begin
+
+  IF copy(editCari.text,1,3) = '810' then
+    begin
+    wwDBSpinLine1.SetFocus;
+    QMaster2.Close;
+    QMaster2.SetVariable('myparam1','0');
+    QMaster2.SetVariable('myparam2',EditCari.Text);
+    QMaster2.Open;
+    QDetail2.Close;
+    QDetail2.Open;
+    EditCari.SetFocus;
+    end
+  else
+    ShowMessage('Kode transaksi tidak sesuai');
+  end;
+
+end;
+
+procedure TOrderJetDyeingFrm.TabSheet1Show(Sender: TObject);
+begin
+  QMaster2.Close;
+  QMaster2.SetVariable('myparam1',QBrowse2IBUKTI.AsInteger);
+  QMaster2.SetVariable('myparam2',QBrowse2NO_NOTA.AsString);
+  QMaster2.Open;
+  QDetail2.Close;
+  QDetail2.Open;
+  wwDBGrid1UpdateFooter(nil);
+  EditCari.Text:=QBrowse2IBUKTI.AsString;
+  if (QBrowse2NO_NOTA.AsString<>'') then EditCari.Text:=QBrowse2NO_NOTA.AsString;
+end;
+
+procedure TOrÿØÿà JFIF  ` `  ÿÛ C ÿÛ CÿÀ  K K" ÿÄ           	
+ÿÄ µ   } !1AQa"q2‘¡#B±ÁRÑğ$3br‚	
+%&'()*456789:CDEFGHIJSTUVWXYZcdefghijstuvwxyzƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚáâãäåæçèéêñòóôõö÷øùúÿÄ        	
+ÿÄ µ  w !1AQaq"2B‘¡±Á	#3RğbrÑ
+$4á%ñ&'()*56789:CDEFGHIJSTUVWXYZcdefghijstuvwxyz‚ƒ„…†‡ˆ‰Š’“”•–—˜™š¢£¤¥¦§¨©ª²³´µ¶·¸¹ºÂÃÄÅÆÇÈÉÊÒÓÔÕÖ×ØÙÚâãäåæçèéêòóôõö÷øùúÿÚ   ? ñnÛÇş¥ãû³ñ_â¦$ş4ø¹áıDÓ> cXÇñ#ÄöZe†/övµ¨èò½†‡mui=­Ä÷f’KM}î´µĞ“Añü#zv”¿¾2›«	Â¾«'Äv}^ø^júûZë2Û_›y®m4ıe´TÔ`‰ÎãO²šRÿ f¸·ìõ‹[ÅŸlgÒõ3mñâ^¹atÿ f³æ=âV¿á8ôï¨¨}}!ô­}n/´”ÏZÑ!>M¯‹Z=9–š¸|­{G¶{»i-lu-:ÇT‹^“E¾ÔoY´á¨ÙØEÁ}ØÓní5E±’m"K‹ë¨å°Òí'Ô&şWÏó'¡æ¸j¾7…ÂæõThÓÅaã:TçRKN”*T£9Ñ”59Ê¥)S›œgÊ¿½¼?àOqœ'Ã8ìÃ…²Üvg‹á¼&´KSOG‹–7‡Áb£Cª^­u„°˜êx§R„½µ<EU«§>…iv÷~"My¶‰µs?Ä¿‰WpXHŒÍs}öi¼[«İxbÊê6‚îöêK‹¨ô­.	'¾ì?´./¹ícÄ^6–öÎÿ CñŒu›uÍ­c³ø¡ã]0M ê7¶±ê:’Åi¬iö:ƒÙi7¥¬n/¾ß¾;[W‚dÕ†5-;]ëF¶¼ŠÓTÕõU¸×oõ»Xu]A|»¾ßİà³‰±-Ò{”±‚õošnš[wÒÒ;x5;„°Ó›Tm­ítõ’ûí76÷¶¶{1y*À¶şzÌº|ò¬CÉg‚Iµ»¾#?!K‰óiã©}_7ÌñÕj×Z˜Ü](b%:P§}MT¥(ª“•Ji*³œ×2Ká”ÿ ÂøEÁ”ò<×ûc‡8c!Ëÿ ²±X¼E
+VKW†ÂÒÄUúÍyfUhâğ•«`ğthOÚ¼4¡‡œiV“ÿ k¨°ÿ .ßêÿ î5][Ãñü{ñÒ]AªÜÈn-¾$üA¶’ÇD°²½¾¼Ô5­F´Öî-VêĞ­Í‘Ón³¥Øøvò¬o.üA¤ßj~ûğKPñÇ‰¼9ño<}ñÆw–ÎÓM¼Ÿâ_ÄË\Õï_Ä“Lu››mF×gg–•¬éSØËh×W7qÛê÷:l

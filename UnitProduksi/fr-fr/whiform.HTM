@@ -1,0 +1,64 @@
+2'
+              '3')
+            Sorted = False
+            TabOrder = 3
+            UnboundDataType = wwDefault
+          end
+        end
+        object wwDBGrid1: TwwDBGrid
+          Left = 0
+          Top = 258
+          Width = 703
+          Height = 169
+          ControlType.Strings = (
+            'KD_KONSTRUKSI;CustomEdit;LookKonstruksi;F'
+            'KD_CORAK;CustomEdit;LookCorak;F'
+            'MUTU;CustomEdit;LookMutu;F'
+            'SATUAN;CustomEdit;LookSatuan;F'
+            'NIK;CustomEdit;LookOperator;F')
+          Selected.Strings = (
+            'NIK'#9'8'#9'NIK'#9'F'
+            'KETERANGAN'#9'15'#9'OPERATOR'#9'F'
+            'KD_KONSTRUKSI'#9'6'#9'Kode'#9'F'#9'KONSTRUKSI'
+            'KONSTRUKSI'#9'21'#9'Nama'#9'T'#9'KONSTRUKSI'
+            'KD_CORAK'#9'6'#9'Kode'#9'F'#9'CORAK'
+            'CORAK'#9'14'#9'Nama'#9'T'#9'CORAK'
+            'MUTU'#9'6'#9'MUTU'#9#9
+            'SATUAN'#9'7'#9'SATUAN'#9#9
+            'QTY'#9'6'#9'QTY'#9'F')
+          IniAttributes.Delimiter = ';;'
+          TitleColor = clBtnFace
+          FixedCols = 0
+          ShowHorzScrollBar = True
+          Align = alClient
+          DataSource = dsQDetail
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgShowFooter]
+          ParentFont = False
+          RowHeightPercent = 200
+          TabOrder = 1
+          TitleAlignment = taLeftJustify
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -11
+          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Style = []
+          TitleLines = 2
+          TitleButtons = False
+          UseTFields = False
+          OnEnter = wwDBGrid1Enter
+          OnUpdateFooter = wwDBGrid1UpdateFooter
+        end
+        object PanelBanner: TPanel
+          Left = 0
+          Top = 217
+          Width = 703
+          Height = 41
+          Align = alTop
+          BevelWidth = 2
+          Color = 12058623
+       

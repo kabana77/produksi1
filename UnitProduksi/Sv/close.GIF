@@ -1,0 +1,18 @@
+ (toggle)'
+    RichEdit.ColorButtonHint = 'Color | Formats the selection with a color'
+    RichEdit.UnderlineButtonHint = 
+      'Underline | Formats the selection with a continuous underline (t' +
+      'oggle)'
+    RichEdit.ItalicButtonHint = 'Italic | Makes the selection italic (toggle)'
+    RichEdit.LeftButtonHint = 'Align Left | Left-justifies paragraph (toggle)'
+    RichEdit.CenterButtonHint = 'Center | Center-justifies paragraph (toggle)'
+    RichEdit.RightButtonHint = 'Align Right | Right-justifies paragraph (toggle)'
+    RichEdit.JustifyButtonHint = 'Justify | Full Justification for paragraph (toggle)'
+    RichEdit.BulletButtonHint = 'Bullets | Inserts a bullet on this line (toggle)'
+    RichEdit.HighlightButtonHint = 'Highlight Text | Makes the selection highlighted'
+    RichEdit.SaveExitHint = 'Save And Exit | Saves changes and exits editor'
+    RichEdit.PageSetupHint = 'Page Setup | Changes page layout settings'
+    RichEdit.ExitHint = 'Exit'
+    RichEdit.ClearHint = 'Erases the Selection'
+    RichEdit.SelectAllHint = 'Selects all of the text'
+    RichEdit.FindNextHint

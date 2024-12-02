@@ -1,0 +1,257 @@
+object DMFrm: TDMFrm
+  OldCreateOrder = False
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Left = 532
+  Top = 151
+  Height = 538
+  Width = 748
+  object SaveDialog1: TSaveDialog
+    DefaultExt = 'Html'
+    Filter = 'HTML File|*.HTML|Excel File|*.XLK'
+    Left = 648
+    Top = 56
+  end
+  object LMDStarter1: TLMDStarter
+    Left = 648
+    Top = 8
+  end
+  object OS: TOracleSession
+    AfterLogOn = OSAfterLogOn
+    LogonUsername = 'ipisma_db3'
+    LogonPassword = 'ipisma_db3'
+    LogonDatabase = 'PRODUKSI'
+    Connected = True
+    Left = 8
+    Top = 32
+  end
+  object OL: TOracleLogon
+    Session = OS
+    Options = [ldDatabase]
+    Left = 56
+    Top = 16
+  end
+  object QTime: TOracleDataSet
+    SQL.Strings = (
+      '')
+    QBEDefinition.QBEFieldDefs = {
+      0400000004000000050000005655534552010000000000030000004A414D0100
+      000000000B00000056555345525F434554414B010000000000060000004B445F
+      444956010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    BeforeOpen = QTimeBeforeOpen
+    Left = 104
+    Top = 16
+    object QTimeVUSER: TStringField
+      FieldName = 'VUSER'
+      Size = 30
+    end
+    object QTimeJAM: TDateTimeField
+      FieldName = 'JAM'
+    end
+    object QTimeVUSER_CETAK: TStringField
+      FieldName = 'VUSER_CETAK'
+      Size = 49
+    end
+    object QTimeKD_DIV: TStringField
+      FieldName = 'KD_DIV'
+      Size = 5
+    end
+  end
+  object Perusahaan: TOracleDataSet
+    SQL.Strings = (
+      'select'
+      #39'PT. PISMATEX TEXTILE INDUSTRY'#39' as perusahaan,'
+      #39'Jl. Sapugarut BUARAN-PEKALONGAN'#39' as alamat1,'
+      #39'Jl. Teratai No. 32 PEKALONGAN'#39' as alamat2,'
+      #39'Jl. HR. Mohammad No. 32 SURABAYA'#39' as alamat3,'
+      #39'Telp. +62285-434343, 4354545, Fax. +6228-435454'#39' as telepon1,'
+      #39'Telp. +62285-434343, 4354545, Fax. +6228-435454'#39' as telepon2,'
+      #39'Telp. +62285-434343, 4354545, Fax. +6228-435454'#39' as telepon3,'
+      #39'http://www.pismatex.com'#39' as website,'
+      #39'marketing@pismatex.com'#39' as email,'
+      #39'01-234.222340022'#39' as npwp'
+      'from dual')
+    QBEDefinition.QBEFieldDefs = {
+      040000000A0000000A0000005045525553414841414E01000000000007000000
+      414C414D41543101000000000007000000414C414D4154320100000000000700
+      0000414C414D4154330100000000000800000054454C45504F4E310100000000
+      000800000054454C45504F4E320100000000000800000054454C45504F4E3301
+      0000000000070000005745425349544501000000000005000000454D41494C01
+      0000000000040000004E505750010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 176
+    Top = 16
+    object PerusahaanPERUSAHAAN: TStringField
+      FieldName = 'PERUSAHAAN'
+      Size = 29
+    end
+    object PerusahaanALAMAT1: TStringField
+      FieldName = 'ALAMAT1'
+      Size = 36
+    end
+    object PerusahaanALAMAT2: TStringField
+      FieldName = 'ALAMAT2'
+      Size = 29
+    end
+    object PerusahaanALAMAT3: TStringField
+      FieldName = 'ALAMAT3'
+      Size = 32
+    end
+    object PerusahaanTELEPON1: TStringField
+      FieldName = 'TELEPON1'
+      Size = 47
+    end
+    object PerusahaanTELEPON2: TStringField
+      FieldName = 'TELEPON2'
+      Size = 47
+    end
+    object PerusahaanTELEPON3: TStringField
+      FieldName = 'TELEPON3'
+      Size = 47
+    end
+    object PerusahaanWEBSITE: TStringField
+      FieldName = 'WEBSITE'
+      Size = 23
+    end
+    object PerusahaanEMAIL: TStringField
+      FieldName = 'EMAIL'
+      Size = 22
+    end
+    object PerusahaanNPWP: TStringField
+      FieldName = 'NPWP'
+      Size = 16
+    end
+  end
+  object dsPerusahaan: TwwDataSource
+    DataSet = Perusahaan
+    Left = 248
+    Top = 16
+  end
+  object QSuplier: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.vsuplier')
+    QBEDefinition.QBEFieldDefs = {
+      040000000A0000000A0000004B445F52454B414E414E0100000000000C000000
+      4E414D415F52454B414E414E01000000000006000000414C414D415401000000
+      0000040000004B4F54410100000000000700000054454C45504F4E0100000000
+      00060000004E4547415241010000000000040000004E5057500100000000000C
+      00000042415441535F4B524544495401000000000007000000414C414D415432
+      0100000000000A00000054474C5F494E53455254010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    BeforeOpen = QSuplierBeforeOpen
+    Left = 40
+    Top = 80
+    object QSuplierKD_REKANAN: TFloatField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 6
+      FieldName = 'KD_REKANAN'
+      Required = True
+    end
+    object QSuplierNAMA_REKANAN: TStringField
+      DisplayLabel = 'NAMA REKANAN'
+      DisplayWidth = 35
+      FieldName = 'NAMA_REKANAN'
+      Size = 50
+    end
+    object QSuplierALAMAT: TStringField
+      DisplayWidth = 25
+      FieldName = 'ALAMAT'
+      Size = 255
+    end
+    object QSuplierKOTA: TStringField
+      DisplayWidth = 25
+      FieldName = 'KOTA'
+      Size = 50
+    end
+    object QSuplierTELEPON: TStringField
+      DisplayWidth = 20
+      FieldName = 'TELEPON'
+      Visible = False
+      Size = 50
+    end
+    object QSuplierBATAS_KREDIT: TFloatField
+      FieldName = 'BATAS_KREDIT'
+      Visible = False
+    end
+  end
+  object QMenuUser: TOracleDataSet
+    Cursor = crSQLWait
+    Session = OS
+    Left = 176
+    Top = 80
+  end
+  object FontDialog1: TFontDialog
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Left = 648
+    Top = 112
+  end
+  object QDivisi: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.vdivisi')
+    QBEDefinition.QBEFieldDefs = {
+      0400000005000000060000004B445F444956010000000000030000004C564C01
+      00000000000C0000004C4E414D415F4449564953490100000000000B0000004E
+      414D415F444956495349010000000000090000004B445F504152454E54010000
+      000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = OS
+    BeforeOpen = QDivisiBeforeOpen
+    Left = 248
+    Top = 80
+    object QDivisiKD_DIV: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 5
+      FieldName = 'KD_DIV'
+      Required = True
+      Size = 5
+    end
+    object QDivisiLNAMA_DIVISI: TStringField
+      DisplayLabel = 'DIVISI'
+      DisplayWidth = 40
+      FieldName = 'LNAMA_DIVISI'
+      Size = 80
+    end
+    object QDivisiNAMA_DIVISI: TStringField
+      DisplayLabel = 'NAMA DIVISI'
+      DisplayWidth = 30
+      FieldName = 'NAMA_DIVISI'
+      Visible = False
+      Size = 50
+    end
+    object QDivisiLVL: TFloatField
+      FieldName = 'LVL'
+      Visible = False
+    end
+  end
+  object FNoUrut: TOracleDataSet
+    SQL.Strings = (
+      'select ipisma_db3.Fno_urut(:0,:1,:2) as fno_urut from dual')
+    Variables.Data = {
+      0300000003000000020000003A300500000003000000504F0000000000020000
+      003A3105000000080000004B445F544950450000000000020000003A320C0000
+      00070000007868010101010100000000}
+    QBEDefinition.QBEFieldDefs = {040000000100000008000000464E4F5F55525554010000000000}
+    Cursor = crSQLWait
+    Session = OS
+    Left = 40
+    Top = 144
+    object FNoUrutFNO_URUT: TStringField
+      FieldName = 'FNO_URUT'
+      Size = 4000
+    end
+  end
+  object QMU: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.mu')
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000040000004B5552530100000000

@@ -1,0 +1,204 @@
+000545444330100000000000700000052454B
+      414E414E010000000000060000004953504F5354010000000000070000004E4F
+      5F4E4F5441010000000000040000004752555001000000000005000000534849
+      4654010000000000080000004E4F5F42554B5449010000000000080000004E4F
+      5F4F52444552010000000000}
+    QueryAllRecords = False
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    BeforeQuery = QMasterBeforeQuery
+    Session = DMFrm.OS
+    BeforeEdit = QDetailBeforeEdit
+    BeforePost = QMasterBeforePost
+    BeforeDelete = QDetailBeforeEdit
+    OnNewRecord = QMasterNewRecord
+    Left = 10
+    Top = 129
+    object QMasterNO_NOTA: TStringField
+      DisplayLabel = 'NO NOTA'
+      DisplayWidth = 16
+      FieldName = 'NO_NOTA'
+    end
+    object QMasterTGL: TDateTimeField
+      DisplayWidth = 12
+      FieldName = 'TGL'
+      Required = True
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QMasterSTATUS: TStringField
+      DisplayWidth = 10
+      FieldName = 'STATUS'
+      Size = 10
+    end
+    object QMasterISPOST: TStringField
+      DisplayLabel = 'POST'
+      DisplayWidth = 1
+      FieldName = 'ISPOST'
+      Size = 1
+    end
+    object QMasterGRUP: TStringField
+      DisplayWidth = 3
+      FieldName = 'GRUP'
+      Required = True
+      Size = 3
+    end
+    object QMasterSHIFT: TStringField
+      DisplayWidth = 3
+      FieldName = 'SHIFT'
+      Required = True
+      Size = 3
+    end
+    object QMasterREKANAN: TStringField
+      DisplayWidth = 30
+      FieldName = 'REKANAN'
+      Visible = False
+      Size = 80
+    end
+    object QMasterNO_KONTRAK: TStringField
+      DisplayLabel = 'NO KONTRAK'
+      DisplayWidth = 20
+      FieldName = 'NO_KONTRAK'
+      Visible = False
+    end
+    object QMasterNO_REG: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG'
+      Required = True
+      Visible = False
+    end
+    object QMasterKETERANGAN: TStringField
+      DisplayWidth = 255
+      FieldName = 'KETERANGAN'
+      Visible = False
+      Size = 255
+    end
+    object QMasterKD_REKANAN: TFloatField
+      DisplayWidth = 10
+      FieldName = 'KD_REKANAN'
+      Visible = False
+    end
+    object QMasterKD_TRANSAKSI: TStringField
+      DisplayWidth = 3
+      FieldName = 'KD_TRANSAKSI'
+      Required = True
+      Visible = False
+      Size = 3
+    end
+    object QMasterTTD1: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD1'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTTD2: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD2'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTTD3: TStringField
+      DisplayWidth = 30
+      FieldName = 'TTD3'
+      Visible = False
+      Size = 30
+    end
+    object QMasterTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QMasterOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+  end
+  object QDetail: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db5.bukti2_detail a'
+      'where a.no_reg = :no_reg')
+    Variables.Data = {0300000001000000070000003A4E4F5F524547040000000000000000000000}
+    SequenceField.Field = 'NO_REG_DETAIL'
+    SequenceField.Sequence = 'ipisma_db5.no_reg_kontrak'
+    SequenceField.ApplyMoment = amOnNewRecord
+    QBEDefinition.QBEFieldDefs = {
+      040000001A0000000D0000004E4F5F5245475F44455441494C01000000000006
+      0000004E4F5F5245470100000000000A0000004B4F4E535452554B5349010000
+      00000005000000434F52414B010000000000040000004D555455010000000000
+      0500000048415247410100000000000A00000054474C5F494E53455254010000
+      0000000A0000004F50525F494E53455254010000000000060000005341545541
+      4E0100000000000D0000004B445F4B4F4E535452554B53490100000000000800
+      00004B445F434F52414B010000000000030000004E494B0100000000000C0000
+      004E4F5F534552495F4245414D010000000000070000004B445F4954454D0100
+      00000000030000005154590100000000000A0000004B45544552414E47414E01
+      0000000000050000004A454E49530100000000000D00000054474C5F4A54485F
+      54454D504F0100000000000A0000005154595F544552494D4101000000000008
+      0000005154595F4C414C55010000000000070000005154595F4F524701000000
+      0000040000004752555001000000000005000000534849465401000000000009
+      0000004F50525F54454E554E0100000000000400000051545932010000000000
+      0400000051545933010000000000}
+    Master = QMaster
+    MasterFields = 'NO_REG'
+    DetailFields = 'NO_REG'
+    Session = DMFrm.OS
+    BeforeEdit = QDetailBeforeEdit
+    BeforeDelete = QDetailBeforeEdit
+    OnNewRecord = QDetailNewRecord
+    Left = 10
+    Top = 161
+    object QDetailKONSTRUKSI: TStringField
+      DisplayWidth = 10
+      FieldName = 'KONSTRUKSI'
+      Size = 30
+    end
+    object QDetailCORAK: TStringField
+      DisplayWidth = 6
+      FieldName = 'CORAK'
+      Size = 30
+    end
+    object QDetailMUTU: TStringField
+      DisplayWidth = 6
+      FieldName = 'MUTU'
+      Size = 30
+    end
+    object QDetailSATUAN: TStringField
+      DisplayWidth = 8
+      FieldName = 'SATUAN'
+      Size = 10
+    end
+    object QDetailNO_REG_DETAIL: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG_DETAIL'
+      Required = True
+      Visible = False
+    end
+    object QDetailNO_REG: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG'
+      Visible = False
+    end
+    object QDetailKD_KONSTRUKSI: TStringField
+      FieldName = 'KD_KONSTRUKSI'
+      Size = 6
+    end
+    object QDetailKD_CORAK: TStringField
+      FieldName = 'KD_CORAK'
+      Size = 6
+    end
+    object QDetailNIK: TStringField
+      FieldName = 'NIK'
+    end
+    object QDetailKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+    end
+    object QDetailQTY: TFloatField
+      FieldName = 'QTY'
+      OnChange = QDetailQTYChange
+    end
+    object QDetailKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QDetailJENIS: TStringField
+      FieldName = 'JENIS'
+      Size = 10
+    end
+    object QDetailQTY2: TFloatField
+      FieldName = 'QTY2'
+      OnChange = QDetailQTY

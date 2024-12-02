@@ -1,0 +1,63 @@
+  object wwDBEdit11: TwwDBEdit
+            Left = 576
+            Top = 122
+            Width = 57
+            Height = 19
+            Color = 13421823
+            DataField = 'NPAKAN'
+            DataSource = dsCDSMaster
+            TabOrder = 20
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object wwDBEdit12: TwwDBEdit
+            Left = 864
+            Top = 119
+            Width = 121
+            Height = 19
+            TabStop = False
+            CharCase = ecUpperCase
+            DataField = 'NO_ORDER'
+            DataSource = dsCDSMaster
+            TabOrder = 10
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object wwDBEdit13: TwwDBEdit
+            Left = 376
+            Top = 120
+            Width = 65
+            Height = 19
+            Ctl3D = False
+            DataField = 'PROPORSI'
+            DataSource = dsCDSMaster
+            ParentCtl3D = False
+            TabOrder = 22
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object QuickRep1: TQuickRep
+            Tag = 1
+            Left = 2000
+            Top = -139
+            Width = 794
+            Height = 1123
+            Frame.Color = clBlack
+            Frame.DrawTop = True
+            Frame.DrawBottom = True
+            Frame.DrawLeft = True
+            Frame.DrawRight = True
+            DataSet = CDSQDetail2
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Times New Roman'
+            Font.Style = []
+            Functions.Strings = (
+              'PAGENUMBER'
+              'COLUMNNUMBER'
+              'REPORTTITLE')
+         

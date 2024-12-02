@@ -1,0 +1,29 @@
+ft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              44.979166666666670000
+              285.750000000000000000
+              0.000000000000000000
+              222.250000000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = False
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QBrowse
+            DataField = 'NAMA_ITEM'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -12
+            Font.Name = 'Arial Narrow'
+            Font.Style = []
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 9
+          end
+          object QRDBText14: TQRDBText
+            Left = 45
+            Top = 1
+            Width = 45
+            Height = 1

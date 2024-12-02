@@ -1,0 +1,135 @@
+666667000000
+              127.000000000000000000
+              156.104166666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'Mengetahui,'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel20: TQRLabel
+            Left = 624
+            Top = 48
+            Width = 59
+            Height = 15
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              39.687500000000000000
+              1651.000000000000000000
+              127.000000000000000000
+              156.104166666666700000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'Dibuat Oleh,'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel21: TQRLabel
+            Left = 624
+            Top = 80
+            Width = 99
+            Height = 15
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              39.687500000000000000
+              1651.000000000000000000
+              211.666666666666700000
+              261.937500000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = '( ............................ )'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLabel22: TQRLabel
+            Left = 392
+            Top = 80
+            Width = 99
+            Height = 15
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              39.687500000000000000
+              1037.166666666667000000
+              211.666666666666700000
+              261.937500000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            AutoStretch = False
+            Caption = '( ............................ )'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRSysData3: TQRSysData
+            Left = 624
+            Top = 32
+            Width = 78
+            Height = 15
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              39.687500000000000000
+              1651.000000000000000000
+              84.666666666666680000
+              206.375000000000000000)
+            Alignment = taLeftJustify
+            AlignToBand = False
+            AutoSize = True
+            Color = clWhite
+            Data = qrsDate
+            Text = 'Tanggal : '
+            Transparent = False
+            FontSize = 8
+          end
+          object QRShape11: TQRShape
+            Left = 312
+            Top = 0
+            Width = 9
+            Height = 30
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              79.375000000000000000
+              825.500000000000100000
+              0.000000000000000000
+              23.812500000000000000)
+            Shape = qrsVertLine
+          end
+          object QRShape12: TQRShape
+            Left = 424
+            Top = 0
+            Width = 9
+            Height = 30
+        

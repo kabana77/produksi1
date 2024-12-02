@@ -1,0 +1,82 @@
+KimiaFrm.DetailBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  inc(vrecord_ke);
+  DetailBand2.ForceNewPage:=(vrecord_ke>Round(vRecord.Value)-1);
+end;
+
+procedure TFormulasiKimiaFrm.VTglAwalChange(Sender: TObject);
+begin
+  vTglAkhir.Date:=Trunc(EndOfTheMonth(VTglAwal.Date));
+end;
+
+procedure TFormulasiKimiaFrm.vTglAkhirChange(Sender: TObject);
+begin
+  if VTglAwal.Date>vTglAkhir.Date then
+  begin
+      ShowMessage('Tanggal Akhir harus LEBIH BESAR dari Tanggal Awal !');
+      vTglAkhir.Date:=VTglAwal.Date;
+  end;
+end;
+
+procedure TFormulasiKimiaFrm.RadioGroup1Click(Sender: TObject);
+begin
+  case RadioGroup1.ItemIndex of
+  0 : vRecord.Value:=36;
+  1 : vRecord.Value:=18;
+  end;
+end;
+
+procedure TFormulasiKimiaFrm.ColumnHeaderBand2BeforePrint(
+  Sender: TQRCustomBand; var PrintBand: Boolean);
+begin
+  vrecord_ke:=0;
+end;
+
+procedure TFormulasiKimiaFrm.wwDBGrid2DblClick(Sender: TObject);
+var
+  vnama_barang_org : String;
+  vketerangan_org : String;
+  vpos : Integer;
+begin
+  if QDetailKETERANGAN.AsString<>'' then
+  begin
+    vpos:=Pos('**',QDetailKETERANGAN.AsString);
+    if vpos>0 then
+    begin
+       vnama_barang_org:=copy(QDetailKETERANGAN.AsString,1,vpos-1);
+       vketerangan_org:=copy(QDetailKETERANGAN.AsString,vpos+3,255);
+    end
+       else
+       begin
+         vnama_barang_org:=QDetailKETERANGAN.AsString;
+         vketerangan_org:='';
+       end;
+
+      KeteranganFrm.Memo1.Text:=vketerangan_org;
+      KeteranganFrm.ShowModal;
+      if KeteranganFrm.ModalResult=mrOk then
+      begin
+          if QDetail.State<>dsBrowse then
+            QDetailKETERANGAN.AsString:=vnama_barang_org+'** '+KeteranganFrm.Memo1.Text
+            else
+            begin
+                QDetail.Edit;
+                QDetailKETERANGAN.AsString:=vnama_barang_org+'** '+KeteranganFrm.Memo1.Text
+            end;
+      end;
+  end
+  else
+    ShowMessage('Anda bisa menambahkan Keterangan/ Spesifikasi'+#13+'jika sudah memilih barang/ item !');
+
+end;
+
+procedure TFormulasiKimiaFrm.Button1Click(Sender: TObject);
+begin
+  wwDBGrid2DblClick(Nil);
+end;
+
+procedure TFormulasiKimiaFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeight

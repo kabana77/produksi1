@@ -1,0 +1,37 @@
+  BandType = 7
+      end
+      object ppDBCalc1: TppDBCalc
+        UserName = 'DBCalc1'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'QTY1'
+        DataPipeline = ppDBQDetail
+        DisplayFormat = '0.0,0;(0.0,0);-'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppDBQDetail'
+        mmHeight = 3969
+        mmLeft = 178330
+        mmTop = 2381
+        mmWidth = 15081
+        BandType = 7
+      end
+    end
+    object ppPageStyle1: TppPageStyle
+      EndPage = 0
+      SinglePage = 0
+      StartPage = 0
+      mmBottomOffset = 0
+      mmHeight = 0
+      mmPrintPosition = 0
+    end
+    object raCodeModule1: TraCodeModule
+      ProgramStream = {
+        01060F5472614

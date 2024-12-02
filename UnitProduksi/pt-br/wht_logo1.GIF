@@ -1,0 +1,53 @@
+  end;
+  end;
+
+end;
+
+procedure TRabRealFrm.QuickRep1BeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+  QRImage1.Picture.Assign(DMFrm.vlogo.Picture);
+end;
+
+procedure TRabRealFrm.QBrowse2CalcFields(DataSet: TDataSet);
+begin
+  QBrowse2AWAL.AsFloat:=QBrowse2AWAL_BULAN.AsFloat+QBrowse2AWAL_HARI.AsFloat;
+  QBrowse2AKHIR.AsFloat:=QBrowse2AWAL_BULAN.AsFloat+
+    QBrowse2AWAL_HARI.AsFloat+
+    QBrowse2DEBET.AsFloat-
+    QBrowse2KREDIT.AsFloat;
+
+end;
+
+procedure TRabRealFrm.MywwDBGrid10URLOpen(Sender: TObject;
+  var URLLink: String; Field: TField; var UseDefault: Boolean);
+var
+  vfilter : String;
+  vdd, vyy, vbulan, vi : integer;
+  vmyparam : String;
+begin
+  vyy:=round(spTahun.Value);
+  vbulan:=LookBulan.ItemIndex+1;
+  vawal:=EncodeDate(vyy,vbulan,1);
+  vakhir:=dateEndOfMonth(vawal);
+
+  vmyparam:='a.B00';
+  if vbulan>1 then
+  begin
+      for vi:=1 to vbulan-1 do
+      begin
+         vmyparam:=vmyparam+'+a.B'+FormatFloat('00',vi);
+      end;
+  end;
+  vmyparam:=vmyparam+' as awal_bulan';
+
+  QBrowse2.Close;
+  if Field.Name='QBrowseKD_RAB' then
+  begin
+    vfilter:=' and (kd_perk like '''+QBrowseKD_PERK.AsString+'%'')';
+    vjudul:=QBrowseKD_PERK.AsString+' '+TrimLeft(QBrowseKETERANGAN.AsString);
+  end;
+
+  QBrowse2.SetVariable('tahun',vyy);
+  QBrowse2.SetVariable('myparam',vmyparam);
+  QBrowse2.SetVariable('pawal',Trunc(vaw

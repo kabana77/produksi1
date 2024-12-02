@@ -1,0 +1,73 @@
+ect Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 823
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from proyek a'
+      ':myparam')
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D01000000150000006F726465
+      7220627920612E6E6F5F70726F79656B0000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000F000000040000004B4F54410100000000000A00000054474C5F494E
+      534552540100000000000A0000004F50525F494E534552540100000000000900
+      00004E4F5F50524F59454B0100000000000A0000004E4F5F4B4F4E5452414B01
+      00000000000700000054414E4747414C0100000000000E0000004E414D415F50
+      454B45524A41414E0100000000000C0000004E494C41495F50524F59454B0100
+      000000000300000050504E0100000000000900000054474C5F53544152540100
+      000000000A00000054474C5F46494E4953480100000000000A0000004B455445
+      52414E47414E0100000000000500000049534144440100000000000E0000004E
+      4F5F4B4F4E5452414B5F4F5247010000000000070000004953414B5449460100
+      00000000}
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Active = True
+    OnNewRecord = QBrowseNewRecord
+    Left = 388
+    Top = 145
+    object QBrowseNO_PROYEK: TIntegerField
+      FieldName = 'NO_PROYEK'
+      Required = True
+    end
+    object QBrowseNO_KONTRAK: TStringField
+      FieldName = 'NO_KONTRAK'
+    end
+    object QBrowseTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      DisplayFormat = 'DD MMM YYYY'
+    end
+    object QBrowseNAMA_PEKERJAAN: TStringField
+      FieldName = 'NAMA_PEKERJAAN'
+      Size = 255
+    end
+    object QBrowseKOTA: TStringField
+      FieldName = 'KOTA'
+    end
+    object QBrowseNILAI_PROYEK: TFloatField
+      FieldName = 'NILAI_PROYEK'
+      DisplayFormat = '0.0,0'
+    end
+    object QBrowsePPN: TStringField
+      FieldName = 'PPN'
+      Size = 3
+    end
+    object QBrowseTGL_START: TDateTimeField
+      FieldName = 'TGL_START'
+      DisplayFormat = 'DD MMM YYYY'
+    end
+    object QBrowseTGL_FINISH: TDateTimeField
+      FieldName = 'TGL_FINISH'
+      DisplayFormat = 'DD MMM YYYY

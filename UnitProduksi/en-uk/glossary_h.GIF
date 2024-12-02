@@ -1,0 +1,40 @@
+alse
+          WordWrap = True
+          FontSize = 8
+        end
+        object QRSysData1: TQRSysData
+          Left = 601
+          Top = 0
+          Width = 69
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          Size.Values = (
+            44.979166666666670000
+            1590.145833333333000000
+            0.000000000000000000
+            182.562500000000000000)
+          Alignment = taRightJustify
+          AlignToBand = True
+          AutoSize = True
+          Color = clWhite
+          Data = qrsPageNumber
+          Text = 'Hal '
+          Transparent = False
+          FontSize = 10
+        end
+        object QRDBText24: TQRDBText
+          Left = 299
+          Top = 0
+          Width = 71
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          Size.Values = (
+          

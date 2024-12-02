@@ -1,0 +1,159 @@
+nEditingClick(Sender: TObject);
+begin
+  wwDBGrid1.Options:=wwDBGrid1.Options-[dgRowSelect];
+  wwDBGrid1.ReadOnly:=False;
+  wwDBGrid1.SetFocus;
+//  TabSheet1.TabVisible:=False;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.BtnBrowseClick(Sender: TObject);
+begin
+  if BtnSimpan.Enabled then
+    ShowMessage('Simpan/ Posting Data Dulu !')
+    else
+    begin
+      wwDBGrid1.Options:=wwDBGrid1.Options+[dgRowSelect];
+      wwDBGrid1.ReadOnly:=True;
+      wwDBGrid1.SetFocus;
+//      TabSheet1.TabVisible:=True;
+    end;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.BitBtn1Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+begin
+  vpertama:=True;
+  if BtnSimpan.Enabled then
+    ShowMessage('Mode CARI berfungsi jika perubahan data sudah di-POSTING/ SIMPAN !')
+    else
+    begin
+        vfilter:=' where ';
+        if (QMaster.FieldCount>=1) then
+        begin
+          for i:=0 to QMaster.FieldCount-1 do
+          begin
+            if QMaster.Fields[i].FieldKind=fkData then
+            begin
+              if vpertama then
+                begin
+                  vfilter:=vfilter+QMaster.Fields[i].FieldName+' like ''%'+ECari.Text+'%''';
+                  vpertama:=False;
+                end
+                else
+                  vfilter:=vfilter+' or '+QMaster.Fields[i].FieldName+' like ''%'+ECari.Text+'%''';
+            end;
+          end;
+          vorder:=' order by '+wwDBGrid1.Columns[0].FieldName;
+        end;
+        QMaster.SetVariable('myparam',vfilter+vorder);
+        QMaster.DisableControls;
+        QMaster.Close;
+        QMaster.Open;
+        QMaster.EnableControls;
+    end;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.FormCreate(Sender: TObject);
+begin
+  DMFrm.QSatuan.Close;
+  wwDBGrid1.IniAttributes.SectionName:=Name+' '+wwDBGrid1.Name;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.wwDBGrid1TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TSaldoRekeningPerBulanFrm.QMasterAfterScroll(DataSet: TDataSet);
+begin
+  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TSaldoRekeningPerBulanFrm.BitBtn5Click(Sender: TObject);
+var
+  vtitle : String;
+begin
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        vtitle:='Daftar Suplier';
+        DMFrm.SaveDialog1.FileName:=vtitle;
+        if DMFrm.SaveDialog1.Execute then
+        begin
+            wwDBGrid1.ExportOptions.FileName:=ExtractFileName(DMFrm.SaveDialog1.FileName);
+            wwDBGrid1.ExportOptions.TitleName:='<SCRIPT LANGUAGE="JavaScript">window.print();</script><font size=4>'+UpperCase(vtitle)+'</font>';
+            wwDBGrid1.ExportOptions.Save;
+            if MessageDlg('Ekspor Data Sukses, Lihat Hasil ?',mtWarning,[mbYes, mbNo],0)=mrYes then
+            begin
+              MainBrowse.MyInit(DMFrm.SaveDialog1.FileName);
+            end;
+        end;
+       end;
+  end;
+
+end;
+
+procedure TSaldoRekeningPerBulanFrm.TabSheet1Show(Sender: TObject);
+begin
+  QMaster.Open;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TSaldoRekeningPerBulanFrm.LookMesinEnter(Sender: TObject);
+begin
+  QMaster.Open;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.LookKonstruksiEnter(Sender: TObject);
+begin
+  DMFrm.QKonstruksi.Open;
+end;
+
+procedure TSaldoRekeningPerBulanFrm.QMasterNewRecord(DataSet: TDataSet);
+begin
+  QM

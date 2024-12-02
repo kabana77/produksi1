@@ -1,0 +1,210 @@
+   FieldName = 'TTD4'
+      Size = 30
+    end
+    object QTransaksiDIV1: TStringField
+      FieldName = 'DIV1'
+      Size = 30
+    end
+    object QTransaksiDIV2: TStringField
+      FieldName = 'DIV2'
+      Size = 30
+    end
+    object QTransaksiDIV3: TStringField
+      FieldName = 'DIV3'
+      Size = 30
+    end
+    object QTransaksiDIV4: TStringField
+      FieldName = 'DIV4'
+      Size = 30
+    end
+    object QTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 30
+    end
+    object QTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 30
+    end
+    object QTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 30
+    end
+    object QTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 30
+    end
+  end
+  object ppDBQTransaksi: TppDBPipeline
+    DataSource = dsQTransaksi
+    OpenDataSource = False
+    UserName = 'DBQTransaksi'
+    Left = 344
+    Top = 16
+  end
+  object dsQTransaksi: TwwDataSource
+    DataSet = QTransaksi
+    Left = 384
+    Top = 8
+  end
+  object QProc_Update_PO: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  ipisma_db3.proc_update_po(:no_po);'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {0300000001000000060000003A4E4F5F504F050000000000000000000000}
+    BeforeQuery = QProc_Update_POBeforeQuery
+    Left = 520
+    Top = 72
+  end
+  object QLokasi: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.vlokasiall'
+      'where kd_lokasi=:pkd_lokasi and'
+      'jns_lokasi=:pjns_lokasi')
+    Variables.Data = {
+      03000000020000000B0000003A504B445F4C4F4B415349050000000000000000
+      0000000C0000003A504A4E535F4C4F4B415349050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000A0000000D0000004B445F5355425F4C4F4B4153490100000000000A
+      0000004A4E535F4C4F4B415349010000000000090000004B445F4C4F4B415349
+      0100000000000B000000535045534946494B4153490100000000000300000045
+      4646010000000000030000004B50530100000000000600000053415455414E01
+      0000000000030000004A4D4C010000000000090000004B445F42454E414E4701
+      0000000000040000004B4F4445010000000000}
+    Cursor = crSQLWait
+    Session = DMFrm.OS
+    Left = 672
+    Top = 216
+    object QLokasiKODE: TStringField
+      DisplayWidth = 9
+      FieldName = 'KODE'
+      Size = 9
+    end
+    object QLokasiSPESIFIKASI: TStringField
+      DisplayWidth = 30
+      FieldName = 'SPESIFIKASI'
+      Size = 50
+    end
+    object QLokasiEFF: TFloatField
+      DisplayWidth = 5
+      FieldName = 'EFF'
+      DisplayFormat = '0.0,0 %'
+    end
+    object QLokasiJML: TFloatField
+      DisplayWidth = 5
+      FieldName = 'JML'
+    end
+    object QLokasiKD_SUB_LOKASI: TStringField
+      DisplayLabel = 'MESIN'
+      DisplayWidth = 10
+      FieldName = 'KD_SUB_LOKASI'
+      Required = True
+      Visible = False
+      Size = 12
+    end
+    object QLokasiJNS_LOKASI: TStringField
+      DisplayLabel = 'JENIS'
+      DisplayWidth = 10
+      FieldName = 'JNS_LOKASI'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+    object QLokasiKPS: TFloatField
+      FieldName = 'KPS'
+      Visible = False
+    end
+    object QLokasiKD_BENANG: TStringField
+      FieldName = 'KD_BENANG'
+      Visible = False
+      Size = 12
+    end
+  end
+  object QItem: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.vitemall'
+      'where kd_jns_item=:vjns_brg and kd_sub_kel=:vkd_benang')
+    Variables.Data = {
+      0300000002000000090000003A564A4E535F4252470500000000000000000000
+      000B0000003A564B445F42454E414E47050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000C000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D010000000000090000004C4541445F54494D4501000000000008
+      0000004D494E5F53544F4B0100000000000600000053415455414E0100000000
+      000B0000004B445F4A4E535F4954454D010000000000090000004B445F534154
+      55414E0100000000000700000049534649584544010000000000050000005241
+      53494F010000000000070000004E4F5F504152540100000000000A0000004B44
+      5F5355425F4B454C01000000000006000000524153494F32010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemBeforeQuery
+    Session = DMFrm.OS
+    Left = 344
+    Top = 160
+    object QItemNAMA_ITEM: TStringField
+      DisplayLabel = 'NAMA ITEM'
+      DisplayWidth = 35
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QItemRASIO: TFloatField
+      DisplayWidth = 10
+      FieldName = 'RASIO'
+    end
+    object QItemKD_SATUAN: TStringField
+      FieldName = 'KD_SATUAN'
+      Required = True
+      Visible = False
+      Size = 2
+    end
+  end
+  object QKg: TOracleDataSet
+    SQL.Strings = (
+      
+        'select sum(qty_in-qty_out) as kg, sum(qty_in2-qty_out2) as pcs f' +
+        'rom ipisma_db3.gd_stok'
+      
+        'where kd_item=:kd_item and kd_sub_lokasi=:kd_lokasi and tgl<=:tg' +
+        'l+1-1/86400')
+    Variables.Data = {
+      0300000003000000080000003A4B445F4954454D050000000000000000000000
+      040000003A54474C0C00000000000000000000000A0000003A4B445F4C4F4B41
+      5349050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000020000004B47010000000000030000005043530100000000
+      00}
+    Cursor = crSQLWait
+    Session = DMFrm.OS
+    Left = 400
+    Top = 160
+    object QKgKG: TFloatField
+      FieldName = 'KG'
+    end
+    object QKgPCS: TFloatField
+      FieldName = 'PCS'
+    end
+  end
+  object dsQKG: TwwDataSource
+    DataSet = QKg
+    Left = 432
+    Top = 144
+  end
+  object QTotal: TOracleDataSet
+    SQL.Strings = (
+      
+     

@@ -1,0 +1,192 @@
+vkd_bag : String;
+    vhak_input : Boolean;
+    vrecord_ke, vnomer, vnomer2 : Integer;
+  end;
+
+var
+  BAServisFrm: TBAServisFrm;
+
+implementation
+
+uses DM, MainBrowse, Main, Menus, XPROCS, DateUtils, Keterangan, Sisdur,
+  QRNotaServis;
+
+{$R *.dfm}
+
+procedure TBAServisFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  BAServisFrm:=Nil;
+end;
+
+procedure TBAServisFrm.wwDBGrid1TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TBAServisFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TBAServisFrm.LookKonstruksiEnter(Sender: TObject);
+begin
+  DMFrm.QKonstruksi.Open;
+end;
+
+procedure TBAServisFrm.cbTanggalClick(Sender: TObject);
+begin
+  if cbTanggal.Checked then
+  begin
+    VTglAwal.Enabled:=cbTanggal.Checked;
+    vTglAkhir.Enabled:=cbTanggal.Checked;
+    VTglAwal.SetFocus;
+  end
+  else
+    ECari.SetFocus;
+end;
+
+procedure TBAServisFrm.QTransaksiAfterPost(DataSet: TDataSet);
+begin
+//  wwDBGrid2.SetFocus;
+  TabSheet1.TabVisible:=QTransaksiISPOST.AsString='1';
+end;
+
+procedure TBAServisFrm.wwDBGrid2Enter(Sender: TObject);
+begin
+  if QTransaksi.State<>dsBrowse then
+        try
+          QTransaksi.Post;
+        except
+            on E : Exception do
+            begin
+              ShowMessage(E.Message);
+            end;
+        end;
+  if QTransaksiISPOST.AsString='1' then
+     wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect]
+     else
+     wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect];
+end;
+
+procedure TBAServisFrm.QTransaksiBeforePost(DataSet: TDataSet);
+begin
+  if (QTransaksiKD_REKANAN.AsString='') or  (QTransaksiMU.AsString='') or (QTransaksiKD_PERK_BAYAR.AsString='')or (QTransaksiKD_PERK.AsString='') or (QTransaksiKURS.AsFloat<=0) then
+  begin
+      ShowMessage('Rekanan, Jenis Hutang, Mata Uang, Rencana Kasir dan Kurs harus diisi !');
+      Abort;
+  end;
+  QTransaksiTGL_JADWAL_BAYAR.AsDateTime:=QTransaksiTGL_JTH_TEMPO.AsDateTime;
+  if QTransaksiNO_NOTA.AsString<>'' then
+     if (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+       QTransaksiNO_NOTA.AsString:='';
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      QTransaksiSTATUS.AsString:='OPEN';
+      if (QTransaksiNO_NOTA.AsString='') or (FormatDateTime('YYMM',QTransaksiTANGGAL.AsDateTime)<>copy(QTransaksiNO_NOTA.AsString,5,4)) then
+      begin
+          DMFrm.FNo_Nota_PMTX02.Close;
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pkode',QTransaksiKD_TRANSAKSI.AsString);
+          DMFrm.FNo_Nota_PMTX02.SetVariable('pispjk','0');
+          DMFrm.FNo_Nota_PMTX02.SetVariable('ptgl',QTransaksiTANGGAL.AsDateTime);
+          DMFrm.FNo_Nota_PMTX02.Open;
+          QTransaksiNO_NOTA.AsString:=DMFrm.FNo_Nota_PMTX02NO_NOTA.AsString;
+      end;
+      QTransaksiNILAI.AsFloat:=QTotalTOTAL.AsFloat+QTotal2TOT_BIAYA_LAIN.AsFloat;
+  end;
+end;
+
+procedure TBAServisFrm.TabSheet2Show(Sender: TObject);
+begin
+  wwDBGrid2.RowHeightPercent:=Round(vHeight.Value);
+  QTransaksi.Close;
+  QTransaksi.SetVariable('no_reg_hutang',QBrowseNO_REG_HUTANG.AsInteger);
+  QTransaksi.Open;
+  QDetail.Open;
+  QJurnal.Open;
+  wwDBGrid2UpdateFooter(nil);
+  wwDBGrid3UpdateFooter(nil);
+  wwDBNavigator1.Enabled:=vhak_input;
+  BtnExport.Enabled:=False;
+
+end;
+
+procedure TBAServisFrm.QTransaksiBeforeInsert(DataSet: TDataSet);
+begin
+  if QTransaksiISPOST.AsString='0' then
+  begin
+      ShowMessage('Data belum di-POSTING !');
+      Abort;
+  end;
+  if not vhak_input then
+  begin
+      ShowMessage('Maaf, Anda tidak berhak merubah data !');
+      Abort;
+  end;
+end;
+
+procedure TBAServisFrm.QTransaksiBeforeEdit(DataSet: TDataSet);
+begin
+  if not vhak_input then
+  begin
+      ShowMessage('Maaf, Anda tidak berhak merubah data !');
+      Abort;
+  end;
+  if QTransaksiISPOST.AsString='1' then
+  begin
+      ShowMessage('Maaf, data sudah di-POSTING, tidak bisa diubah !');
+      Abort;
+  end;
+end;
+
+procedure TBAServisFrm.DBText1Click(Sender: TObject);
+begin
+  InputBox('Copy Nomer','Klik Kanan --> Copy : ',QTransaksiNO_NOTA.AsString);
+end;
+
+procedure TBAServisFrm.DBText2Click(Sender: TObject);
+var
+  vno_reg_cari : String;
+begin
+  vno_reg_cari:=Input

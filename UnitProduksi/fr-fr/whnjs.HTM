@@ -1,0 +1,47 @@
+sion = DMFrm.OS
+    BeforeOpen = QDetailBeforeOpen
+    BeforeEdit = QDetailBeforeEdit
+    BeforeDelete = QDetailBeforeEdit
+    OnNewRecord = QDetailNewRecord
+    Left = 10
+    Top = 161
+    object QDetailKONSTRUKSI: TStringField
+      DisplayWidth = 10
+      FieldName = 'KONSTRUKSI'
+      Size = 30
+    end
+    object QDetailCORAK: TStringField
+      DisplayWidth = 6
+      FieldName = 'CORAK'
+      Size = 30
+    end
+    object QDetailMUTU: TStringField
+      DisplayWidth = 6
+      FieldName = 'MUTU'
+      Size = 30
+    end
+    object QDetailSATUAN: TStringField
+      DisplayWidth = 8
+      FieldName = 'SATUAN'
+      Size = 10
+    end
+    object QDetailNO_REG_DETAIL: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG_DETAIL'
+      Required = True
+      Visible = False
+    end
+    object QDetailNO_REG: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG'
+      Visible = False
+    end
+    object QDetailKD_KONSTRUKSI: TStringField
+      FieldName = 'KD_KONSTRUKSI'
+      Size = 6
+    end
+    object QDetailKD_CORAK: TStringField
+      FieldName = 'KD_CORAK'
+      Size = 6
+    end
+    object QDetail

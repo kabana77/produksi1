@@ -1,0 +1,38 @@
+ield
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QBukuKasTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QBukuKasNO_BUKTI: TStringField
+      FieldName = 'NO_BUKTI'
+    end
+    object QBukuKasKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QBukuKasKREDIT: TFloatField
+      FieldName = 'KREDIT'
+      Required = True
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QBukuKasDEBET: TFloatField
+      FieldName = 'DEBET'
+      Required = True
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QBukuKasKURS: TFloatField
+      FieldName = 'KURS'
+      Required = True
+      DisplayFormat = '0.0,0;(0.0,0)'
+    end
+    object QBukuKasKD_PERK: TStringField
+      FieldName = 'KD_PERK'
+    end
+    object QBukuKasNAMA_PERKIRAAN: TStringField
+      FieldName = 'NAMA_PERKIRAAN'
+      Size = 100
+    end
+    object QBukuKasKD_CASH: TStr

@@ -1,0 +1,219 @@
+ked;
+end;
+
+procedure TKartuStokNBBFrm.ECari2Change(Sender: TObject);
+begin
+  if cbOtomatis2.Checked then
+  begin
+      QBrowse_Pakai.SearchRecord(wwDBGrid1.Columns[0].FieldName,ECari2.Text,[srFromBeginning, srPartialMatch, srIgnoreCase]);
+  end;
+end;
+
+procedure TKartuStokNBBFrm.BitBtn7Click(Sender: TObject);
+var
+  i : word;
+  vpertama : boolean;
+begin
+  vpertama:=True;
+  vfilter:=' where (';
+  if (QBrowse_Pakai.FieldCount>=1) then
+  begin
+    if dbcField2.ItemIndex=0 then
+    begin
+      for i:=0 to wwDBGrid3.Selected.Count-1 do
+  //    for i:=0 to QBrowse.FieldCount-1 do
+      begin
+        if (QBrowse_Pakai.FieldByName(wwDBGrid3.Columns[i].FieldName).FieldKind=fkData) and (UpperCase(wwDBGrid3.Columns[i].FieldName)<>'TANGGAL') then
+        begin
+          if vpertama then
+            begin
+              if vOperand2.Caption='LIKE' then
+                vfilter:=vfilter+wwDBGrid3.Columns[i].FieldName+' like ''%'+ECari2.Text+'%'''
+                else
+                   vfilter:=vfilter+wwDBGrid3.Columns[i].FieldName+' = '''+ECari2.Text+'''';
+              vpertama:=False;
+            end
+            else
+              if vOperand2.Caption='LIKE' then
+                vfilter:=vfilter+' or '+wwDBGrid3.Columns[i].FieldName+' like ''%'+ECari2.Text+'%'''
+                else
+                  vfilter:=vfilter+' or '+wwDBGrid3.Columns[i].FieldName+' = '''+ECari2.Text+''''
+        end;
+      end;
+    end
+    else
+      if vOperand2.Caption='LIKE' then
+         vfilter:=vfilter+dbcField2.Text+' like ''%'+ECari2.Text+'%'''
+         else
+           vfilter:=vfilter+dbcField2.Text+' = '''+ECari2.Text+'''';
+    vfilter:=vfilter+')';
+//    vorder:=' order by '+wwDBGrid1.Columns[0].FieldName;
+    if QBrowse_Pakai.Active then
+      vorder:=' order by '+wwDBGrid3.Columns[0].FieldName
+      else
+        vorder:=' order by kelompok, nama_item';
+
+  end;
+ //    QBrowse.DisableControls;
+  if rgKonversi2.ItemIndex=0 then
+        QBrowsesatuan.AsString:=QBrowsesatuan.AsString;
+   if rgKonversi2.ItemIndex=1 then
+//  1 : begin
+       QBrowsesatuan.AsString:='Gram';
+
+ if rgKonversi2.ItemIndex=2 then
+       QBrowsesatuan.AsString:='KG';
+ if rgKonversi2.ItemIndex=3 then
+      QBrowsesatuan.AsString:='TON';
+ if rgKonversi2.ItemIndex=4 then
+     QBrowsesatuan.AsString:='BALE';
+
+  QBrowse_Pakai.DisableControls;
+  QBrowse_Pakai.Close;
+  QBrowse_Pakai.SetVariable('myparam',vfilter+vorder);
+  QBrowse_Pakai.Open;
+  QBrowse_Pakai.EnableControls;
+
+end;
+
+procedure TKartuStokNBBFrm.QBrowse_PakaiCalcFields(DataSet: TDataSet);
+begin
+  case rgKonversi2.ItemIndex of
+  0 : begin
+            QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat;
+
+      end;
+  1 : begin
+        if QBrowse_PakaiSATUAN.AsString='GRAM' then
+        begin
+          //  QBrowse_PakaiSAT.AsFloat:=QBrowse_PakaiSATUAN.AsFloat;
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat;
+         end
+        else
+        if QBrowse_PakaiSATUAN.AsString='KG' then
+        begin
+
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=1000*QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=1000*QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=1000*QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=1000*QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=1000*QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=1000*QBrowse_PakaiAKHIR.AsFloat;
+
+        end
+        else
+         if QBrowse_PakaiSATUAN.AsString='TON' then
+        begin
+
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=1000000*QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=1000000*QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=1000000*QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=1000000*QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=1000000*QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=1000000*QBrowse_PakaiAKHIR.AsFloat;
+
+        end
+        else
+          if QBrowse_PakaiSATUAN.AsString='BALE' then
+        begin
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=181440*QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=181440*QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=181440*QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=181440*QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=181440*QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=181440*QBrowse_PakaiAKHIR.AsFloat;
+        end
+        else
+        begin
+          QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat;
+        end;
+      end;
+  2 : begin
+        if QBrowse_PakaiSATUAN.AsString='GRAM' then
+        begin
+        QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat/1000;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat/1000;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat/1000;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat/1000;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat/1000;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat/1000;
+
+
+        end
+        else
+        if QBrowse_PakaiSATUAN.AsString='KG' then
+        begin
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat;
+        end
+        else
+         if QBrowse_PakaiSATUAN.AsString='TON' then
+        begin
+
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=1000*QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=1000*QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=1000*QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=1000*QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=1000*QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=1000*QBrowse_PakaiAKHIR.AsFloat;
+
+        end
+        else
+         if QBrowse_PakaiSATUAN.AsString='BALE' then
+        begin
+             QBrowse_PakaiCQTY_AWAL.AsFloat:=181.44*QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=181.44*QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=181.44*QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=181.44*QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=181.44*QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=181.44*QBrowse_PakaiAKHIR.AsFloat;
+           end
+        else
+        begin
+          QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat;
+        end;
+      end;
+  3 : begin
+        if QBrowse_PakaiSATUAN.AsString='GRAM' then
+        begin
+            QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat/1000000;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat/1000000;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat/1000000;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat/1000000;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat/1000000;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat/1000000;
+        end
+        else
+        if QBrowse_PakaiSATUAN.AsString='KG' then
+        begin
+        QBrowse_PakaiCQTY_AWAL.AsFloat:=QBrowse_PakaiAWAL.AsFloat/1000;
+            QBrowse_PakaiCQTY_BELI.AsFloat:=QBrowse_PakaiPEMBELIAN.AsFloat/1000;
+            QBrowse_PakaiCQTY_KOREKSI1.AsFloat:=QBrowse_PakaiKOREKSI_IN.AsFloat/1000;
+            QBrowse_PakaiCQTY_PAKAI.AsFloat:=QBrowse_PakaiPEMAKAIAN.AsFloat/1000;
+            QBrowse_PakaiCQTY_KOREKSI2.AsFloat:=QBrowse_PakaiKOREKSI_OUT.AsFloat/1000;
+            QBrowse_PakaiC_AKHIR.AsFloat:=QBrowse_PakaiAKHIR.AsFloat/1000;
+        end

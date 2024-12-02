@@ -1,0 +1,161 @@
+object MainFrm: TMainFrm
+  Left = 236
+  Top = 133
+  Width = 995
+  Height = 463
+  Caption = 'MainFrm'
+  Color = 6710886
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIForm
+  Menu = MainMenu1
+  OldCreateOrder = False
+  WindowState = wsMaximized
+  WindowMenu = Window1
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object LMDScrollText2: TLMDScrollText
+    Left = 0
+    Top = 35
+    Width = 987
+    Height = 24
+    Direction = sdRightToLeft
+    Interval = 2
+    Lines.Strings = (
+      
+        'Bagi Salesman yang berprestasi pada bulan April 2008 akan mendap' +
+        'at tambahan bonus khusus dari direksi...')
+    Steps = 1000
+    Align = alTop
+    Bevel.Mode = bmCustom
+    Color = clGreen
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clYellow
+    Font.Height = -19
+    Font.Name = 'Book Antiqua'
+    Font.Style = []
+    ParentColor = False
+  end
+  inline FrameLeftFrm1: TFrameLeftFrm
+    Left = 0
+    Top = 59
+    Width = 100
+    Height = 331
+    Align = alLeft
+    Color = clNavy
+    ParentColor = False
+    TabOrder = 0
+  end
+  inline FrameRightFrm1: TFrameRightFrm
+    Left = 887
+    Top = 59
+    Width = 100
+    Height = 331
+    Align = alRight
+    Color = clNavy
+    ParentColor = False
+    TabOrder = 1
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 390
+    Width = 987
+    Height = 19
+    Panels = <
+      item
+        Alignment = taRightJustify
+        Text = 'Status 1'
+        Width = 150
+      end
+      item
+        Alignment = taRightJustify
+        Text = 'Status 2'
+        Width = 350
+      end
+      item
+        Alignment = taRightJustify
+        Text = 'Status 3'
+        Width = 200
+      end
+      item
+        Alignment = taRightJustify
+        Text = 'Status 4'
+        Width = 50
+      end>
+  end
+  object ToolBar1: TToolBar
+    Left = 0
+    Top = 0
+    Width = 987
+    Height = 35
+    ButtonHeight = 31
+    ButtonWidth = 79
+    Caption = 'ToolBar1'
+    Color = 16384
+    Flat = True
+    ParentColor = False
+    TabOrder = 3
+    Wrapable = False
+    object ToolButton4: TToolButton
+      Left = 0
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton4'
+      ImageIndex = 2
+      Style = tbsSeparator
+    end
+    object BtnLogin: TSpeedButton
+      Left = 8
+      Top = 0
+      Width = 73
+      Height = 31
+      GroupIndex = 1
+      Caption = '&Login'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333000003
+        333333333F777773FF333333008888800333333377333F3773F3333077870787
+        7033333733337F33373F3308888707888803337F33337F33337F330777880887
+        7703337F33337FF3337F3308888000888803337F333777F3337F330777700077
+        7703337F33377733337FB3088888888888033373FFFFFFFFFF733B3000000000
+        0033333777777777773333BBBB3333080333333333F3337F7F33BBBB707BB308
+        03333333373F337F7F3333BB08033308033333337F7F337F7F333B3B08033308
+        033333337F73FF737F33B33B778000877333333373F777337333333B30888880
+        33333333373FFFF73333333B3300000333333333337777733333}
+      NumGlyphs = 2
+      OnClick = BtnLoginClick
+    end
+    object ToolButton2: TToolButton
+      Left = 81
+      Top = 0
+      Width = 8
+      Caption = 'ToolButton2'
+      ImageIndex = 3
+      Style = tbsSeparator
+    end
+    object BtnLogout: TSpeedButton
+      Left = 89
+      Top = 0
+      Width = 73
+      Height = 31
+      GroupIndex = 1
+      Down = True
+      Caption = 'L&ogout'
+      Glyph.Data = {
+        76010000424D7601000000000000760000002800000020000000100000000100
+        04000000000000010000120B0000120B00001000000000000000000000000000
+        800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+        FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00333333000003
+        333333333F777773FF333333008888800333333377333F3773F3333077870787
+        7033333733337F33373F3308888707888803337F33337F33337F330777880887
+        7703337F33337FF3337F3308888000888803337F333777F3337F330777700077
+        7703337F33377733337F33088888888888033373FFFFFFFFFF73333000000000
+        00333337777777777733333308033308033333337F7F337F7F33333308033308
+        033333337F7F337F7F33333308033308033333337F73FF737F33333377800087
+        7333333373F77733733

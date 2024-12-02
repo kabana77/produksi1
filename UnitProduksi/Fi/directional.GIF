@@ -1,0 +1,54 @@
+object JurnalMemorialFrm: TJurnalMemorialFrm
+  Left = 133
+  Top = 3
+  Width = 831
+  Height = 734
+  Caption = 'JURNAL MEMORIAL'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Position = poDefault
+  Scaled = False
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 645
+    Width = 823
+    Height = 55
+    Align = alBottom
+    TabOrder = 0
+    object Label15: TLabel
+      Left = 8
+      Top = 4
+      Width = 62
+      Height = 13
+      Caption = 'Spasi Tabel :'
+    end
+    object Label16: TLabel
+      Left = 120
+      Top = 4
+      Width = 8
+      Height = 13
+      Caption = '%'
+    end
+    object BtnClose: TBitBtn
+      Left = 191
+      Top = 24
+      Width = 75
+      Height = 25
+      TabOrder = 0
+      Kind = bkClose
+    end
+    object BitBtn5: TBitBtn
+      Left = 9
+ 

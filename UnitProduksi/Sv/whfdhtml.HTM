@@ -1,0 +1,34 @@
+AG: TStringField
+      DisplayWidth = 1
+      FieldName = 'ID_SUB_BAG'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+  end
+  object QTotal: TOracleDataSet
+    SQL.Strings = (
+      
+        'select sum(qty) as qty, sum(qty_validasi) as qty_validasi from (' +
+        'select * from pmtx02.vbon_bb_benang'
+      'where kd_transaksi=:kd_transaksi)'
+      ':myparam')
+    Variables.Data = {
+      0300000002000000080000003A4D59504152414D010000000000000000000000
+      0D0000003A4B445F5452414E53414B5349050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000002000000030000005154590100000000000C0000005154595F56414C
+      4944415349010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QTotalBeforeOpen
+    Left = 524
+    Top = 289
+    object QTotalQTY: TFloatField
+      FieldName = 'QTY'
+    end
+    object QTotalQTY_VALIDASI: TFloatField
+      FieldName = 'QTY_VALIDASI'
+    end
+  end
+  object QJnsKoreksi: TOracleDataSet
+    SQL.Strings

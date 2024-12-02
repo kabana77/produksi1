@@ -1,0 +1,141 @@
+55555555555555555}
+          NumGlyphs = 2
+        end
+      end
+      object wwDBGrid2: TwwDBGrid
+        Left = 0
+        Top = 49
+        Width = 241
+        Height = 393
+        ControlType.Strings = (
+          'ISAKTIF;CheckBox;1;0'
+          'ID_SUB_BAG;CustomEdit;LookBagian;F'
+          'ID_HAK;CustomEdit;LookJnsMenu;F')
+        PictureMasks.Strings = (
+          'ID_BAG'#9'*2{#,&}'#9'T'#9'T'
+          'KD_JNS_ITEM'#9'#,&'#9'T'#9'T'
+          'KD_SATUAN'#9'#,&'#9'T'#9'T'
+          'ID_USER'#9'*3{&,#}'#9'T'#9'T')
+        Selected.Strings = (
+          'KD_KEL'#9'5'#9'KODE'#9'F'
+          'KELOMPOK'#9'27'#9'KELOMPOK'#9#9)
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Pismatex Master'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alLeft
+        DataSource = dsQMaster2
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        ReadOnly = True
+        RowHeightPercent = 125
+        TabOrder = 1
+        TitleAlignment = taLeftJustify
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 3
+        TitleButtons = True
+        UseTFields = False
+        OnCalcCellColors = wwDBGrid1CalcCellColors
+        OnTitleButtonClick = wwDBGrid2TitleButtonClick
+        OnDblClick = wwDBGrid1DblClick
+        PaintOptions.AlternatingRowColor = clMoneyGreen
+        PaintOptions.ActiveRecordColor = clGreen
+        GroupFieldName = 'SUB_BAGIAN'
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 708
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    object LTitle: TLabel
+      Left = 16
+      Top = 8
+      Width = 203
+      Height = 23
+      Cursor = crHandPoint
+      Caption = 'BENGKEL dan ALAT'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Georgia'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = LTitleClick
+    end
+  end
+  object QMaster: TOracleDataSet
+    SQL.Strings = (
+      
+        'select * from (select a.kd_item, a.kd_jns_item, a.kd_kel, a.nama' +
+        '_item, a.kd_satuan, a.no_part,a.icc, a.last_cc, a.qty, a.rowid, ' +
+        'b.kelompok, c.sat1, a.tgl_edit, a.opr_edit  from pmtx01.item a'
+      
+        'left outer join pmtx01.kelompok_item b on (a.kd_kel=b.kd_kel and' +
+        ' a.kd_jns_item=b.kd_jns_item)'
+      'left outer join pmtx01.satuan c on (a.kd_satuan=c.kd_satuan)'
+      'where a.kd_jns_item='#39'6'#39')'
+      ':myparam')
+    ReadBuffer = 10
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D010000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000D000000080000004B454C4F4D504F4B010000000000070000004B44
+      5F4954454D0100000000000B0000004B445F4A4E535F4954454D010000000000
+      060000004B445F4B454C010000000000090000004E414D415F4954454D010000
+      000000090000004B445F53415455414E010000000000070000004E4F5F504152
+      5401000000000004000000534154310100000000000300000049434301000000
+      0000070000004C4153545F434301000000000003000000515459010000000000
+      0800000054474C5F45444954010000000000080000004F50525F454449540100
+      00000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    CommitOnPost = False
+    Session = DMFrm.OS
+    Active = True
+    BeforePost = QMasterBeforePost
+    AfterPost = QMasterAfterPost
+    AfterDelete = QMasterAfterPost
+    AfterScroll = QMasterAfterScroll
+    OnNewRecord = QMasterNewRecord
+    Left = 60
+    Top = 177
+    object QMasterKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Size = 16
+    end
+    object QMasterKD_JNS_ITEM: TStringField
+      FieldName = 'KD_JNS_ITEM'
+      Required = True
+      Size = 1
+    end
+    object QMasterKD_KEL: TStringField
+      FieldName = 'KD_KEL'
+      Required = True

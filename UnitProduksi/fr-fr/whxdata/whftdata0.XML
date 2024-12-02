@@ -1,0 +1,62 @@
+             39.687500000000000000
+              463.020833333333400000)
+            Shape = qrsHorLine
+          end
+        end
+        object QRBand3: TQRBand
+          Left = 45
+          Top = 177
+          Width = 718
+          Height = 20
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = True
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          AlignToBottom = False
+          BeforePrint = QRBand3BeforePrint
+          Color = clWhite
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          ForceNewColumn = False
+          ForceNewPage = False
+          ParentFont = False
+          Size.Values = (
+            52.916666666666660000
+            1899.708333333333000000)
+          BandType = rbDetail
+          object QRDBText1: TQRDBText
+            Left = 43
+            Top = 3
+            Width = 30
+            Height = 12
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              31.750000000000000000
+              113.770833333333300000
+              7.937500000000000000
+              79.375000000000000000)
+            Alignment = taCenter
+            AlignToBand = False
+            AutoSize = False
+            AutoStretch = False
+            Color = clWhite
+            DataSet = QBrowse
+            DataField = 'KD_REKANAN'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Small Fonts'
+            Font.Style = [fsBold]
+            Mask = '00'
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+      

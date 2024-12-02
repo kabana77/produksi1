@@ -1,0 +1,37 @@
+ue
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'QRLAlamat'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRLTelepon: TQRLabel
+            Left = 0
+            Top = 36
+            Width = 55
+            Height = 14
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              37.041666666666670000
+              0.000000000000000000
+              95.250000000000000000
+              145.520833333333300000)
+            Alignment = taLeftJustify
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'QRLAlamat'
+            Color = clWhite
+            Transparent = False
+            WordWrap = True
+            FontSize = 8
+          end
+          object QRENo_Nota: TQRExpr
+            Left = 537
+           

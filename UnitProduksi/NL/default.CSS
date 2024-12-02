@@ -1,0 +1,90 @@
+   OnClick = BtnDesign2Click
+        NumGlyphs = 2
+      end
+      object BtnClose1: TBitBtn
+        Left = 492
+        Top = 9
+        Width = 75
+        Height = 25
+        Caption = '&Close'
+        TabOrder = 4
+        OnClick = BtnClose1Click
+        NumGlyphs = 2
+      end
+    end
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db3.lap_produksi'
+      
+        'where qty1 <> 0 or qty2 <> 0 or qty3 <> 0 or qty4 <> 0 or qty5 <' +
+        '> 0 or qty6 <> 0 or qty7 <> 0 or qty8 <> 0'
+      'ORDER BY NAMA_ITEM')
+    QBEDefinition.QBEFieldDefs = {
+      040000000A000000090000004E414D415F4954454D0100000000000400000051
+      5459310100000000000400000051545932010000000000040000005154593301
+      0000000000040000005154593401000000000004000000515459350100000000
+      0004000000515459360100000000000400000051545937010000000000040000
+      0051545938010000000000090000004E4F5F42454E414E47010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    AfterScroll = QBrowseAfterScroll
+    OnCalcFields = QBrowseCalcFields
+    Left = 660
+    Top = 192
+    object QBrowseNAMA_ITEM: TStringField
+      FieldName = 'NAMA_ITEM'
+      Size = 50
+    end
+    object QBrowseQTY1: TFloatField
+      FieldName = 'QTY1'
+      DisplayFormat = '#,0.0000;(#,0.0000);-'
+    end
+    object QBrowseQTY2: TFloatField
+      FieldName = 'QTY2'
+      DisplayFormat = '#,0;(#,0);-'
+    end
+    object QBrowseQTY3: TFloatField
+      FieldName = 'QTY3'
+      DisplayFormat = '#,0.0000;(#,0.0000);-'
+    end
+    object QBrowseQTY4: TFloatField
+      FieldName = 'QTY4'
+      DisplayFormat = '#,0;(#,0);-'
+    end
+    object QBrowseQTY5: TFloatField
+      FieldName = 'QTY5'
+      DisplayFormat = '#,0.0000;(#,0.0000);-'
+    end
+    object QBrowseQTY6: TFloatField
+      FieldName = 'QTY6'
+      DisplayFormat = '#,0;(#,0);-'
+    end
+    object QBrowseQTY7: TFloatField
+      FieldName = 'QTY7'
+      DisplayFormat = '#,0.0000;(#,0.0000);-'
+    end
+    object QBrowseQTY8: TFloatField
+      FieldName = 'QTY8'
+      DisplayFormat = '#,0;(#,0);-'
+    end
+    object QBrowsesc_bale: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'sc_bale'
+      DisplayFormat = '#,0.0000;(#,0.0000);-'
+      Calculated = True
+    end
+    object QBrowsesc_bale_mtr: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'sc_bale_mtr'
+      DisplayFormat = '#,0.00;(#,0.00);-'
+      Calculated = True
+    end
+    object QBrowseNO_BENANG: TFloatField
+      FieldName = 'NO_BENANG'
+    end
+    object QBrowsesc_prod_bale_mtr: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'sc_prod_bale_mtr

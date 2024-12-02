@@ -1,0 +1,58 @@
+unit BonPemakaianBengkeldanAlat;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, wwDialog, wwrcdvw, Wwdatsrc, OracleData, wwdblook, Wwdbdlg,
+  wwcheckbox, wwSpeedButton, wwDBNavigator, wwclearpanel, ExtCtrls,
+  wwdbedit, StdCtrls, DBCtrls, Grids, Wwdbigrd, Wwdbgrid,
+  wwdbdatetimepicker, QuickRpt, QRCtrls, ComCtrls, Mask, Wwdbspin, Buttons,
+  Wwdotdot, Wwdbcomb;
+
+type
+  TBonPemakaianBengkeldanAlatFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    QTransaksi: TOracleDataSet;
+    dsQTransaksi: TwwDataSource;
+    BitBtn5: TBitBtn;
+    LRecords: TLabel;
+    TabSheet2: TTabSheet;
+    Panel5: TPanel;
+    QDetail: TOracleDataSet;
+    dsQDetail: TwwDataSource;
+    GroupBox1: TGroupBox;
+    Panel3: TPanel;
+    cbTanggal: TCheckBox;
+    VTglAwal: TwwDBDateTimePicker;
+    vTglAkhir: TwwDBDateTimePicker;
+    Label2: TLabel;
+    BitBtn1: TBitBtn;
+    ECari: TEdit;
+    cbOtomatis: TCheckBox;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    wwDBGrid2: TwwDBGrid;
+    QTransaksiTANGGAL: TDateTimeField;
+    QTransaksiNO_NOTA: TStringField;
+    QTransaksiKETERANGAN: TStringField;
+    QTransaksiISPOST: TStringField;
+    QTransaksiSTATUS: TStringField;
+    QTransaksiTGL_INSERT: TDateTimeField;
+    QTransaksiOPR_INSERT: TStringField;
+    QTransaksiTTD1: TStringField;
+    QTransaksiTTD2: TStringField;
+    QTransaksiTTD3: TStringField;
+    QTransaksiTTD4: TStringField;
+    QDetailKD_ITEM: TStringField;
+    QDetailKETERANGAN: TStringField;
+    QDetailID_BAG: TStringField;
+    QDetailID_SUB_BAG: TStringField;
+    QDetailQTY_STOK: TFloatField;
+    QDetailQTY: TFloatField;
+    QDetailSTATUS: TStringField

@@ -1,0 +1,152 @@
+List = False
+            AllowClearKey = False
+            DropDownCount = 8
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clRed
+            Font.Height = -16
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ItemHeight = 0
+            Items.Strings = (
+              'JANUARI'
+              'FEBRUARI'
+              'MARET'
+              'APRIL'
+              'MEI'
+              'JUNI'
+              'JULI'
+              'AGUSTUS'
+              'SEPTEMBER'
+              'OKTOBER'
+              'NOVEMBER'
+              'DESEMBER')
+            ParentFont = False
+            Sorted = False
+            TabOrder = 3
+            UnboundDataType = wwDefault
+          end
+        end
+        object Panel5: TPanel
+          Left = 513
+          Top = 2
+          Width = 350
+          Height = 61
+          Align = alClient
+          TabOrder = 1
+        end
+      end
+      object wwDBGrid1: TwwDBGrid
+        Left = 0
+        Top = 65
+        Width = 865
+        Height = 368
+        DittoAttributes.ShortCutDittoRecord = 16429
+        ControlType.Strings = (
+          'ISPOST;CheckBox;1;0'
+          'ISTOKO;CheckBox;1;0'
+          'ISAGEN;CheckBox;1;0'
+          'ISGROSIR;CheckBox;1;0'
+          'ISDISTR;CheckBox;1;0'
+          'ISMM;CheckBox;1;0'
+          'ISPABRIK;CheckBox;1;0'
+          'ISGT;CheckBox;1;0'
+          'ISMT;CheckBox;1;0'
+          'ISDETAIL;CheckBox;1;0'
+          'ISTOTAL;CheckBox;1;0'
+          'KD_PERK1;URL-Link'
+          'KD_PERK2;URL-Link')
+        Selected.Strings = (
+          'KD_PERK1'#9'6'#9'KODE'#9'F'
+          'NAMA_PERKIRAAN1'#9'23'#9'NAMA_PERKIRAAN'#9'F'
+          'BLN_INI1'#9'12'#9'Bulan Berjalan'#9'F'#9'SALDO'
+          'BLN_LALU1'#9'12'#9'Bulan Lalu'#9'F'#9'SALDO'
+          'GAP'#9'5'#9#9'F'
+          'KD_PERK2'#9'9'#9'Kode'#9'F'
+          'NAMA_PERKIRAAN2'#9'35'#9'NAMA_PERKIRAAN'#9'F'
+          'BLN_INI2'#9'12'#9'Bulan Berjalan'#9'F'#9'SALDO'
+          'BLN_LALU2'#9'12'#9'Bulan Lalu'#9'F'#9'SALDO')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Cipsoft_GL'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetSYLK
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQBrowse
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        KeyOptions = [dgEnterToTab, dgAllowInsert]
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        RowHeightPercent = 125
+        TabOrder = 2
+        TitleAlignment = taCenter
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        PaintOptions.AlternatingRowColor = clMoneyGreen
+        PaintOptions.ActiveRecordColor = clGreen
+        OnURLOpen = wwDBGrid1URLOpen
+        GroupFieldName = 'NO_NOTA'
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Penjelasan Neraca'
+      ImageIndex = 1
+      OnShow = TabSheet2Show
+      object QuickRep2: TQuickRep
+        Left = 32
+        Top = 78
+        Width = 794
+        Height = 1123
+        Frame.Color = clBlack
+        Frame.DrawTop = True
+        Frame.DrawBottom = True
+        Frame.DrawLeft = True
+        Frame.DrawRight = True
+        BeforePrint = QuickRep2BeforePrint
+        DataSet = QBrowse2
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        Functions.Strings = (
+          'PAGENUMBER'
+          'COLUMNNUMBER'
+          'REPORTTITLE')
+        Functions.DATA = (
+          '0'
+          '0'
+          #39#39)
+        Options = [FirstPageHeader, LastPageFooter]
+        Page.Columns = 1
+        Page.Orientation = poPortrait
+        Page.PaperSize = A4
+        Page.Values = (
+          100.000000000000000000
+          2970.000000000000000000
+          100.000000000000000000
+          2100.000000000000000000
+          100.000000000000000000
+          100.000000000000000000
+          0.000000000000000000)
+        PrinterSettings.Copies = 1
+        PrinterSettings.Duplex = False
+        PrinterSettings.FirstPage = 0
+        PrinterSettings.LastPage = 0
+        PrinterSettings.OutputBin = Auto
+        PrintIfEmpty = True
+        SnapToGrid = True

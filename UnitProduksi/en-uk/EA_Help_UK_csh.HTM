@@ -1,0 +1,78 @@
+unit JurnalMemorial;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, QRCtrls, Wwdatsrc, OracleData, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, StdCtrls, QuickRpt, ComCtrls, Mask, wwdbedit,
+  Wwdbspin, Buttons, ExtCtrls, DBCtrls, wwcheckbox, wwdbdatetimepicker,
+  wwSpeedButton, wwDBNavigator, wwclearpanel, wwdblook, Wwdbdlg;
+
+type
+  TJurnalMemorialFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    QBrowse: TOracleDataSet;
+    dsQBrowse: TwwDataSource;
+    QuickRep1: TQuickRep;
+    PageHeaderBand1: TQRBand;
+    TitleBand1: TQRBand;
+    ColumnHeaderBand1: TQRBand;
+    DetailBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    PageFooterBand1: TQRBand;
+    QRDBText1: TQRDBText;
+    QRDBNoNota: TQRDBText;
+    QRDBTanggal: TQRDBText;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel4: TQRLabel;
+    QRLabel5: TQRLabel;
+    QRLabel6: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRSysData2: TQRSysData;
+    QRDBText22: TQRDBText;
+    QRLTitle: TQRLabel;
+    Label15: TLabel;
+    vHeight: TwwDBSpinEdit;
+    Label16: TLabel;
+    BtnExport: TBitBtn;
+    wwDBGrid1: TwwDBGrid;
+    QRLabel3: TQRLabel;
+    QRLabel7: TQRLabel;
+    QRLabel8: TQRLabel;
+    QBrowseNO_JURNAL: TFloatField;
+    QBrowseNO_NOTA: TStringField;
+    QBrowseTANGGAL: TDateTimeField;
+    QBrowseNO_BUKTI: TStringField;
+    QBrowseKETERANGAN: TStringField;
+    QBrowseKURS: TFloatField;
+    QBrowseKD_PERK: TStringField;
+    QBrowseKD_CASH: TStringField;
+    QBrowseISHEAD: TStringField;
+    QBrowseTGL_INSERT: TDateTimeField;
+    QBrowseOPR_INSERT: TStringField;
+    QBrowseNAMA_PERKIRAAN: TStringField;
+    TabSheet2: TTabSheet;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    wwDBGrid2: TwwDBGrid;
+    QTransaksi: TOracleDataSet;
+    QTransaksiNO_KAS: TIntegerField;
+    QTransaksiNO_NOTA: TStringField;
+    QTransaksiISPOST: TStringField;
+    QTransaksiTANGGAL: TDateTimeField;
+    QTransaksiKETERANGAN: TStringField;
+    QTransaksiTGL_INSERT: TDateTimeField;
+    QTransaksiOPR_INSERT: TStringField;
+    dsQTransaksi: TwwDataSource;
+    wwDBDateTimePicker1: TwwDBDateTimePicker;
+    cbPost: TwwCheckBox;
+    Label1: TLabel;
+    

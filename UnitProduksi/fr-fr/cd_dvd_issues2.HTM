@@ -1,0 +1,178 @@
+       ItemHeight = 0
+            Items.Strings = (
+              'RETUR'
+              'GANTI BARANG'
+              'TITP'
+              'LAINNYA')
+            ItemIndex = 0
+            Sorted = False
+            TabOrder = 3
+            UnboundDataType = wwDefault
+          end
+          object LookSuplier: TwwDBLookupComboDlg
+            Left = 184
+            Top = 24
+            Width = 57
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'KD_REKANAN'#9'10'#9'KODE'#9'F'
+              'NAMA_REKANAN'#9'30'#9'NAMA REKANAN'#9'F'
+              'KOTA'#9'20'#9'KOTA'#9'F'
+              'TELEPON'#9'20'#9'TELEPON'#9'F'
+              'NO_PP'#9'16'#9'NO PP'#9'F'
+              'TGL_KEBUTUHAN'#9'12'#9'KEBUTUHAN'#9'F')
+            DataField = 'KD_REKANAN'
+            DataSource = dsQMaster
+            LookupTable = QCalonSuplier
+            LookupField = 'KD_REKANAN'
+            TabOrder = 4
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+            UseTFields = False
+            OnEnter = LookSuplierEnter
+          end
+          object wwDBEdit2: TwwDBEdit
+            Left = 184
+            Top = 24
+            Width = 41
+            Height = 19
+            DataField = 'KD_REKANAN'
+            DataSource = dsQMaster
+            TabOrder = 5
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+        end
+        object PanelDetail: TPanel
+          Left = 0
+          Top = 178
+          Width = 792
+          Height = 293
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 2
+          object wwDBGrid1: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 792
+            Height = 293
+            ControlType.Strings = (
+              'KD_SUB_LOKASI;CustomEdit;LookLokasi;F'
+              'KD_ITEM;CustomEdit;LookItem;F')
+            Selected.Strings = (
+              'KD_ITEM'#9'16'#9'KODE'#9'F'
+              'KETERANGAN'#9'39'#9'ITEM'#9'F'
+              'LSATUAN'#9'9'#9'SATUAN'#9'T'
+              'QTY1'#9'6'#9'QTY'#9'F'
+              'HRG'#9'10'#9'HRG'#9'F'
+              'SUBTOTAL'#9'13'#9'SUBTOTAL'#9'T'
+              'KD_SUB_LOKASI'#9'10'#9'LOKASI'#9'F')
+            IniAttributes.Enabled = True
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQDetail
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+            ParentCtl3D = False
+            ParentFont = False
+            RowHeightPercent = 150
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = []
+            TitleLines = 2
+            TitleButtons = True
+            UseTFields = False
+            OnEnter = wwDBGrid1Enter
+          end
+          object LookItem: TwwDBLookupComboDlg
+            Left = 64
+            Top = 80
+            Width = 121
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'NAMA_ITEM'#9'50'#9'NAMA ITEM'#9'F'
+              'KD_ITEM'#9'10'#9'KODE'#9'F'
+              'SATUAN'#9'12'#9'SATUAN'#9'F')
+            DataField = 'KD_ITEM'
+            DataSource = dsQDetail
+            LookupTable = QItem
+            LookupField = 'KD_ITEM'
+            TabOrder = 1
+            AutoDropDown = True
+            ShowButton = True
+            AllowClearKey = False
+            OnCloseUp = LookItemCloseUp
+            OnEnter = LookItemEnter
+          end
+        end
+        object PanelFooter1: TPanel
+          Left = 0
+          Top = 471
+          Width = 792
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 3
+          DesignSize = (
+            792
+            41)
+          object BtnPrintInput: TBitBtn
+            Left = 614
+            Top = 6
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = '&Print'
+            TabOrder = 0
+            OnClick = BtnPrintInputClick
+            NumGlyphs = 2
+          end
+          object BtnClose1: TBitBtn
+            Left = 694
+            Top = 6
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = '&Close'
+            TabOrder = 1
+            OnClick = BtnClose1Click
+            NumGlyphs = 2
+          end
+          object wwDBNavigatorInput: TwwDBNavigator
+            Left = 0
+            Top = 0
+            Width = 249
+            Height = 41
+            AutosizeStyle = asSizeNavButtons
+            DataSource = 

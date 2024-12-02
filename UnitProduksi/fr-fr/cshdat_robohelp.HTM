@@ -1,0 +1,199 @@
+xt38: TppDBText
+        UserName = 'DBText38'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'JAB3'
+        DataPipeline = ppDBQTransaksi
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = [fsItalic]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppDBQTransaksi'
+        mmHeight = 4233
+        mmLeft = 79640
+        mmTop = 38365
+        mmWidth = 33602
+        BandType = 7
+      end
+      object ppDBText39: TppDBText
+        UserName = 'DBText39'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'JAB2'
+        DataPipeline = ppDBQTransaksi
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = [fsItalic]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppDBQTransaksi'
+        mmHeight = 3969
+        mmLeft = 41540
+        mmTop = 38365
+        mmWidth = 33602
+        BandType = 7
+      end
+      object ppDBText40: TppDBText
+        UserName = 'DBText40'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'JAB1'
+        DataPipeline = ppDBQTransaksi
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = [fsItalic]
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        DataPipelineName = 'ppDBQTransaksi'
+        mmHeight = 3969
+        mmLeft = 3440
+        mmTop = 38365
+        mmWidth = 33602
+        BandType = 7
+      end
+      object ppDBCalc7: TppDBCalc
+        UserName = 'DBCalc7'
+        AutoSize = True
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'SUBTOTAL'
+        DataPipeline = ppDBQDetail
+        DisplayFormat = '#,#;(#,#);-'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppDBQDetail'
+        mmHeight = 4022
+        mmLeft = 161956
+        mmTop = 2646
+        mmWidth = 28279
+        BandType = 7
+      end
+      object ppDBCalc8: TppDBCalc
+        UserName = 'DBCalc8'
+        AutoSize = True
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        DataField = 'QTY1'
+        DataPipeline = ppDBQDetail
+        DisplayFormat = '#,##0.##;(#,##0.##)'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taRightJustified
+        Transparent = True
+        DataPipelineName = 'ppDBQDetail'
+        mmHeight = 4022
+        mmLeft = 117422
+        mmTop = 2646
+        mmWidth = 18838
+        BandType = 7
+      end
+      object ppLabel7: TppLabel
+        UserName = 'Label15'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Caption = 'TOTAL :'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clBlack
+        Font.Name = 'Arial'
+        Font.Size = 10
+        Font.Style = []
+        TextAlignment = taRightJustified
+        Transparent = True
+        mmHeight = 4498
+        mmLeft = 102659
+        mmTop = 2646
+        mmWidth = 13229
+        BandType = 7
+      end
+      object ppLine1: TppLine
+        UserName = 'Line1'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        Weight = 0.750000000000000000
+        mmHeight = 529
+        mmLeft = 123296
+        mmTop = 1323
+        mmWidth = 66411
+        BandType = 7
+      end
+    end
+    object ppPageStyle1: TppPageStyle
+      EndPage = 0
+      SinglePage = 0
+      StartPage = 0
+      mmBottomOffset = 0
+      mmHeight = 0
+      mmPrintPosition = 0
+    end
+    object raCodeModule1: TraCodeModule
+      ProgramStream = {
+        01060F5472614576656E7448616E646C65720B50726F6772616D4E616D65060F
+        5661726961626C65314F6E43616C630B50726F6772616D54797065070B747450
+        726F63656475726506536F75726365066C70726F636564757265205661726961
+        626C65314F6E43616C63287661722056616C75653A2056617269616E74293B0D
+        0A626567696E0D0A56616C7565203A3D20274D6F64656C203A20272B20444251
+        5472616E73616B73695B27505245464958275D0D0A0D0A656E643B0D0A0D436F
+        6D706F6E656E744E616D6506095661726961626C6531094576656E744E616D65
+        06064F6E43616C63074576656E74494402210000}
+    end
+  end
+  object ppDBQMaster: TppDBPipeline
+    DataSource = dsQMaster
+    OpenDataSource = False
+    UserName = 'DBQMaster'
+    Left = 112
+    Top = 40
+    object ppDBQMasterppField1: TppField
+      FieldAlias = 'IBUKTI'
+      FieldName = 'IBUKTI'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 0
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBQMasterppField2: TppField
+      FieldAlias = 'NO_NOTA'
+      FieldName = 'NO_NOTA'
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
+      Position = 1
+      Searchable = False
+      Sortable = False
+   

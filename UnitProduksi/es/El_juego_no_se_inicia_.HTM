@@ -1,0 +1,295 @@
+      Left = 101
+            Top = 0
+            Width = 50
+            Height = 38
+            Hint = 'Insert new record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Tambah'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 2
+            Style = nbsInsert
+          end
+          object wwDBNavigator1Delete: TwwNavButton
+            Left = 151
+            Top = 0
+            Width = 50
+            Height = 38
+            Hint = 'Delete current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Hapus'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 3
+            Style = nbsDelete
+          end
+          object wwDBNavigator1Edit: TwwNavButton
+            Left = 201
+            Top = 0
+            Width = 50
+            Height = 38
+            Hint = 'Edit current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Edit'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 4
+            Style = nbsEdit
+          end
+          object wwDBNavigator1Post: TwwNavButton
+            Left = 251
+            Top = 0
+            Width = 50
+            Height = 38
+            Hint = 'Post changes of current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Simpan'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 5
+            Style = nbsPost
+          end
+          object wwDBNavigator1Cancel: TwwNavButton
+            Left = 301
+            Top = 0
+            Width = 50
+            Height = 38
+            Hint = 'Cancel changes made to current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Batal'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 6
+            Style = nbsCancel
+          end
+        end
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 823
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select a.* from vbrowse_memorial a'
+      ':myparam')
+    Variables.Data = {
+      0300000001000000080000003A4D59504152414D01000000240000006F726465
+      7220627920612E74616E6767616C2C206E6F5F6E6F74612C206B726564697400
+      00000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000110000000A00000054474C5F494E534552540100000000000A000000
+      4F50525F494E53455254010000000000090000004E4F5F4A55524E414C010000
+      000000070000004E4F5F4E4F54410100000000000700000054414E4747414C01
+      0000000000080000004E4F5F42554B54490100000000000A0000004B45544552
+      414E47414E010000000000060000004B52454449540100000000000500000044
+      45424554010000000000040000004B555253010000000000070000004B445F50
+      45524B010000000000070000004B445F43415348010000000000060000004953
+      484541440100000000000E0000004E414D415F5045524B495241414E01000000
+      0000060000004E4F5F524547010000000000030000004B41530100000000000A
+      0000004B445F52454B414E414E010000000000}
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 404
+    Top = 49
+    object QBrowseNO_JURNAL: TFloatField
+      FieldName = 'NO_JURNAL'
+      Required = True
+    end
+    object QBrowseNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QBrowseTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QBrowseNO_BUKTI: TStringField
+      FieldName = 'NO_BUKTI'
+    end
+    object QBrowseKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QBrowseKURS: TFloatField
+      FieldName = 'KURS'
+      Required = True
+      DisplayFormat = '#,##0.00;(#,##0.00)'
+    end
+    object QBrowseKD_PERK: TStringField
+      FieldName = 'KD_PERK'
+    end
+    object QBrowseKD_CASH: TStringField
+      FieldName = 'KD_CASH'
+    end
+    object QBrowseISHEAD: TStringField
+      FieldName = 'ISHEAD'
+      Size = 1
+    end
+    object QBrowseTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QBrowseOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QBrowseNAMA_PERKIRAAN: TStringField
+      FieldName = 'NAMA_PERKIRAAN'
+      Size = 100
+    end
+    object QBrowseKD_REKANAN: TIntegerField
+      FieldName = 'KD_REKANAN'
+    end
+    object QBrowseNO_REG: TIntegerField
+      FieldName = 'NO_REG'
+    end
+    object QBrowseKAS: TStringField
+      FieldName = 'KAS'
+    end
+    object QBrowseKREDIT: TFloatField
+      FieldName = 'KREDIT'
+    end
+    object QBrowseDEBET: TFloatField
+      FieldName = 'DEBET'
+    end
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 444
+    Top = 57
+  end
+  object QTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from kas a'
+      'where no_kas=:no_reg')
+    Variables.Data = {
+      0300000001000000070000003A4E4F5F52454703000000040000001000000000
+      000000}
+    SequenceField.Field = 'NO_KAS'
+    SequenceField.Sequence = 'NO_REG'
+    SequenceField.ApplyMoment = amOnNewRecord
+    QBEDefinition.QBEFieldDefs = {
+      0400000009000000060000004E4F5F4B4153010000000000070000004E4F5F4E
+      4F5441010000000000060000004953504F53540100000000000700000054414E
+      4747414C0100000000000A0000004B45544552414E47414E0100000000000A00
+      000054474C5F494E534552540100000000000A0000004F50525F494E53455254
+      010000000000050000004A454E4953010000000000070000004B445F5045524B
+      010000000000}
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    Session = DMFrm.OS
+    BeforePost = QTransaksiBeforePost
+    AfterScroll = QTransaksiAfterScroll
+    OnNewRecord = QTransaksiNewRecord
+    Left = 620
+    Top = 201
+    object QTransaksiNO_KAS: TIntegerField
+      FieldName = 'NO_KAS'
+      Required = True
+    end
+    object QTransaksiNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QTransaksiISPOST: TStringField
+      FieldName = 'ISPOST'
+      Size = 1
+    end
+    object QTransaksiTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+    end
+    object QTransaksiKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QTransaksiTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QTransaksiOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QTransaksiJENIS: TStringField
+      FieldName = 'JENIS'
+      Size = 3
+    end
+    object QTransaksiKD_PERK: TStringField
+      FieldName = 'KD_PERK'
+    end
+    object QTransaksiNAMA_PERKIRAAN: TStringField
+      FieldKind = fkLookup
+      FieldName = 'NAMA_PERKIRAAN'
+      LookupDataSet = DMFrm.QKas
+      LookupKeyFields = 'KD_PERK'
+      LookupResultField = 'NAMA_PERKIRAAN'
+      KeyFields = 'KD_PERK'
+      Size = 100
+      Lookup = True
+    end
+  end
+  object dsQTransaksi: TwwDataSource
+    DataSet = QTransaksi
+    Left = 572
+    Top = 153
+  end
+  object QDetail: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from jurnal a'
+      'where no_kas = :no_kas and ishead='#39'0'#39)
+    Variables.Data = {0300000001000000070000003A4E4F5F4B4153030000000000000000000000}
+    SequenceField.Field = 'NO_JURNAL'
+    SequenceField.Sequence = 'NO_JURNAL'
+    QBEDefinition.QBEFieldDefs = {
+      040000001B000000090000004E4F5F4A55524E414C010000000000080000004E
+      4F5F42554B54490100000000000A0000004B45544552414E47414E0100000000
+      00060000004B5245444954010000000000050000004445424554010000000000
+      040000004B555253010000000000070000004B445F5045524B01000000000007
+      0000004B445F43415348010000000000060000004E4F5F4B4153010000000000
+      090000004E4F5F50524F59454B0100000000000A0000004B445F52454B414E41
+      4E010000000000070000004E4F5F414C4154010000000000090000004E4F5F50
+      4F4C495349010000000000060000004B445F444956010000000000030000004E
+      494B010000000000060000005154595F494E010000000000070000005154595F
+      4F5554010000000000060000004953484541440100000000000A00000054474C
+      5F494E534552540100000000000A0000004F50525F494E534552540100000000
+      000800000054474C5F45444954010000000000080000004F50525F4544495401
+      0000000000060000004B445F524142010000000000050000004E494C41490100
+      00000000080000004B445F424542414E010000000000090000004A4E535F4245
+      42414E010000000000080000004B445F5045524B32010000000000}
+    Master = QTrans

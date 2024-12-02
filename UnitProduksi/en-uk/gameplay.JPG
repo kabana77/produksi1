@@ -1,0 +1,93 @@
+ WordWrap = True
+          FontSize = 10
+        end
+      end
+      object DetailBand1: TQRBand
+        Left = 76
+        Top = 264
+        Width = 670
+        Height = 21
+        Frame.Color = clBlack
+        Frame.DrawTop = False
+        Frame.DrawBottom = False
+        Frame.DrawLeft = False
+        Frame.DrawRight = False
+        AlignToBottom = False
+        Color = clWhite
+        ForceNewColumn = False
+        ForceNewPage = False
+        Size.Values = (
+          55.562500000000000000
+          1772.708333333334000000)
+        BandType = rbDetail
+        object QRDBText8: TQRDBText
+          Left = 40
+          Top = 0
+          Width = 84
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          Size.Values = (
+            44.979166666666670000
+            105.833333333333300000
+            0.000000000000000000
+            222.250000000000000000)
+          Alignment = taLeftJustify
+          AlignToBand = False
+          AutoSize = True
+          AutoStretch = False
+          Color = clWhite
+          DataSet = QDetail
+          DataField = 'KONSTRUKSI'
+          Transparent = False
+          WordWrap = True
+          FontSize = 10
+        end
+        object QRDBText9: TQRDBText
+          Left = 176
+          Top = 0
+          Width = 47
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          Size.Values = (
+            44.979166666666670000
+            465.666666666666700000
+            0.000000000000000000
+            124.354166666666700000)
+          Alignment = taLeftJustify
+          AlignToBand = False
+          AutoSize = True
+          AutoStretch = False
+          Color = clWhite
+          DataSet = QDetail
+          DataField = 'CORAK'
+          Transparent = False
+          WordWrap = True
+          FontSize = 10
+        end
+        object QRDBText10: TQRDBText
+          Left = 288
+          Top = 0
+          Width = 37
+          Height = 17
+          Frame.Color = clBlack
+          Frame.DrawTop = False
+          Frame.DrawBottom = False
+          Frame.DrawLeft = False
+          Frame.DrawRight = False
+          Size.Values = (
+            44.979166666666670000
+            762.000000000000000000
+            0.000000000000000000
+            97.895833333333340000)
+          Alignment = taLeftJustify
+          AlignToBand = False
+          AutoSize = True
+          AutoStretch = Fal

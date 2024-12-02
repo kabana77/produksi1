@@ -1,0 +1,64 @@
+ield
+      FieldKind = fkLookup
+      FieldName = 'SATUAN'
+      LookupDataSet = DMFrm.QItemNonBJ
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'SAT1'
+      KeyFields = 'KD_ITEM'
+      Lookup = True
+    end
+    object QDetailQTY_PO: TFloatField
+      FieldName = 'QTY_PO'
+      Required = True
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailQTY_PP: TFloatField
+      FieldName = 'QTY_PP'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailQTY: TFloatField
+      FieldName = 'QTY'
+      Required = True
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QDetailTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QDetailKD_REKANAN: TStringField
+      FieldName = 'KD_REKANAN'
+      Required = True
+      Size = 5
+    end
+    object QDetailNO_REG_KEBUTUHAN: TIntegerField
+      FieldName = 'NO_REG_KEBUTUHAN'
+      Required = True
+    end
+    object QDetailNO_REG_PP: TIntegerField
+      FieldName = 'NO_REG_PP'
+      Required = True
+    end
+    object QDetailMU: TStringField
+      FieldName = 'MU'
+      Required = True
+      Size = 3
+    end
+    object QDetailHARGA: TFloatField
+      FieldName = 'HARGA'
+      Required = True
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailISPILIH: TStringField
+      FieldName = 'ISPILIH'
+      Required = True
+      Size = 1
+    end
+    object QDetailTGL_PO: TDateTimeField
+      FieldName = 'TGL_PO'
+      Required = True
+      DisplayFormat = 'dd mmm yyyy'
+    end
+   

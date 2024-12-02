@@ -1,0 +1,76 @@
+object QDetailOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QDetailTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QDetailNO_REG_BON: TIntegerField
+      FieldName = 'NO_REG_BON'
+      Required = True
+    end
+    object QDetailQTY_BON: TFloatField
+      FieldName = 'QTY_BON'
+    end
+    object QDetailMESIN: TStringField
+      FieldName = 'MESIN'
+      Required = True
+      Size = 10
+    end
+    object QDetailKD_MESIN: TStringField
+      FieldName = 'KD_MESIN'
+      Size = 6
+    end
+    object QDetailNO_MESIN_TENUN: TStringField
+      FieldName = 'NO_MESIN_TENUN'
+      Size = 6
+    end
+    object QDetailNO_POLISI: TStringField
+      FieldName = 'NO_POLISI'
+      Size = 10
+    end
+    object QDetailKD_PROYEK: TStringField
+      FieldName = 'KD_PROYEK'
+    end
+  end
+  object dsQDetail: TwwDataSource
+    DataSet = QDetail
+    Left = 412
+    Top = 105
+  end
+  object rvdTTD: TwwRecordViewDialog
+    DataSource = dsQTransaksi
+    BorderStyle = bsDialog
+    FormPosition.Left = 0
+    FormPosition.Top = 0
+    FormPosition.Width = 0
+    FormPosition.Height = 0
+    NavigatorButtons = []
+    ControlOptions = []
+    LabelFont.Charset = DEFAULT_CHARSET
+    LabelFont.Color = clWindowText
+    LabelFont.Height = -11
+    LabelFont.Name = 'MS Sans Serif'
+    LabelFont.Style = []
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    Caption = 'Record View'
+    Selected.Strings = (
+      'TTD1'#9'50'#9'Ttd 1, Jab 1'#9'F'
+      'TTD2'#9'50'#9'Ttd 2, Jab 2'#9'F'
+      'TTD3'#9'50'#9'Ttd 3, Jab 3'#9'F'
+      'TTD4'#9'50'#9'Ttd 4, Jab 4'#9'F')
+    NavigatorFlat = True
+    Left = 464
+    Top = 48
+  end
+  object QLookItem: TOracleDataSet
+    SQL.Strings = (
+      
+        'select p.kd_item, p.no_part,p.nama_item, p.sat1,p.kd_jns_item, p' +
+        '.kelompok, (p.b00+nvl(q.berjalan,0)) as stok'
+      
+        'from (select a.kd_item, a.no_part, a.n

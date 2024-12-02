@@ -1,0 +1,275 @@
+object ValidasiPenyerahanAccFrm: TValidasiPenyerahanAccFrm
+  Left = -12
+  Top = 56
+  Width = 1032
+  Height = 776
+  Caption = 'VALIDASI PENERIMAAN BB'
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  OldCreateOrder = False
+  Position = poDefault
+  Visible = True
+  WindowState = wsMaximized
+  OnClose = FormClose
+  OnCloseQuery = FormCloseQuery
+  OnCreate = FormCreate
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+  object PanelLeft: TPanel
+    Left = 0
+    Top = 0
+    Width = 41
+    Height = 742
+    Align = alLeft
+    BevelOuter = bvNone
+    Color = 7039851
+    TabOrder = 0
+  end
+  object PanelRight: TPanel
+    Left = 969
+    Top = 0
+    Width = 55
+    Height = 742
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clAppWorkSpace
+    TabOrder = 1
+  end
+  object PanelMain: TPanel
+    Left = 41
+    Top = 0
+    Width = 928
+    Height = 742
+    Align = alLeft
+    BevelOuter = bvNone
+    Ctl3D = False
+    ParentCtl3D = False
+    TabOrder = 2
+    object Label1: TLabel
+      Left = 0
+      Top = 729
+      Width = 928
+      Height = 13
+      Align = alBottom
+      Color = clSkyBlue
+      ParentColor = False
+    end
+    object DBText3: TDBText
+      Left = 0
+      Top = 49
+      Width = 928
+      Height = 27
+      Align = alTop
+      Alignment = taRightJustify
+      Color = clSkyBlue
+      DataField = 'NO_NOTA'
+      DataSource = dsQMaster
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlue
+      Font.Height = -19
+      Font.Name = 'Arial Black'
+      Font.Style = []
+      ParentColor = False
+      ParentFont = False
+    end
+    object PanelHeader: TPanel
+      Left = 0
+      Top = 0
+      Width = 928
+      Height = 49
+      Align = alTop
+      BevelOuter = bvNone
+      Caption = 'NAMA TRANSAKSI'
+      Color = clBackground
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Arial Black'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+    end
+    object PageControl1: TPageControl
+      Left = 0
+      Top = 76
+      Width = 928
+      Height = 653
+      ActivePage = TabSheet2
+      Align = alClient
+      Style = tsFlatButtons
+      TabIndex = 1
+      TabOrder = 1
+      object TabSheet1: TTabSheet
+        Caption = 'Input'
+        OnExit = TabSheet1Exit
+        OnShow = TabSheet1Show
+        object PanelMaster: TPanel
+          Left = 0
+          Top = 0
+          Width = 920
+          Height = 137
+          Align = alTop
+          BevelOuter = bvNone
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 0
+          DesignSize = (
+            920
+            137)
+          object Label6: TLabel
+            Left = 8
+            Top = 56
+            Width = 66
+            Height = 13
+            Caption = 'Keterangan'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label7: TLabel
+            Left = 8
+            Top = 8
+            Width = 54
+            Height = 13
+            Caption = 'No. Bukti'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label9: TLabel
+            Left = 711
+            Top = 43
+            Width = 23
+            Height = 13
+            Anchors = [akTop, akRight]
+            Caption = 'Tgl.'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Bevel1: TBevel
+            Left = 710
+            Top = 64
+            Width = 202
+            Height = 10
+            Anchors = [akTop, akRight]
+            Shape = bsBottomLine
+          end
+          object LBarcode: TDBText
+            Left = 822
+            Top = 0
+            Width = 90
+            Height = 24
+            Alignment = taRightJustify
+            Anchors = [akTop, akRight, akBottom]
+            AutoSize = True
+            DataField = 'NO_NOTA'
+            DataSource = dsQMaster
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -19
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label8: TLabel
+            Left = 584
+            Top = 88
+            Width = 27
+            Height = 13
+            Caption = 'Shift'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label10: TLabel
+            Left = 624
+            Top = 88
+            Width = 28
+            Height = 13
+            Caption = 'Grup'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label11: TLabel
+            Left = 192
+            Top = 8
+            Width = 32
+            Height = 13
+            Caption = 'Divisi'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object DBText1: TDBText
+            Left = 264
+            Top = 24
+            Width = 60
+            Height = 16
+            AutoSize = True
+            DataField = 'LDIVISI'
+            DataSource = dsQMaster
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label12: TLabel
+            Left = 456
+            Top = 24
+            Width = 92
+            Height = 13
+            Caption = 'Perkiraan Kredit'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clOlive
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object wwDBDateTimePicker1: TwwDBDateTimePicker
+            Left = 815
+            Top = 40
+            Width = 97
+            Height = 19
+            TabStop = False
+            Anchors = [akTop, akRight]
+            BorderStyle = bsNone
+            CalendarAttributes.Font.Charset = DEFAULT_CHARSET
+            CalendarAttributes.Font.Color = clWindowText
+            CalendarAttributes.Font.Height = -11
+            CalendarAttributes.Font.Name = 'MS Sans Serif'
+            CalendarAttributes.Font.Style = []
+            DataField = 'TGL'
+     

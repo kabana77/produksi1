@@ -1,0 +1,293 @@
+unit BukuBank;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, QRCtrls, Wwdatsrc, OracleData, Grids, Wwdbigrd, Wwdbgrid,
+  Wwdotdot, Wwdbcomb, StdCtrls, QuickRpt, ComCtrls, Mask, wwdbedit,
+  Wwdbspin, Buttons, ExtCtrls, DBCtrls, wwcheckbox, wwdbdatetimepicker,
+  wwSpeedButton, wwDBNavigator, wwclearpanel, wwdblook, Wwdbdlg;
+
+type
+  TBukuBankFrm = class(TForm)
+    Panel1: TPanel;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    Panel2: TPanel;
+    Panel4: TPanel;
+    BtnClose: TBitBtn;
+    BitBtn5: TBitBtn;
+    Panel3: TPanel;
+    BitBtn1: TBitBtn;
+    ECari: TEdit;
+    cbOtomatis: TCheckBox;
+    QBrowse: TOracleDataSet;
+    dsQBrowse: TwwDataSource;
+    QuickRep1: TQuickRep;
+    PageHeaderBand1: TQRBand;
+    TitleBand1: TQRBand;
+    ColumnHeaderBand1: TQRBand;
+    DetailBand1: TQRBand;
+    SummaryBand1: TQRBand;
+    PageFooterBand1: TQRBand;
+    QRDBText1: TQRDBText;
+    QRDBText3: TQRDBText;
+    QRSysData1: TQRSysData;
+    QRDBText6: TQRDBText;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRLabel4: TQRLabel;
+    QRLabel5: TQRLabel;
+    QRLabel6: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRSysData2: TQRSysData;
+    QRDBText22: TQRDBText;
+    QRLTitle: TQRLabel;
+    Label15: TLabel;
+    vHeight: TwwDBSpinEdit;
+    Label16: TLabel;
+    BtnExport: TBitBtn;
+    dbcField: TwwDBComboBox;
+    vOperand: TLabel;
+    wwDBGrid1: TwwDBGrid;
+    QRLabel3: TQRLabel;
+    QRExpr2: TQRExpr;
+    QRExpr3: TQRExpr;
+    QRExpr1: TQRExpr;
+    QRLabel7: TQRLabel;
+    QRExpr4: TQRExpr;
+    QRExpr5: TQRExpr;
+    QRLabel8: TQRLabel;
+    QBrowseNO_JURNAL: TFloatField;
+    QBrowseNO_NOTA: TStringField;
+    QBrowseTANGGAL: TDateTimeField;
+    QBrowseNO_BUKTI: TStringField;
+    QBrowseKETERANGAN: TStringField;
+    QBrowseKREDIT: TFloatField;
+    QBrowseDEBET: TFloatField;
+    QBrowseKURS: TFloatField;
+    QBrowseKD_PERK: TStringField;
+    QBrowseKD_CASH: TStringField;
+    QBrowseISHEAD: TStringField;
+    QBrowseTGL_INSERT: TDateTimeField;
+    QBrowseOPR_INSERT: TStringField;
+    QBrowseNAMA_PERKIRAAN: TStringField;
+    TabSheet2: TTabSheet;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    wwDBGrid2: TwwDBGrid;
+    QTransaksi: TOracleDataSet;
+    QTransaksiNO_NOTA: TStringField;
+    QTransaksiISPOST: TStringField;
+    QTransaksiTANGGAL: TDateTimeField;
+    QTransaksiKETERANGAN: TStringField;
+    QTransaksiTGL_INSERT: TDateTimeField;
+    QTransaksiOPR_INSERT: TStringField;
+    dsQTransaksi: TwwDataSource;
+    wwDBDateTimePicker1: TwwDBDateTimePicker;
+    wwCheckBox1: TwwCheckBox;
+    Label1: TLabel;
+    DBText1: TDBText;
+    DBMemo1: TDBMemo;
+    Label2: TLabel;
+    Panel8: TPanel;
+    wwDBNavigator1: TwwDBNavigator;
+    wwDBNavigator1Prior: TwwNavButton;
+    wwDBNavigator1Next: TwwNavButton;
+    wwDBNavigator1Insert: TwwNavButton;
+    wwDBNavigator1Delete: TwwNavButton;
+    wwDBNavigator1Edit: TwwNavButton;
+    wwDBNavigator1Post: TwwNavButton;
+    wwDBNavigator1Cancel: TwwNavButton;
+    Label7: TLabel;
+    DBText4: TDBText;
+    DBText3: TDBText;
+    Label6: TLabel;
+    QBrowseNO_REG: TIntegerField;
+    QDetail: TOracleDataSet;
+    QDetailNO_JURNAL: TFloatField;
+    QDetailNO_BUKTI: TStringField;
+    QDetailKETERANGAN: TStringField;
+    QDetailKURS: TFloatField;
+    QDetailKD_PERK: TStringField;
+    QDetailKD_CASH: TStringField;
+    QDetailNO_PROYEK: TIntegerField;
+    QDetailKD_REKANAN: TIntegerField;
+    QDetailNO_ALAT: TIntegerField;
+    QDetailNO_POLISI: TStringField;
+    QDetailKD_DIV: TStringField;
+    QDetailNIK: TStringField;
+    QDetailISHEAD: TStringField;
+    dsQDetail: TwwDataSource;
+    QDetailKD_RAB: TStringField;
+    QDetailNILAI: TFloatField;
+    QTransaksiJENIS: TStringField;
+    LookJenis: TwwDBComboBox;
+    Label3: TLabel;
+    QTotal: TOracleDataSet;
+    QTotalTOTAL: TFloatField;
+    LookProyek: TwwDBLookupCombo;
+    LookRAB: TwwDBLookupComboDlg;
+    LookCashflow: TwwDBLookupComboDlg;
+    LookPerkiraan: TwwDBLookupComboDlg;
+    QDetailISDETAIL: TStringField;
+    QDetailKREDIT: TFloatField;
+    QDetailDEBET: TFloatField;
+    QTransaksiKD_PERK: TStringField;
+    LookKas: TwwDBLookupCombo;
+    Label4: TLabel;
+    QTransaksiNAMA_PERKIRAAN: TStringField;
+    DBText2: TDBText;
+    QBrowseKAS: TStringField;
+    QTransaksiNO_BANK: TIntegerField;
+    QDetailNO_BANK: TIntegerField;
+    QAwal: TOracleDataSet;
+    QAwalAWAL: TFloatField;
+    dsQBukuKas: TwwDataSource;
+    dsQAwal: TwwDataSource;
+    QBukuKas: TOracleDataSet;
+    QBukuKasNO_REG: TIntegerField;
+    QBukuKasNO_JURNAL: TFloatField;
+    QBukuKasNO_NOTA: TStringField;
+    QBukuKasTANGGAL: TDateTimeField;
+    QBukuKasNO_BUKTI: TStringField;
+    QBukuKasKETERANGAN: TStringField;
+    QBukuKasKREDIT: TFloatField;
+    QBukuKasDEBET: TFloatField;
+    QBukuKasKURS: TFloatField;
+    QBukuKasKD_PERK: TStringField;
+    QBukuKasNAMA_PERKIRAAN: TStringField;
+    QBukuKasKD_CASH: TStringField;
+    QBukuKasISHEAD: TStringField;
+    QBukuKasTGL_INSERT: TDateTimeField;
+    QBukuKasOPR_INSERT: TStringField;
+    QBukuKasKAS: TStringField;
+    TabSheet3: TTabSheet;
+    Panel9: TPanel;
+    Label5: TLabel;
+    DBText5: TDBText;
+    wwDBLookupCombo1: TwwDBLookupCombo;
+    GroupBox1: TGroupBox;
+    Label8: TLabel;
+    VTglAwal: TwwDBDateTimePicker;
+    vTglAkhir: TwwDBDateTimePicker;
+    BitBtn2: TBitBtn;
+    Panel10: TPanel;
+    wwDBGrid3: TwwDBGrid;
+    Panel11: TPanel;
+    Label9: TLabel;
+    DBText6: TDBText;
+    Panel12: TPanel;
+    Label11: TLabel;
+    Label10: TLabel;
+    LBerjalan: TLabel;
+    LAkhir: TLabel;
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure wwDBGrid1TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2TitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure wwDBGrid2CalcCellColors(Sender: TObject; Field: TField;
+      State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+      ABrush: TBrush);
+    procedure ECariChange(Sender: TObject);
+    procedure cbOtomatisClick(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure BitBtn5Click(Sender: TObject);
+    procedure TabSheet1Show(Sender: TObject);
+    procedure vHeightAfterUpClick(Sender: TObject);
+    procedure BtnExportClick(Sender: TObject);
+    procedure DBText5Click(Sender: TObject);
+    procedure vOperandClick(Sender: TObject);
+    procedure dbcFieldEnter(Sender: TObject);
+    procedure QDetailAfterScroll(DataSet: TDataSet);
+    procedure TitleBand1BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+    procedure QTransaksiNewRecord(DataSet: TDataSet);
+    procedure DBMemo1KeyPress(Sender: TObject; var Key: Char);
+    procedure wwDBDateTimePicker1KeyPress(Sender: TObject; var Key: Char);
+    procedure QTransaksiBeforePost(DataSet: TDataSet);
+    procedure TabSheet2Show(Sender: TObject);
+    procedure wwDBGrid2UpdateFooter(Sender: TObject);
+    procedure wwDBGrid2Enter(Sender: TObject);
+    procedure QDetailNewRecord(DataSet: TDataSet);
+    procedure QDetailBeforePost(DataSet: TDataSet);
+    procedure LookProyekEnter(Sender: TObject);
+    procedure LookRABEnter(Sender: TObject);
+    procedure QDetailKD_RABChange(Sender: TField);
+    procedure LookCashflowEnter(Sender: TObject);
+    procedure LookPerkiraanEnter(Sender: TObject);
+    procedure LookRABUserButton1Click(Sender: TObject;
+      LookupTable: TDataSet);
+    procedure QTransaksiAfterScroll(DataSet: TDataSet);
+    procedure LookKasEnter(Sender: TObject);
+    procedure VTglAwalChange(Sender: TObject);
+    procedure vTglAkhirChange(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure QAwalBeforeOpen(DataSet: TDataSet);
+    procedure QBukuKasBeforeOpen(DataSet: TDataSet);
+    procedure TabSheet3Show(Sender: TObject);
+  private
+    { Private declarations }
+    vfilter, vfilter2, vorder : String;
+  public
+    { Public declarations }
+  end;
+
+var
+  BukuBankFrm: TBukuBankFrm;
+
+implementation
+
+uses DM, Main, XPROCS, DateUtils;
+
+{$R *.dfm}
+
+procedure TBukuBankFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  BukuBankFrm:=Nil;
+end;
+
+procedure TBukuBankFrm.wwDBGrid1TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TBukuBankFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+

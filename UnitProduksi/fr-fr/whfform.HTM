@@ -1,0 +1,77 @@
+Name = 'Cipsoft_GL'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetSYLK
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQBrowse
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        KeyOptions = [dgEnterToTab, dgAllowInsert]
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        RowHeightPercent = 125
+        TabOrder = 1
+        TitleAlignment = taCenter
+        TitleFont.Charset = DEFAULT_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        PaintOptions.AlternatingRowColor = clMoneyGreen
+        PaintOptions.ActiveRecordColor = clGreen
+        GroupFieldName = 'NO_NOTA'
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 873
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 380
+    Top = 81
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select * from rab_real1 order by ibaris')
+    QBEDefinition.QBEFieldDefs = {
+      040000001C00000006000000494241524953010000000000060000004B445F52
+      41420100000000000A0000004B45544552414E47414E0100000000000A000000
+      414B5455414C5F50534E0100000000000D000000414B5455414C5F4D55544153
+      490100000000000A0000004255444745545F50534E0100000000000D00000042
+      55444745545F4D5554415349010000000000090000005641525F4E494C414901
+      0000000000070000005641525F50534E0100000000000B000000414B5455414C
+      5F50534E320100000000000E000000414B5455414C5F4D555441534932010000
+      0000000B0000004255444745545F50534E320100000000000E00000042554447
+      45545F4D5554415349320100000000000A0000005641525F4E494C4149320100
+      00000000080000005641525F50534E320100000000000B000000414B5455414C
+      5F50534E330100000000000E000000414B5455414C5F4D555441534933010000
+      0000000B0000004255444745545F50534E330100000000000E00000042554447
+      45545F4D5554415349330100000000000A0000005641525F4E494C4149330100
+      00000000080000005641525F50534E330100000000000B000000414B5455414C
+      5F50534E340100000000000E000000414B5455414C5F4D555441534934010000
+      0000000B0000004255444745545F50534E340100000000000E00000042554447
+      45545F4D5554415349340100000000000A00000056415

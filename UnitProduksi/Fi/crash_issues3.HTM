@@ -1,0 +1,325 @@
+.Font.Color = clWindowText
+            CalendarAttributes.Font.Height = -11
+            CalendarAttributes.Font.Name = 'MS Sans Serif'
+            CalendarAttributes.Font.Style = []
+            Epoch = 1950
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+            ShowButton = True
+            TabOrder = 1
+            DisplayFormat = 'dd mmm yyyy'
+          end
+          object BtnOk: TBitBtn
+            Left = 280
+            Top = 26
+            Width = 57
+            Height = 25
+            Caption = '&Ok'
+            TabOrder = 2
+            OnClick = BtnOkClick
+            NumGlyphs = 2
+          end
+          object wwDBSpinLine2: TwwDBSpinEdit
+            Left = 546
+            Top = 32
+            Width = 41
+            Height = 19
+            Increment = 100.000000000000000000
+            MaxValue = 400.000000000000000000
+            MinValue = 100.000000000000000000
+            Value = 100.000000000000000000
+            TabOrder = 3
+            UnboundDataType = wwDefault
+            OnChange = wwDBSpinLine2Change
+          end
+        end
+        object PanelBrowse: TPanel
+          Left = 0
+          Top = 70
+          Width = 994
+          Height = 331
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 1
+          object wwDBGrid2: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 994
+            Height = 331
+            DisableThemes = True
+            DisableThemesInTitle = True
+            Selected.Strings = (
+              'NO_NOTA'#9'14'#9'NO NOTA'#9'F'
+              'TANGGAL'#9'11'#9'TANGGAL'#9'F'
+              'KODE_BRG'#9'11'#9'Kode'#9'F'#9'KONSTRUKSI'
+              'NAMA_BRG'#9'24'#9'Nama'#9'F'#9'KONSTRUKSI'
+              'SATUAN'#9'10'#9'SATUAN'#9'F'
+              'QTY10'#9'10'#9'QTY'#9'F'
+              'NO_ORDER'#9'20'#9'NO ORDER'#9'F'
+              'GRUP'#9'8'#9'GRUP'#9'F'
+              'SHIFT'#9'8'#9'SHIFT'#9'F'
+              'NAMA_DIVISI'#9'15'#9'DIVISI'#9'F')
+            IniAttributes.SaveToRegistry = True
+            IniAttributes.SectionName = 'Produksi'
+            IniAttributes.Delimiter = ';;'
+            ExportOptions.ExportType = wwgetSYLK
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQBrowse2
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = []
+            KeyOptions = []
+            Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize, dgDblClickColSizing]
+            ParentCtl3D = False
+            ParentFont = False
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = [fsBold]
+            TitleLines = 2
+            TitleButtons = True
+            UseTFields = False
+            OnTitleButtonClick = wwDBGrid2TitleButtonClick
+            OnDblClick = wwDBGrid2DblClick
+            OnUpdateFooter = wwDBGrid2UpdateFooter
+          end
+        end
+        object PanelFooter2: TPanel
+          Left = 0
+          Top = 401
+          Width = 994
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 2
+          object LTotal: TLabel
+            Left = 622
+            Top = -2
+            Width = 131
+            Height = 16
+            Caption = 'Total (Mtr) :'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Courier'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object LTMtr: TLabel
+            Left = 762
+            Top = -2
+            Width = 11
+            Height = 16
+            Caption = '-'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Courier'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object LTPtg: TLabel
+            Left = 761
+            Top = 20
+            Width = 11
+            Height = 16
+            Caption = '-'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Courier'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label13: TLabel
+            Left = 622
+            Top = 20
+            Width = 131
+            Height = 16
+            Caption = 'Total (Ptg) :'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clBlue
+            Font.Height = -16
+            Font.Name = 'Courier'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object wwDBNavigator1: TwwDBNavigator
+            Left = 0
+            Top = 0
+            Width = 145
+            Height = 41
+            AutosizeStyle = asSizeNavButtons
+            DataSource = dsQBrowse
+            RepeatInterval.InitialDelay = 500
+            RepeatInterval.Interval = 100
+            Align = alLeft
+            object wwDBNavigator1PriorPage: TwwNavButton
+              Left = 0
+              Top = 0
+              Width = 37
+              Height = 41
+              Hint = 'Move backward 10 records'
+              ImageIndex = -1
+              NumGlyphs = 2
+              Spacing = 4
+              Transparent = False
+              Caption = 'wwDBNavigator1PriorPage'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 0
+              Style = nbsPriorPage
+            end
+            object wwDBNavigator1NextPage: TwwNavButton
+              Left = 37
+              Top = 0
+              Width = 36
+              Height = 41
+              Hint = 'Move forward 10 records'
+              ImageIndex = -1
+              NumGlyphs = 2
+              Spacing = 4
+              Transparent = False
+              Caption = 'wwDBNavigator1NextPage'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 1
+              Style = nbsNextPage
+            end
+            object wwDBNavigator1SaveBookmark: TwwNavButton
+              Left = 73
+              Top = 0
+              Width = 36
+              Height = 41
+              Hint = 'Bookmark current record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              Spacing = 4
+              Transparent = False
+              Caption = 'wwDBNavigator1SaveBookmark'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 2
+              Style = nbsSaveBookmark
+            end
+            object wwDBNavigator1RestoreBookmark: TwwNavButton
+              Left = 109
+              Top = 0
+              Width = 36
+              Height = 41
+              Hint = 'Go back to saved bookmark'
+              ImageIndex = -1
+              NumGlyphs = 2
+              Spacing = 4
+              Transparent = False
+              Caption = 'wwDBNavigator1RestoreBookmark'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 3
+              Style = nbsRestoreBookmark
+            end
+          end
+          object BtnClose2: TBitBtn
+            Left = 402
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = '&Close'
+            TabOrder = 1
+            OnClick = BtnClose2Click
+            NumGlyphs = 2
+          end
+          object BtnExport: TBitBtn
+            Left = 242
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = '&Export'
+            TabOrder = 2
+            OnClick = BtnExportClick
+            NumGlyphs = 2
+          end
+          object BtnPrintBrowse: TBitBtn
+            Left = 322
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = '&Print'
+            TabOrder = 3
+            OnClick = BtnPrintBrowseClick
+            NumGlyphs = 2
+          end
+          object BtnDesign2: TBitBtn
+            Left = 160
+            Top = 8
+            Width = 75
+            Height = 25
+            Caption = 'Design'
+            TabOrder = 4
+            OnClick = BtnDesign2Click
+            NumGlyphs = 2
+          end
+        end
+      end
+      object TabSheet3: TTabSheet
+        Caption = 'SOP'
+        ImageIndex = 2
+        OnShow = TabSheet3Show
+        object wwDBRichEdit1: TwwDBRichEdit
+          Left = 0
+          Top = 0
+          Width = 994
+          Height = 442
+          Align = alClient
+          AutoURLDetect = False
+          Color = clInfoBk
+          DataField = 'SINOPSIS'
+          DataSource = dsQSOP
+          PrintJobName = 'Delphi 6'
+          TabOrder = 0
+          EditorCaption = 'Edit Rich Text'
+          EditorPosition.Left = 0
+          EditorPosition.Top = 0
+          EditorPosition.Width = 100
+          EditorPosition.Height = 50
+          MeasurementUnits = muInches
+          PrintMargins.Top = 1.000000000000000000
+          PrintMargins.Bottom = 1.000000000000000000
+          PrintMargins.Left = 1.000000000000000000
+          PrintMargins.Right = 1.000000000000000000
+          PrintHeader.VertMargin = 0.500000000000000000
+          PrintHeader.Font.Charset = DEFAULT_CHARSET
+          PrintHeader.Font.Color = clWindowText
+          PrintHeader.Font.Height = -11
+          PrintHeader.Font.Name = 'MS Sans Serif'
+          PrintHeader.Font.Style = []
+          PrintFooter.VertMargin = 0.500000000000000000
+          PrintFooter.Font.Charset = DEFAULT_CHARSET
+          PrintFooter.Font.Color = clWindowText
+          PrintFooter.Font.Height = -11
+          PrintFooter.Font.Name = 'MS Sans Serif'
+          PrintFooter.Font.Style = []
+          RichEditVersion = 2
+          Data = {
+            810000007B5C727466315C616E73695C616E7369637067313235325C64656666
+            305C646

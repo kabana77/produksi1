@@ -1,0 +1,29 @@
+-',QTotalPCS.AsFloat);
+  wwDBGrid1.ColumnByName('QTY4').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotalKG.AsFloat); }
+  QTotal2.Close;
+  QTotal2.SetVariable('ibukti',QMaster2IBUKTI.AsInteger);
+  QTotal2.Open;
+  wwDBGrid1.ColumnByName('QTY3').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotal2GULUNG_IN.AsFloat);
+  wwDBGrid1.ColumnByName('QTY4').FooterValue:=FormatFloat('0.0,0;(0.0,0);-',QTotal2MTR_IN.AsFloat);
+end;
+
+procedure TKoreksiMasukJDFrm.QMaster2AfterPost(DataSet: TDataSet);
+begin
+  PageControl1.Pages[1].TabVisible:=QMaster2.IsEmpty or (QMaster2ISPOST.AsString='1');
+  PageControl1.Pages[2].TabVisible:=QMaster2.IsEmpty or (QMaster2ISPOST.AsString='1');
+end;
+
+procedure TKoreksiMasukJDFrm.QMaster2BeforeDelete(DataSet: TDataSet);
+begin
+  if QMaster2ISPOST.AsString='1' then
+  begin
+     ShowMessage('Maaf, sudah di-POST !, tidak bisa diubah...');
+     Abort;
+  end;
+end;
+
+procedure TKoreksiMasukJDFrm.QMaster2BeforeEdit(DataSet: TDataSet);
+begin
+  if QMaster2ISPOST.AsString='1' then
+  begin
+     ShowMessage('Maaf, sud

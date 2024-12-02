@@ -1,0 +1,379 @@
+e
+            DataField = 'GRUP'
+            DataSource = dsQMaster2
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              'A'
+              'B'
+              'C'
+              'D'
+              'E'
+              'F')
+            Sorted = False
+            TabOrder = 4
+            UnboundDataType = wwDefault
+          end
+          object wwDBComboBox2: TwwDBComboBox
+            Left = 584
+            Top = 104
+            Width = 33
+            Height = 19
+            ShowButton = True
+            Style = csDropDownList
+            MapList = False
+            AllowClearKey = False
+            DataField = 'SHIFT'
+            DataSource = dsQMaster2
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              '0'
+              '1'
+              '2'
+              '3'
+              '4')
+            Sorted = False
+            TabOrder = 3
+            UnboundDataType = wwDefault
+          end
+          object wwDBLookupComboDlg1: TwwDBLookupComboDlg
+            Left = 191
+            Top = 24
+            Width = 65
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'KD_DIV'#9'5'#9'KODE'#9#9
+              'LNAMA_DIVISI'#9'40'#9'DIVISI'#9#9)
+            DataField = 'KD_DIV'
+            DataSource = dsQMaster2
+            LookupTable = DMFrm.QDivisi
+            LookupField = 'KD_DIV'
+            TabOrder = 1
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+          end
+          object wwDBComboBox4: TwwDBComboBox
+            Left = 664
+            Top = 104
+            Width = 193
+            Height = 19
+            ShowButton = True
+            Style = csDropDownList
+            MapList = False
+            AllowClearKey = False
+            DataField = 'STATUS'
+            DataSource = dsQMaster2
+            DropDownCount = 8
+            ItemHeight = 0
+            Items.Strings = (
+              'SISA ORDER'
+              'PENYESUAIAN STOK'
+              'STOK OPNAME'
+              'PROSES ULANG')
+            Sorted = False
+            TabOrder = 6
+            UnboundDataType = wwDefault
+          end
+        end
+        object PanelDetail: TPanel
+          Left = 0
+          Top = 178
+          Width = 994
+          Height = 223
+          Align = alClient
+          BevelOuter = bvNone
+          TabOrder = 2
+          object wwDBGrid1: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 994
+            Height = 223
+            ControlType.Strings = (
+              'KD_ITEM;CustomEdit;LookItem;F'
+              'KD_SUB_LOKASI2;CustomEdit;LookLokasi2;F'
+              'KD_KONSTRUKSI;CustomEdit;LookKonstruksi;F'
+              'KD_WARNA;CustomEdit;LookWarna;F'
+              'SATUAN;CustomEdit;wwDBComboBox3;F'
+              'NO_ORDER;CustomEdit;LookOrder;F')
+            Selected.Strings = (
+              'KD_KONSTRUKSI'#9'6'#9'Kode'#9'T'#9'KONSTRUKSI'
+              'NAMA_KONSTRUKSI'#9'30'#9'Nama'#9'T'#9'KONSTRUKSI'
+              'SATUAN'#9'10'#9'Satuan'#9'T'
+              'QTY10'#9'10'#9'KELUAR~(Qty)'#9'F'
+              'NO_ORDER'#9'25'#9'NO ORDER'#9'T')
+            IniAttributes.SaveToRegistry = True
+            IniAttributes.SectionName = 'Produksi'
+            IniAttributes.Delimiter = ';;'
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQDetail2
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize, dgDblClickColSizing]
+            ParentCtl3D = False
+            ParentFont = False
+            RowHeightPercent = 150
+            TabOrder = 0
+            TitleAlignment = taCenter
+            TitleFont.Charset = DEFAULT_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'MS Sans Serif'
+            TitleFont.Style = []
+            TitleLines = 2
+            TitleButtons = True
+            UseTFields = False
+            OnEnter = wwDBGrid1Enter
+            OnUpdateFooter = wwDBGrid1UpdateFooter
+          end
+          object LookKonstruksi: TwwDBLookupComboDlg
+            Left = 24
+            Top = 40
+            Width = 121
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'KD_KONSTRUKSI'#9'6'#9'KODE'#9'F'
+              'NAMA_KONSTRUKSI'#9'20'#9'KONSTRUKSI'#9'F'
+              'SATUAN'#9'10'#9'SATUAN'#9'F'
+              'QTY'#9'10'#9'QTY'#9'F'
+              'NO_ORDER'#9'25'#9'NO ORDER'#9'F')
+            DataField = 'KD_KONSTRUKSI'
+            DataSource = dsQDetail2
+            LookupTable = QKonstruksi
+            LookupField = 'KD_KONSTRUKSI'
+            TabOrder = 1
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+            OnCloseUp = LookKonstruksiCloseUp
+            OnEnter = LookKonstruksiEnter
+          end
+        end
+        object PanelFooter1: TPanel
+          Left = 0
+          Top = 401
+          Width = 994
+          Height = 41
+          Align = alBottom
+          BevelOuter = bvNone
+          TabOrder = 3
+          object BtnPrintInput: TBitBtn
+            Left = 256
+            Top = 6
+            Width = 75
+            Height = 25
+            Caption = '&Print'
+            TabOrder = 0
+            OnClick = BtnPrintInputClick
+            NumGlyphs = 2
+          end
+          object BtnClose1: TBitBtn
+            Left = 400
+            Top = -2
+            Width = 75
+            Height = 25
+            Caption = '&Close'
+            TabOrder = 1
+            OnClick = BtnClose1Click
+            NumGlyphs = 2
+          end
+          object wwDBNavigatorInput: TwwDBNavigator
+            Left = 0
+            Top = 0
+            Width = 249
+            Height = 41
+            AutosizeStyle = asSizeNavButtons
+            DataSource = dsQMaster2
+            RepeatInterval.InitialDelay = 500
+            RepeatInterval.Interval = 100
+            Align = alLeft
+            object wwDBNavigatorInputCancel: TwwNavButton
+              Left = 0
+              Top = 0
+              Width = 83
+              Height = 41
+              Hint = 'Cancel changes made to current record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              ShowText = True
+              Spacing = 4
+              Transparent = False
+              Caption = 'Ba&tal'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 0
+              Style = nbsCancel
+            end
+            object wwDBNavigatorInputButton1: TwwNavButton
+              Left = 83
+              Top = 0
+              Width = 83
+              Height = 41
+              Hint = 'Insert new record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              ShowText = True
+              Spacing = 4
+              Transparent = False
+              Caption = '&Baru'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 1
+              Style = nbsInsert
+            end
+            object wwDBNavigatorInputButton2: TwwNavButton
+              Left = 166
+              Top = 0
+              Width = 83
+              Height = 41
+              Hint = 'Post changes of current record'
+              ImageIndex = -1
+              NumGlyphs = 2
+              ShowText = True
+              Spacing = 4
+              Transparent = False
+              Caption = '&Simpan'
+              Enabled = False
+              DisabledTextColors.ShadeColor = clGray
+              DisabledTextColors.HighlightColor = clBtnHighlight
+              Index = 2
+              Style = nbsPost
+            end
+          end
+        end
+        object PanelBand: TPanel
+          Left = 0
+          Top = 137
+          Width = 994
+          Height = 41
+          Align = alTop
+          BevelOuter = bvNone
+          Color = clSkyBlue
+          TabOrder = 1
+          DesignSize = (
+            994
+            41)
+          object Label14: TLabel
+            Left = 257
+            Top = 2
+            Width = 43
+            Height = 13
+            Anchors = [akLeft, akTop, akBottom]
+            Caption = 'Spasi (%)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsUnderline]
+            ParentFont = False
+            OnClick = Label14Click
+          end
+          object Label15: TLabel
+            Left = 8
+            Top = 2
+            Width = 44
+            Height = 13
+            Caption = 'Cari Nota'
+          end
+          object DBText4: TDBText
+            Left = 448
+            Top = 3
+            Width = 50
+            Height = 13
+            AutoSize = True
+            DataField = 'TGL_INSERT'
+            DataSource = dsQMaster2
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object DBText2: TDBText
+            Left = 448
+            Top = 23
+            Width = 50
+            Height = 13
+            AutoSize = True
+            DataField = 'OPR_INSERT'
+            DataSource = dsQMaster2
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label16: TLabel
+            Left = 368
+            Top = 3
+            Width = 66
+            Height = 13
+            Caption = 'Tanggal Input'
+          end
+          object Label17: TLabel
+            Left = 368
+            Top = 23
+            Width = 41
+            Height = 13
+            Caption = 'Operator'
+          end
+          object wwDBSpinLine1: TwwDBSpinEdit
+            Left = 257
+            Top = 18
+            Width = 41
+            Height = 19
+            Anchors = [akLeft, akTop, akBottom]
+            Increment = 100.000000000000000000
+            MaxValue = 400.000000000000000000
+            MinValue = 100.000000000000000000
+            Value = 100.000000000000000000
+            TabOrder = 0
+            UnboundDataType = wwDefault
+            OnChange = wwDBSpinLine1Change
+          end
+          object EditCari: TEdit
+            Left = 8
+            Top = 19
+            Width = 145
+            Height = 19
+            TabOrder = 1
+            OnKeyDown = EditCariKeyDown
+          end
+          object cbPost: TwwCheckBox
+            Left = 160
+            Top = 19
+            Width = 81
+            Height = 17
+            DisableThemes = False
+            AlwaysTransparent = False
+            ValueChecked = '1'
+            ValueUnchecked = '0'
+            DisplayValueChecked = 

@@ -1,0 +1,43 @@
+
+  SisdurFrm.Free;
+end;
+
+procedure TBAServisFrm.LookMUEnter(Sender: TObject);
+begin
+  DMFrm.QMU.Open;
+end;
+
+procedure TBAServisFrm.wwDBGrid2UpdateFooter(Sender: TObject);
+begin
+  if (QTransaksi.Active) and (QTransaksi.State=dsBrowse) and (not QTransaksi.IsEmpty) then
+  begin
+  QTotal.Close;
+  QTotal.SetVariable('no_reg_hutang',QTransaksiNO_REG_HUTANG.AsInteger);
+  QTotal.Open;
+  wwDBGrid2.ColumnByName('SUB_TOTAL').FooterValue:=FormatFloat('#,##0.##;(#,##0.##)',QTotalTOTAL.AsFloat);
+  end;
+  if QTotal2.Active then
+  LTotalHutang.Caption:=FormatFloat('#,##0.##;(#,##0.##)',QTotalTOTAL.AsFloat+QTotal2TOT_BIAYA_LAIN.AsFloat);
+end;
+
+procedure TBAServisFrm.QuickRep2BeforePrint(Sender: TCustomQuickRep;
+  var PrintReport: Boolean);
+begin
+  vdpp:=0;
+  vppn:=0;
+  vtotal:=0;
+  vfirst_page:=True;
+end;
+
+procedure TBAServisFrm.PageHeaderBand2BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if vfirst_page then
+  begin
+     QRLAlamat.Enabled:=True;
+     QRLTelepon.Enabled:=True;
+     QRLAbel23.Enabled:=True;
+     QRLAbel25.Enabled:=True;
+     QRENo_Nota.Enabled:=False;
+     PageHeaderBand2.Height:=52;
+     QRLAlamat.Caption:=DMFrm.QPerusahaanALAMAT.AsSt

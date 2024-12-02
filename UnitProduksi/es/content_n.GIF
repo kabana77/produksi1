@@ -1,0 +1,32 @@
+signSize = (
+            721
+            48)
+          object DBText1: TDBText
+            Left = 602
+            Top = 7
+            Width = 114
+            Height = 33
+            Alignment = taRightJustify
+            Anchors = [akTop, akRight]
+            AutoSize = True
+            DataField = 'NO_NOTA'
+            DataSource = dsQMaster
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clYellow
+            Font.Height = -24
+            Font.Name = 'Arial Black'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object DBText2: TDBText
+            Left = 13
+            Top = 7
+            Width = 53
+            Height = 33
+            Color = clWhite
+            DataField = 'KD_TRANSAKSI'
+            DataSource = dsQTransaksi
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -2

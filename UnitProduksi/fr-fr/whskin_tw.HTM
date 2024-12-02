@@ -1,0 +1,45 @@
+;
+    procedure QRBand3BeforePrint(Sender: TQRCustomBand;
+      var PrintBand: Boolean);
+  private
+    { Private declarations }
+    vfilter, vorder, vfilter2 : String;
+    vnomer, vnomer2 : Integer;
+  public
+    { Public declarations }
+    vkd_jns_item, vkd_jns_kebutuhan, vkd_bag : String;
+    vhak_input : Boolean;
+    vrecord_ke : Integer;
+  end;
+
+var
+  RekapPemakaianObatPerBagFrm: TRekapPemakaianObatPerBagFrm;
+
+implementation
+
+uses DM, MainBrowse, Main, Menus, XPROCS, DateUtils, Keterangan, Sisdur;
+
+{$R *.dfm}
+
+procedure TRekapPemakaianObatPerBagFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  RekapPemakaianObatPerBagFrm:=Nil;
+end;
+
+procedure TRekapPemakaianObatPerBagFrm.FormCreate(Sender: TObject);
+begin
+  DMFrm.QLookSubBagian.Close;
+  QLookItem.Close;
+end;
+
+procedure TRekapPemakaianObatPerBagFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'

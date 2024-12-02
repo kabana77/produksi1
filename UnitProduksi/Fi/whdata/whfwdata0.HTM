@@ -1,0 +1,734 @@
+
+        object DBText6: TDBText
+          Left = 456
+          Top = 16
+          Width = 80
+          Height = 22
+          AutoSize = True
+          DataField = 'STATUS'
+          DataSource = dsQTransaksi
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clNavy
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object Label12: TLabel
+          Left = 456
+          Top = 3
+          Width = 30
+          Height = 13
+          Caption = 'Status'
+        end
+        object Panel9: TPanel
+          Left = 634
+          Top = 0
+          Width = 257
+          Height = 41
+          Align = alRight
+          BevelOuter = bvNone
+          ParentColor = True
+          TabOrder = 0
+          object Label7: TLabel
+            Left = 8
+            Top = 3
+            Width = 66
+            Height = 13
+            Caption = 'Tanggal Input'
+          end
+          object DBText4: TDBText
+            Left = 88
+            Top = 3
+            Width = 50
+            Height = 13
+            AutoSize = True
+            DataField = 'TGL_INSERT'
+            DataSource = dsQTransaksi
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object DBText3: TDBText
+            Left = 88
+            Top = 23
+            Width = 50
+            Height = 13
+            AutoSize = True
+            DataField = 'OPR_INSERT'
+            DataSource = dsQTransaksi
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clBlue
+            Font.Height = -11
+            Font.Name = 'MS Sans Serif'
+            Font.Style = [fsBold]
+            ParentFont = False
+          end
+          object Label6: TLabel
+            Left = 8
+            Top = 23
+            Width = 41
+            Height = 13
+            Caption = 'Operator'
+          end
+        end
+        object wwDBNavigator1: TwwDBNavigator
+          Left = 0
+          Top = 0
+          Width = 351
+          Height = 41
+          DisableThemes = True
+          AutosizeStyle = asSizeNavButtons
+          DataSource = dsQTransaksi
+          ShowHint = True
+          RepeatInterval.InitialDelay = 500
+          RepeatInterval.Interval = 100
+          Align = alLeft
+          Color = clMoneyGreen
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlue
+          Font.Height = -11
+          Font.Name = 'MS Sans Serif'
+          Font.Style = [fsBold]
+          ParentShowHint = False
+          object wwDBNavigator1Prior: TwwNavButton
+            Left = 0
+            Top = 0
+            Width = 51
+            Height = 41
+            Hint = 'Move to prior record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            Spacing = 4
+            Transparent = False
+            Caption = 'wwDBNavigator1Prior'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            ParentShowHint = False
+            ShowHint = True
+            Index = 0
+            Style = nbsPrior
+          end
+          object wwDBNavigator1Next: TwwNavButton
+            Left = 51
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Move to next record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            Spacing = 4
+            Transparent = False
+            Caption = 'wwDBNavigator1Next'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 1
+            Style = nbsNext
+          end
+          object wwDBNavigator1Insert: TwwNavButton
+            Left = 101
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Insert new record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Tambah'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 2
+            Style = nbsInsert
+          end
+          object wwDBNavigator1Delete: TwwNavButton
+            Left = 151
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Delete current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Hapus'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 3
+            Style = nbsDelete
+          end
+          object wwDBNavigator1Edit: TwwNavButton
+            Left = 201
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Edit current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Edit'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 4
+            Style = nbsEdit
+          end
+          object wwDBNavigator1Post: TwwNavButton
+            Left = 251
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Post changes of current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Simpan'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 5
+            Style = nbsPost
+          end
+          object wwDBNavigator1Cancel: TwwNavButton
+            Left = 301
+            Top = 0
+            Width = 50
+            Height = 41
+            Hint = 'Cancel changes made to current record'
+            ImageIndex = -1
+            NumGlyphs = 2
+            ShowText = True
+            Spacing = 4
+            Transparent = False
+            Caption = '&Batal'
+            Enabled = False
+            DisabledTextColors.ShadeColor = clGray
+            DisabledTextColors.HighlightColor = clBtnHighlight
+            Index = 6
+            Style = nbsCancel
+          end
+        end
+        object wwCheckBox1: TwwCheckBox
+          Left = 356
+          Top = 14
+          Width = 94
+          Height = 22
+          DisableThemes = False
+          AlwaysTransparent = False
+          ValueChecked = '1'
+          ValueUnchecked = '0'
+          DisplayValueChecked = 'True'
+          DisplayValueUnchecked = 'False'
+          NullAndBlankState = cbUnchecked
+          Caption = 'P&osting'
+          DataField = 'ISPOST'
+          DataSource = dsQTransaksi
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clRed
+          Font.Height = -19
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+      object wwDBGrid2: TwwDBGrid
+        Left = 0
+        Top = 198
+        Width = 891
+        Height = 311
+        ControlType.Strings = (
+          'KD_SUB_LOKASI;CustomEdit;LookLokasi;F')
+        Selected.Strings = (
+          'KD_ITEM'#9'9'#9'Kode'#9'T'#9'DATA PO'
+          'KETERANGAN'#9'30'#9'Diskripsi Item Barang'#9'T'#9'DATA PO'
+          'NO_NOTA'#9'15'#9'Nomer'#9'T'#9'DATA PO'
+          'TGL_PO'#9'10'#9'Kebutuhan'#9'T'#9'DATA PO'
+          'SATUAN_PO'#9'6'#9'Satuan'#9'T'#9'DATA PO'
+          'QTY_PO'#9'7'#9'Jumlah'#9'T'#9'DATA PO'
+          'HARGA'#9'10'#9'HARGA'#9'T'
+          'DISC'#9'4'#9'DISC'#9'T'
+          'QTY'#9'9'#9'JUMLAH'#9'T'
+          'SUB_TOTAL'#9'11'#9'SUB_TOTAL'#9'T'
+          'DPP'#9'10'#9'DPP'#9'T'#9'NILAI'
+          'PPN'#9'10'#9'PPn10%'#9'T'#9'NILAI'
+          'TOTAL'#9'10'#9'Total'#9'T'#9'NILAI')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'Pismatex Master'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clSkyBlue
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        Align = alClient
+        DataSource = dsQDetail
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'MS Sans Serif'
+        Font.Style = []
+        KeyOptions = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgTrailingEllipsis, dgDblClickColSizing]
+        ParentFont = False
+        RowHeightPercent = 225
+        TabOrder = 1
+        TitleAlignment = taLeftJustify
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWindowText
+        TitleFont.Height = -11
+        TitleFont.Name = 'Lucida Sans'
+        TitleFont.Style = [fsBold]
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        OnCalcCellColors = wwDBGrid2CalcCellColors
+        OnDblClick = wwDBGrid2DblClick
+        OnEnter = wwDBGrid2Enter
+        OnUpdateFooter = wwDBGrid2UpdateFooter
+        PaintOptions.AlternatingRowColor = clMoneyGreen
+        PaintOptions.ActiveRecordColor = clGreen
+        GroupFieldName = 'SUB_BAGIAN'
+      end
+      object LookLokasi: TwwDBLookupComboDlg
+        Left = 584
+        Top = 296
+        Width = 121
+        Height = 21
+        GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+        GridColor = clWhite
+        GridTitleAlignment = taLeftJustify
+        Caption = 'Lookup'
+        MaxWidth = 0
+        MaxHeight = 209
+        Selected.Strings = (
+          'SUB_LOKASI'#9'30'#9'LOKASI'#9'F'#9)
+        DataField = 'KD_SUB_LOKASI'
+        DataSource = dsQDetail
+        LookupTable = QLookLokasi
+        LookupField = 'KD_SUB_LOKASI'
+        TabOrder = 5
+        AutoDropDown = False
+        ShowButton = True
+        AllowClearKey = False
+        OnCloseUp = LookLokasiCloseUp
+        OnEnter = LookLokasiEnter
+      end
+    end
+  end
+  object Panel4: TPanel
+    Left = 0
+    Top = 0
+    Width = 899
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = 206
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWhite
+    Font.Height = -19
+    Font.Name = 'MS Sans Serif'
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 2
+    object DBText5: TDBText
+      Left = 16
+      Top = 8
+      Width = 80
+      Height = 22
+      Cursor = crHandPoint
+      AutoSize = True
+      DataField = 'NAMA_TRANSAKSI'
+      DataSource = dsQJnsTransaksi
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clWhite
+      Font.Height = -19
+      Font.Name = 'Arial'
+      Font.Style = [fsBold]
+      ParentFont = False
+      OnClick = DBText5Click
+    end
+  end
+  object QTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from pmtx02.lpb a'
+      'where a.no_reg_lpb=:no_reg_lpb')
+    ReadBuffer = 1
+    Variables.Data = {
+      03000000010000000B0000003A4E4F5F5245475F4C5042030000000400000045
+      00000000000000}
+    SequenceField.Field = 'NO_REG_LPB'
+    SequenceField.Sequence = 'PMTX02.NO_REG_LPB'
+    QBEDefinition.QBEFieldDefs = {
+      04000000100000000700000054414E4747414C010000000000070000004E4F5F
+      4E4F54410100000000000A0000004B45544552414E47414E0100000000000600
+      00004953504F5354010000000000060000005354415455530100000000000A00
+      000054474C5F494E534552540100000000000A0000004F50525F494E53455254
+      0100000000000400000054544431010000000000040000005454443201000000
+      0000040000005454443301000000000004000000545444340100000000000C00
+      00004B445F5452414E53414B53490100000000000A0000004B445F52454B414E
+      414E0100000000000700000052454B414E414E0100000000000A0000004E4F5F
+      5245475F4C50420100000000000E0000004E4F5F53555241545F4A414C414E01
+      0000000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    Session = DMFrm.OS
+    BeforeInsert = QTransaksiBeforeInsert
+    BeforeEdit = QTransaksiBeforeEdit
+    BeforePost = QTransaksiBeforePost
+    AfterPost = QTransaksiAfterPost
+    BeforeDelete = QTransaksiBeforeEdit
+    AfterDelete = QTransaksiAfterDelete
+    AfterScroll = QBrowseAfterScroll
+    Left = 780
+    Top = 352
+    object QTransaksiKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Size = 3
+    end
+    object QTransaksiTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      Required = True
+    end
+    object QTransaksiNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QTransaksiKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QTransaksiISPOST: TStringField
+      FieldName = 'ISPOST'
+      Size = 1
+    end
+    object QTransaksiSTATUS: TStringField
+      FieldName = 'STATUS'
+      Size = 6
+    end
+    object QTransaksiTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object QTransaksiOPR_INSERT: TStringField
+      FieldName = 'OPR_INSERT'
+      Size = 30
+    end
+    object QTransaksiTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 50
+    end
+    object QTransaksiTTD2: TStringField
+      FieldName = 'TTD2'
+      Size = 50
+    end
+    object QTransaksiTTD3: TStringField
+      FieldName = 'TTD3'
+      Size = 50
+    end
+    object QTransaksiTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 50
+    end
+    object QTransaksiKD_REKANAN: TStringField
+      FieldName = 'KD_REKANAN'
+      Size = 5
+    end
+    object QTransaksiREKANAN: TStringField
+      FieldName = 'REKANAN'
+      Size = 255
+    end
+    object QTransaksiNO_REG_LPB: TIntegerField
+      FieldName = 'NO_REG_LPB'
+      DisplayFormat = '00000000'
+    end
+    object QTransaksiNO_SURAT_JALAN: TStringField
+      FieldName = 'NO_SURAT_JALAN'
+      Required = True
+      Size = 15
+    end
+  end
+  object dsQTransaksi: TwwDataSource
+    DataSet = QTransaksi
+    Left = 820
+    Top = 353
+  end
+  object QDetail: TOracleDataSet
+    SQL.Strings = (
+      
+        'select a.kd_item, a.qty_po, a.qty_lpb, a.qty, a.satuan, a.kd_lok' +
+        'asi, a.kd_sub_lokasi, a.lokasi,a.rasio, a.harga, a.disc, a.sub_t' +
+        'otal, a.dpp, a.ppn, a.total, a.no_reg_po, a.keterangan, a.satuan' +
+        '_po, a.status, a.ispilih, a.rowid, b.no_nota, c.tgl_po'
+      'from pmtx02.lpb_detail a'
+      'left outer join pmtx02.po b on (a.no_reg_po=b.no_reg_po)'
+      
+        'left outer join pmtx02.pp_detail c on ((a.no_reg_po=c.no_reg_po)' +
+        ' and (a.no_reg_pp=c.no_reg_pp)  and (a.no_reg_kebutuhan=c.no_reg' +
+        '_kebutuhan) and (a.kd_item=c.kd_item))'
+      'where a.no_reg_lpb = :no_reg_lpb'
+      'order by a.tgl_insert')
+    ReadBuffer = 10
+    Variables.Data = {
+      03000000010000000B0000003A4E4F5F5245475F4C5042030000000400000045
+      00000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000016000000070000004B445F4954454D01000000000006000000515459
+      5F504F010000000000050000004841524741010000000000090000005355425F
+      544F54414C010000000000030000004450500100000000000300000050504E01
+      000000000005000000544F54414C010000000000090000004E4F5F5245475F50
+      4F0100000000000A0000004B45544552414E47414E0100000000000900000053
+      415455414E5F504F010000000000060000005354415455530100000000000700
+      0000495350494C49480100000000000400000044495343010000000000030000
+      0051545901000000000005000000524153494F01000000000007000000515459
+      5F4C50420100000000000600000053415455414E010000000000090000004B44
+      5F4C4F4B4153490100000000000D0000004B445F5355425F4C4F4B4153490100
+      00000000060000004C4F4B415349010000000000070000004E4F5F4E4F544101
+      00000000000600000054474C5F504F010000000000}
+    Master = QTransaksi
+    MasterFields = 'NO_REG_LPB'
+    DetailFields = 'NO_REG_LPB'
+    QueryAllRecords = False
+    CountAllRecords = True
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    Session = DMFrm.OS
+    BeforeInsert = QDetailBeforeInsert
+    BeforeEdit = QTransaksiBeforeEdit
+    BeforePost = QDetailBeforePost
+    BeforeDelete = QTransaksiBeforeEdit
+    AfterScroll = QBrowseAfterScroll
+    OnCalcFields = QDetailCalcFields
+    OnNewRecord = QDetailNewRecord
+    Left = 780
+    Top = 385
+    object QDetailKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QDetailQTY_PO: TFloatField
+      FieldName = 'QTY_PO'
+      Required = True
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailHARGA: TFloatField
+      FieldName = 'HARGA'
+      Required = True
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QDetailSATUAN_PO: TStringField
+      FieldName = 'SATUAN_PO'
+      Size = 12
+    end
+    object QDetailSUB_TOTAL: TFloatField
+      FieldName = 'SUB_TOTAL'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailDPP: TFloatField
+      FieldName = 'DPP'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailPPN: TFloatField
+      FieldName = 'PPN'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailTOTAL: TFloatField
+      FieldName = 'TOTAL'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailSTATUS: TStringField
+      FieldName = 'STATUS'
+      Size = 6
+    end
+    object QDetailISPILIH: TStringField
+      FieldName = 'ISPILIH'
+      Required = True
+      Size = 1
+    end
+    object QDetailDISC: TFloatField
+      FieldName = 'DISC'
+    end
+    object QDetailQTY: TFloatField
+      FieldName = 'QTY'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailRASIO: TFloatField
+      FieldName = 'RASIO'
+    end
+    object QDetailNO_REG_PO: TIntegerField
+      FieldName = 'NO_REG_PO'
+    end
+    object QDetailQTY_LPB: TFloatField
+      FieldName = 'QTY_LPB'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QDetailSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QDetailQTY_GD: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'QTY_GD'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+      Calculated = True
+    end
+    object QDetailQTY_SISA: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'QTY_SISA'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+      Calculated = True
+    end
+    object QDetailKD_LOKASI: TStringField
+      FieldName = 'KD_LOKASI'
+      Required = True
+      Size = 2
+    end
+    object QDetailKD_SUB_LOKASI: TStringField
+      FieldName = 'KD_SUB_LOKASI'
+      Required = True
+      Size = 6
+    end
+    object QDetailLOKASI: TStringField
+      FieldName = 'LOKASI'
+      Required = True
+      Size = 50
+    end
+    object QDetailKD_JNS_ITEM: TStringField
+      FieldKind = fkLookup
+      FieldName = 'KD_JNS_ITEM'
+      LookupDataSet = DMFrm.QItemNonBJ
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'KD_JNS_ITEM'
+      KeyFields = 'KD_ITEM'
+      Size = 1
+      Lookup = True
+    end
+    object QDetailSATUAN2: TStringField
+      FieldKind = fkLookup
+      FieldName = 'SATUAN2'
+      LookupDataSet = DMFrm.QItemNonBJ
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'SAT1'
+      KeyFields = 'KD_ITEM'
+      Lookup = True
+    end
+    object QDetailNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QDetailLEAD: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'LEAD'
+      DisplayFormat = '#,##0;(#,##0)'
+      Calculated = True
+    end
+    object QDetailTGL_PO: TDateTimeField
+      FieldName = 'TGL_PO'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+  end
+  object dsQDetail: TwwDataSource
+    DataSet = QDetail
+    Left = 820
+    Top = 385
+  end
+  object QJnsTransaksi: TOracleDataSet
+    SQL.Strings = (
+      
+        'select kd_transaksi, nama_transaksi, ttd1, ttd2, ttd3, ttd4, bag' +
+        '1, bag2, bag3, bag4, jab1, jab2, jab3, jab4, distribusi'
+      'from pmtx01.jns_transaksi'
+      'where kd_transaksi=:kd_transaksi')
+    Variables.Data = {
+      03000000010000000D0000003A4B445F5452414E53414B534905000000040000
+      003130320000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000F0000000C0000004B445F5452414E53414B53490100000000000E00
+      00004E414D415F5452414E53414B534901000000000004000000545444310100
+      0000000004000000545444320100000000000400000054544433010000000000
+      0400000054544434010000000000040000004241473101000000000004000000
+      4241473201000000000004000000424147330100000000000400000042414734
+      010000000000040000004A414231010000000000040000004A41423201000000
+      0000040000004A414233010000000000040000004A4142340100000000000A00
+      000044495354524942555349010000000000}
+    Session = DMFrm.OS
+    Left = 789
+    Top = 171
+    object QJnsTransaksiKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Required = True
+      Size = 3
+    end
+    object QJnsTransaksiNAMA_TRANSAKSI: TStringField
+      FieldName = 'NAMA_TRANSAKSI'
+      Size = 50
+    end
+    object QJnsTransaksiTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 50
+    end
+    object QJnsTransaksiTTD2: TStringField
+      FieldName = 'TTD2'
+      Size = 50
+    end
+    object QJnsTransaksiTTD3: TStringField
+      FieldName = 'TTD3'
+      Size = 50
+    end
+    object QJnsTransaksiTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 50
+    end
+    object QJnsTransaksiBAG1: TStringField
+      FieldName = 'BAG1'
+      Size = 50
+    end
+    object QJnsTransaksiBAG2: TStringField
+      FieldName = 'BAG2'
+      Size = 50
+    end
+    object QJnsTransaksiBAG3: TStringField
+      FieldName = 'BAG3'
+      Size = 50
+    end
+    object QJnsTransaksiBAG4: TStringField
+      FieldName = 'BAG4'
+      Size = 50
+    end
+    object QJnsTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 50
+    end
+    object QJnsTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 50
+    end
+    object QJnsTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 50
+    end
+    object QJnsTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 50
+    end
+    object QJnsTransaksiDISTRIBUSI: TStringField
+      FieldName = 'DISTR

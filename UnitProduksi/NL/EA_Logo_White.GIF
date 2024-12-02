@@ -1,0 +1,127 @@
+S.Connected:=True;
+          DMFrm.QPerusahaan.Close;
+          DMFrm.QPerusahaan.Open;
+          DMFrm.QDateTime.Close;
+          DMFrm.QDateTime.Open;
+          DMFrm.QUser.Close;
+          DMFrm.QUser.SetVariable('nama_user',upperCase(DMFrm.OSUser.LogonUsername));
+          DMFrm.QUser.Open;
+          LMDScrollText1.Lines.Text:=DMFrm.QPerusahaanBANNER1.AsString;
+          LMDScrollText2.Lines.Text:=DMFrm.QPerusahaanBANNER2.AsString;
+          LMDScrollText1.Scroll:=((DMFrm.QPerusahaanBANNER1.AsString<>'') and
+            (Trunc(DMFrm.QPerusahaanTGL_FINISH1.AsDateTime)>=trunc(DMFrm.QUserTGL_SERVER.AsDateTime)));
+          LMDScrollText2.Scroll:=((DMFrm.QPerusahaanBANNER2.AsString<>'') and
+            (Trunc(DMFrm.QPerusahaanTGL_FINISH2.AsDateTime)>=trunc(DMFrm.QUserTGL_SERVER.AsDateTime)));
+          if not DMFrm.QUser.IsEmpty then
+          begin
+              vtgl_aplikasi:=FormatDateTime('dd mmmm yyyy HH:MM',FileDateToDateTime(FileAge(Application.ExeName)));
+              vtgl_aplikasi_baru:=FormatDateTime('dd mmmm yyyy HH:MM',DMFrm.QPerusahaanTGL_APLIKASI.AsDateTime);
+              StatusBar1.Panels[0].Text:=vlogin_windows+'/'+DMFrm.QUserNAMA_USER.AsString+' ('+
+                DMFrm.QUserID_USER.AsString+')@'+
+                UpperCase(DMFrm.OSUser.LogonDatabase);
+              StatusBar1.Panels[1].Text:='Client : '+
+                ', '+ss+'('+vipaddr+')';
+              StatusBar1.Panels[2].Text:='Aplikasi Tanggal : '+vtgl_aplikasi;
+              StatusBar1.Panels[3].Text:='Last Login : '+
+                FormatDateTime('dd mmm yyyy hh:mm', DMFrm.QUserTGL_LOGIN.AsDateTime)+', Login : '+
+                FormatDateTime('dd mmm yyyy hh:mm', DMFrm.QUserTGL_SERVER.AsDateTime);
+              if FileDateToDateTime(FileAge(Application.ExeName))<DMFrm.QPerusahaanTGL_APLIKASI.AsDateTime then
+              begin
+                  ShowMessage('Aplikasi anda tgl :'+vtgl_aplikasi+#13+'Ada Aplikasi Baru tgl : '+vtgl_aplikasi_baru+
+                    #13+'MOHON AMBIL di SERVER atau hubungi Tim IT !');
+                  Application.Terminate;
+              end;
+
+              DMFrm.QUserUpdate.Close;
+              DMFrm.QUserUpdate.SetVariable('id_user',DMFrm.QUserID_USER.AsString);
+              DMFrm.QUserUpdate.Execute;
+              DMFrm.QLogIpAddr.Close;
+              DMFrm.QLogIpAddr.SetVariable('ip_addr',vipaddr);
+              DMFrm.QLogIpAddr.SetVariable('login_windows',vlogin_windows);
+              DMFrm.QLogIpAddr.SetVariable('id_user',DMFrm.QUserID_USER.AsString);
+              DMFrm.QLogIpAddr.Execute;
+              DMFrm.QMenuUser.Close;
+              DMFrm.QMenuUser.SetVariable('id_user',DMFrm.QUserID_USER.AsString);
+              DMFrm.QMenuUser.Open;
+              if not DMFrm.QMenuUser.IsEmpty then
+              begin
+    // Aktifkan Menu
+                while not DMFrm.QMenuUser.Eof do
+                begin
+                  if ((Components[StrToInt(DMFrm.QMenuUserNAMA_KOMPONEN.AsString)] as TMenuItem).HelpContext<1000) then
+                    (Components[StrToInt(DMFrm.QMenuUserNAMA_KOMPONEN.AsString)] as TMenuItem).Visible:=(DMFrm.QMenuUserHAK_LIHAT.AsString='1')
+                    else
+                      (Components[StrToInt(DMFrm.QMenuUserNAMA_KOMPONEN.AsString)] as TMenuItem).Visible:=True;
+                  (Components[StrToInt(DMFrm.QMenuUserNAMA_KOMPONEN.AsString)] as TMenuItem).Checked:=(DMFrm.QMenuUserHAK_INPUT.AsString='1');
+                  DMFrm.QMenuUser.Next;
+                end;
+                LogPesanFrm:=TLogPesanFrm.Create(Application);
+                LogPesanFrm.Show;
+              end
+              else
+              begin
+                  ShowMessage('Maaf, Anda belum punya HAK MENU, hubungi Administrator !');
+                  Close;
+              end;
+          end
+          else
+            if UpperCase(DMFrm.OSUser.LogonUsername)='SYSTEM' then
+            begin
+              for i:=0 to ComponentCount-1 do
+              begin
+                  if Components[i] is TMenuItem then
+                  begin
+                      (Components[i] as TMenuItem).Visible:=True;
+                  end;
+              end;
+            end
+            else
+            Close;
+        end
+        else
+          Close;
+      end
+      else
+        Close;
+  end;
+end;
+
+procedure TMainFrm.LogoutExecute(Sender: TObject);
+begin
+  DMFrm.OS.Commit;
+  Proc_HapusMenu;
+  DMFrm.OS.Connected:=False;
+end;
+
+procedure TMainFrm.LoginExecute(Sender: TObject);
+begin
+  BtnLoginClick(Nil);
+end;
+
+procedure TMainFrm.Exit1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TMainFrm.gANTIpASSWORD1Click(Sender: TObject);
+begin
+  if DMFrm.OL.SetPassword then
+  begin
+    ShowMessage('Ganti Password Sukses !');
+  end;
+end;
+
+procedure TMainFrm.Banner1Click(Sender: TObject);
+begin
+  DMFrm.rvdPerusahaan.Execute;
+end;
+
+procedure TMainFrm.About1Click(Sender: TObject);
+begin
+  MyAbout.Execute;
+end;
+
+procedure TMainFrm.SpeedButton1Click(Sender: TObject);
+begin
+   MyColorFrm:=TMyColorFrm.Create(Self);
+   MyColorFrm.S

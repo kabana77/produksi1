@@ -1,0 +1,42 @@
+BRG: TStringField
+      FieldName = 'KODE_BRG'
+      Size = 50
+    end
+    object QBrowseNAMA_BRG: TStringField
+      FieldName = 'NAMA_BRG'
+      Required = True
+      Size = 50
+    end
+    object QBrowseSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QBrowseQTY1: TFloatField
+      FieldName = 'QTY1'
+      DisplayFormat = '#,##0.######;(#,##0.######); '
+    end
+    object QBrowseLOKASI: TStringField
+      FieldName = 'LOKASI'
+      Size = 12
+    end
+    object QBrowseQTY2: TFloatField
+      FieldName = 'QTY2'
+      DisplayFormat = '#,##0.######;(#,##0.######); '
+    end
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 888
+    Top = 8
+  end
+  object ppReportBrowse: TppReport
+    AutoStop = False
+    DataPipeline = ppDBQBrowseDetail
+    PrinterSetup.BinName = 'Default'
+    PrinterSetup.DocumentName = 'Report'
+    PrinterSetup.Orientation = poLandscape
+    PrinterSetup.PaperName = 'A4 210 x 297 mm'
+    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.mmMarginBottom = 6350
+    PrinterSetup.mmMarginLeft = 6350
+    PrinterSetup.mmMarginRight

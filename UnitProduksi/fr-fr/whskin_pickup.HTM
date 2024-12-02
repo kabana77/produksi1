@@ -1,0 +1,201 @@
+ect QLookItemSAT1: TStringField
+      DisplayLabel = 'SATUAN'
+      DisplayWidth = 12
+      FieldName = 'SAT1'
+      Required = True
+      Size = 12
+    end
+    object QLookItemNO_NOTA: TStringField
+      DisplayWidth = 15
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QLookItemTGL_KEBUTUHAN: TDateTimeField
+      DisplayLabel = 'TGL KEBUTUHAN'
+      DisplayWidth = 12
+      FieldName = 'TGL_KEBUTUHAN'
+    end
+    object QLookItemQTY_KEBUTUHAN: TFloatField
+      DisplayLabel = 'KEBUTUHAN'
+      DisplayWidth = 5
+      FieldName = 'QTY_KEBUTUHAN'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QLookItemQTY_PP: TFloatField
+      DisplayLabel = 'REALISASI'
+      DisplayWidth = 5
+      FieldName = 'QTY_PP'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QLookItemNO_REG_KEBUTUHAN: TIntegerField
+      FieldName = 'NO_REG_KEBUTUHAN'
+      Required = True
+      Visible = False
+    end
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      
+        'select * from (select DISTINCT bagian, sub_bagian, kd_item, nama' +
+        '_item, sat1, sum(qty) as qty_kebutuhan, sum(qty_validasi) as qty' +
+        '_pp from pmtx02.vbon_barang_nbb3 '
+      
+        'where kd_jns_item=:vjns and tanggal>=trunc(:pawal) and tanggal<t' +
+        'runc(:pakhir)+1-1/86400 group by bagian, sub_bagian, kd_item, na' +
+        'ma_item, sat1) :myparam'
+      '')
+    Variables.Data = {
+      0300000004000000080000003A4D59504152414D010000000000000000000000
+      060000003A504157414C0C0000000000000000000000070000003A50414B4849
+      520C0000000000000000000000050000003A564A4E5305000000000000000000
+      0000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D01000000000004000000534154310100000000000D0000005154
+      595F4B454255545548414E010000000000060000005154595F50500100000000
+      000600000042414749414E0100000000000A0000005355425F42414749414E01
+      0000000000}
+    Session = DMFrm.OS
+    Active = True
+    BeforeOpen = QBrowseBeforeOpen
+    OnCalcFields = QBrowseCalcFields
+    Left = 516
+    Top = 257
+    object QBrowseKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QBrowseNAMA_ITEM: TStringField
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 80
+    end
+    object QBrowseSAT1: TStringField
+      FieldName = 'SAT1'
+      Required = True
+      Size = 12
+    end
+    object QBrowseQTY_KEBUTUHAN: TFloatField
+      FieldName = 'QTY_KEBUTUHAN'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QBrowseQTY_PP: TFloatField
+      FieldName = 'QTY_PP'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QBrowseHARGA: TFloatField
+      FieldKind = fkLookup
+      FieldName = 'HARGA'
+      LookupDataSet = QLookNilai
+      LookupKeyFields = 'KD_ITEM'
+      LookupResultField = 'HARGA'
+      KeyFields = 'KD_ITEM'
+      DisplayFormat = '#,#;(#,#)'
+      Lookup = True
+    end
+    object QBrowseSUB_TOTAL: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'SUB_TOTAL'
+      DisplayFormat = '#,#;(#,#)'
+      Calculated = True
+    end
+    object QBrowseBAGIAN: TStringField
+      FieldName = 'BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object QBrowseSUB_BAGIAN: TStringField
+      FieldName = 'SUB_BAGIAN'
+      Required = True
+      Size = 50
+    end
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 460
+    Top = 329
+  end
+  object QSuplier: TOracleDataSet
+    SQL.Strings = (
+      
+        'select no_reg_cek_harga, sat1, kd_rekanan, nama_rekanan, contact' +
+        ', tanggal_cek, harga, mu, sat2, rasio from pmtx02.vcek_harga_res' +
+        'ume'
+      'where kd_item=:kd_item and ispost='#39'1'#39
+      'order by tanggal_cek desc')
+    Variables.Data = {
+      0300000001000000080000003A4B445F4954454D050000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000A0000000400000053415431010000000000100000004E4F5F524547
+      5F43454B5F48415247410100000000000A0000004B445F52454B414E414E0100
+      000000000C0000004E414D415F52454B414E414E01000000000007000000434F
+      4E544143540100000000000B00000054414E4747414C5F43454B010000000000
+      050000004841524741010000000000020000004D550100000000000500000052
+      4153494F0100000000000400000053415432010000000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    Session = DMFrm.OS
+    BeforeOpen = QBrowseBeforeOpen
+    Left = 516
+    Top = 297
+    object QSuplierNAMA_REKANAN: TStringField
+      DisplayWidth = 35
+      FieldName = 'NAMA_REKANAN'
+      Required = True
+      Size = 50
+    end
+    object QSuplierKD_REKANAN: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 5
+      FieldName = 'KD_REKANAN'
+      Size = 5
+    end
+    object QSuplierCONTACT: TStringField
+      DisplayWidth = 20
+      FieldName = 'CONTACT'
+      Size = 30
+    end
+    object QSuplierTANGGAL_CEK: TDateTimeField
+      DisplayWidth = 12
+      FieldName = 'TANGGAL_CEK'
+    end
+    object QSuplierHARGA: TFloatField
+      DisplayWidth = 12
+      FieldName = 'HARGA'
+    end
+    object QSuplierMU: TStringField
+      DisplayWidth = 3
+      FieldName = 'MU'
+      Size = 3
+    end
+    object QSuplierSAT2: TStringField
+      DisplayLabel = 'SATUAN'
+      DisplayWidth = 12
+      FieldName = 'SAT2'
+      Required = True
+      Size = 12
+    end
+    object QSuplierNO_REG_CEK_HARGA: TIntegerField
+      FieldName = 'NO_REG_CEK_HARGA'
+      Required = True
+      Visible = False
+    end
+    object QSuplierSAT1: TStringField
+      FieldName = 'SAT1'
+      Required = True
+      Visible = False
+      Size = 12
+    end
+    object QSuplierRASIO: TFloatField
+      FieldName = 'RASIO'
+      Visible = False
+    end
+  end
+  object QLookNilai: TOracleDataSet
+    SQL.Strings = (
+      'select kd_item, :bxx from pmtx01.item_saldo'
+      'where tahun=:ptahun'
+      'order by kd_item')
+    Variables.Data = {
+      0300000002000000040000003A42585801000000200

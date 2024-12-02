@@ -1,0 +1,267 @@
+rentFont = False
+              Transparent = False
+              WordWrap = True
+              FontSize = 8
+            end
+            object QRSysData1: TQRSysData
+              Left = 601
+              Top = 0
+              Width = 69
+              Height = 17
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                44.979166666666670000
+                1590.145833333333000000
+                0.000000000000000000
+                182.562500000000000000)
+              Alignment = taRightJustify
+              AlignToBand = True
+              AutoSize = True
+              Color = clWhite
+              Data = qrsPageNumber
+              Text = 'Hal '
+              Transparent = False
+              FontSize = 10
+            end
+          end
+          object QRGroup1: TQRGroup
+            Left = 76
+            Top = 208
+            Width = 670
+            Height = 0
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            AlignToBottom = False
+            Color = clWhite
+            ForceNewColumn = False
+            ForceNewPage = False
+            Size.Values = (
+              0.000000000000000000
+              1772.708333333334000000)
+            FooterBand = QRBand1
+            Master = QuickRep1
+            ReprintOnNewPage = False
+          end
+          object QRBand1: TQRBand
+            Left = 76
+            Top = 224
+            Width = 670
+            Height = 40
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            AlignToBottom = False
+            Color = clWhite
+            ForceNewColumn = False
+            ForceNewPage = False
+            Size.Values = (
+              105.833333333333300000
+              1772.708333333334000000)
+            BandType = rbGroupFooter
+            object QRLabel15: TQRLabel
+              Left = 305
+              Top = 8
+              Width = 59
+              Height = 17
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                44.979166666666670000
+                806.979166666666800000
+                21.166666666666670000
+                156.104166666666700000)
+              Alignment = taCenter
+              AlignToBand = True
+              AutoSize = True
+              AutoStretch = False
+              Caption = '** Akhir **'
+              Color = clWhite
+              Transparent = False
+              WordWrap = True
+              FontSize = 10
+            end
+            object QRExpr1: TQRExpr
+              Left = 452
+              Top = 8
+              Width = 90
+              Height = 17
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                44.979166666666670000
+                1195.916666666667000000
+                21.166666666666670000
+                238.125000000000000000)
+              Alignment = taRightJustify
+              AlignToBand = False
+              AutoSize = True
+              AutoStretch = False
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              Color = clWhite
+              Master = QuickRep1
+              ParentFont = False
+              ResetAfterPrint = False
+              Transparent = False
+              WordWrap = True
+              Expression = 'SUM(QDetail.QTY)'
+              Mask = '#.#,#'
+              FontSize = 8
+            end
+            object QRShape1: TQRShape
+              Left = 480
+              Top = 3
+              Height = 3
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                7.937500000000000000
+                1270.000000000000000000
+                7.937500000000000000
+                171.979166666666700000)
+              Shape = qrsHorLine
+            end
+          end
+        end
+        object PanelHeader: TPanel
+          Left = 0
+          Top = 32
+          Width = 703
+          Height = 48
+          Align = alTop
+          BevelWidth = 2
+          Color = 10485760
+          TabOrder = 4
+          DesignSize = (
+            703
+            48)
+          object DBText1: TDBText
+            Left = 584
+            Top = 7
+            Width = 114
+            Height = 33
+            Alignment = taRightJustify
+            Anchors = [akTop, akRight]
+            AutoSize = True
+            DataField = 'NO_NOTA'
+            DataSource = dsQMaster
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clYellow
+            Font.Height = -24
+            Font.Name = 'Arial Black'
+            Font.Style = []
+            ParentFont = False
+            Transparent = True
+          end
+          object DBText2: TDBText
+            Left = 13
+            Top = 7
+            Width = 53
+            Height = 33
+            Color = clWhite
+            DataField = 'KD_TRANSAKSI'
+            DataSource = dsQTransaksi
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -24
+            Font.Name = 'Arial Black'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+            Transparent = True
+          end
+          object DBText3: TDBText
+            Left = 85
+            Top = 7
+            Width = 114
+            Height = 33
+            Anchors = [akTop, akRight]
+            AutoSize = True
+            Color = clWhite
+            DataField = 'NAMA_TRANSAKSI'
+            DataSource = dsQTransaksi
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -24
+            Font.Name = 'Arial Black'
+            Font.Style = []
+            ParentColor = False
+            ParentFont = False
+            Transparent = True
+          end
+          object Label7: TLabel
+            Left = 72
+            Top = 7
+            Width = 8
+            Height = 33
+            Caption = '-'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -24
+            Font.Name = 'Arial Black'
+            Font.Style = []
+            ParentFont = False
+          end
+        end
+        object PanelFooter: TPanel
+          Left = 0
+          Top = 427
+          Width = 703
+          Height = 53
+          Align = alBottom
+          BevelWidth = 2
+          Color = clSilver
+          TabOrder = 2
+          DesignSize = (
+            703
+            53)
+          object BitBtn1: TBitBtn
+            Left = 617
+            Top = 24
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            TabOrder = 0
+            Kind = bkClose
+          end
+          object BitBtn2: TBitBtn
+            Left = 537
+            Top = 24
+            Width = 75
+            Height = 25
+            Anchors = [akTop, akRight]
+            Caption = '&Print'
+            TabOrder = 1
+            OnClick = BitBtn2Click
+            Glyph.Data = {
+              76010000424D7601000000000000760000002800000020000000100000000100
+              04000000000000010000130B0000130B00001000000000000000000000000000
+              800000800000008080008000000080008000808000007F7F7F00BFBFBF000000
+              FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF00300000000000
+              00033FFFFFFFFFFFFFFF0888888888888880777777777777777F088888888888
+              8880777777777777777F0000000000000000FFFFFFFFFFFFFFFF0F8F8F8F8F8F
+              8F80777777777777777F08F8F8F8F8F8F9F0777777777777777F0F8F8F8F8F8F
+              8F807777777777777F7F0000000000000000777777777777777F3330FFFFFFFF
+              03333337F3FFFF3F7F333330F0000F0F03333337F77773737F333330FFFFFFFF
+              03333337F3FF3FFF7F

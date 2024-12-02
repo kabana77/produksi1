@@ -1,0 +1,192 @@
+rowseNewRecord(DataSet: TDataSet);
+    procedure LookPerkRLEnter(Sender: TObject);
+    procedure LookProyekEnter(Sender: TObject);
+    procedure QBrowseCalcFields(DataSet: TDataSet);
+    procedure BitBtn3Click(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+  private
+    { Private declarations }
+    vfilter, vfilter2, vorder : String;
+  public
+    { Public declarations }
+  end;
+
+var
+  RABFrm: TRABFrm;
+
+implementation
+
+uses DM, Main, XPROCS, DateUtils;
+
+{$R *.dfm}
+
+procedure TRABFrm.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+  Action:=caFree;
+  RABFrm:=Nil;
+end;
+
+procedure TRABFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter2+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TRABFrm.wwDBGrid2CalcCellColors(Sender: TObject;
+  Field: TField; State: TGridDrawState; Highlight: Boolean; AFont: TFont;
+  ABrush: TBrush);
+begin
+  if not Highlight then
+    if (Sender as TwwDBGrid).ColumnByName(Field.FieldName).ReadOnly then
+    begin
+      ABrush.Color:=DMFrm.vclGridRead;
+      AFont.Color:=DMFrm.vclGridReadFont;
+    end
+    else
+    begin
+      ABrush.Color:=DMFrm.vclGridEdit;
+      AFont.Color:=DMFrm.vclGridEditFont;
+    end;
+end;
+
+procedure TRABFrm.ECariChange(Sender: TObject);
+begin
+  QBrowse.SearchRecord(wwDBGrid1.Columns[0].FieldName,ECari.Text,[srFromBeginning, srPartialMatch, srIgnoreCase]);
+end;
+
+procedure TRABFrm.BitBtn1Click(Sender: TObject);
+begin
+  QBrowse.DisableControls;
+  QBrowse.Close;
+  QBrowse.SetVariable('tahun',Round(spTahun.Value));
+  QBrowse.SetVariable('no_proyek',DMFrm.QProyekNO_PROYEK.AsInteger);
+  QBrowse.Open;
+  QBrowse.EnableControls;
+  if QBrowse.IsEmpty then
+  begin
+    ShowMessage('Rab belum ada, Jika pernah membuat TEMPATE, Anda bisa membuatnya melalui : BUAT RAB dari TEMPLETE !');
+  end;
+end;
+
+procedure TRABFrm.BitBtn5Click(Sender: TObject);
+begin
+  DMFrm.QDateTime.Close;
+  DMFrm.QDateTime.Open;
+  case PageControl1.ActivePageIndex of
+  0 : begin
+        QBrowse.DisableControls;
+        QuickRep1.Preview;
+        QBrowse.EnableControls;
+      end;
+  end;
+end;
+
+procedure TRABFrm.TabSheet1Show(Sender: TObject);
+begin
+  wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  BtnExport.Enabled:=True;
+  DMFrm.QProyek.Open;
+  QBrowse.Open;
+  QTemplate.Open;
+end;
+
+procedure TRABFrm.vHeightAfterUpClick(Sender: TObject);
+begin
+  case PageControl1.ActivePageIndex of
+  0 : wwDBGrid1.RowHeightPercent:=Round(vHeight.Value);
+  end;
+
+end;
+
+procedure TRABFrm.BtnExportClick(Sender: TObject);
+begin
+  if QBrowse.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+     DMFrm.SaveDialog1.FileName:=Caption;
+     wwDBGrid1.ExportOptions.TitleName:=Caption;
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid1.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
+end;
+
+procedure TRABFrm.DBText5Click(Sender: TObject);
+var
+  DC : HDC;
+  ABitmap:TBitmap;
+begin
+  DC := GetDC (GetTopParentHandle);
+  ABitmap:=TBitmap.Create;
+  try
+    ABitmap.Width  := Width-9; //GetDeviceCaps (DC, HORZRES);
+    ABitmap.Height := Height-30; //GetDeviceCaps (DC, VERTRES);
+    BitBlt(ABitmap.Canvas.Handle, 0, 0, ABitmap.Width,
+           ABitmap.Height,DC, 0, 0, SRCCOPY);
+  finally
+    ReleaseDC (GetTopParentHandle, DC);
+  end;
+  DMFrm.SavePictureDialog1.FileName:=Caption;
+  if DMFrm.SavePictureDialog1.Execute then
+     ABitmap.SaveToFile(DMFrm.SavePictureDialog1.FileName);
+  ABitmap.Free;
+end;
+
+procedure TRABFrm.QDetailAfterScroll(DataSet: TDataSet);
+begin
+//  LRecords.Caption:='Data ke '+IntToStr(DataSet.RecNo)+' dari '+IntToStr(DataSet.RecordCount)+' data';
+end;
+
+procedure TRABFrm.cbModeEditClick(Sender: TObject);
+begin
+  if cbModeEdit.Checked then
+    wwDBGrid1.Options:=wwDBGrid1.Options-[dgRowSelect]
+    else
+      wwDBGrid1.Options:=wwDBGrid1.Options+[dgRowSelect];
+end;
+
+procedure TRABFrm.DetailBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  if QBrowseISDETAIL.AsString='0' then
+    DetailBand1.Font.Style:=DetailBand1.Font.Style+[fsBold]
+    else
+      DetailBand1.Font.Style:=DetailBand1.Font.Style-[fsBold];
+  if QBrowseISTOTAL.AsString='1' then
+  begin
+    DetailBand1.Font.Style:=DetailBand1.Font.Style+[fsItalic];
+    DetailBand1.Height:=32;
+  end
+    else
+    begin
+      DetailBand1.Font.Style:=DetailBand1.Font.Style-[fsItalic];

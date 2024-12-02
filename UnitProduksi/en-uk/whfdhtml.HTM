@@ -1,0 +1,22 @@
+rm.selected := 'UCC 128';
+     SelectedFont := 'CIA Code 128 Medium';
+     StrPCopy(DMFrm.TempSelected, DMFrm.Selected);
+     DMFrm.BType := 'C128';
+     DMFrm.FontToUse.Size := 12;
+     DMFrm.FontToUse.Name := SelectedFont;
+     LBarcode.Font := DMFrm.FontToUse;
+//     QRBarcode11.Font := LoginFrm.FontToUse;
+     DMFrm.BType := DMFrm.BType + '-';
+     DMFrm.BType := DMFrm.BType + DMFrm.Format;
+     DMFrm.BType := DMFrm.BType + '.BH';
+// end barcode
+
+//  PanelHeader.Caption:=UpperCase(Caption);
+//  BtnAmbilData.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\COPY.Bmp');
+  BtnPrintInput.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\PRINT.Bmp');
+  BtnClose1.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CLOSE.Bmp');
+  BtnOk.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CHECK.Bmp');
+  BtnOk2.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\CHECK.Bmp');
+  BtnFind.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\FIND.Bmp');
+  BtnDesign2.Glyph.LoadFromFile(DMFrm.sAppPath+'Images\DESIGN.Bmp');
+  BtnPrintBrowse.Gl

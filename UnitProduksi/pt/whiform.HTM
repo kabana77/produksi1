@@ -1,0 +1,70 @@
+lect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'REKANAN'#9'30'#9'REKANAN'#9'F'
+              'NO_NOTA'#9'16'#9'NO NOTA'#9'F'
+              'NO_KONTRAK'#9'16'#9'NO KONTRAK'#9'F'
+              'NO_BUKTI'#9'16'#9'NO BUKTI'#9'F'
+              'TGL'#9'12'#9'TGL'#9'F'
+              'STATUS'#9'10'#9'STATUS'#9'F')
+            DataField = 'NO_ORDER'
+            DataSource = dsQMaster
+            LookupTable = QKontrak
+            LookupField = 'NO_NOTA'
+            TabOrder = 4
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+            OnCloseUp = wwDBLookupComboDlg1CloseUp
+            OnEnter = wwDBLookupComboDlg1Enter
+          end
+          object wwDBEdit1: TwwDBEdit
+            Left = 128
+            Top = 32
+            Width = 105
+            Height = 19
+            DataField = 'NO_ORDER'
+            DataSource = dsQMaster
+            TabOrder = 5
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object wwDBEdit2: TwwDBEdit
+            Left = 288
+            Top = 32
+            Width = 121
+            Height = 19
+            TabStop = False
+            Color = clMoneyGreen
+            DataField = 'NO_KONTRAK'
+            DataSource = dsQMaster
+            TabOrder = 6
+            UnboundDataType = wwDefault
+            WantReturns = False
+            WordWrap = False
+          end
+          object DBMemo2: TDBMemo
+            Left = 128
+            Top = 56
+            Width = 281
+            Height = 41
+            TabStop = False
+            Color = clMoneyGreen
+            DataField = 'REKANAN'
+            DataSource = dsQMaster
+            TabOrder = 7
+          end
+          object wwDBEdit3: TwwDBEdit
+            Left = 16
+            Top = 72
+            Width = 105
+            Height = 19
+            DataField = 'NO_BUKTI'
+            DataSource = dsQMaster
+            TabOrder = 8
+            UnboundDataType =

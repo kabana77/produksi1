@@ -1,0 +1,90 @@
+   010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QLokasiBeforeOpen
+    Left = 672
+    Top = 216
+    object QLokasiKD_SUB_LOKASI: TStringField
+      DisplayLabel = 'LOKASI'
+      DisplayWidth = 12
+      FieldName = 'KD_SUB_LOKASI'
+      Required = True
+      Size = 12
+    end
+    object QLokasiJNS_LOKASI: TStringField
+      DisplayWidth = 10
+      FieldName = 'JNS_LOKASI'
+      Required = True
+      Visible = False
+      Size = 10
+    end
+  end
+  object QItem: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db2.vitem')
+    QBEDefinition.QBEFieldDefs = {
+      040000000E000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000600000053415455414E0100000000000A000000
+      4E414D415F4954454D320100000000000F0000004E414D415F4B4F4E53545255
+      4B53490100000000000A0000004E414D415F434F52414B0100000000000C0000
+      004E414D415F4B454D4153414E01000000000005000000524153494F01000000
+      00000A00000054474C5F494E534552540100000000000A0000004B445F4B454D
+      4153414E010000000000090000004B445F53415455414E010000000000090000
+      004852475F504F4B4F4B010000000000080000004852475F4A55414C01000000
+      00000700000049534649584544010000000000}
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemBeforeQuery
+    Session = DMFrm.OS
+    Left = 344
+    Top = 136
+    object QItemNAMA_ITEM: TStringField
+      DisplayLabel = 'NAMA ITEM'
+      DisplayWidth = 50
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QItemSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 12
+    end
+    object QItemHRG_JUAL: TFloatField
+      FieldName = 'HRG_JUAL'
+      DisplayFormat = '0.0,0'
+    end
+  end
+  object QCalonSuplier: TOracleDataSet
+    SQL.Strings = (
+      'select * from vcustomer')
+    QBEDefinition.QBEFieldDefs = {
+      040000000B0000000A0000004B445F52454B414E414E0100000000000C000000
+      4E414D415F52454B414E414E010000000000040000004B4F5441010000000000
+      0700000054454C45504F4E0100000000000C00000042415441535F4B52454449
+      5401000000000006000000414C414D4154010000000000060000004E45474152
+      41010000000000040000004E50575001000000000007000000414C414D415432
+      0100000000000B0000004B445F52454B414E414E320100000000000A00000054
+      474C5F494E53455254010000000000}
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 440
+    Top = 88
+    object QCalonSuplierKD_REKANAN: TFloatField
+      DisplayWidth = 10
+      FieldName = 'KD_REKANAN'
+      Required = True
+    end
+    object QCalonSuplierNAMA_REKANAN: TStringField
+      DisplayWidth = 50
+      FieldName = 'NAMA_REKANAN'
+      Size = 50
+    end
+    object QCalonSuplierKOTA: TStringField
+      DisplayWid

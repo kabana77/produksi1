@@ -1,0 +1,46 @@
+69.333333333333300000
+            3122.083333333334000000)
+          BandType = rbTitle
+          object QRLabel26: TQRLabel
+            Left = 502
+            Top = 32
+            Width = 176
+            Height = 17
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              44.979166666666670000
+              1328.208333333333000000
+              84.666666666666680000
+              465.666666666666700000)
+            Alignment = taCenter
+            AlignToBand = True
+            AutoSize = True
+            AutoStretch = False
+            Caption = 'LAPORAN WIP SOFTCONES'
+            Color = clWhite
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -13
+            Font.Name = 'Arial'
+            Font.Style = []
+            ParentFont = False
+            Transparent = False
+            WordWrap = True
+            FontSize = 10
+          end
+          object QRLabel27: TQRLabel
+            Left = -102
+            Top = 8
+            Width = 219
+            Height = 20
+            Frame.Color = clBlack
+            Frame.DrawTop = False
+            Frame.DrawBottom = False
+            Frame.DrawLeft = False
+            Frame.DrawRight = False
+            Size.Values = (
+              52

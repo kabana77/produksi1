@@ -1,0 +1,229 @@
+eDataSet
+    SQL.Strings = (
+      'select a.*, a.rowid from ipisma_db4.BUKTI2_DETAIL a'
+      'where a.no_reg = :no_reg'
+      ':vorder')
+    Variables.Data = {
+      0300000002000000070000003A4E4F5F52454704000000000000000000000007
+      0000003A564F5244455201000000190000006F7264657220627920612E6E6F5F
+      7265675F64657461696C0000000000}
+    SequenceField.Field = 'NO_REG_DETAIL'
+    SequenceField.Sequence = 'ipisma_db4.no_reg_kontrak'
+    SequenceField.ApplyMoment = amOnNewRecord
+    QBEDefinition.QBEFieldDefs = {
+      04000000170000000D0000004E4F5F5245475F44455441494C01000000000006
+      0000004E4F5F5245470100000000000A0000004B4F4E535452554B5349010000
+      00000005000000434F52414B010000000000040000004D555455010000000000
+      0500000048415247410100000000000A00000054474C5F494E53455254010000
+      0000000A0000004F50525F494E53455254010000000000060000005341545541
+      4E0100000000000D0000004B445F4B4F4E535452554B53490100000000000800
+      00004B445F434F52414B010000000000030000004E494B0100000000000C0000
+      004E4F5F534552495F4245414D010000000000070000004B445F4954454D0100
+      00000000030000005154590100000000000A0000004B45544552414E47414E01
+      0000000000050000004A454E49530100000000000D00000054474C5F4A54485F
+      54454D504F0100000000000A0000005154595F544552494D4101000000000008
+      0000005154595F4C414C55010000000000070000005154595F4F524701000000
+      0000040000004D45524B010000000000070000005341545F444F530100000000
+      00}
+    Master = QMaster
+    MasterFields = 'NO_REG'
+    DetailFields = 'NO_REG'
+    RefreshOptions = [roAfterInsert, roAfterUpdate]
+    Session = DMFrm.OS
+    BeforeEdit = QDetailBeforeEdit
+    BeforePost = QDetailBeforePost
+    BeforeDelete = QDetailBeforeEdit
+    OnNewRecord = QDetailNewRecord
+    Left = 10
+    Top = 161
+    object QDetailKONSTRUKSI: TStringField
+      DisplayWidth = 10
+      FieldName = 'KONSTRUKSI'
+      Size = 30
+    end
+    object QDetailCORAK: TStringField
+      DisplayWidth = 6
+      FieldName = 'CORAK'
+      Size = 30
+    end
+    object QDetailMUTU: TStringField
+      DisplayWidth = 6
+      FieldName = 'MUTU'
+      Size = 30
+    end
+    object QDetailSATUAN: TStringField
+      DisplayWidth = 8
+      FieldName = 'SATUAN'
+      Size = 10
+    end
+    object QDetailNO_REG_DETAIL: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG_DETAIL'
+      Required = True
+      Visible = False
+    end
+    object QDetailNO_REG: TFloatField
+      DisplayWidth = 10
+      FieldName = 'NO_REG'
+      Visible = False
+    end
+    object QDetailKD_KONSTRUKSI: TStringField
+      FieldName = 'KD_KONSTRUKSI'
+      Size = 6
+    end
+    object QDetailKD_CORAK: TStringField
+      FieldName = 'KD_CORAK'
+      Size = 6
+    end
+    object QDetailNIK: TStringField
+      FieldName = 'NIK'
+    end
+    object QDetailKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+    end
+    object QDetailQTY: TFloatField
+      FieldName = 'QTY'
+    end
+    object QDetailKETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 255
+    end
+    object QDetailJENIS: TStringField
+      FieldName = 'JENIS'
+      Size = 10
+    end
+    object QDetailTGL_JTH_TEMPO: TDateTimeField
+      FieldName = 'TGL_JTH_TEMPO'
+      DisplayFormat = 'DD MMM YYYY'
+    end
+    object QDetailQTY_TERIMA: TFloatField
+      FieldName = 'QTY_TERIMA'
+    end
+    object QDetailQTY_LALU: TFloatField
+      FieldName = 'QTY_LALU'
+    end
+    object QDetailQTY_ORG: TFloatField
+      FieldName = 'QTY_ORG'
+    end
+  end
+  object dsQDetail: TwwDataSource
+    DataSet = QDetail
+    Left = 42
+    Top = 161
+  end
+  object dsQMaster: TwwDataSource
+    DataSet = QMaster
+    Left = 40
+    Top = 128
+  end
+  object QTransaksi: TOracleDataSet
+    SQL.Strings = (
+      'select * from ipisma_db1.transaksi'
+      'where kd_transaksi=:kd_transaksi')
+    Variables.Data = {
+      03000000010000000D0000003A4B445F5452414E53414B534905000000040000
+      003939300000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000140000000E0000004E414D415F5452414E53414B5349010000000000
+      0C0000004B445F5452414E53414B534901000000000006000000505245464958
+      01000000000005000000504C494E450100000000000700000050484541444552
+      010000000000060000004B445F44495601000000000004000000545444310100
+      0000000004000000545444320100000000000400000054544433010000000000
+      0400000054544434010000000000040000004449563101000000000004000000
+      4449563201000000000004000000444956330100000000000400000044495634
+      010000000000040000004A414231010000000000040000004A41423201000000
+      0000040000004A414233010000000000040000004A4142340100000000000A00
+      0000444953545249425553490100000000000800000053494E4F505349530000
+      00000000}
+    Session = DMFrm.OS
+    Left = 10
+    Top = 89
+    object QTransaksiNAMA_TRANSAKSI: TStringField
+      FieldName = 'NAMA_TRANSAKSI'
+      Size = 50
+    end
+    object QTransaksiKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Required = True
+      Size = 3
+    end
+    object QTransaksiTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 30
+    end
+    object QTransaksiTTD2: TStringField
+      FieldName = 'TTD2'
+      Size = 30
+    end
+    object QTransaksiTTD3: TStringField
+      FieldName = 'TTD3'
+      Size = 30
+    end
+    object QTransaksiTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 30
+    end
+    object QTransaksiDIV1: TStringField
+      FieldName = 'DIV1'
+      Size = 30
+    end
+    object QTransaksiDIV2: TStringField
+      FieldName = 'DIV2'
+      Size = 30
+    end
+    object QTransaksiDIV3: TStringField
+      FieldName = 'DIV3'
+      Size = 30
+    end
+    object QTransaksiDIV4: TStringField
+      FieldName = 'DIV4'
+      Size = 30
+    end
+    object QTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 30
+    end
+    object QTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 30
+    end
+    object QTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 30
+    end
+    object QTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 30
+    end
+    object QTransaksiDISTRIBUSI: TStringField
+      FieldName = 'DISTRIBUSI'
+      Size = 80
+    end
+  end
+  object dsQTransaksi: TwwDataSource
+    DataSet = QTransaksi
+    Left = 40
+    Top = 88
+  end
+  object FNo_Urut: TOracleDataSet
+    SQL.Strings = (
+      'select ipisma_db4.fno_urut_jk(:pkode,:ptgl) as no_nota from dual')
+    Variables.Data = {
+      0300000002000000060000003A504B4F44450500000004000000393931000000
+      0000050000003A5054474C0C00000007000000786C020101010100000000}
+    QBEDefinition.QBEFieldDefs = {0400000001000000070000004E4F5F4E4F5441010000000000}
+    BeforeQuery = FNo_UrutBeforeQuery
+    Session = DMFrm.OS
+    Left = 8
+    Top = 48
+    object FNo_UrutNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 4000
+    end
+  end
+  object LookMaster: TwwLookupDialog
+    Selected.Strings = (
+      'NO_NOTA'#9'16'#9'NO NOTA'#9'F'
+      'NO_KONTRAK'#9'16'#9'NO KONTRAK'#9'F'
+      'TGL'#9'12'#9'TGL'#9#9
+      'RE

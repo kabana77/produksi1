@@ -1,0 +1,40 @@
+ = True
+        StretchWithParent = True
+        Style = lsDouble
+        Weight = 0.750000000000000000
+        mmHeight = 4233
+        mmLeft = 149225
+        mmTop = 0
+        mmWidth = 3704
+        BandType = 4
+      end
+      object ppLine14: TppLine
+        UserName = 'Line14'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        ParentHeight = True
+        Position = lpLeft
+        ReprintOnOverFlow = True
+        StretchWithParent = True
+        Style = lsDouble
+        Weight = 0.750000000000000000
+        mmHeight = 4233
+        mmLeft = 133350
+        mmTop = 0
+        mmWidth = 3704
+        BandType = 4
+      end
+      object ppLine15: TppLine
+        UserName = 'Line15'
+        Border.BorderPositions = []
+        Border.Color = clBlack
+        Border.Style = psSolid
+        Border.Visible = False
+        ParentHeight = True
+        Position = lpLeft
+        ReprintOnOverFlow = True
+        StretchWithParent = True
+        Weight = 0.750000000000000000
+        mmHeig

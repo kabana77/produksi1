@@ -1,0 +1,112 @@
+
+      vtot22:=vtot22+QBrowseBLN_LALU2.AsFloat;
+      QBrowse.Next;
+  end;
+
+  wwDBGrid1.ColumnByName('BLN_INI1').FooterValue:=FormatFloat('#.#,#',vtot11);
+  wwDBGrid1.ColumnByName('BLN_LALU1').FooterValue:=FormatFloat('#.#,#',vtot12);
+  wwDBGrid1.ColumnByName('BLN_INI2').FooterValue:=FormatFloat('#.#,#',vtot21);
+  wwDBGrid1.ColumnByName('BLN_LALU2').FooterValue:=FormatFloat('#.#,#',vtot22);}
+end;
+
+procedure TRabRealFrm.QBrowseCalcFields(DataSet: TDataSet);
+begin
+  QBrowseCPROGRES_BLN_NILAI.AsFloat:=QBrowseAKTUAL_MUTASI4.AsFloat-
+    QBrowseAKTUAL_MUTASI2.AsFloat;
+  if QBrowseAKTUAL_MUTASI4.AsFloat>0 then
+    QBrowseCPROGRES_BLN_PSN.AsFloat:=100*QBrowseCPROGRES_BLN_NILAI.AsFloat/QBrowseAKTUAL_MUTASI4.AsFloat;
+  QBrowseCPROGRES_THN_NILAI.AsFloat:=QBrowseAKTUAL_MUTASI.AsFloat-
+    QBrowseAKTUAL_MUTASI3.AsFloat;
+  if QBrowseAKTUAL_MUTASI3.AsFloat>0 then
+    QBrowseCPROGRES_THN_PSN.AsFloat:=100*QBrowseCPROGRES_THN_NILAI.AsFloat/QBrowseAKTUAL_MUTASI3.AsFloat;
+end;
+
+procedure TRabRealFrm.BitBtn2Click(Sender: TObject);
+var
+  vdate : Tdate;
+  vdd, vmm, vyy : Integer;
+begin
+  vdd:=1;
+  vmm:=LookBulan.ItemIndex+1;
+  vyy:=Round(spTahun.Value);
+  vdate:=EncodeDate(vyy,vmm,vdd);
+  BrowseJurnalFrm:=TBrowseJurnalFrm.Create(Self);
+//  BrowseJurnalFrm.QBukuKas.Close;
+  BrowseJurnalFrm.vawal:=QBrowseAKTUAL_MUTASI4.AsFloat-
+    QBrowseAKTUAL_MUTASI.AsFloat;
+  BrowseJurnalFrm.vkd_perk:=QBrowseKD_RAB.AsString;
+  BrowseJurnalFrm.vtglawal2:=dateBeginOfMonth(vdate);
+  BrowseJurnalFrm.vtglakhir2:=dateEndOfMonth(vdate);
+  BrowseJurnalFrm.ShowModal;
+  BrowseJurnalFrm.Free;
+end;
+
+procedure TRabRealFrm.ColumnHeaderBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLPeriode.Caption:='Periode '+LookBulan.Text+' Tahun '+spTahun.Text;
+end;
+
+procedure TRabRealFrm.TitleBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRLPeriode.Caption:='Per : '+LookBulan.Text+' '+spTahun.Text;
+end;
+
+procedure TRabRealFrm.DetailBand1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  QRDBText6.Frame.DrawTop:=copy(QBrowseKD_RAB.AsString,1,1)='F';
+  QRDBText5.Frame.DrawTop:=copy(QBrowseKD_RAB.AsString,1,1)='F';
+  QRDBText16.Frame.DrawTop:=copy(QBrowseKD_RAB.AsString,1,1)='F';
+  QRDBText17.Frame.DrawTop:=copy(QBrowseKD_RAB.AsString,1,1)='F';
+  if isresume then
+  begin
+      QRDBPospos.Font.Size:=8;
+      if copy(QBrowseKD_RAB.AsString,1,1)='H' then
+      begin
+         QRDBPospos.Left:=8;
+         QRDBPospos.Font.Style:=QRDBPospos.Font.Style+[fsBold]-[fsItalic];
+         QRDBPospos.Alignment:=taLeftJustify;
+         DetailBand1.Height:=19;
+      end
+      else
+      if copy(QBrowseKD_RAB.AsString,1,1)='D' then
+      begin
+         QRDBPospos.Left:=48;
+         QRDBPospos.Font.Style:=QRDBPospos.Font.Style-[fsBold]-[fsItalic];
+         QRDBPospos.Alignment:=taLeftJustify;
+         DetailBand1.Height:=19;
+      end
+      else
+      if copy(QBrowseKD_RAB.AsString,1,1)='F' then
+      begin
+         QRDBPospos.Left:=48;
+         QRDBPospos.Font.Style:=QRDBPospos.Font.Style-[fsBold]+[fsItalic];
+         QRDBPospos.Alignment:=taLeftJustify;
+         DetailBand1.Height:=25;
+      end;
+  end
+  else
+  begin
+      QRDBPospos.Font.Size:=7;
+      if copy(QBrowseKD_RAB.AsString,1,1)='H' then
+      begin
+         QRDBPospos.Left:=8;
+         QRDBPospos.Font.Style:=QRDBPospos.Font.Style+[fsBold]-[fsItalic];
+         QRDBPospos.Alignment:=taLeftJustify;
+         DetailBand1.Height:=19;
+      end
+      else
+      if copy(QBrowseKD_RAB.AsString,1,1)='D' then
+      begin
+         QRDBPospos.Left:=8;
+         QRDBPospos.Font.Style:=QRDBPospos.Font.Style-[fsBold]-[fsItalic];
+         QRDBPospos.Alignment:=taLeftJustify;
+         DetailBand1.Height:=19;
+      end
+      else
+      if copy(QBrowseKD_RAB.AsString,1,1)='F' then
+      begin
+         QRDBPospos.Left:=8;
+         QRDBPospos.Font.Style:=QRDBPo

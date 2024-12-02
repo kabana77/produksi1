@@ -1,0 +1,391 @@
+ield
+      DisplayLabel = 'SATUAN'
+      DisplayWidth = 12
+      FieldName = 'SAT1'
+      Required = True
+      Size = 12
+    end
+    object QLookItemKELOMPOK: TStringField
+      DisplayWidth = 30
+      FieldName = 'KELOMPOK'
+      Required = True
+      Size = 50
+    end
+    object QLookItemSTOK: TFloatField
+      DisplayWidth = 6
+      FieldName = 'STOK'
+      DisplayFormat = '#.#,#;(#.#,#)'
+    end
+    object QLookItemKD_JNS_ITEM: TStringField
+      FieldName = 'KD_JNS_ITEM'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+  end
+  object QBrowse: TOracleDataSet
+    SQL.Strings = (
+      'select * from (select * from pmtx02.vbon_barang_nbb'
+      'where kd_transaksi=:kd_transaksi)'
+      ':myparam')
+    Variables.Data = {
+      03000000020000000D0000003A4B445F5452414E53414B534905000000040000
+      003130320000000000080000003A4D59504152414D01000000110000006F7264
+      6572206279204E4F5F4E4F54410000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000110000000C0000004B445F5452414E53414B53490100000000000700
+      000054414E4747414C010000000000070000004E4F5F4E4F5441010000000000
+      060000004953504F5354010000000000070000004B445F4954454D0100000000
+      00090000004E414D415F4954454D010000000000040000005341543101000000
+      00000600000049445F4241470100000000000600000042414749414E01000000
+      00000A00000049445F5355425F4241470100000000000A0000005355425F4241
+      4749414E01000000000003000000515459010000000000060000005354415455
+      530100000000000A0000004E4F5F5245475F424F4E0100000000000C00000051
+      54595F56414C49444153490100000000000B0000004B445F4A4E535F4954454D
+      010000000000050000004D4553494E010000000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    Session = DMFrm.OS
+    BeforeOpen = QBrowseBeforeOpen
+    AfterScroll = QBrowseAfterScroll
+    Left = 388
+    Top = 145
+    object QBrowseKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Size = 3
+    end
+    object QBrowseTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+      DisplayFormat = 'dd mmm yyyy'
+    end
+    object QBrowseNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object QBrowseISPOST: TStringField
+      FieldName = 'ISPOST'
+      Size = 1
+    end
+    object QBrowseKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 16
+    end
+    object QBrowseNAMA_ITEM: TStringField
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 80
+    end
+    object QBrowseSAT1: TStringField
+      FieldName = 'SAT1'
+      Required = True
+      Size = 12
+    end
+    object QBrowseID_BAG: TStringField
+      FieldName = 'ID_BAG'
+      Size = 1
+    end
+    object QBrowseBAGIAN: TStringField
+      FieldName = 'BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object QBrowseID_SUB_BAG: TStringField
+      FieldName = 'ID_SUB_BAG'
+      Size = 1
+    end
+    object QBrowseSUB_BAGIAN: TStringField
+      FieldName = 'SUB_BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object QBrowseQTY: TFloatField
+      FieldName = 'QTY'
+      DisplayFormat = '#,##0.##;(#,##0.##)'
+    end
+    object QBrowseQTY_VALIDASI: TFloatField
+      FieldName = 'QTY_VALIDASI'
+    end
+    object QBrowseSTATUS: TStringField
+      FieldName = 'STATUS'
+      Size = 6
+    end
+    object QBrowseNO_REG_BON: TIntegerField
+      FieldName = 'NO_REG_BON'
+      Required = True
+    end
+    object QBrowseMESIN: TStringField
+      FieldName = 'MESIN'
+      Required = True
+      Size = 10
+    end
+  end
+  object dsQBrowse: TwwDataSource
+    DataSet = QBrowse
+    Left = 428
+    Top = 145
+  end
+  object QLookSubBagian: TOracleDataSet
+    SQL.Strings = (
+      'select * from pmtx01.vsub_bagian'
+      'where id_bag in (:kd_bag)')
+    Variables.Data = {0300000001000000070000003A4B445F424147010000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000005000000040000004B4F44450100000000000600000042414749414E
+      0100000000000A0000005355425F42414749414E010000000000060000004944
+      5F4241470100000000000A00000049445F5355425F424147010000000000}
+    Session = DMFrm.OS
+    BeforeOpen = QLookSubBagianBeforeOpen
+    Left = 148
+    Top = 113
+    object QLookSubBagianKODE: TStringField
+      DisplayWidth = 2
+      FieldName = 'KODE'
+      Size = 2
+    end
+    object QLookSubBagianBAGIAN: TStringField
+      DisplayWidth = 20
+      FieldName = 'BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object QLookSubBagianSUB_BAGIAN: TStringField
+      DisplayWidth = 20
+      FieldName = 'SUB_BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object QLookSubBagianID_BAG: TStringField
+      DisplayWidth = 1
+      FieldName = 'ID_BAG'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+    object QLookSubBagianID_SUB_BAG: TStringField
+      DisplayWidth = 1
+      FieldName = 'ID_SUB_BAG'
+      Required = True
+      Visible = False
+      Size = 1
+    end
+  end
+  object QLookMesin: TOracleDataSet
+    SQL.Strings = (
+      
+        'select no_polisi as kode,jenis||'#39' '#39'||kendaraan as mesin, '#39'KENDAR' +
+        'AAN'#39' AS jenis from pmtx01.kendaraan'
+      'union'
+      
+        'select kd_mesin as kode,jenis||'#39' '#39'||merk||'#39' '#39'||spesifikasi as me' +
+        'sin, jenis from pmtx01.mesin'
+      'union'
+      
+        'select kd_sub_lokasi as kode, '#39'Mesin '#39'||sub_lokasi as mesin, '#39'ME' +
+        'SIN TENUN'#39' as jenis from pmtx01.sub_lokasi'
+      'where kd_lokasi='#39'15'#39
+      'order by jenis, kode')
+    QBEDefinition.QBEFieldDefs = {
+      0400000003000000040000004B4F4445010000000000050000004D4553494E01
+      0000000000050000004A454E4953010000000000}
+    Session = DMFrm.OS
+    Left = 428
+    Top = 281
+    object QLookMesinKODE: TStringField
+      DisplayWidth = 6
+      FieldName = 'KODE'
+      Size = 6
+    end
+    object QLookMesinMESIN: TStringField
+      DisplayWidth = 50
+      FieldName = 'MESIN'
+      Size = 327
+    end
+    object QLookMesinJENIS: TStringField
+      DisplayWidth = 16
+      FieldName = 'JENIS'
+    end
+  end
+  object QJnsTransaksi: TOracleDataSet
+    SQL.Strings = (
+      
+        'select kd_transaksi, nama_transaksi, ttd1, ttd2, ttd3, ttd4, bag' +
+        '1, bag2, bag3, bag4, jab1, jab2, jab3, jab4, distribusi,doc_iso'
+      'from pmtx01.jns_transaksi'
+      'where kd_transaksi=:kd_transaksi')
+    Variables.Data = {
+      03000000010000000D0000003A4B445F5452414E53414B534905000000040000
+      0042424B0000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000100000000C0000004B445F5452414E53414B53490100000000000E00
+      00004E414D415F5452414E53414B534901000000000004000000545444310100
+      0000000004000000545444320100000000000400000054544433010000000000
+      0400000054544434010000000000040000004241473101000000000004000000
+      4241473201000000000004000000424147330100000000000400000042414734
+      010000000000040000004A414231010000000000040000004A41423201000000
+      0000040000004A414233010000000000040000004A4142340100000000000A00
+      00004449535452494255534901000000000007000000444F435F49534F010000
+      000000}
+    Session = DMFrm.OS
+    Left = 367
+    Top = 59
+    object QJnsTransaksiKD_TRANSAKSI: TStringField
+      FieldName = 'KD_TRANSAKSI'
+      Required = True
+      Size = 3
+    end
+    object QJnsTransaksiNAMA_TRANSAKSI: TStringField
+      FieldName = 'NAMA_TRANSAKSI'
+      Size = 50
+    end
+    object QJnsTransaksiTTD1: TStringField
+      FieldName = 'TTD1'
+      Size = 50
+    end
+    object QJnsTransaksiTTD2: TStringField
+      FieldName = 'TTD2'
+      Size = 50
+    end
+    object QJnsTransaksiTTD3: TStringField
+      FieldName = 'TTD3'
+      Size = 50
+    end
+    object QJnsTransaksiTTD4: TStringField
+      FieldName = 'TTD4'
+      Size = 50
+    end
+    object QJnsTransaksiBAG1: TStringField
+      FieldName = 'BAG1'
+      Size = 50
+    end
+    object QJnsTransaksiBAG2: TStringField
+      FieldName = 'BAG2'
+      Size = 50
+    end
+    object QJnsTransaksiBAG3: TStringField
+      FieldName = 'BAG3'
+      Size = 50
+    end
+    object QJnsTransaksiBAG4: TStringField
+      FieldName = 'BAG4'
+      Size = 50
+    end
+    object QJnsTransaksiJAB1: TStringField
+      FieldName = 'JAB1'
+      Size = 50
+    end
+    object QJnsTransaksiJAB2: TStringField
+      FieldName = 'JAB2'
+      Size = 50
+    end
+    object QJnsTransaksiJAB3: TStringField
+      FieldName = 'JAB3'
+      Size = 50
+    end
+    object QJnsTransaksiJAB4: TStringField
+      FieldName = 'JAB4'
+      Size = 50
+    end
+    object QJnsTransaksiDISTRIBUSI: TStringField
+      FieldName = 'DISTRIBUSI'
+      Size = 100
+    end
+    object QJnsTransaksiDOC_ISO: TStringField
+      FieldName = 'DOC_ISO'
+      Size = 10
+    end
+  end
+  object dsQJnsTransaksi: TwwDataSource
+    DataSet = QJnsTransaksi
+    Left = 416
+    Top = 48
+  end
+  object DSTGL: TwwDataSource
+    DataSet = ODSTGL
+    Left = 644
+    Top = 81
+  end
+  object ODSTGL: TOracleDataSet
+    SQL.Strings = (
+      'select * from (select * from pmtx02.v_tgl_bon_bb_benang'
+      'where kd_transaksi=:kd_transaksi)  '
+      ':myparam ')
+    Variables.Data = {
+      03000000020000000D0000003A4B445F5452414E53414B534905000000040000
+      004230370000000000080000003A4D59504152414D01000000110000006F7264
+      6572206279204E4F5F4E4F54410000000000}
+    QBEDefinition.QBEFieldDefs = {
+      04000000050000000700000054414E4747414C010000000000070000004E4F5F
+      4E4F54410100000000000A0000005355425F42414749414E0100000000000A00
+      000054474C5F494E5345525401000000000007000000534C534854474C010000
+      000000}
+    QueryAllRecords = False
+    CountAllRecords = True
+    Session = DMFrm.OS
+    Left = 684
+    Top = 73
+    object ODSTGLNO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 15
+    end
+    object ODSTGLTANGGAL: TDateTimeField
+      FieldName = 'TANGGAL'
+    end
+    object ODSTGLSUB_BAGIAN: TStringField
+      FieldName = 'SUB_BAGIAN'
+      Required = True
+      Size = 50
+    end
+    object ODSTGLTGL_INSERT: TDateTimeField
+      FieldName = 'TGL_INSERT'
+    end
+    object ODSTGLSLSHTGL: TFloatField
+      FieldName = 'SLSHTGL'
+    end
+  end
+end
+                                                                                                                                                                                                                                                                                                                                                            te
+              DataSet = OracleDataSet12
+              DataField = 'AWAL'
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Arial'
+              Font.Style = []
+              ParentFont = False
+              Transparent = True
+              WordWrap = True
+              FontSize = 8
+            end
+            object QRShape38: TQRShape
+              Left = 96
+              Top = -1
+              Height = 19
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                50.270833333333330000
+                254.000000000000000000
+                -2.645833333333333000
+                171.979166666666700000)
+              Shape = qrsRectangle
+            end
+            object QRDBText32: TQRDBText
+              Left = 104
+              Top = 2
+              Width = 49
+              Height = 16
+              Frame.Color = clBlack
+              Frame.DrawTop = False
+              Frame.DrawBottom = False
+              Frame.DrawLeft = False
+              Frame.DrawRight = False
+              Size.Values = (
+                42.333333333333340000
+                275.166666666666700000
+                5.291666666666667000
+                129.645833333333300000)
+            

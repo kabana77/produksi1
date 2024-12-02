@@ -1,0 +1,224 @@
+                      (Components[i] as TMenuItem).Visible:=True;
+                  end;
+              end;
+            end
+            else
+            Close;
+        end
+        else
+          Close;
+      end
+      else
+        Close;
+  end;
+end;
+
+procedure TMainFrm.LogoutExecute(Sender: TObject);
+begin
+  DMFrm.OS.Commit;
+  Proc_HapusMenu;
+  DMFrm.OS.Connected:=False;
+end;
+
+procedure TMainFrm.LoginExecute(Sender: TObject);
+begin
+  BtnLoginClick(Nil);
+end;
+
+procedure TMainFrm.Exit1Click(Sender: TObject);
+begin
+  Close;
+end;
+
+procedure TMainFrm.gANTIpASSWORD1Click(Sender: TObject);
+begin
+  if DMFrm.OL.SetPassword then
+  begin
+    ShowMessage('Ganti Password Sukses !');
+  end;
+end;
+
+procedure TMainFrm.Banner1Click(Sender: TObject);
+begin
+  DMFrm.rvdPerusahaan.Execute;
+end;
+
+procedure TMainFrm.About1Click(Sender: TObject);
+begin
+  MyAbout.Execute;
+end;
+
+procedure TMainFrm.SpeedButton1Click(Sender: TObject);
+begin
+   MyColorFrm:=TMyColorFrm.Create(Self);
+   MyColorFrm.ShowModal;
+   MyColorFrm.Free;
+end;
+
+procedure TMainFrm.CheckBox1Click(Sender: TObject);
+begin
+  FrameLeftFrm1.Visible:=CheckBox1.Checked=True;
+  FrameRightFrm1.Visible:=CheckBox1.Checked=True;
+end;
+
+procedure TMainFrm.Timer1Timer(Sender: TObject);
+begin
+{  if MDIChildCount=0 then
+  begin
+    if vShowSplash then
+    begin
+//       Caption:='Tampil '+FormatDateTime('hh:mm:ss',time);
+       Splash2Frm:=TSplash2Frm.Create(Self);
+       Splash2Frm.Timer1.Enabled:=False;
+       Splash2Frm.Show;
+       vShowSplash:=False;
+    end;
+  end
+    else
+    begin
+    if Not vShowSplash then
+    begin
+//       Caption:='Hide '+FormatDateTime('hh:mm:ss',time);
+       Splash2Frm.Close;
+       vShowSplash:=True;
+    end;
+    end;
+       }
+end;
+
+procedure TMainFrm.Perkiraan1Click(Sender: TObject);
+begin
+  if PerkiraanFrm=nil then PerkiraanFrm:=TPerkiraanFrm.Create(Self)
+  else
+    PerkiraanFrm.Show;
+end;
+
+procedure TMainFrm.Rekanan1Click(Sender: TObject);
+begin
+  if RekananFrm=nil then RekananFrm:=TRekananFrm.Create(Self)
+  else
+    RekananFrm.Show;
+end;
+
+procedure TMainFrm.Karyawan1Click(Sender: TObject);
+begin
+  if KaryawanFrm=nil then KaryawanFrm:=TKaryawanFrm.Create(Self)
+  else
+    KaryawanFrm.Show;
+end;
+
+procedure TMainFrm.Proyek1Click(Sender: TObject);
+begin
+  if ProyekFrm=nil then ProyekFrm:=TProyekFrm.Create(Self)
+  else
+    ProyekFrm.Show;
+end;
+
+procedure TMainFrm.MesindanAlat1Click(Sender: TObject);
+begin
+  if AlatFrm=nil then AlatFrm:=TAlatFrm.Create(Self)
+  else
+    AlatFrm.Show;
+end;
+
+procedure TMainFrm.ItemBarang1Click(Sender: TObject);
+begin
+  if ItemBarangFrm=nil then ItemBarangFrm:=TItemBarangFrm.Create(Self)
+  else
+    ItemBarangFrm.Show;
+end;
+
+procedure TMainFrm.Anggaran1Click(Sender: TObject);
+begin
+  if RABFrm=nil then RABFrm:=TRABFrm.Create(Self)
+  else
+    RABFrm.Show;
+end;
+
+procedure TMainFrm.Cashflow1Click(Sender: TObject);
+begin
+  if CashFlowFrm=nil then CashFlowFrm:=TCashFlowFrm.Create(Self)
+  else
+    CashFlowFrm.Show;
+end;
+
+procedure TMainFrm.BukuKas1Click(Sender: TObject);
+begin
+  if BukuKasFrm=nil then BukuKasFrm:=TBukuKasFrm.Create(Self)
+  else
+    BukuKasFrm.Show;
+end;
+
+procedure TMainFrm.Bank1Click(Sender: TObject);
+begin
+  if BukuBank2Frm=nil then BukuBank2Frm:=TBukuBank2Frm.Create(Self)
+  else
+    BukuBank2Frm.Show;
+end;
+
+procedure TMainFrm.Memorial1Click(Sender: TObject);
+begin
+  if JurnalMemorialFrm=nil then JurnalMemorialFrm:=TJurnalMemorialFrm.Create(Self)
+  else
+    JurnalMemorialFrm.Show;
+end;
+
+procedure TMainFrm.Kendaraan1Click(Sender: TObject);
+begin
+  if KendaraanFrm=nil then KendaraanFrm:=TKendaraanFrm.Create(Self)
+  else
+    KendaraanFrm.Show;
+end;
+
+procedure TMainFrm.SaldoPerkiraan1Click(Sender: TObject);
+begin
+  if SaldoPerkiraanFrm=nil then SaldoPerkiraanFrm:=TSaldoPerkiraanFrm.Create(Self)
+  else
+    SaldoPerkiraanFrm.Show;
+end;
+
+procedure TMainFrm.SaldoRekeningCashFlow1Click(Sender: TObject);
+begin
+  if SaldoCashFlowFrm=nil then SaldoCashFlowFrm:=TSaldoCashFlowFrm.Create(Self)
+  else
+    SaldoCashFlowFrm.Show;
+end;
+
+procedure TMainFrm.SaldoRekeningAnggaran1Click(Sender: TObject);
+begin
+  if SaldoRABFrm=nil then SaldoRABFrm:=TSaldoRABFrm.Create(Self)
+  else
+    SaldoRABFrm.Show;
+end;
+
+procedure TMainFrm.Neraca1Click(Sender: TObject);
+begin
+  if NeracaFrm=nil then NeracaFrm:=TNeracaFrm.Create(Self)
+  else
+    NeracaFrm.Show;
+end;
+
+procedure TMainFrm.BebanKendaraan1Click(Sender: TObject);
+begin
+  if BebanKendaraanFrm=nil then BebanKendaraanFrm:=TBebanKendaraanFrm.Create(Self)
+  else
+    BebanKendaraanFrm.Show;
+end;
+
+procedure TMainFrm.BebanPeralatan1Click(Sender: TObject);
+begin
+  if BebanAlatFrm=nil then BebanAlatFrm:=TBebanAlatFrm.Create(Self)
+  else
+    BebanAlatFrm.Show;
+end;
+
+procedure TMainFrm.RekeningKaryawanSales1Click(Sender: TObject);
+begin
+  if RekeningKaryawanFrm=nil then RekeningKaryawanFrm:=TRekeningKaryawanFrm.Create(Self)
+  else
+    RekeningKaryawanFrm.Show;
+end;
+
+procedure TMainFrm.RekeningRekanan1Click(Sender: TObject);
+begin
+ 

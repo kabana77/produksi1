@@ -1,0 +1,109 @@
+rid1.FieldCount-1 do
+    if UpperCase(wwDBGrid1.Columns[i].FieldName)<>'TANGGAL' then
+      dbcField.Items.Add(wwDBGrid1.Columns[i].FieldName);
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.LookItemUserButton1Click(Sender: TObject;
+  LookupTable: TDataSet);
+begin
+  QLookItem.Close;
+  QLookItem.Open;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QRGroup1BeforePrint(Sender: TQRCustomBand;
+  var PrintBand: Boolean);
+begin
+  Inc(vnomer);
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.QBrowseCalcFields(DataSet: TDataSet);
+begin
+  if Copy(QBrowseKD_ITEM.AsString,1,1)='1' then
+    QBrowseHARGA2.AsFloat:=QBrowseHARGA.AsFloat*181.44
+    else
+    QBrowseHARGA2.AsFloat:=QBrowseHARGA.AsFloat;
+  QBrowseSUB_TOTAL.AsFloat:=QBrowseHARGA.AsFloat*QBrowseQTY_PP.AsFloat;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.cbTanggalClick(Sender: TObject);
+begin
+  if cbTanggal.Checked then
+  begin
+    VTglAwal.Enabled:=cbTanggal.Checked;
+    vTglAkhir.Enabled:=cbTanggal.Checked;
+    VTglAwal.SetFocus;
+  end
+  else
+    ECari.SetFocus;
+
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.vOperandClick(Sender: TObject);
+begin
+  if vOperand.Caption='LIKE' then
+    vOperand.Caption:='='
+    else
+      vOperand.Caption:='LIKE';
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.wwDBGrid1TitleButtonClick(
+  Sender: TObject; AFieldName: String);
+begin
+  if ((Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName<>'') then
+  begin
+     if (Sender as TwwDBGrid).DataSource.DataSet.FieldByName(AFieldName).FieldKind=fkData then
+        begin
+          if vorder=' ASC' then
+              vorder:=' DESC'
+          else
+              vorder:=' ASC';
+          (Sender as TwwDBGrid).DataSource.DataSet.DisableControls;
+          (Sender as TwwDBGrid).DataSource.DataSet.Close;
+          ((Sender as TwwDBGrid).DataSource.DataSet as TOracleDataSet).SetVariable('myparam',vfilter+' order by '+(Sender as TwwDBGrid).ColumnByName(AFieldName).FieldName+vorder);
+          (Sender as TwwDBGrid).DataSource.DataSet.Open;
+          (Sender as TwwDBGrid).DataSource.DataSet.EnableControls;
+        end
+        else
+          ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+  end
+  else
+  ShowMessage('Maaf, tidak bisa diurutkan menurut '+AFieldName+' !');
+
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.TabSheet2Show(Sender: TObject);
+begin
+  QDetail2.DisableControls;
+  QDetail2.Close;
+  QDetail2.SetVariable('vjns',DMFrm.QJns_ItemKD_JNS_ITEM.AsString);
+  QDetail2.SetVariable('pawal',VTglAwal.Date);
+  QDetail2.SetVariable('pakhir',VTglAkhir.Date);
+  if cbAll.Checked then
+    QDetail2.SetVariable('myparam',' where  bagian like ''%'+QBrowseBAGIAN.AsString+'%'' and sub_bagian like ''%'+QBrowseSUB_BAGIAN.AsString+
+      '%'' and mesin like ''%'+QBrowseMESIN.AsString+'%'' and kd_item like ''%'+QBrowseKD_ITEM.AsString+'%''')
+      else
+        QDetail2.SetVariable('myparam','');
+  QDetail2.Open;
+  QDetail2.EnableControls;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.cbAllClick(Sender: TObject);
+begin
+  QDetail2.DisableControls;
+  QDetail2.Close;
+  QDetail2.SetVariable('vjns',DMFrm.QJns_ItemKD_JNS_ITEM.AsString);
+  QDetail2.SetVariable('pawal',VTglAwal.Date);
+  QDetail2.SetVariable('pakhir',VTglAkhir.Date);
+  if cbAll.Checked then
+    QDetail2.SetVariable('myparam',' where  bagian like ''%'+QBrowseBAGIAN.AsString+'%'' and sub_bagian like ''%'+QBrowseSUB_BAGIAN.AsString+
+      '%'' and mesin like ''%'+QBrowseMESIN.AsString+'%'' and kd_item like ''%'+QBrowseKD_ITEM.AsString+'%''')
+      else
+        QDetail2.SetVariable('myparam','');
+  QDetail2.Open;
+  QDetail2.EnableControls;
+end;
+
+procedure TRekapPemakaianPerMesin2Frm.BitBtn2Click(Sender: TObject);
+begin
+  RekapPemakaianPerMesin2BBFrm:=TRekapPemakaianPerMesin2BBFrm.Create(Application);
+  RekapPemakaianPerMesin2BBFrm
