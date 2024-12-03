@@ -1394,7 +1394,8 @@ end;
 procedure THasilPengeringFrm.QLookItemBaruBeforeQuery(
   Sender: TOracleDataSet);
 begin
-  QLookItemBaru.SetVariable('vkd_benang', QDetailKD_ITEM.AsString);  
+  QLookItemBaru.SetVariable('vkd_benang', QDetailKD_ITEM.AsString);
+  QLookItemBaru.SetVariable('vibukti', QDetailIBUKTI.ASINTEGER);
 end;
 
 end.

@@ -957,6 +957,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
               'TGL'#9'11'#9'Tanggal'#9'F'#9'NOTA'
               'SHIFTGRUP'#9'5'#9'Shift'#9'F'#9'NOTA'
               'KD_SUB_LOKASI'#9'7'#9'Mesin'#9'F'#9'MESIN TERPASANG'
+              'RPM'#9'10'#9'Rpm'#9'F'#9'MESIN TERPASANG'
               'JML'#9'4'#9'Jml'#9'F'#9'MESIN TERPASANG'
               'QTY4'#9'6'#9'Kps'#9'F'#9'MESIN TERPASANG'
               'EFF'#9'10'#9'Eff'#9'F'#9'MESIN TERPASANG'
@@ -971,8 +972,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
               'QTY_STD'#9'10'#9'Std (Kg)'#9'F'#9'QTY'
               'STD_PSN'#9'6'#9'%'#9'F'#9'QTY'
               'NO_LOT'#9'10'#9'NO LOT'#9'F'
-              'OPR_INSERT'#9'20'#9'OPERATOR'#9'F'
-              'EFFISIENSI'#9'10'#9'EFFISIENSI'#9'F')
+              'OPR_INSERT'#9'20'#9'OPERATOR'#9'F')
             IniAttributes.Enabled = True
             IniAttributes.SaveToRegistry = True
             IniAttributes.FileName = 'produksi'
@@ -1175,6 +1175,10 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     OnCalcFields = QBrowseCalcFields
     Left = 848
     Top = 8
+    object QBrowseRPM: TStringField
+      FieldName = 'RPM'
+      Size = 50
+    end
     object QBrowseKD_SUB_LOKASI: TStringField
       FieldName = 'KD_SUB_LOKASI'
       Required = True

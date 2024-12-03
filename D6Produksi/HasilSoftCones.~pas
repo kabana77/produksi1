@@ -335,6 +335,7 @@ type
     QBrowseRASIO3: TFloatField;
     QItemQTY: TFloatField;
     QItemQTY2: TFloatField;
+    QBrowseRPM: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -1194,7 +1195,7 @@ end;
 
 procedure THasilSoftConesFrm.QBrowseCalcFields(DataSet: TDataSet);
 begin
-  if copy(QBrowseKETERANGAN.AsString,1,4) = '30/2' then
+  {if copy(QBrowseKETERANGAN.AsString,1,4) = '30/2' then
     begin
       QBrowseeffisiensi.AsFloat := (QBrowseQTY2.AsFloat/QBrowseSPEED_PER_MNT2.AsFloat)/425*100;
     end
@@ -1203,7 +1204,7 @@ begin
       QBrowseeffisiensi.AsFloat := (QBrowseQTY2.AsFloat/QBrowseSPEED_PER_MNT.AsFloat)/425*100;
     end;
 
-     QBrowseRASIO3.AsFloat:=QBrowseQTY1.AsFloat/QBrowseQTY2.AsFloat;
+     QBrowseRASIO3.AsFloat:=QBrowseQTY1.AsFloat/QBrowseQTY2.AsFloat; }
 
 end;
 

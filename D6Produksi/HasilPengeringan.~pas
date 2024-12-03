@@ -1243,7 +1243,8 @@ end;
 procedure THasilPengeringFrm.LookWarnaEnter(Sender: TObject);
 begin
 //  (sender as TwwDBLookupComboDlg).LookupTable.Close;
-  (sender as TwwDBLookupComboDlg).LookupTable.Open;
+    QLookItemBaru.Close;
+    QLookItemBaru.Open;
 
 {if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
   begin
@@ -1393,7 +1394,8 @@ end;
 procedure THasilPengeringFrm.QLookItemBaruBeforeQuery(
   Sender: TOracleDataSet);
 begin
-  QLookItemBaru.SetVariable('vkd_benang', QDetailKD_ITEM.AsString);  
+  QLookItemBaru.SetVariable('vkd_benang', QDetailKD_ITEM.AsString);
+  QLookItemBaru.SetVariable('vibukti', QDetailIBUKTI.ASINTEGER);
 end;
 
 end.

@@ -1,9 +1,9 @@
 object HasilSoftConesFrm: THasilSoftConesFrm
-  Left = 241
-  Top = 127
+  Left = 191
+  Top = 124
   Width = 1036
   Height = 611
-  ActiveControl = vTglAwal
+  ActiveControl = wwDBEdit1
   Caption = 'Hasil SoftCones'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -25,8 +25,8 @@ object HasilSoftConesFrm: THasilSoftConesFrm
   object PanelMain: TPanel
     Left = 0
     Top = 0
-    Width = 1028
-    Height = 580
+    Width = 1020
+    Height = 573
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -34,8 +34,8 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 567
-      Width = 1028
+      Top = 560
+      Width = 1020
       Height = 13
       Align = alBottom
       Color = clSkyBlue
@@ -44,7 +44,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     object DBText3: TDBText
       Left = 0
       Top = 49
-      Width = 1028
+      Width = 1020
       Height = 27
       Align = alTop
       Alignment = taRightJustify
@@ -62,7 +62,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     object PanelHeader: TPanel
       Left = 0
       Top = 0
-      Width = 1028
+      Width = 1020
       Height = 49
       Align = alTop
       BevelOuter = bvNone
@@ -79,9 +79,9 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     object PageControl1: TPageControl
       Left = 0
       Top = 76
-      Width = 1028
-      Height = 491
-      ActivePage = TabSheet2
+      Width = 1020
+      Height = 484
+      ActivePage = TabSheet1
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -92,7 +92,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object PanelMaster: TPanel
           Left = 0
           Top = 0
-          Width = 1020
+          Width = 1012
           Height = 137
           Align = alTop
           BevelOuter = bvNone
@@ -356,16 +356,16 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object PanelDetail: TPanel
           Left = 0
           Top = 178
-          Width = 1020
-          Height = 241
+          Width = 1012
+          Height = 234
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
           object wwDBGrid1: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1020
-            Height = 241
+            Width = 1012
+            Height = 234
             ControlType.Strings = (
               'KD_SUB_LOKASI;CustomEdit;LookLokasi;F'
               'KD_ITEM;CustomEdit;LookItem;F'
@@ -492,8 +492,8 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         end
         object PanelFooter1: TPanel
           Left = 0
-          Top = 419
-          Width = 1020
+          Top = 412
+          Width = 1012
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
@@ -608,7 +608,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object PanelBand: TPanel
           Left = 0
           Top = 137
-          Width = 1020
+          Width = 1012
           Height = 41
           Align = alTop
           BevelOuter = bvNone
@@ -800,7 +800,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object LabelBanner: TLabel
           Left = 0
           Top = 57
-          Width = 1020
+          Width = 1012
           Height = 13
           Align = alTop
           Color = clSkyBlue
@@ -809,7 +809,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object PanelFilter: TPanel
           Left = 0
           Top = 0
-          Width = 1020
+          Width = 1012
           Height = 57
           Align = alTop
           BevelOuter = bvNone
@@ -942,16 +942,16 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         object PanelBrowse: TPanel
           Left = 0
           Top = 70
-          Width = 1020
-          Height = 349
+          Width = 1012
+          Height = 342
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
           object wwDBGrid2: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1020
-            Height = 349
+            Width = 1012
+            Height = 342
             Selected.Strings = (
               'NO_NOTA'#9'14'#9'Nomer'#9'F'#9'NOTA'
               'TGL'#9'11'#9'Tanggal'#9'F'#9'NOTA'
@@ -1014,8 +1014,8 @@ object HasilSoftConesFrm: THasilSoftConesFrm
         end
         object PanelFooter2: TPanel
           Left = 0
-          Top = 419
-          Width = 1020
+          Top = 412
+          Width = 1012
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
@@ -1299,8 +1299,8 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     DataPipeline = ppDBQBrowseDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
-    PrinterSetup.PrinterName = 'Microsoft Print to PDF'
+    PrinterSetup.PaperName = 'A4 210 x 297 mm'
+    PrinterSetup.PrinterName = '\\192.168.1.53\EPSON L360 Series'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350

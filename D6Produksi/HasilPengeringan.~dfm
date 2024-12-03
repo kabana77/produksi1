@@ -80,7 +80,7 @@ object HasilPengeringFrm: THasilPengeringFrm
       Top = 76
       Width = 995
       Height = 532
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -5143,11 +5143,60 @@ object HasilPengeringFrm: THasilPengeringFrm
   end
   object QLookItemBaru: TOracleDataSet
     SQL.Strings = (
-      'select * from ipisma_db3.VLOOK_WARNA_HP_PENGERING'
-      'where kd_item = :vkd_benang and qty <> 0')
+      '/*select * from ipisma_db3.VLOOK_WARNA_HP_PENGERING'
+      'where kd_item = :vkd_benang and qty <> 0*/'
+      ''
+      'select * from ('
+      
+        'select a.item, sum(a.kg) as qty, sum(a.pcs) as qty2, b.kd_item, ' +
+        'b.nama_item, c.kd_warna, c.warna, substr(a.item, 11) as no_batch'
+      'from'
+      '('
+      '  -- ST Celup'
+      '  select'
+      
+        '     (substr(kd_item, 4, 5)||'#39'.'#39'||kd_warna||'#39'.'#39'||no_batch) as it' +
+        'em, qty_in as kg, qty_in2 as pcs'
+      '  from GD_STOK'
+      
+        '  where kd_transaksi = '#39'795'#39' AND kd_sub_lokasi = '#39'22-10000'#39' and ' +
+        'kd_sub_lokasi2 = '#39'21-00000'#39
+      ''
+      '  -- HP PENGERING'
+      '  union all'
+      ''
+      '  select'
+      
+        '     (substr(kd_item, 4, 5)||'#39'.'#39'||kd_warna||'#39'.'#39'||no_batch) as it' +
+        'em, -qty_in as kg, -qty_in2 as pcs'
+      '  from GD_STOK'
+      
+        '  where kd_transaksi = '#39'793'#39' and kd_sub_lokasi = '#39'22-00000'#39' and ' +
+        'kd_sub_lokasi2 is null'
+      ''
+      '  -- CURRENT ENTRY'
+      '  union all'
+      ''
+      '  select'
+      
+        '     (substr(b.kd_item, 4, 5)||'#39'.'#39'||b.kd_warna||'#39'.'#39'||b.no_batch)' +
+        ' as item, -b.qty1 as kg, -b.qty2 as pcs'
+      '  from bukti a, bukti_detail b'
+      
+        '  where a.kd_transaksi = '#39'793'#39' and a.ibukti=b.ibukti and b.ibukt' +
+        'i = :vibukti'
+      ''
+      ') a'
+      
+        'left join item b on substr(b.kd_item, 4, 5)= substr(a.item, 1, 5' +
+        ') and b.kd_jns_item = '#39'22'#39
+      'left join warna_baru c on c.kd_warna= substr(a.item, 7, 3)'
+      'group by a.item, b.kd_item, b.nama_item, c.kd_warna, c.warna'
+      ') where kd_item = :vkd_benang and qty <> 0')
     Variables.Data = {
-      03000000010000000B0000003A564B445F42454E414E47050000000900000032
-      322E31343633390000000000}
+      03000000020000000B0000003A564B445F42454E414E47050000000900000032
+      322E31343633390000000000080000003A564942554B54490300000000000000
+      00000000}
     QBEDefinition.QBEFieldDefs = {
       0400000008000000070000004B445F4954454D010000000000090000004E414D
       415F4954454D0100000000000300000051545901000000000004000000515459
