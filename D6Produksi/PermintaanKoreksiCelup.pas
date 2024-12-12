@@ -785,40 +785,38 @@ begin
 ////////////////////////////RRREEEVIIIEEEWWWWWWWWWWWWWWWW STOK DALAM HASIL PROSES CELUP
 ////////////////////////////RRREEEVIIIEEEWWWWWWWWWWWWWWWW STOK DALAM PROSES KERING
 ////////////////////////////RRREEEVIIIEEEWWWWWWWWWWWWWWWW STOK DALAM HASIL PROSES KERING
-  
- if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
-  begin
-    {if otString = '21' then
-      begin
-        QItem.Close;
-        //ShowMessage(QItem.SQL.Text);
-        QItem.Open;
-      end
-      else begin}
-        QItem.DeclareVariable('vjns_brg',otString);
-        QItem.DeclareVariable('vjns_lokasi',otString);
-        QItem.DeclareVariable('TGL',otDate);
-        QItem.DeclareVariable('myparam',otSubst);
-        QItem.Close;
-//      	QItem.SQL.Text:='select * from ipisma_db3.vlook_koreksi_hsl_celup_kering where kd_jns_item=:vjns_brg and kd_lokasi=:vjns_lokasi and tgl<=:tgl :myparam';
-//      	QItem.SQL.Text:='select kd_item, nama_item, kd_satuan, rasio, satuan, min_stok, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
-      	QItem.SQL.Text:='SELECT * FROM (select kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
-                        ' kd_warna, warna, no_batch, sum(nvl(qty,0)) as qty, sum(nvl(qty2,0)) as qty2'+
-                        ' from ipisma_db3.vlook_koreksi_hsl_celup_kering t'+
-                        ' where kd_jns_item=:vjns_brg and kd_lokasi=:vjns_lokasi and tgl<=:tgl :myparam'+
-                        ' group by kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi ,kd_warna, warna, no_batch'+
-                        ' order by nama_item, warna, no_batch '+  //190523
-                        ') WHERE (ROUND(nvl(qty,0),6)+ROUND(nvl(qty2,0),6))<>0';
-///                        ') WHERE (qty<>0 OR qty2<>0)';
-// order by (qty) desc, (qty2) desc';
-//ShowMessage(QItem.SQL.Text);
 
-        QItem.SetVariable('vjns_brg',vjns_brg);
-        QItem.SetVariable('vjns_lokasi',vjns_lokasi);
-        QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
-        QItem.Open;
-      end
-  else begin
+ if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
+ begin
+    QItem.DeclareVariable('vjns_brg',otString);
+    QItem.DeclareVariable('vjns_lokasi',otString);
+    QItem.DeclareVariable('TGL',otDate);
+    QItem.DeclareVariable('myparam',otSubst);
+    QItem.Close;
+    {
+    QItem.SQL.Text:='SELECT * FROM (select kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
+                    ' kd_warna, warna, no_batch, sum(nvl(qty,0)) as qty, sum(nvl(qty2,0)) as qty2'+
+                    ' from ipisma_db3.vlook_koreksi_hsl_celup_kering t'+
+                    ' where kd_jns_item=:vjns_brg and kd_lokasi=:vjns_lokasi and tgl<=:tgl :myparam'+
+                    ' group by kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi ,kd_warna, warna, no_batch'+
+                    ' order by nama_item, warna, no_batch '+  //190523
+                    ') WHERE (ROUND(nvl(qty,0),6)+ROUND(nvl(qty2,0),6))<>0';
+    }
+
+    QItem.SQL.Text:='SELECT * FROM (select kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
+                    ' kd_warna, warna, no_batch, sum(nvl(qty,0)) as qty, sum(nvl(qty2,0)) as qty2'+
+                    ' from ipisma_db3.vlook_koreksi_hsl_celup_kering t'+
+                    ' where kd_jns_item=:vjns_brg and kd_lokasi=:vjns_lokasi and tgl<=:tgl :myparam'+
+                    ' group by kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi ,kd_warna, warna, no_batch'+
+                    ' order by nama_item, warna, no_batch)';
+
+    QItem.SetVariable('vjns_brg',vjns_brg);
+    QItem.SetVariable('vjns_lokasi',vjns_lokasi);
+    QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
+    QItem.Open;
+ end
+ else
+ begin
     QItem.DeclareVariable('vjns_brg',otString);
     QItem.DeclareVariable('vjns_lokasi',otString);
     QItem.DeclareVariable('TGL',otDate);
@@ -830,19 +828,14 @@ begin
       ' where a.kd_item=b.kd_item and b.kd_sub_lokasi=c.kd_sub_lokasi and'+
       ' a.kd_satuan=d.kd_satuan and c.jns_lokasi=''LOKASI'' and b.kd_warna=e.kd_warna and'+
       ' a.kd_jns_item=:vjns_brg and c.kd_lokasi=:vjns_lokasi and b.tgl<=:tgl :myparam'+
-      //' group by a.kd_item, a.nama_item, a.kd_satuan, a.rasio,d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna,e.warna,b.no_batch';
       ' order by a.nama_item, e.warna, b.no_batch '+  //190523
       ' group by a.kd_item, a.nama_item, a.kd_satuan, a.rasio,d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna,e.warna,b.no_batch';
-
-      //' having sum(b.qty_in2-b.qty_out2)>0';
     QItem.SetVariable('vjns_brg',vjns_brg);
     QItem.SetVariable('vjns_lokasi',vjns_lokasi);
     QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
     //ShowMessage(QItem.SQL.Text);
     QItem.Open;
-  end;
-
-//  (sender as TwwDBLookupComboDlg).LookupTable.Open;
+ end;
 end;
 
 procedure TPermintaanKoreksiCelupFrm.QMasterBeforeDelete(DataSet: TDataSet);
@@ -1084,18 +1077,14 @@ procedure TPermintaanKoreksiCelupFrm.LookItemUserButton1Click(
 var
   vfilter : string ;
 begin
-
   if InputQuery('Filter','Filter : ',vfilter) then
   begin
-
     QItem.Close;
     QItem.SetVariable('myparam',' and (warna like upper(''%'+vfilter+
       '%'')'+ ' or upper(nama_item) like upper(''%'+vfilter+'%'')'+
       ' or upper(no_batch) like upper(''%'+vfilter+'%'')'+')');
     QItem.Open;
-
-     end;
-
+  end;
 end;
 
 procedure TPermintaanKoreksiCelupFrm.QMasterAfterDelete(DataSet: TDataSet);

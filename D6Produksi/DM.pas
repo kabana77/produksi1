@@ -5,7 +5,7 @@ interface
 uses
   Windows, SysUtils, Classes, Graphics, LMDCustomComponent, LMDStarter, DateUtils,
   Oracle, Dialogs, StdCtrls, DB, OracleData, Wwdatsrc, Forms, IniFiles, Wwdbgrid,
-  MyKonversi, wwDialog, wwrcdvw, wwidlg, Wwintl, ExtDlgs;
+  MyKonversi, wwDialog, wwrcdvw, wwidlg, Wwintl, ExtDlgs, jpeg;
 
 type
   TDMFrm = class(TDataModule)
@@ -453,7 +453,7 @@ begin
 
   OS.LogonUsername:='';
   OS.LogonPassword:='';
-  OS.LogonDatabase:='GDPROD';
+  OS.LogonDatabase:='PFPROD';
 end;
 
 procedure TDMFrm.DataModuleDestroy(Sender: TObject);

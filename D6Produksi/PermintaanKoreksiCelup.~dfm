@@ -1,7 +1,7 @@
 object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
-  Left = 202
-  Top = 132
-  Width = 1167
+  Left = 280
+  Top = 114
+  Width = 1011
   Height = 606
   Caption = 'Koreksi'
   Color = clBtnFace
@@ -23,7 +23,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
   object PanelMain: TPanel
     Left = 0
     Top = 0
-    Width = 1151
+    Width = 995
     Height = 568
     Align = alClient
     BevelOuter = bvNone
@@ -33,7 +33,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     object Label1: TLabel
       Left = 0
       Top = 555
-      Width = 1151
+      Width = 995
       Height = 13
       Align = alBottom
       Color = clSkyBlue
@@ -42,7 +42,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     object DBText3: TDBText
       Left = 0
       Top = 49
-      Width = 1151
+      Width = 995
       Height = 27
       Align = alTop
       Alignment = taRightJustify
@@ -60,7 +60,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     object PanelHeader: TPanel
       Left = 0
       Top = 0
-      Width = 1151
+      Width = 995
       Height = 49
       Align = alTop
       BevelOuter = bvNone
@@ -77,9 +77,9 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     object PageControl1: TPageControl
       Left = 0
       Top = 76
-      Width = 1151
+      Width = 995
       Height = 479
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -90,7 +90,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelMaster: TPanel
           Left = 0
           Top = 0
-          Width = 1143
+          Width = 987
           Height = 137
           Align = alTop
           BevelOuter = bvNone
@@ -392,7 +392,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelDetail: TPanel
           Left = 0
           Top = 178
-          Width = 1143
+          Width = 987
           Height = 228
           Align = alClient
           BevelOuter = bvNone
@@ -400,7 +400,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
           object wwDBGrid1: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1143
+            Width = 987
             Height = 228
             ControlType.Strings = (
               'KD_ITEM;CustomEdit;LookItem;F'
@@ -494,7 +494,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelFooter1: TPanel
           Left = 0
           Top = 406
-          Width = 1143
+          Width = 987
           Height = 42
           Align = alBottom
           BevelOuter = bvNone
@@ -588,7 +588,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelBand: TPanel
           Left = 0
           Top = 137
-          Width = 1143
+          Width = 987
           Height = 41
           Align = alTop
           BevelOuter = bvNone
@@ -711,7 +711,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object LabelBanner: TLabel
           Left = 0
           Top = 57
-          Width = 1143
+          Width = 987
           Height = 13
           Align = alTop
           Color = clSkyBlue
@@ -720,7 +720,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelFilter: TPanel
           Left = 0
           Top = 0
-          Width = 1143
+          Width = 987
           Height = 57
           Align = alTop
           BevelOuter = bvNone
@@ -853,7 +853,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelBrowse: TPanel
           Left = 0
           Top = 70
-          Width = 1143
+          Width = 987
           Height = 337
           Align = alClient
           BevelOuter = bvNone
@@ -861,7 +861,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
           object wwDBGrid2: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1143
+            Width = 987
             Height = 337
             DisableThemes = True
             DisableThemesInTitle = True
@@ -919,7 +919,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object PanelFooter2: TPanel
           Left = 0
           Top = 407
-          Width = 1143
+          Width = 987
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
@@ -1052,7 +1052,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
         object wwDBRichEdit1: TwwDBRichEdit
           Left = 0
           Top = 0
-          Width = 1143
+          Width = 987
           Height = 448
           Align = alClient
           AutoURLDetect = False
@@ -1199,8 +1199,8 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4 210 x 297 mm'
-    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -1208,7 +1208,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -2811,7 +2811,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     DataPipeline = ppDBQDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'myA5'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -2820,7 +2820,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 139700
     PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 10000
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\TransaksiOrgBukti.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'

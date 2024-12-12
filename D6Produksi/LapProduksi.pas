@@ -168,7 +168,6 @@ type
     ppLine26: TppLine;
     ppLabel37: TppLabel;
     ppLine27: TppLine;
-    wwDBGrid1: TwwDBGrid;
     QuickRep1: TQuickRep;
     DetailBand1: TQRBand;
     QRDBText3: TQRDBText;
@@ -222,10 +221,6 @@ type
     QTotalQTY6: TFloatField;
     QTotalQTY7: TFloatField;
     QTotalQTY8: TFloatField;
-    PageControl1: TPageControl;
-    TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
-    wwDBGrid2: TwwDBGrid;
     QBrowsesc_bale: TFloatField;
     QBrowsesc_bale_mtr: TFloatField;
     QBrowseNO_BENANG: TFloatField;
@@ -346,6 +341,39 @@ type
     QRLabel51: TQRLabel;
     QBrowseQTY9: TFloatField;
     QBrowseQTY10: TFloatField;
+    QBrowse2: TOracleDataSet;
+    dsQBrowse2: TwwDataSource;
+    QBrowse2TGL: TDateTimeField;
+    QBrowse2ITEM: TStringField;
+    QBrowse2QTY1: TFloatField;
+    QBrowse2QTY2: TFloatField;
+    QBrowse2PROSES: TStringField;
+    PageControl2: TPageControl;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    LBanner2: TLabel;
+    Panel1: TPanel;
+    Label6: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    BitBtn1: TBitBtn;
+    wwDBSpinEdit1: TwwDBSpinEdit;
+    vtglAwal2: TwwDBDateTimePicker;
+    vtglAkhir2: TwwDBDateTimePicker;
+    wwDBGrid4: TwwDBGrid;
+    PanelFooter3: TPanel;
+    wwDBNavigator2: TwwDBNavigator;
+    wwNavButton1: TwwNavButton;
+    wwNavButton2: TwwNavButton;
+    wwNavButton3: TwwNavButton;
+    wwNavButton4: TwwNavButton;
+    BitBtn2: TBitBtn;
+    BitBtn5: TBitBtn;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    wwDBGrid1: TwwDBGrid;
+    TabSheet2: TTabSheet;
+    wwDBGrid2: TwwDBGrid;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -391,6 +419,14 @@ type
       var PrintBand: Boolean);
     procedure QuickRep1BeforePrint(Sender: TCustomQuickRep;
       var PrintReport: Boolean);
+    procedure TabSheet3Show(Sender: TObject);
+    procedure BitBtn1Click(Sender: TObject);
+    procedure vtglAwal2Change(Sender: TObject);
+    procedure QBrowse2AfterScroll(DataSet: TDataSet);
+    procedure TabSheet5Show(Sender: TObject);
+    procedure BitBtn2Click(Sender: TObject);
+    procedure Label6Click(Sender: TObject);
+    procedure wwDBSpinEdit1Change(Sender: TObject);
   private
     { Private declarations }
     vorder, SelectedFont, vkode, vitem : String;
@@ -488,14 +524,16 @@ end;
 
 procedure TLapProduksiFrm.BtnExportClick(Sender: TObject);
 begin
-  if QBrowse.Active then
+  if PageControl1.ActivePageIndex=0 then
   begin
-     DMFrm.SaveDialog1.DefaultExt:='XLK';
-     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
-     DMFrm.SaveDialog1.FileName:=PanelHeader.Caption+' '+ vTglAwal.Text+' sd '+vTglAkhir.Text+'.xlK';
-     wwDBGrid2.ExportOptions.TitleName:='LAPORAN PRODUKSI DEPT DYEING';
+    if QBrowse.Active then
+    begin
+       DMFrm.SaveDialog1.DefaultExt:='XLK';
+       DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+       DMFrm.SaveDialog1.FileName:=PanelHeader.Caption+' '+ vTglAwal.Text+' sd '+vTglAkhir.Text+'.xlK';
+       wwDBGrid2.ExportOptions.TitleName:='LAPORAN PRODUKSI DEPT DYEING';
        if DMFrm.SaveDialog1.Execute then
-       begin
+         begin
          try
          wwDBGrid1.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
          wwDBGrid1.ExportOptions.Save;
@@ -504,61 +542,54 @@ begin
          ShowMessage('Simpan Gagal !');
          end;
        end;
-  end
-  else
-    ShowMessage('Tabel belum di-OPEN !');
+    end
+    else ShowMessage('Tabel belum di-OPEN !');
+  end;
+
+
 end;
 
 procedure TLapProduksiFrm.BtnOkClick(Sender: TObject);
 var
   vrasio, vqty1, vqty2, vqty3, vqty4, vqty5, vqty6, vqty7, vqty8, vqty9, vqty10 : real;
 begin
-  QDump.Close;
-  QDump.SetVariable('vsysdate',vTglAwal.Date);
-  QDump.SetVariable('vsysdate2',vTglAkhir.Date);
-  QDump.Execute;
-  QBrowse.DisableControls;
-  QBrowse.Close;
-  QBrowse.Open;
-  QBrowse.EnableControls;
 
-  vqty1:=0;
-  vqty2:=0;
-  vqty3:=0;
-  vqty4:=0;
-  vqty5:=0;
-  vqty6:=0;
-  vqty7:=0;
-  vqty8:=0;
-  vqty9:=0;
-  vqty10:=0;
-  while not QBrowse.Eof do
-  begin
-    vqty1:=vqty1+QBrowseQTY1.AsFloat;
-    vqty2:=vqty2+QBrowseQTY2.AsFloat;
-    vqty3:=vqty3+QBrowseQTY3.AsFloat;
-    vqty4:=vqty4+QBrowseQTY4.AsFloat;
-    vqty5:=vqty5+QBrowseQTY5.AsFloat;
-    vqty6:=vqty6+QBrowseQTY6.AsFloat;
-    vqty7:=vqty7+QBrowseQTY7.AsFloat;
-    vqty8:=vqty8+QBrowseQTY8.AsFloat;
-    vqty9:=vqty9+QBrowseQTY9.AsFloat;
-    vqty10:=vqty10+QBrowseQTY10.AsFloat;
-    QBrowse.Next;
-  end;
+     QDump.Close;
+     QDump.SetVariable('vsysdate',vTglAwal.Date);
+     QDump.SetVariable('vsysdate2',vTglAkhir.Date);
+     QDump.Execute;
+     QBrowse.DisableControls;
+     QBrowse.Close;
+     QBrowse.Open;
+     QBrowse.EnableControls;
+     vqty1:=0; vqty2:=0; vqty3:=0; vqty4:=0; vqty5:=0;
+     vqty6:=0; vqty7:=0; vqty8:=0; vqty9:=0; vqty10:=0;
+     while not QBrowse.Eof do
+     begin
+       vqty1:=vqty1+QBrowseQTY1.AsFloat;
+       vqty2:=vqty2+QBrowseQTY2.AsFloat;
+       vqty3:=vqty3+QBrowseQTY3.AsFloat;
+       vqty4:=vqty4+QBrowseQTY4.AsFloat;
+       vqty5:=vqty5+QBrowseQTY5.AsFloat;
+       vqty6:=vqty6+QBrowseQTY6.AsFloat;
+       vqty7:=vqty7+QBrowseQTY7.AsFloat;
+       vqty8:=vqty8+QBrowseQTY8.AsFloat;
+       vqty9:=vqty9+QBrowseQTY9.AsFloat;
+       vqty10:=vqty10+QBrowseQTY10.AsFloat;
+       QBrowse.Next;
+     end;
+     QBrowse.EnableControls;
+     wwDBGrid1.ColumnByName('QTY1').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty1);
+     wwDBGrid1.ColumnByName('QTY2').FooterValue:=FormatFloat('0,0;(0,0);-',vqty2);
+     wwDBGrid1.ColumnByName('QTY3').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty3);
+     wwDBGrid1.ColumnByName('QTY4').FooterValue:=FormatFloat('0,0;(0,0);-',vqty4);
+     wwDBGrid1.ColumnByName('QTY9').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty9);
+     wwDBGrid1.ColumnByName('QTY10').FooterValue:=FormatFloat('0,0;(0,0);-',vqty10);
+     wwDBGrid1.ColumnByName('QTY5').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty5);
+     wwDBGrid1.ColumnByName('QTY6').FooterValue:=FormatFloat('0,0;(0,0);-',vqty6);
+     wwDBGrid1.ColumnByName('QTY7').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty7);
+     wwDBGrid1.ColumnByName('QTY8').FooterValue:=FormatFloat('0,0;(0,0);-',vqty8);
 
-  QBrowse.EnableControls;
-
-  wwDBGrid1.ColumnByName('QTY1').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty1);
-  wwDBGrid1.ColumnByName('QTY2').FooterValue:=FormatFloat('0,0;(0,0);-',vqty2);
-  wwDBGrid1.ColumnByName('QTY3').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty3);
-  wwDBGrid1.ColumnByName('QTY4').FooterValue:=FormatFloat('0,0;(0,0);-',vqty4);
-  wwDBGrid1.ColumnByName('QTY9').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty9);
-  wwDBGrid1.ColumnByName('QTY10').FooterValue:=FormatFloat('0,0;(0,0);-',vqty10);
-  wwDBGrid1.ColumnByName('QTY5').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty5);
-  wwDBGrid1.ColumnByName('QTY6').FooterValue:=FormatFloat('0,0;(0,0);-',vqty6);
-  wwDBGrid1.ColumnByName('QTY7').FooterValue:=FormatFloat('0.00,0;(0.00,0);-',vqty7);
-  wwDBGrid1.ColumnByName('QTY8').FooterValue:=FormatFloat('0,0;(0,0);-',vqty8);
 end;
 
 procedure TLapProduksiFrm.wwDBGrid2TitleButtonClick(Sender: TObject;
@@ -580,7 +611,7 @@ end;
 
 procedure TLapProduksiFrm.wwDBSpinLine2Change(Sender: TObject);
 begin
-//    wwDBGrid2.RowHeightPercent:=Round(wwDBSpinLine2.Value);
+    wwDBGrid1.RowHeightPercent:=Round(wwDBSpinLine2.Value);
 end;
 
 procedure TLapProduksiFrm.BtnFindClick(Sender: TObject);
@@ -810,6 +841,85 @@ procedure TLapProduksiFrm.QuickRep1BeforePrint(Sender: TCustomQuickRep;
   var PrintReport: Boolean);
 begin
   LapProduksiFrm :=Nil;
+end;
+
+procedure TLapProduksiFrm.TabSheet3Show(Sender: TObject);
+begin
+  QBrowse2.DisableControls;
+  QBrowse2.Close;
+  QBrowse2.SetVariable('pawal', vTglAwal.Date);
+  QBrowse2.SetVariable('pakhir', vTglAkhir.Date);
+  QBrowse2.SetVariable('porder', 'order by proses, tgl, item');
+  QBrowse2.Open;
+  QBrowse2.EnableControls;
+end;
+
+procedure TLapProduksiFrm.BitBtn1Click(Sender: TObject);
+begin
+  QBrowse2.DisableControls;
+  QBrowse2.Close;
+  QBrowse2.SetVariable('pawal',vTglAwal2.Date);
+  QBrowse2.SetVariable('pakhir',vTglAkhir2.Date);
+  QBrowse2.SetVariable('porder',' order by proses, tgl, item');
+  QBrowse2.Open;
+  QBrowse2.EnableControls;
+end;
+
+procedure TLapProduksiFrm.vtglAwal2Change(Sender: TObject);
+begin
+  vTglAkhir2.DateTime:=EndOfTheMonth(vTglAwal2.Date);
+end;
+
+procedure TLapProduksiFrm.QBrowse2AfterScroll(DataSet: TDataSet);
+begin
+    LBanner2.Caption:='Record ke '+IntToStr(QBrowse2.RecNo)+' dari '+FormatFloat('#,#',QBrowse2.RecordCount)+' Records';
+end;
+
+procedure TLapProduksiFrm.TabSheet5Show(Sender: TObject);
+begin
+    vTglAwal2.Date:=Trunc(DMFrm.QTimeJAM.AsDateTime);
+    vTglAkhir2.Date:=Trunc(DMFrm.QTimeJAM.AsDateTime)
+end;
+
+procedure TLapProduksiFrm.BitBtn2Click(Sender: TObject);
+begin
+
+    if QBrowse2.Active then
+    begin
+       DMFrm.SaveDialog1.DefaultExt:='XLK';
+       DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+       DMFrm.SaveDialog1.FileName:=PanelHeader.Caption+' '+ vTglAwal.Text+' sd '+vTglAkhir.Text+'.xlK';
+       wwDBGrid4.ExportOptions.TitleName:='LAPORAN PRODUKSI DEPT DYEING (FORMAT 2)';
+       if DMFrm.SaveDialog1.Execute then
+         begin
+         try
+           wwDBGrid4.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+           wwDBGrid4.ExportOptions.Save;
+           ShowMessage('Simpan Sukses !');
+         except
+           ShowMessage('Simpan Gagal !');
+         end;
+       end;
+    end
+    else
+      ShowMessage('Tabel belum di-OPEN !');
+
+end;
+
+procedure TLapProduksiFrm.Label6Click(Sender: TObject);
+begin
+  if DMFrm.FontDialog1.Execute then
+  begin
+    wwDBGrid4.Font.Name:=DMFrm.FontDialog1.Font.Name;
+    wwDBGrid4.Font.Size:=DMFrm.FontDialog1.Font.Size;
+    wwDBGrid4.Font.Color:=DMFrm.FontDialog1.Font.Color;
+    wwDBGrid4.Font.Style:=DMFrm.FontDialog1.Font.Style;
+  end;
+end;
+
+procedure TLapProduksiFrm.wwDBSpinEdit1Change(Sender: TObject);
+begin
+  wwDBGrid4.RowHeightPercent:=Round(wwDBSpinLine2.Value);
 end;
 
 end.
