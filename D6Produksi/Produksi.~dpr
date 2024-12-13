@@ -69,7 +69,6 @@ begin
   Application.CreateForm(TPembelianFrm, PembelianFrm);
   Application.CreateForm(TKriteria_Tanggal1_FRM, Kriteria_Tanggal1_FRM);
   Application.CreateForm(TKriteria_Tanggal1_FRM, Kriteria_Tanggal1_FRM);
-  Application.CreateForm(TProsesAwalTahunFrm, ProsesAwalTahunFrm);
   SplashForm.Hide; // Hide Splash Screen
   SplashForm.Free; // Free Splah Screen
   Application.Run;

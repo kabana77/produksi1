@@ -670,6 +670,7 @@ object DMFrm: TDMFrm
   object QWarna: TOracleDataSet
     SQL.Strings = (
       'select a.*, a.rowid from :myparam'
+      'where a.isfixed = '#39'1'#39
       'order by warna')
     Variables.Data = {
       0300000001000000080000003A4D59504152414D010000001800000069706973

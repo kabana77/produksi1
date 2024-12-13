@@ -1875,6 +1875,8 @@ object PembelianFrm: TPembelianFrm
         'Manfaatkan program diskon periode 12-19 April 2008 .....')
       Steps = 2000
       Align = alClient
+      Bevel.WidthInner = 0
+      Bevel.WidthOuter = 0
       Bevel.Mode = bmCustom
       Color = clPurple
       Font.Charset = ANSI_CHARSET

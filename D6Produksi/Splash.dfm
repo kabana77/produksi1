@@ -1,10 +1,10 @@
 object SplashForm: TSplashForm
-  Left = 271
+  Left = 383
   Top = 123
   BorderStyle = bsNone
   Caption = 'SplashForm'
-  ClientHeight = 492
-  ClientWidth = 813
+  ClientHeight = 453
+  ClientWidth = 701
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,8 +19,8 @@ object SplashForm: TSplashForm
   object Image1: TImage
     Left = 0
     Top = 0
-    Width = 813
-    Height = 492
+    Width = 701
+    Height = 453
     Align = alClient
     AutoSize = True
     Center = True
