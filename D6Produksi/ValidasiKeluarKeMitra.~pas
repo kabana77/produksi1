@@ -367,6 +367,10 @@ type
     QDetailQTY10: TFloatField;
     QBrowseQTY9: TFloatField;
     QBrowseQTY10: TFloatField;
+    EditKG: TCheckBox;
+    QProc_getStok: TOracleQuery;
+    QItemTGL_STOK: TDateTimeField;
+    QDetailJAM1: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -432,6 +436,8 @@ type
       State: TGridDrawState; Highlight: Boolean; AFont: TFont;
       ABrush: TBrush);
     procedure QMasterAfterDelete(DataSet: TDataSet);
+    procedure QMasterTGLChange(Sender: TField);
+
   private
     { Private declarations }
     vshift, vgrup, vdiv, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi, vfilter_item,
@@ -471,6 +477,8 @@ Begin
        ValidasiKeluarKeMitraFrm.QMaster.ReadOnly:=True;
        ValidasiKeluarKeMitraFrm.QDetail.ReadOnly:=True;
     end;
+
+
     mychar:=pjudul;
     Delete(mychar,Pos('&',mychar),1);
     pjudul:=mychar;
@@ -1233,6 +1241,7 @@ begin
     QDetailKD_WARNA.AsString:=QItemKD_WARNA.AsString;
     QDetailKD_SUB_LOKASI2.AsString:=QItemKD_SUB_LOKASI.AsString;
     QDetailNO_BATCH.AsString:='-'; //QItemNO_BATCH.AsString; {MAA 11-01-2020}
+    QDetailJAM1.AsDateTime:=QItemTGL_STOK.AsDateTime;
   END;
 end;
 
@@ -1298,9 +1307,18 @@ begin
   krng :=(strtofloat(edit2.Text)* strtofloat(edit3.Text))/SPRING;
   //  Bngbruto:=((BERAT*QDETAILQTY8.AsInteger)/SPRING);
  //   QDETAILQTY3.AsFloat :=formatfloat('0.00',((BERAT*QDETAILQTY8.AsInteger)/SPRING))- formatfloat('0.00',((perspring*QDETAILQTY8.AsInteger)+krng));
-      QDETAILQTY3.AsFloat  :=strtofloat(formatfloat('0.00',((BERAT*QDETAILQTY8.AsFloat)/SPRING)- ((perspring*QDETAILQTY8.AsFloat)+krng)     ));
-
-//MAA 23-04-2020
+ // QDETAILQTY3.AsFloat  :=strtofloat(formatfloat('0.00',((BERAT*QDETAILQTY8.AsFloat)/SPRING)- ((perspring*QDETAILQTY8.AsFloat)+krng) ));
+ if EditKG.Checked = True then
+   begin
+     wwDBGrid1.ColumnByName('QTY3').ReadOnly:=False;
+     wwDBGrid1.Refresh;
+   end
+else
+   begin
+     QDETAILQTY3.AsFloat  :=strtofloat(formatfloat('0.00',((BERAT*QDETAILQTY8.AsFloat)/SPRING)- ((perspring*QDETAILQTY8.AsFloat)+krng) ));
+     wwDBGrid1.Refresh;
+end;
+  //MAA 23-04-2020
   if QDetailRASIO.AsFloat>0 then
     QDetailQTY10.AsFloat:=QDetailQTY3.AsFloat/QDetailRASIO.AsFloat
   else
@@ -1374,6 +1392,16 @@ begin
      ShowMessage('Maaf, sudah di-POST !, tidak bisa diubah...');
      Abort;
   end;
+  if EditKG.Checked = True then
+   begin
+     wwDBGrid1.ColumnByName('QTY3').ReadOnly:=False;
+     wwDBGrid1.Refresh;
+   end
+else
+   begin
+     wwDBGrid1.ColumnByName('QTY3').ReadOnly:=True;
+     wwDBGrid1.Refresh;
+end;
 end;
 
 procedure TValidasiKeluarKeMitraFrm.CheckBox1Click(Sender: TObject);
@@ -1476,10 +1504,17 @@ end;
 
 procedure TValidasiKeluarKeMitraFrm.QMasterAfterDelete(DataSet: TDataSet);
 begin
-
   wwDBDateTimePicker1.Enabled:=False;
   cbTransaksi.Enabled:=False;
+end;
 
+
+procedure TValidasiKeluarKeMitraFrm.QMasterTGLChange(Sender: TField);
+begin
+  QProc_getStok.Close;
+  QProc_getStok.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QProc_getStok.SetVariable('ptgl2', QMasterTGL.AsDateTime);
+  QProc_getStok.Execute;
 end;
 
 end.

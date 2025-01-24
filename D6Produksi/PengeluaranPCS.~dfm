@@ -1,8 +1,8 @@
 object PengeluaranPCSFrm: TPengeluaranPCSFrm
-  Left = 237
-  Top = 104
-  Width = 1088
-  Height = 577
+  Left = 191
+  Top = 124
+  Width = 1009
+  Height = 603
   Caption = 'PENGELUARAN KE PERSIAPAN'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -23,8 +23,8 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
   object PanelMain: TPanel
     Left = 0
     Top = 0
-    Width = 1080
-    Height = 546
+    Width = 993
+    Height = 565
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -32,8 +32,8 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 533
-      Width = 1080
+      Top = 552
+      Width = 993
       Height = 13
       Align = alBottom
       Color = clSkyBlue
@@ -42,7 +42,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     object DBText3: TDBText
       Left = 0
       Top = 49
-      Width = 1080
+      Width = 993
       Height = 27
       Align = alTop
       Alignment = taRightJustify
@@ -60,7 +60,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     object PanelHeader: TPanel
       Left = 0
       Top = 0
-      Width = 1080
+      Width = 993
       Height = 49
       Align = alTop
       BevelOuter = bvNone
@@ -77,8 +77,8 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     object PageControl1: TPageControl
       Left = 0
       Top = 76
-      Width = 1080
-      Height = 457
+      Width = 993
+      Height = 476
       ActivePage = TabSheet2
       Align = alClient
       Style = tsFlatButtons
@@ -90,7 +90,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object PanelMaster: TPanel
           Left = 0
           Top = 0
-          Width = 1072
+          Width = 985
           Height = 137
           Align = alTop
           BevelOuter = bvNone
@@ -288,7 +288,6 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
             DataField = 'TGL'
             DataSource = dsQMaster
             Epoch = 1950
-            Enabled = False
             ShowButton = True
             TabOrder = 5
           end
@@ -434,16 +433,16 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object PanelDetail: TPanel
           Left = 0
           Top = 178
-          Width = 1072
-          Height = 207
+          Width = 985
+          Height = 226
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
           object wwDBGrid1: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1072
-            Height = 207
+            Width = 985
+            Height = 226
             ControlType.Strings = (
               'KD_SUB_LOKASI;CustomEdit;LookLokasi;F'
               'KD_ITEM;CustomEdit;LookItem;F'
@@ -593,8 +592,8 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         end
         object PanelFooter1: TPanel
           Left = 0
-          Top = 385
-          Width = 1072
+          Top = 404
+          Width = 985
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
@@ -756,7 +755,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object PanelBand: TPanel
           Left = 0
           Top = 137
-          Width = 1072
+          Width = 985
           Height = 41
           Align = alTop
           BevelOuter = bvNone
@@ -903,7 +902,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object LabelBanner: TLabel
           Left = 0
           Top = 57
-          Width = 1072
+          Width = 985
           Height = 13
           Align = alTop
           Color = clSkyBlue
@@ -912,7 +911,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object PanelFilter: TPanel
           Left = 0
           Top = 0
-          Width = 1072
+          Width = 985
           Height = 57
           Align = alTop
           BevelOuter = bvNone
@@ -1046,16 +1045,16 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         object PanelBrowse: TPanel
           Left = 0
           Top = 70
-          Width = 1072
-          Height = 315
+          Width = 985
+          Height = 334
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
           object wwDBGrid2: TwwDBGrid
             Left = 0
             Top = 0
-            Width = 1072
-            Height = 315
+            Width = 985
+            Height = 334
             DisableThemes = True
             DisableThemesInTitle = True
             ControlType.Strings = (
@@ -1117,8 +1116,8 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         end
         object PanelFooter2: TPanel
           Left = 0
-          Top = 385
-          Width = 1072
+          Top = 404
+          Width = 985
           Height = 41
           Align = alBottom
           BevelOuter = bvNone
@@ -1408,7 +1407,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -1417,7 +1416,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -5097,7 +5096,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
         'd_satuan, '
       
         '  '#39'30-00000'#39' as kd_sub_lokasi, b.rasio, a.stok_kg as qty, ROUND(' +
-        'a.stok_kg/b.rasio) as qty2, a.tgl_stok'
+        'a.stok_kg/nvl(b.rasio,1)) as qty2, a.tgl_stok'
       ' from ('
       '  select'
       '    substr(a.kd_item, 0,8) as kd_item, a.kd_warna, a.warna,'
@@ -5181,6 +5180,7 @@ object PengeluaranPCSFrm: TPengeluaranPCSFrm
       DisplayFormat = '#,##0.##;(#,##0.##);-'
     end
     object QItemTGL_STOK: TDateTimeField
+      DisplayWidth = 10
       FieldName = 'TGL_STOK'
     end
     object QItemRASIO2: TFloatField

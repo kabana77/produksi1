@@ -2,8 +2,8 @@ object DMFrm: TDMFrm
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 270
-  Top = 192
+  Left = 262
+  Top = 144
   Height = 574
   Width = 777
   object SaveDialog1: TSaveDialog

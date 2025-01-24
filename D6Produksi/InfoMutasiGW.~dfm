@@ -1,6 +1,6 @@
 object InfoMutasiGWFrm: TInfoMutasiGWFrm
-  Left = 198
-  Top = 69
+  Left = 204
+  Top = 62
   Width = 1100
   Height = 606
   Caption = 'InfoMutasiGW 1'
@@ -245,6 +245,68 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 0
+          object wwDBGridNew: TwwDBGrid
+            Left = 0
+            Top = 0
+            Width = 1076
+            Height = 304
+            ControlType.Strings = (
+              'ISFIXED;CheckBox;1;0')
+            Selected.Strings = (
+              'KD_ITEM'#9'10'#9'KODE'#9'F'
+              'JNS_BENANG'#9'15'#9'JNS BENANG'#9'F'
+              'DISKRIPSI'#9'20'#9'NAMA ITEM + PATAL'#9'F'
+              'AWAL'#9'10'#9'AWAL'#9'F'
+              'QTY01'#9'10'#9'Pencelupan'#9'F'#9'PEMASUKAN'
+              'QTY02'#9'10'#9'GD Grey'#9'F'#9'PEMASUKAN'
+              'QTY03'#9'10'#9'Retur~Produksi'#9'F'#9'PEMASUKAN'
+              'QTY04'#9'10'#9'Jasa Kelos'#9'F'#9'PEMASUKAN'
+              'QTY05'#9'10'#9'Retur Mitra'#9'F'#9'PEMASUKAN'
+              'QTY06'#9'10'#9'Koreksi'#9'F'#9'PEMASUKAN'
+              'QTY11'#9'10'#9'Persiapan'#9'F'#9'PENGELUARAN'
+              'QTY12'#9'10'#9'Tenun'#9'F'#9'PENGELUARAN'
+              'QTY13'#9'10'#9'Jahit dan~Finishing'#9'F'#9'PENGELUARAN'
+              'QTY14'#9'10'#9'Retur Celup'#9'F'#9'PENGELUARAN'
+              'QTY15'#9'10'#9'Pengganti~Retur'#9'F'#9'PENGELUARAN'
+              'QTY17'#9'10'#9'Jasa Kelos'#9'F'#9'PENGELUARAN'
+              'QTY18'#9'10'#9'Kemitraan'#9'F'#9'PENGELUARAN'
+              'QTY16'#9'10'#9'Koreksi'#9'F'#9'PENGELUARAN'
+              'QTY19'#9'10'#9'Doubling'#9'F'#9'PENGELUARAN'
+              'AKHIR'#9'12'#9'AKHIR'#9'F')
+            IniAttributes.Enabled = True
+            IniAttributes.Delimiter = ';;'
+            IniAttributes.CheckNewFields = True
+            ExportOptions.ExportType = wwgetHTML
+            ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+            TitleColor = clBackground
+            FixedCols = 0
+            ShowHorzScrollBar = True
+            EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+            Align = alClient
+            BorderStyle = bsNone
+            Ctl3D = False
+            DataSource = dsQBrowseNew
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Arial'
+            Font.Style = []
+            KeyOptions = []
+            Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+            ParentCtl3D = False
+            ParentFont = False
+            TabOrder = 1
+            TitleAlignment = taCenter
+            TitleFont.Charset = ANSI_CHARSET
+            TitleFont.Color = clWhite
+            TitleFont.Height = -11
+            TitleFont.Name = 'Arial'
+            TitleFont.Style = []
+            TitleLines = 5
+            TitleButtons = True
+            UseTFields = False
+            OnTitleButtonClick = wwDBGridNewTitleButtonClick
+          end
           object wwDBGrid2: TwwDBGrid
             Left = 0
             Top = 0
@@ -492,7 +554,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
             Width = 401
             Height = 19
             TabOrder = 6
-            Text = 'nama_item, warna, no_batch'
+            Text = 'kd_item, jns_benang'
           end
         end
       end
@@ -959,7 +1021,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
   end
   object dsQBrowse: TwwDataSource
     DataSet = QBrowse
-    Left = 848
+    Left = 240
     Top = 8
   end
   object ppReportBrowse: TppReport
@@ -968,7 +1030,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'Custom'
+    PrinterSetup.PaperName = 'A4'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -3075,8 +3137,8 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
   end
   object dsQTransaksi: TwwDataSource
     DataSet = QTransaksi
-    Left = 384
-    Top = 8
+    Left = 432
+    Top = 32
   end
   object QSOP: TOracleDataSet
     SQL.Strings = (
@@ -3089,8 +3151,8 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
   end
   object dsQSOP: TwwDataSource
     DataSet = QSOP
-    Left = 356
-    Top = 48
+    Left = 380
+    Top = 88
   end
   object QDump: TOracleQuery
     SQL.Strings = (
@@ -3413,6 +3475,14 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
   end
   object QProc_konstruksi: TOracleQuery
     SQL.Strings = (
+      '/*begin'
+      '   ipisma_db3.proc_temp_mutasi_gw_global(:vsysdate, :vsysdate2);'
+      'end;*/'
+      ''
+      ''
+      ''
+      ''
+      ''
       'begin'
       
         '  ipisma_db3.proc_mutasigw_benang_info1_23(:vsysdate, :vsysdate2' +
@@ -3422,9 +3492,9 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
     Variables.Data = {
       0300000004000000090000003A56535953444154450C00000007000000786B06
       01010101000000000A0000003A5653595344415445320C00000007000000786B
-      061E010101000000000D0000003A564B445F4A4E535F4954454D050000000300
-      000033300000000000070000003A56524153494F040000000800000000000000
-      0000F03F00000000}
+      061E01010100000000070000003A56524153494F040000000800000000000000
+      0000F03F000000000D0000003A564B445F4A4E535F4954454D05000000000000
+      0000000000}
     Left = 208
     Top = 96
   end
@@ -3534,7 +3604,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
   end
   object QBrowseDetail: TOracleDataSet
     SQL.Strings = (
-      'select * from ipisma_db3.TEMP_MUTASI_GW_DEV t'
+      'select * from ipisma_db3.TEMP_MUTASI_GW t'
       
         'where t.kd_item=:pkd_item and t.kd_warna=:pkd_warna and t.ketera' +
         'ngan NOT LIKE '#39'%SALDO AWAL%'#39)
@@ -3609,5 +3679,170 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
     DataSet = QBrowseDetail
     Left = 752
     Top = 64
+  end
+  object dsQBrowseNew: TwwDataSource
+    DataSet = QBrowseNew
+    Left = 256
+    Top = 288
+  end
+  object QBrowseNew: TOracleDataSet
+    SQL.Strings = (
+      'select * from ('
+      'select'
+      ' a.kd_item, b.kd_sub_kel as jns_benang, b.diskripsi,'
+      ' sum(NVL(a.awal_thn, 0))+sum(NVL(a.awal_tgl,0)) as awal,'
+      ' sum(a.qty01) as qty01,'
+      ' sum(a.qty02) as qty02,'
+      ' sum(a.qty03) as qty03,'
+      ' sum(a.qty04) as qty04,'
+      ' sum(a.qty05) as qty05,'
+      ' sum(a.qty06) as qty06,'
+      ' sum(a.qty07) as qty07,'
+      ' sum(a.qty08) as qty08,'
+      ' sum(a.qty09) as qty09,'
+      ' sum(a.qty10) as qty10,'
+      ' sum(a.qty11) as qty11,'
+      ' sum(a.qty12) as qty12,'
+      ' sum(a.qty13) as qty13,'
+      ' sum(a.qty14) as qty14,'
+      ' sum(a.qty15) as qty15,'
+      ' sum(a.qty16) as qty16,'
+      ' sum(a.qty17) as qty17,'
+      ' sum(a.qty18) as qty18,'
+      ' sum(a.qty19) as qty19,'
+      ' sum(a.qty20) as qty20'
+      'from ipisma_db3.TEMP_MUTASI_GW_GLOBAL a'
+      'left join ipisma_db3.item b on a.kd_item=b.kd_item'
+      'group by a.kd_item, b.kd_sub_kel, b.diskripsi'
+      ') :vorder'
+      ''
+      '/*'
+      'select * from ipisma_db3.vinfomutasigw1_detail'
+      ':vorder'
+      '*/')
+    Variables.Data = {0300000001000000070000003A564F52444552010000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000018000000070000004B445F4954454D0100000000000A0000004A4E53
+      5F42454E414E47010000000000090000004449534B5249505349010000000000
+      0500000051545930310100000000000500000051545930320100000000000500
+      0000515459303301000000000005000000515459303401000000000005000000
+      5154593035010000000000050000005154593036010000000000050000005154
+      5930370100000000000500000051545930380100000000000500000051545930
+      3901000000000005000000515459313001000000000005000000515459313101
+      0000000000050000005154593132010000000000050000005154593133010000
+      0000000500000051545931340100000000000500000051545931350100000000
+      0005000000515459313601000000000005000000515459313701000000000005
+      0000005154593138010000000000050000005154593139010000000000040000
+      004157414C010000000000050000005154593230010000000000}
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    AfterScroll = QBrowseNewAfterScroll
+    OnCalcFields = QBrowseNewCalcFields
+    Left = 236
+    Top = 320
+    object QBrowseNewKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QBrowseNewJNS_BENANG: TStringField
+      FieldName = 'JNS_BENANG'
+      Size = 32
+    end
+    object QBrowseNewDISKRIPSI: TStringField
+      FieldName = 'DISKRIPSI'
+      Size = 255
+    end
+    object QBrowseNewAWAL: TFloatField
+      FieldName = 'AWAL'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY01: TFloatField
+      FieldName = 'QTY01'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY02: TFloatField
+      FieldName = 'QTY02'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY03: TFloatField
+      FieldName = 'QTY03'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY04: TFloatField
+      FieldName = 'QTY04'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY05: TFloatField
+      FieldName = 'QTY05'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY06: TFloatField
+      FieldName = 'QTY06'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY07: TFloatField
+      FieldName = 'QTY07'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY08: TFloatField
+      FieldName = 'QTY08'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY09: TFloatField
+      FieldName = 'QTY09'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY10: TFloatField
+      FieldName = 'QTY10'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY11: TFloatField
+      FieldName = 'QTY11'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY12: TFloatField
+      FieldName = 'QTY12'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY13: TFloatField
+      FieldName = 'QTY13'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY14: TFloatField
+      FieldName = 'QTY14'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY15: TFloatField
+      FieldName = 'QTY15'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY16: TFloatField
+      FieldName = 'QTY16'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY17: TFloatField
+      FieldName = 'QTY17'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY18: TFloatField
+      FieldName = 'QTY18'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY19: TFloatField
+      FieldName = 'QTY19'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewQTY20: TFloatField
+      FieldName = 'QTY20'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+    end
+    object QBrowseNewAKHIR: TFloatField
+      FieldKind = fkCalculated
+      FieldName = 'AKHIR'
+      DisplayFormat = '#,##0.##;(#,##0.##);-'
+      Calculated = True
+    end
   end
 end

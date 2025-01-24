@@ -1,7 +1,7 @@
 object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
-  Left = 207
-  Top = 80
-  Width = 1097
+  Left = 176
+  Top = 152
+  Width = 1098
   Height = 617
   Caption = 'Info WIP Pengeringan'
   Color = clBtnFace
@@ -24,8 +24,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
   object PanelMain: TPanel
     Left = 0
     Top = 0
-    Width = 1089
-    Height = 586
+    Width = 1082
+    Height = 579
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -33,8 +33,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 573
-      Width = 1089
+      Top = 566
+      Width = 1082
       Height = 13
       Align = alBottom
       Color = clSkyBlue
@@ -43,7 +43,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     object DBText3: TDBText
       Left = 0
       Top = 49
-      Width = 1089
+      Width = 1082
       Height = 27
       Align = alTop
       Alignment = taRightJustify
@@ -61,7 +61,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     object LabelBanner: TLabel
       Left = 0
       Top = 133
-      Width = 1089
+      Width = 1082
       Height = 13
       Align = alTop
       Color = clSkyBlue
@@ -70,7 +70,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     object PanelHeader: TPanel
       Left = 0
       Top = 0
-      Width = 1089
+      Width = 1082
       Height = 49
       Align = alTop
       BevelOuter = bvNone
@@ -87,7 +87,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     object PanelFilter: TPanel
       Left = 0
       Top = 76
-      Width = 1089
+      Width = 1082
       Height = 57
       Align = alTop
       BevelOuter = bvNone
@@ -247,12 +247,21 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
         OnClick = BtnOkClick
         NumGlyphs = 2
       end
+      object cbRiwayat: TCheckBox
+        Left = 562
+        Top = 6
+        Width = 161
+        Height = 17
+        Caption = 'Tampilkan Riwayat Mutasi'
+        TabOrder = 7
+        OnClick = cbRiwayatClick
+      end
     end
     object PanelBrowse: TPanel
       Left = 0
       Top = 146
-      Width = 1089
-      Height = 386
+      Width = 1082
+      Height = 379
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
@@ -6755,7 +6764,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
           object QRDBText11: TQRDBText
             Left = 8
             Top = 5
-            Width = 105
+            Width = 132
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -6766,7 +6775,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
               63.500000000000000000
               21.166666666666670000
               13.229166666666670000
-              277.812500000000000000)
+              349.250000000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -7700,7 +7709,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
           object QRLabel2: TQRLabel
             Left = 248
             Top = 0
-            Width = 31
+            Width = 38
             Height = 17
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -7711,7 +7720,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
               44.979166666666670000
               656.166666666666700000
               0.000000000000000000
-              82.020833333333330000)
+              100.541666666666700000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -8256,8 +8265,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
       object wwDBGrid4: TwwDBGrid
         Left = 0
         Top = 0
-        Width = 1089
-        Height = 386
+        Width = 481
+        Height = 379
         ControlType.Strings = (
           'ISFIXED;CheckBox;1;0')
         Selected.Strings = (
@@ -8283,6 +8292,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
         ExportOptions.ExportType = wwgetHTML
         ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
         TitleColor = clBackground
+        OnRowChanged = wwDBGrid4RowChanged
         FixedCols = 0
         ShowHorzScrollBar = True
         EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
@@ -8314,8 +8324,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
       object wwDBGrid3: TwwDBGrid
         Left = 0
         Top = 0
-        Width = 1089
-        Height = 386
+        Width = 481
+        Height = 379
         ControlType.Strings = (
           'ISFIXED;CheckBox;1;0')
         Selected.Strings = (
@@ -8339,6 +8349,7 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
         ExportOptions.ExportType = wwgetHTML
         ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
         TitleColor = clBackground
+        OnRowChanged = wwDBGrid3RowChanged
         FixedCols = 0
         ShowHorzScrollBar = True
         EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
@@ -8367,11 +8378,134 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
         UseTFields = False
         OnTitleButtonClick = wwDBGrid3TitleButtonClick
       end
+      object PanelRiwayat: TPanel
+        Left = 481
+        Top = 0
+        Width = 601
+        Height = 379
+        Align = alRight
+        BevelOuter = bvNone
+        Caption = 'PanelRiwayat'
+        TabOrder = 5
+        Visible = False
+        object wwDBGridDry1: TwwDBGrid
+          Left = 0
+          Top = 49
+          Width = 601
+          Height = 330
+          ControlType.Strings = (
+            'ISFIXED;CheckBox;1;0')
+          Selected.Strings = (
+            'TGL'#9'15'#9'WAKTU'#9'F'
+            'NO_NOTA'#9'15'#9'NO NOTA'#9'F'
+            'QTY_IN'#9'10'#9'KG'#9'F'#9'MASUK'
+            'QTY_IN2'#9'10'#9'PCS'#9'F'#9'MASUK'
+            'QTY_OUT'#9'10'#9'KG'#9'F'#9'KELUAR'
+            'QTY_OUT2'#9'10'#9'PCS'#9'F'#9'KELUAR'
+            'KETERANGAN'#9'20'#9'KETERANGAN'#9'F')
+          IniAttributes.Enabled = True
+          IniAttributes.Delimiter = ';;'
+          IniAttributes.CheckNewFields = True
+          ExportOptions.ExportType = wwgetHTML
+          ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+          TitleColor = clNavy
+          FixedCols = 0
+          ShowHorzScrollBar = True
+          EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+          Align = alClient
+          BorderStyle = bsNone
+          Ctl3D = False
+          DataSource = dsQBrowseDetail1
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          KeyOptions = []
+          Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+          ParentCtl3D = False
+          ParentFont = False
+          TabOrder = 0
+          TitleAlignment = taCenter
+          TitleFont.Charset = ANSI_CHARSET
+          TitleFont.Color = clWhite
+          TitleFont.Height = -11
+          TitleFont.Name = 'Arial'
+          TitleFont.Style = []
+          TitleLines = 2
+          TitleButtons = True
+          UseTFields = False
+        end
+        object wwDBGridDry0: TwwDBGrid
+          Left = 0
+          Top = 49
+          Width = 601
+          Height = 330
+          ControlType.Strings = (
+            'ISFIXED;CheckBox;1;0')
+          Selected.Strings = (
+            'TGL'#9'15'#9'WAKTU'#9'F'
+            'NO_NOTA'#9'15'#9'NO NOTA'#9'F'
+            'QTY_IN'#9'10'#9'KG'#9'F'#9'MASUK'
+            'QTY_IN2'#9'10'#9'PCS'#9'F'#9'MASUK'
+            'QTY_OUT'#9'10'#9'KG'#9'F'#9'KELUAR'
+            'QTY_OUT2'#9'10'#9'PCS'#9'F'#9'KELUAR'
+            'KETERANGAN'#9'20'#9'KETERANGAN'#9'F')
+          IniAttributes.Enabled = True
+          IniAttributes.Delimiter = ';;'
+          IniAttributes.CheckNewFields = True
+          ExportOptions.ExportType = wwgetHTML
+          ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+          TitleColor = clNavy
+          FixedCols = 0
+          ShowHorzScrollBar = True
+          EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+          Align = alClient
+          BorderStyle = bsNone
+          Ctl3D = False
+          DataSource = dsQBrowseDetail0
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = []
+          KeyOptions = []
+          Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+          ParentCtl3D = False
+          ParentFont = False
+          TabOrder = 1
+          TitleAlignment = taCenter
+          TitleFont.Charset = ANSI_CHARSET
+          TitleFont.Color = clWhite
+          TitleFont.Height = -11
+          TitleFont.Name = 'Arial'
+          TitleFont.Style = []
+          TitleLines = 2
+          TitleButtons = True
+          UseTFields = False
+        end
+        object PanelTop: TPanel
+          Left = 0
+          Top = 0
+          Width = 601
+          Height = 49
+          Align = alTop
+          BevelOuter = bvNone
+          Caption = 'PanelTop'
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
     end
     object PanelFooter2: TPanel
       Left = 0
-      Top = 532
-      Width = 1089
+      Top = 525
+      Width = 1082
       Height = 41
       Align = alBottom
       BevelOuter = bvNone
@@ -8809,8 +8943,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
       01010101000000000A0000003A5653595344415445320C00000007000000786B
       061E01010100000000}
     Cursor = crAppStart
-    Left = 736
-    Top = 192
+    Left = 600
+    Top = 40
   end
   object QDump2: TOracleQuery
     SQL.Strings = (
@@ -9031,8 +9165,8 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
     AfterScroll = QBrowseNew2AfterScroll
     OnCalcFields = QBrowseNew2CalcFields
     OnFilterRecord = QBrowseNew2FilterRecord
-    Left = 676
-    Top = 176
+    Left = 556
+    Top = 32
     object QBrowseNew2KD_ITEM: TStringField
       FieldName = 'KD_ITEM'
       Size = 15
@@ -9104,7 +9238,117 @@ object InfoWIPPengeringanFrm: TInfoWIPPengeringanFrm
   end
   object dsQBrowseNew2: TwwDataSource
     DataSet = QBrowseNew2
-    Left = 656
-    Top = 432
+    Left = 464
+    Top = 408
+  end
+  object QBrowseDetail0: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.tgl, t.no_nota, t.qty_in, t.qty_in2, t.qty_out, t.qty_o' +
+        'ut2, b.opr_insert||'#39': '#39'||b.keterangan as keterangan'
+      'from ipisma_db3.temp_mutasi_pengeringan0 t'
+      'left join ipisma_db3.bukti b on t.no_nota=b.no_nota'
+      
+        'where t.kd_item=:pkd_item and t.awal_thn = 0 and t.awal_thn2 = 0' +
+        ' and trunc(b.tgl) >= :pawal')
+    Variables.Data = {
+      0300000002000000090000003A504B445F4954454D0500000000000000000000
+      00060000003A504157414C0C0000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000060000005154595F494E010000000000070000005154595F
+      4F5554010000000000070000005154595F494E32010000000000080000005154
+      595F4F5554320100000000000300000054474C010000000000070000004E4F5F
+      4E4F54410100000000000A0000004B45544552414E47414E010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 820
+    Top = 360
+    object QBrowseDetail0TGL: TDateTimeField
+      FieldName = 'TGL'
+    end
+    object QBrowseDetail0NO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 16
+    end
+    object QBrowseDetail0QTY_IN: TFloatField
+      FieldName = 'QTY_IN'
+      DisplayFormat = '#,0.0000;-#,0.0000;-'
+    end
+    object QBrowseDetail0QTY_IN2: TFloatField
+      FieldName = 'QTY_IN2'
+      DisplayFormat = '#,0;-#,0;-'
+    end
+    object QBrowseDetail0QTY_OUT: TFloatField
+      FieldName = 'QTY_OUT'
+      DisplayFormat = '#,0.0000;-#,0.0000;-'
+    end
+    object QBrowseDetail0QTY_OUT2: TFloatField
+      FieldName = 'QTY_OUT2'
+      DisplayFormat = '#,0;-#,0;-'
+    end
+    object QBrowseDetail0KETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 287
+    end
+  end
+  object QBrowseDetail1: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.tgl, t.no_nota, t.qty_in, t.qty_in2, t.qty_out, t.qty_o' +
+        'ut2, b.opr_insert||'#39': '#39'||b.keterangan as keterangan'
+      'from ipisma_db3.temp_mutasi_pengeringan1 t'
+      'left join ipisma_db3.bukti b on t.no_nota=b.no_nota'
+      
+        'where t.kd_item=:pkd_item and t.awal_thn = 0 and t.awal_thn2 = 0' +
+        ' and trunc(b.tgl) >= :pawal')
+    Variables.Data = {
+      0300000002000000090000003A504B445F4954454D0500000000000000000000
+      00060000003A504157414C0C0000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000060000005154595F494E010000000000070000005154595F
+      4F5554010000000000070000005154595F494E32010000000000080000005154
+      595F4F5554320100000000000300000054474C010000000000070000004E4F5F
+      4E4F54410100000000000A0000004B45544552414E47414E010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 828
+    Top = 424
+    object QBrowseDetail1TGL: TDateTimeField
+      FieldName = 'TGL'
+    end
+    object QBrowseDetail1NO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 16
+    end
+    object QBrowseDetail1QTY_IN: TFloatField
+      FieldName = 'QTY_IN'
+    end
+    object QBrowseDetail1QTY_IN2: TFloatField
+      FieldName = 'QTY_IN2'
+    end
+    object QBrowseDetail1QTY_OUT: TFloatField
+      FieldName = 'QTY_OUT'
+    end
+    object QBrowseDetail1QTY_OUT2: TFloatField
+      FieldName = 'QTY_OUT2'
+    end
+    object QBrowseDetail1KETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 287
+    end
+  end
+  object dsQBrowseDetail0: TwwDataSource
+    DataSet = QBrowseDetail0
+    Left = 888
+    Top = 376
+  end
+  object dsQBrowseDetail1: TwwDataSource
+    DataSet = QBrowseDetail1
+    Left = 896
+    Top = 440
   end
 end

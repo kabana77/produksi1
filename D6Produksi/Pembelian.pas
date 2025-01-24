@@ -61,7 +61,7 @@ type
     Penerimaan1: TMenuItem;
     Pengeluaran1: TMenuItem;
     PindahLokasi32: TMenuItem;
-    PindahLokasi3: TMenuItem;
+    //PindahLokasi3: TMenuItem;
     N5: TMenuItem;
     N6: TMenuItem;
     InfoWIP2: TMenuItem;
@@ -254,7 +254,7 @@ uses DM, TipeMenu, HakMenu, OrganisasiItem, OrganisasiLokasi,
   KoreksiKeluarJD,LapKeluarGW, WIP_JETDYEING, LapMutStokDyeing,
   LapMutStokGW, HasilPengeringan, MyColor, PenerimaanKG,
   PenerimaanHasilCelup, Penerimaan_JasaKelos, PengeluaranPCS, SJMaklon, TerimaMaklon,
-  DaftarUnpost, PermintaanUnpost, Unpost, DaftarWarna, ProsesAwalTahun;
+  DaftarUnpost, PermintaanUnpost, Unpost, DaftarWarna, ProsesAwalTahun, PindahLokasi3;
 
 {$R *.dfm}
 
@@ -492,7 +492,7 @@ end;
 
 procedure TPembelianFrm.PindahLokasi3Click(Sender: TObject);
 begin
-  PindahLokasi2.ShowForm((Sender as TMenuItem).Name,'796',(Sender as TMenuItem).Caption,'22','22');
+  PindahLokasi3.ShowForm((Sender as TMenuItem).Name,'796',(Sender as TMenuItem).Caption,'22','22');
 end;
 
 procedure TPembelianFrm.SerahTerimaHasilCelup1Click(Sender: TObject);

@@ -10,7 +10,8 @@ uses
   ppViewr, ppDB, ppDBPipe, ppComm, ppRelatv, ppProd, ppClass, ppReport,
   ppVar, ppCtrls, ppBands, ppPrnabl, ppCache, ppEndUsr, ppModule,
   daDataModule, DBCtrls, wwdblook, Wwdbdlg, Wwdotdot, Wwdbcomb, ppBarCod,
-  wwcheckbox, ppStrtch, ppMemo, raCodMod, wwriched, QuickRpt, QRCtrls, jpeg;
+  wwcheckbox, ppStrtch, ppMemo, raCodMod, wwriched, QuickRpt, QRCtrls, jpeg,
+  OleCtrls, SHDocVw;
 
 type
   TInfoRealisasiPOFrm = class(TForm)
@@ -683,6 +684,30 @@ type
     QBrowse2OUT_KOREKSI_PCS: TFloatField;
     QBrowse2AKHIR: TFloatField;
     QBrowse2AKHIR2: TFloatField;
+    PanelRiwayat: TPanel;
+    wwDBGridSoft0: TwwDBGrid;
+    PanelTop: TPanel;
+    QBrowseDetail0: TOracleDataSet;
+    dsQBrowseDetail0: TwwDataSource;
+    QBrowseDetail0TGL: TDateTimeField;
+    QBrowseDetail0NO_NOTA: TStringField;
+    QBrowseDetail0QTY_IN: TFloatField;
+    QBrowseDetail0QTY_IN2: TFloatField;
+    QBrowseDetail0QTY_OUT: TFloatField;
+    QBrowseDetail0QTY_OUT2: TFloatField;
+    QBrowseDetail0KETERANGAN: TStringField;
+    cbRiwayat: TCheckBox;
+    QBrowseDetail1: TOracleDataSet;
+    dsQBrowseDetail1: TwwDataSource;
+    wwDBGridSoft1: TwwDBGrid;
+    QBrowseDetail1TGL: TDateTimeField;
+    QBrowseDetail1NO_NOTA: TStringField;
+    QBrowseDetail1QTY_IN: TFloatField;
+    QBrowseDetail1QTY_IN2: TFloatField;
+    QBrowseDetail1QTY_OUT: TFloatField;
+    QBrowseDetail1QTY_OUT2: TFloatField;
+    QBrowseDetail1KETERANGAN: TStringField;
+    WebBrowser1: TWebBrowser;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -731,6 +756,11 @@ type
     procedure QBrowse2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure QBrowse2AfterScroll(DataSet: TDataSet);
     procedure QBrowse2CalcFields(DataSet: TDataSet);
+    procedure wwDBGrid1RowChanged(Sender: TObject);
+    procedure cbRiwayatClick(Sender: TObject);
+    procedure wwDBGrid2RowChanged(Sender: TObject);
+    procedure WebBrowser1DocumentComplete(Sender: TObject;
+      const pDisp: IDispatch; var URL: OleVariant);
   private
     { Private declarations }
     vorder, SelectedFont, vkode, vitem : String;
@@ -871,6 +901,9 @@ end;
 
 procedure TInfoRealisasiPOFrm.BtnOkClick(Sender: TObject);
 begin
+  PanelRiwayat.Visible:=cbRiwayat.Checked;
+  //cbRiwayat.Checked:=false;
+
   t1:=0; t2:=0; t3:=0; t4:=0; t5:=0; t6:=0;
   t7:=0; t8:=0; t9:=0; t10:=0; t11:=0; t12:=0;
   t13:=0; t14:=0; t15:=0; t16:=0; t17:=0; t18:=0;
@@ -1021,6 +1054,9 @@ begin
   end
   else
     QBrowse.ClearQBE;
+
+  PanelRiwayat.Visible:=False;
+  cbRiwayat.Checked:=false;
 end;
 
 procedure TInfoRealisasiPOFrm.Label5Click(Sender: TObject);
@@ -1060,7 +1096,7 @@ end;
 
 procedure TInfoRealisasiPOFrm.QBrowseAfterScroll(DataSet: TDataSet);
 begin
-    LabelBanner.Caption:='Record ke '+IntToStr(QBrowse.RecNo)+' dari '+FormatFloat('#,#',QBrowse.RecordCount)+' Records';
+  LabelBanner.Caption:='Record ke '+IntToStr(QBrowse.RecNo)+' dari '+FormatFloat('#,#',QBrowse.RecordCount)+' Records';
 end;
 
 procedure TInfoRealisasiPOFrm.wwDBGrid2DblClick(Sender: TObject);
@@ -1113,20 +1149,178 @@ end;
 
 procedure TInfoRealisasiPOFrm.BtnPrintBrowseClick(Sender: TObject);
 var radio : Integer;
+
+  HTMLContent: TStringList;
+  i: Integer;
+  FieldName: String;
+  FileName: string;
+  t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, t15, t16 : Real;
+  vAdm: String;
 begin
-radio := RadioGroup1.ItemIndex;
+  { print pakai quikrep
+  radio := RadioGroup1.ItemIndex;
   if radio=1 then
-    begin
-      // HP SOFTCONE
-      //QuickRep1.Preview;
-      QuickRep5.Preview;
-    end
+    QuickRep5.Preview // HP SOFTCONE
   else
+    QuickRep4.Preview; // BDP SOFTCONE
+  }
+
+  if DMFrm.QDateTimeUSER.AsString='OBETH' then vAdm:= 'Ubaidillah'
+  else if DMFrm.QDateTimeUSER.AsString='BURHANUDIN' then vAdm:= 'Burhanudin'
+  else if DMFrm.QDateTimeUSER.AsString='AMRI_KH' then vAdm:= 'M. Khoirul Amri'
+  else vAdm:= DMFrm.QDateTimeUSER.AsString;
+
+
+  WebBrowser1.BringToFront;
+  HTMLContent := TStringList.Create;
+  try
+    HTMLContent.Add('<html><head><style>');
+    HTMLContent.Add('@page {size: A4;}');
+    HTMLContent.Add('body {font-family: sans-serif, Arial; margin: 5px; padding: 5; display: flex; flex-direction: column; min-height: 100vh;}');
+    HTMLContent.Add('div.content {flex: 1; text-align: center;}');
+    HTMLContent.Add('.table {width: 100%; border-collapse: collapse; font-size: 10px;}');
+    HTMLContent.Add('td, th {border: 1px solid black; padding: 4px;} th {background-color: #f2f2f2; text-align: center;}');
+    HTMLContent.Add('.footer {text-align: center;}');
+    HTMLContent.Add('.tfoot {border: 0px; text-align: center}');
+    HTMLContent.Add('</style></head><body>');
+    HTMLContent.Add('<div class="content">');
+    HTMLContent.Add('<h2><u>Laporan Produksi Softcone</u></h2>');
+    HTMLContent.Add('<p align="center">Periode: ' + FormatDateTime('dd/mm/yyyy', VTglAwal.Date) + ' s/d ' + FormatDateTime('dd/mm/yyyy', VTglAkhir.Date) + '</p>');
+    HTMLContent.Add('<table class="table">');
+    HTMLContent.Add('<tr>');
+    HTMLContent.Add('<th rowspan="3">KODE</th>');
+    HTMLContent.Add('<th rowspan="3">NAMA ITEM</th>');
+    HTMLContent.Add('<th rowspan="2" colspan="2">AWAL</th>');
+    HTMLContent.Add('<th colspan="6">PEMASUKAN</th>');
+    HTMLContent.Add('<th colspan="6">PENGELUARAN</th>');
+    HTMLContent.Add('<th rowspan="2" colspan="2">AKHIR</th>');
+    HTMLContent.Add('</tr>');
+    HTMLContent.Add('<tr>');;
+    HTMLContent.Add('<th colspan="2">BON GREY</th>');
+    HTMLContent.Add('<th colspan="2">RETUR GD. WARNA</th>');
+    HTMLContent.Add('<th colspan="2">KOREKSI</th>');
+    HTMLContent.Add('<th colspan="2">HASIL PRODUKSI</th>');
+    HTMLContent.Add('<th colspan="2">DIAMBIL GD. WARNA</th>');
+    HTMLContent.Add('<th colspan="2">KOREKSI</th>');
+    HTMLContent.Add('</tr>');
+    HTMLContent.Add('<tr>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('<th>Kg</th>');
+    HTMLContent.Add('<th>Ball</th>');
+    HTMLContent.Add('</tr>');
+    wwDBGrid1.DataSource.DataSet.First;
+    while not wwDBGrid1.DataSource.DataSet.Eof do
     begin
-      //QuickRep2.Preview;
-      // BDP SOFTCONE
-      QuickRep4.Preview;
-    end
+      HTMLContent.Add('<tr>');
+      for i := 0 to wwDBGrid1.Selected.Count - 1 do
+      begin
+        FieldName := wwDBGrid1.Columns[i].FieldName;
+        if (FieldName = 'KD_ITEM') or (FieldName = 'NAMA_ITEM') then
+          HTMLContent.Add('<td>' + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsString + '</td>')
+        else if (FieldName = 'AWAL') or
+                (FieldName = 'IN_BON_KG') or
+                (FieldName = 'IN_RETUR_KG') or
+                (FieldName = 'IN_KOREKSI_KG') or
+                (FieldName = 'OUT_HASIL_KG') or
+                (FieldName = 'OUT_RETUR_KG') or
+                (FieldName = 'OUT_KOREKSI_KG') or
+                (FieldName = 'AKHIR')
+        then
+          HTMLContent.Add('<td align="right";>' + FormatFloat('#,0.00;-#,0.00;-',StrToFloat(wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsString)) + '</td>')
+        else
+          HTMLContent.Add('<td align="right";>' + FormatFloat('#,0.000;-#,0.000;-',StrToFloat(wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsString)) + '</td>');
+
+        if FieldName = 'AWAL' then t1 := t1 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_BON_KG' then t2 := t2 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_RETUR_KG' then t3 := t3 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_KOREKSI_KG' then t4 := t4 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_HASIL_KG' then t5 := t5 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_RETUR_KG' then t6 := t6 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_KOREKSI_KG' then t7 := t7 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'AKHIR' then t8 := t8 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+
+        else if FieldName = 'AWAL2' then t9 := t9 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_BON_BALL' then t10 := t10 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_RETUR_BALL' then t11 := t11 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'IN_KOREKSI_BALL' then t12 := t12 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_HASIL_BALL' then t13 := t13 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_RETUR_BALL' then t14 := t15 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'OUT_KOREKSI_BALL' then t15 := t15 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat
+        else if FieldName = 'AKHIR2' then t16 := t16 + wwDBGrid1.DataSource.DataSet.FieldByName(FieldName).AsFloat;
+      end;
+      HTMLContent.Add('</tr>');
+      wwDBGrid1.DataSource.DataSet.Next;
+    end;
+
+    // Menambahkan baris total di bawah tabel
+    HTMLContent.Add('<tr>');
+    HTMLContent.Add('<td colspan="2" align="center"><b>TOTAL</b></td>');
+    for i := 0 to wwDBGrid1.Selected.Count - 1 do
+    begin
+      FieldName := wwDBGrid1.Columns[i].FieldName;
+      if FieldName = 'AWAL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t1) + '</b></td>')
+      else if FieldName = 'IN_BON_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t2) + '</b></td>')
+      else if FieldName = 'IN_RETUR_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t3) + '</b></td>')
+      else if FieldName = 'IN_KOREKSI_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t4) + '</b></td>')
+      else if FieldName = 'OUT_HASIL_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t5) + '</b></td>')
+      else if FieldName = 'OUT_RETUR_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t6) + '</b></td>')
+      else if FieldName = 'OUT_KOREKSI_KG' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t7) + '</b></td>')
+      else if FieldName = 'AKHIR' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.00;-#,0.00;-', t8) + '</b></td>')
+      else if FieldName = 'AWAL2' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t9) + '</b></td>')
+      else if FieldName = 'IN_BON_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t10) + '</b></td>')
+      else if FieldName = 'IN_RETUR_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t11) + '</b></td>')
+      else if FieldName = 'IN_KOREKSI_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t12) + '</b></td>')
+      else if FieldName = 'OUT_HASIL_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t13) + '</b></td>')
+      else if FieldName = 'OUT_RETUR_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t14) + '</b></td>')
+      else if FieldName = 'OUT_KOREKSI_BALL' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t15) + '</b></td>')
+      else if FieldName = 'AKHIR2' then HTMLContent.Add('<td align="right";><b>' + FormatFloat('#,0.000;-#,0.000;-', t16) + '</b></td>');
+    end;
+    HTMLContent.Add('</tr>');
+    wwDBGrid1.DataSource.DataSet.Next;
+    HTMLContent.Add('</table>');
+
+    // Menambahkan kolom tanda tangan di bagian bawah halaman
+    HTMLContent.Add('<div class="footer">');
+    HTMLContent.Add('<table style="width: 100%; border:none;">');
+    HTMLContent.Add('<tr>');
+    HTMLContent.Add('<td class="tfoot"></td>');
+    HTMLContent.Add('<td class="tfoot"><p>Pekalongan, '+FormatDateTime('dd mmmm yyyy', VTglAkhir.Date)+'</p></td>');
+    HTMLContent.Add('</tr>');
+    HTMLContent.Add('<tr>');
+    HTMLContent.Add('<td class="tfoot"><p>Mengetahui</p><br><br><br><p><u><b>Oloan Sili SH</b></u><br>Manajer Produksi</p></td>');
+    HTMLContent.Add('<td class="tfoot"><p>Dibuat Oleh</p><br><br><br><p><u><b>'+vAdm+'</b></u><br>Admin MIS Dyeing</p></td>');
+    HTMLContent.Add('</tr>');
+    HTMLContent.Add('</table>');
+    HTMLContent.Add('</div>'); // Tutup footer
+
+    HTMLContent.Add('</div>'); //tutup content
+
+    HTMLContent.Add('</body>');
+    HTMLContent.Add('</html>');
+
+    // Simpan HTML ke file sementara
+    FileName := ExtractFilePath(Application.ExeName) + 'LaporanProduksiSoftcone.html';
+    HTMLContent.SaveToFile(FileName);
+
+    // Load file HTML ke TWebBrowser
+    WebBrowser1.Navigate('file://' + FileName);
+
+  finally
+    HTMLContent.Free;
+  end;
 end;
 
 procedure TInfoRealisasiPOFrm.SummaryBand1BeforePrint(
@@ -1291,6 +1485,85 @@ begin
   )
   - (QBrowse2OUT_ST_PCS.AsFloat+QBrowse2OUT_PROSES_PCS.AsFloat+QBrowse2OUT_KOREKSI_PCS.AsFloat);
 
+end;
+
+procedure TInfoRealisasiPOFrm.wwDBGrid1RowChanged(Sender: TObject);
+var
+vt1, vt2, vt3, vt4 : real;
+begin
+  if PanelRiwayat.Visible=True then
+  begin
+    QBrowseDetail0.DisableControls;
+    QBrowseDetail0.Close;
+    QBrowseDetail0.SetVariable('pawal', vTglAwal.DateTime);
+    QBrowseDetail0.SetVariable('pkd_item', QBrowseKD_ITEM.AsString);
+    QBrowseDetail0.Open;
+
+    vt1:=0; vt2:=0; vt3:=0; vt4:=0;
+    while not QBrowseDetail0.Eof do
+    begin
+       vt1:=vt1+QBrowseDetail0QTY_IN.AsFloat;
+       vt2:=vt2+QBrowseDetail0QTY_IN2.AsFloat;
+       vt3:=vt3+QBrowseDetail0QTY_OUT.Asfloat;
+       vt4:=vt4+QBrowseDetail0QTY_OUT2.Asfloat;
+       QBrowseDetail0.Next;
+    end;
+    QBrowseDetail0.EnableControls;
+
+    wwDBGridSoft0.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,0.00;-#,0.00;-',vt1);
+    wwDBGridSoft0.ColumnByName('QTY_IN2').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt2);
+    wwDBGridSoft0.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,0.00;-#,0.00;-',vt3);
+    wwDBGridSoft0.ColumnByName('QTY_OUT2').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt4);
+    wwDBGridSoft0.BringToFront;
+    PanelTop.Caption:='Dalam Proses : '+QBrowseNAMA_ITEM.AsString;
+  end;
+end;
+
+procedure TInfoRealisasiPOFrm.cbRiwayatClick(Sender: TObject);
+begin
+  if PanelRiwayat.Visible=false then
+    PanelRiwayat.Visible:=true
+  else
+    PanelRiwayat.Visible:=false;
+end;
+
+procedure TInfoRealisasiPOFrm.wwDBGrid2RowChanged(Sender: TObject);
+var
+vt1, vt2, vt3, vt4 : real;
+begin
+  if PanelRiwayat.Visible=True then
+  begin
+    QBrowseDetail1.DisableControls;
+    QBrowseDetail1.Close;
+    QBrowseDetail1.SetVariable('pawal', vTglAwal.DateTime);
+    QBrowseDetail1.SetVariable('pkd_item', QBrowse2KD_ITEM.AsString);
+    QBrowseDetail1.Open;
+
+    vt1:=0; vt2:=0; vt3:=0; vt4:=0;
+    while not QBrowseDetail1.Eof do
+    begin
+       vt1:=vt1+QBrowseDetail1QTY_IN.AsFloat;
+       vt2:=vt2+QBrowseDetail1QTY_IN2.AsFloat;
+       vt3:=vt3+QBrowseDetail1QTY_OUT.Asfloat;
+       vt4:=vt4+QBrowseDetail1QTY_OUT2.Asfloat;
+       QBrowseDetail1.Next;
+    end;
+    QBrowseDetail1.EnableControls;
+
+    wwDBGridSoft1.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt1);
+    wwDBGridSoft1.ColumnByName('QTY_IN2').FooterValue:=FormatFloat('#,0.00;-#,0.00;-',vt2);
+    wwDBGridSoft1.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt3);
+    wwDBGridSoft1.ColumnByName('QTY_OUT2').FooterValue:=FormatFloat('#,0.00;-#,0.00;-',vt4);
+    wwDBGridSoft1.BringToFront;
+    PanelTop.Caption:='Hasil Proses : '+QBrowse2NAMA_ITEM.AsString;
+  end;
+end;
+
+procedure TInfoRealisasiPOFrm.WebBrowser1DocumentComplete(Sender: TObject;
+  const pDisp: IDispatch; var URL: OleVariant);
+begin
+    // Memanggil print setelah dokumen selesai dimuat
+    WebBrowser1.OleObject.ExecWB(OLECMDID_PRINT, OLECMDEXECOPT_PROMPTUSER, Unassigned, Unassigned);
 end;
 
 end.

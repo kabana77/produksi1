@@ -80,7 +80,7 @@ object HasilCelupFrm: THasilCelupFrm
       Top = 76
       Width = 995
       Height = 463
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -492,7 +492,7 @@ object HasilCelupFrm: THasilCelupFrm
               'QTY'#9'15'#9'QTY (Kg)'#9'F'#9)
             DataField = 'KD_ITEM'
             DataSource = dsQDetail
-            LookupTable = QItem
+            LookupTable = QItemNew
             LookupField = 'KD_ITEM'
             Style = csDropDownList
             TabOrder = 1
@@ -1342,7 +1342,7 @@ object HasilCelupFrm: THasilCelupFrm
     DataPipeline = ppDBQBrowseDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -5026,6 +5026,140 @@ object HasilCelupFrm: THasilCelupFrm
     end
     object QTotalKG: TFloatField
       FieldName = 'KG'
+    end
+  end
+  object QItemNew: TOracleDataSet
+    SQL.Strings = (
+      'select * from'
+      
+        '(select a.nama_item, '#39'21.'#39'||a.kd_item as kd_item, '#39'KG'#39' as satuan' +
+        ', a.rasio, sum(a.qty2) as qty2, /*sum(a.qty)*/ sum(a.qty2)*a.ras' +
+        'io as qty, a.kd_satuan, a.kd_sub_kel from ('
+      'select'
+      '  trunc(b.tgl) as tgl,'
+      '  a.keterangan as nama_item,'
+      '  substr(a.kd_item, 4, 5) as kd_item,'
+      '  '#39'KG'#39' as satuan,'
+      '  a.rasio,'
+      '  qty2 as qty, --qty_kg'
+      '  qty7 as qty2, -- qty_pcs'
+      '  '#39'04'#39' as kd_satuan,   '
+      '  c.kd_sub_kel'
+      'from ipisma_db3.BUKTI_detail a'
+      'left join ipisma_db3.bukti b on a.ibukti=b.ibukti'
+      
+        'left join ipisma_db3.item c on substr(c.kd_item, 4, 5)=substr(a.' +
+        'kd_item, 4, 5) and c.kd_jns_item='#39'21'#39
+      
+        'where b.kd_transaksi = '#39'794'#39' and b.ispost='#39'1'#39' and b.tgl >= to_da' +
+        'te('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39')'
+      'and c.kd_sub_kel=:pkd_benang'
+      ''
+      'UNION ALL'
+      ''
+      'select'
+      '  trunc(b.tgl) as tgl,'
+      '  a.keterangan as nama_item,'
+      '  substr(a.kd_item, 4, 5) as kd_item,'
+      '  '#39'KG'#39' as satuan,'
+      '  a.rasio,'
+      '  -qty1 as qty, -- qty_kg'
+      '  -qty2 as qty2, --qty_pcs'
+      '  '#39'04'#39' as kd_satuan,'
+      '  c.kd_sub_kel'
+      'from ipisma_db3.BUKTI_detail a'
+      
+        'left join ipisma_db3.bukti b on a.ibukti=b.ibukti --and b.no_not' +
+        'a = '#39'794-2501-00048'#39
+      
+        'left join ipisma_db3.item c on substr(c.kd_item, 4, 5)=substr(a.' +
+        'kd_item, 4, 5) and c.kd_jns_item='#39'21'#39
+      'and c.kd_sub_kel=:pkd_benang'
+      
+        'where b.kd_transaksi = '#39'792'#39' and b.ispost='#39'1'#39' and b.tgl >= to_da' +
+        'te('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39')'
+      'and c.kd_sub_kel=:pkd_benang'
+      ''
+      'UNION ALL'
+      ''
+      'select'
+      '  trunc(b.tgl) as tgl,'
+      '  a.keterangan as nama_item,'
+      '  substr(a.kd_item, 4, 5) as kd_item,'
+      '  '#39'KG'#39' as satuan,'
+      '  a.rasio,'
+      '  -qty1 as qty, -- qty_kg'
+      '  -qty2 as qty2, --qty_pcs'
+      '  '#39'04'#39' as kd_satuan,'
+      '  c.kd_sub_kel'
+      'from ipisma_db3.BUKTI_detail a'
+      
+        'left join ipisma_db3.bukti b on a.ibukti=b.ibukti --and b.no_not' +
+        'a = '#39'794-2501-00048'#39
+      
+        'left join ipisma_db3.item c on substr(c.kd_item, 4, 5)=substr(a.' +
+        'kd_item, 4, 5) and c.kd_jns_item='#39'21'#39
+      
+        'where b.kd_transaksi = '#39'792'#39' and b.tgl >= to_date('#39'01/01/2025'#39','#39 +
+        'dd/mm/yyyy'#39') and a.ibukti=:pibukti'
+      'and c.kd_sub_kel=:pkd_benang'
+      ') a'
+      'where a.tgl <= :ptgl '
+      
+        'group by a.nama_item, a.kd_item, a.satuan, a.rasio, a.kd_satuan,' +
+        ' a.kd_sub_kel)')
+    Variables.Data = {
+      0300000003000000050000003A5054474C0C00000007000000787D0111010101
+      00000000080000003A504942554B544905000000020000003100000000000B00
+      00003A504B445F42454E414E47050000000800000034302F5320525400000000
+      00}
+    QBEDefinition.QBEFieldDefs = {
+      0400000008000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000600000053415455414E01000000000009000000
+      4B445F53415455414E01000000000005000000524153494F0100000000000300
+      000051545901000000000004000000515459320100000000000300000054474C
+      010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemNewBeforeQuery
+    Session = DMFrm.OS
+    Left = 344
+    Top = 352
+    object QItemNewNAMA_ITEM: TStringField
+      DisplayLabel = 'NAMA ITEM'
+      DisplayWidth = 35
+      FieldName = 'NAMA_ITEM'
+      Size = 255
+    end
+    object QItemNewKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Size = 8
+    end
+    object QItemNewSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 2
+    end
+    object QItemNewRASIO: TFloatField
+      DisplayWidth = 5
+      FieldName = 'RASIO'
+    end
+    object QItemNewQTY2: TFloatField
+      DisplayLabel = 'QTY (Pcs)'
+      DisplayWidth = 15
+      FieldName = 'QTY2'
+    end
+    object QItemNewQTY: TFloatField
+      DisplayLabel = 'QTY (Kg)'
+      DisplayWidth = 15
+      FieldName = 'QTY'
+    end
+    object QItemNewKD_SATUAN: TStringField
+      FieldName = 'KD_SATUAN'
+      Size = 2
     end
   end
 end

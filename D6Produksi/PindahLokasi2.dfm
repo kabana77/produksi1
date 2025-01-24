@@ -25,7 +25,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     Left = 0
     Top = 0
     Width = 994
-    Height = 579
+    Height = 580
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -33,7 +33,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 566
+      Top = 567
       Width = 994
       Height = 13
       Align = alBottom
@@ -79,7 +79,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       Left = 0
       Top = 76
       Width = 994
-      Height = 490
+      Height = 491
       ActivePage = TabSheet2
       Align = alClient
       Style = tsFlatButtons
@@ -389,7 +389,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
           Left = 0
           Top = 178
           Width = 986
-          Height = 240
+          Height = 241
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
@@ -397,7 +397,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
             Left = 0
             Top = 0
             Width = 986
-            Height = 240
+            Height = 241
             ControlType.Strings = (
               'KD_ITEM;CustomEdit;LookItem;F'
               'KD_SUB_LOKASI2;CustomEdit;LookLokasi2;F'
@@ -538,7 +538,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         end
         object PanelFooter1: TPanel
           Left = 0
-          Top = 418
+          Top = 419
           Width = 986
           Height = 41
           Align = alBottom
@@ -922,7 +922,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
           Left = 0
           Top = 70
           Width = 986
-          Height = 348
+          Height = 349
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
@@ -1687,7 +1687,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawRight = False
                 Size.Values = (
                   44.979166666666670000
-                  97.895833333333330000
+                  97.895833333333340000
                   0.000000000000000000
                   134.937500000000000000)
                 Alignment = taLeftJustify
@@ -1902,7 +1902,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawRight = False
                 Size.Values = (
                   44.979166666666670000
-                  788.458333333333300000
+                  788.458333333333400000
                   0.000000000000000000
                   108.479166666666700000)
                 Alignment = taLeftJustify
@@ -2577,7 +2577,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawLeft = False
                 Frame.DrawRight = False
                 Size.Values = (
-                  42.333333333333330000
+                  42.333333333333340000
                   37.041666666666670000
                   7.937500000000000000
                   201.083333333333300000)
@@ -2604,7 +2604,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
             Left = 0
             Top = 0
             Width = 986
-            Height = 348
+            Height = 349
             ControlType.Strings = (
               'ISPOST;CheckBox;1;0')
             Selected.Strings = (
@@ -2664,7 +2664,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         end
         object PanelFooter2: TPanel
           Left = 0
-          Top = 418
+          Top = 419
           Width = 986
           Height = 41
           Align = alBottom
@@ -2799,7 +2799,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
           Left = 0
           Top = 0
           Width = 986
-          Height = 459
+          Height = 460
           Align = alClient
           AutoURLDetect = False
           Color = clInfoBk
@@ -2962,28 +2962,42 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
+    PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
     PrinterSetup.mmMarginRight = 6350
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
     EmailSettings.ReportFormat = 'PDF'
+    LanguageID = 'Default'
     OutlineSettings.CreateNode = True
     OutlineSettings.CreatePageNodes = True
     OutlineSettings.Enabled = False
     OutlineSettings.Visible = False
+    PDFSettings.EmbedFontOptions = [efUseSubset]
+    PDFSettings.EncryptSettings.AllowCopy = True
+    PDFSettings.EncryptSettings.AllowInteract = True
+    PDFSettings.EncryptSettings.AllowModify = True
+    PDFSettings.EncryptSettings.AllowPrint = True
+    PDFSettings.EncryptSettings.Enabled = False
+    PDFSettings.FontEncoding = feAnsi
+    RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
+    RTFSettings.DefaultFont.Color = clWindowText
+    RTFSettings.DefaultFont.Height = -13
+    RTFSettings.DefaultFont.Name = 'Arial'
+    RTFSettings.DefaultFont.Style = []
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = False
     Left = 952
     Top = 8
-    Version = '10.07'
+    Version = '12.03'
     mmColumnWidth = 197300
     DataPipelineName = 'ppDBQBrowseDetail'
     object ppTitleBand1: TppTitleBand
@@ -2994,12 +3008,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppNamaLaporan: TppLabel
         UserName = 'NamaLaporan'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Transaksi Org'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3015,11 +3031,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel9: TppLabel
         UserName = 'Label9'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '====================================='
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3034,12 +3052,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppPeriode: TppLabel
         UserName = 'Periode'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '01 Nop 2006 s/d 30 Nop 2006'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3055,6 +3075,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText12: TppDBText
         UserName = 'DBText11'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3062,6 +3083,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'PERUSAHAAN'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3078,6 +3100,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText13: TppDBText
         UserName = 'DBText12'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3085,6 +3108,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'ALAMAT1'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3101,6 +3125,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText14: TppDBText
         UserName = 'DBText13'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3108,6 +3133,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'TELEPON1'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3124,11 +3150,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppUserCetak: TppLabel
         UserName = 'UserCetak'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SYSTEM, 17 Jan 2007 16:35'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3150,11 +3178,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppLabel2: TppLabel
         UserName = 'Label2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NO. NOTA'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3169,11 +3199,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel3: TppLabel
         UserName = 'Label3'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'TANGGAL'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3188,11 +3220,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel4: TppLabel
         UserName = 'Label4'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'DIVISI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3207,11 +3241,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel5: TppLabel
         UserName = 'Label5'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SATUAN'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3227,11 +3263,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel6: TppLabel
         UserName = 'Label6'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NO'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3247,11 +3285,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel7: TppLabel
         UserName = 'Label7'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SHIFT/GRUP'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3267,11 +3307,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel8: TppLabel
         UserName = 'Label8'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'KODE'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3286,11 +3328,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel10: TppLabel
         UserName = 'Label10'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'QTY'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3306,11 +3350,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel11: TppLabel
         UserName = 'Label11'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NAMA BARANG'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3325,11 +3371,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel12: TppLabel
         UserName = 'Label12'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'LOKASI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3344,18 +3392,28 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
     end
     object ppDetailBand1: TppDetailBand
+      Background1.Brush.Style = bsClear
+      Background1.Gradient.EndColor = clWhite
+      Background1.Gradient.StartColor = clWhite
+      Background1.Gradient.Style = gsNone
+      Background2.Brush.Style = bsClear
+      Background2.Gradient.EndColor = clWhite
+      Background2.Gradient.StartColor = clWhite
+      Background2.Gradient.Style = gsNone
       PrintHeight = phDynamic
       mmBottomOffset = 0
       mmHeight = 3969
       mmPrintPosition = 0
       object ppDBText8: TppDBText
         UserName = 'DBText8'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'KODE_BRG'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3371,6 +3429,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText10: TppDBText
         UserName = 'DBText10'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3378,6 +3437,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'QTY1'
         DataPipeline = ppDBQBrowseDetail
         DisplayFormat = '#,#'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3394,12 +3454,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText5: TppDBText
         UserName = 'DBText5'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'LOKASI'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3415,12 +3477,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText6: TppDBText
         UserName = 'DBText6'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'SATUAN'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3436,6 +3500,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBMemo3: TppDBMemo
         UserName = 'DBMemo3'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3458,10 +3523,12 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppNo: TppVariable
         UserName = 'No'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3469,6 +3536,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         BlankWhenZero = False
         CalcOrder = 0
         DataType = dtInteger
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3484,12 +3552,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText1: TppDBText
         UserName = 'DBText1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'NO_NOTA'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3506,6 +3576,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText2: TppDBText
         UserName = 'DBText2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3513,6 +3584,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'TANGGAL'
         DataPipeline = ppDBQBrowseDetail
         DisplayFormat = 'dd/mm/yyyy'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3528,12 +3600,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText3: TppDBText
         UserName = 'DBText3'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'KD_DIV'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3549,12 +3623,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText4: TppDBText
         UserName = 'DBText4'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'NAMA_DIVISI'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3570,12 +3646,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText7: TppDBText
         UserName = 'DBText7'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'SHIFT'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3591,12 +3669,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText9: TppDBText
         UserName = 'DBText9'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'GRUP'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3612,11 +3692,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel18: TppLabel
         UserName = 'Label14'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '/'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3636,6 +3718,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppSystemVariable1: TppSystemVariable
         UserName = 'SystemVariable1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3657,17 +3740,20 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
     end
     object ppSummaryBand1: TppSummaryBand
+      AlignToBottom = False
       mmBottomOffset = 0
       mmHeight = 48419
       mmPrintPosition = 0
       object ppDBText19: TppDBText
         UserName = 'DBText19'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3685,12 +3771,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText42: TppDBText
         UserName = 'DBText42'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3708,12 +3796,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText43: TppDBText
         UserName = 'DBText43'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3731,12 +3821,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText44: TppDBText
         UserName = 'DBText44'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3754,12 +3846,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText45: TppDBText
         UserName = 'DBText45'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3777,12 +3871,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText46: TppDBText
         UserName = 'DBText46'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3800,12 +3896,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText47: TppDBText
         UserName = 'DBText47'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3823,12 +3921,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText48: TppDBText
         UserName = 'DBText48'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3846,12 +3946,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText49: TppDBText
         UserName = 'DBText401'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4436,8 +4538,9 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     DataPipeline = ppDBQDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'myA5'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
     PrinterSetup.mmMarginRight = 6350
@@ -4449,15 +4552,28 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     Units = utMillimeters
     DeviceType = 'Screen'
     EmailSettings.ReportFormat = 'PDF'
+    LanguageID = 'Default'
     OutlineSettings.CreateNode = True
     OutlineSettings.CreatePageNodes = True
     OutlineSettings.Enabled = False
     OutlineSettings.Visible = False
+    PDFSettings.EmbedFontOptions = [efUseSubset]
+    PDFSettings.EncryptSettings.AllowCopy = True
+    PDFSettings.EncryptSettings.AllowInteract = True
+    PDFSettings.EncryptSettings.AllowModify = True
+    PDFSettings.EncryptSettings.AllowPrint = True
+    PDFSettings.EncryptSettings.Enabled = False
+    PDFSettings.FontEncoding = feAnsi
+    RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
+    RTFSettings.DefaultFont.Color = clWindowText
+    RTFSettings.DefaultFont.Height = -13
+    RTFSettings.DefaultFont.Name = 'Arial'
+    RTFSettings.DefaultFont.Style = []
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = False
     Left = 168
     Top = 64
-    Version = '10.07'
+    Version = '12.03'
     mmColumnWidth = 197300
     DataPipelineName = 'ppDBQDetail'
     object ppTitleBand2: TppTitleBand
@@ -4468,6 +4584,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppDBText26: TppDBText
         UserName = 'DBText4'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4475,6 +4592,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'NO_BUKTI'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4492,11 +4610,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel25: TppLabel
         UserName = 'Label25'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Telah diserahkan barang-barang berikut :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4511,6 +4631,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText23: TppDBText
         UserName = 'DBText1'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4518,6 +4639,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'NO_NOTA'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial Narrow'
@@ -4536,6 +4658,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText24: TppDBText
         UserName = 'DBText2'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4544,6 +4667,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'TGL'
         DataPipeline = ppDBQMaster
         DisplayFormat = 'dd mmm yyyy'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4561,12 +4685,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText27: TppDBText
         UserName = 'DBText6'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'SHIFT'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4584,11 +4710,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel17: TppLabel
         UserName = 'Label17'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Tanggal :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4604,11 +4732,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel14: TppLabel
         UserName = 'Label18'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No. Nota'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4624,11 +4754,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel32: TppLabel
         UserName = 'Label32'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Shift/ Grup :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4644,6 +4776,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText28: TppDBText
         UserName = 'DBText28'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4651,6 +4784,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'GRUP'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4668,11 +4802,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel33: TppLabel
         UserName = 'Label33'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '/'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4688,6 +4824,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText25: TppDBText
         UserName = 'DBText25'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4695,6 +4832,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'LDIVISI'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4712,11 +4850,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel20: TppLabel
         UserName = 'Label20'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No. Bukti'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4731,11 +4871,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel35: TppLabel
         UserName = 'Label201'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Divisi'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4750,11 +4892,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel15: TppLabel
         UserName = 'Label202'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = ':'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4769,11 +4913,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel16: TppLabel
         UserName = 'Label16'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = ':'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4788,6 +4934,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText15: TppDBText
         UserName = 'DBText11'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4795,6 +4942,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'PERUSAHAAN'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4811,6 +4959,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText50: TppDBText
         UserName = 'DBText50'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -4818,6 +4967,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'NAMA_TRANSAKSI'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial Narrow'
@@ -4835,12 +4985,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppVariable2: TppVariable
         UserName = 'Variable1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         BlankWhenZero = False
         CalcOrder = 0
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4856,11 +5008,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel31: TppLabel
         UserName = 'Label31'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No.Doc :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4876,12 +5030,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText17: TppDBText
         UserName = 'DBText17'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DOC_ISO'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Name = 'Arial'
@@ -4904,12 +5060,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppLabel26: TppLabel
         UserName = 'Label6'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'NO'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4925,12 +5083,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel22: TppLabel
         UserName = 'Label2'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'ITEM'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4945,12 +5105,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel24: TppLabel
         UserName = 'Label4'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'SATUAN'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4966,12 +5128,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel13: TppLabel
         UserName = 'Label13'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'JUMLAH'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -4987,12 +5151,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel1: TppLabel
         UserName = 'Label1'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'LOKASI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5008,12 +5174,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel21: TppLabel
         UserName = 'Label21'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'TUJUAN'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5029,12 +5197,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel28: TppLabel
         UserName = 'Label28'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'ASAL'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5050,12 +5220,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel19: TppLabel
         UserName = 'Label19'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'WARNA'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5070,12 +5242,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel30: TppLabel
         UserName = 'Label30'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'BATCH'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5091,12 +5265,21 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     end
     object ppDetailBand2: TppDetailBand
       BeforePrint = ppDetailBand2BeforePrint
+      Background1.Brush.Style = bsClear
+      Background1.Gradient.EndColor = clWhite
+      Background1.Gradient.StartColor = clWhite
+      Background1.Gradient.Style = gsNone
+      Background2.Brush.Style = bsClear
+      Background2.Gradient.EndColor = clWhite
+      Background2.Gradient.StartColor = clWhite
+      Background2.Gradient.Style = gsNone
       PrintHeight = phDynamic
       mmBottomOffset = 0
       mmHeight = 6350
       mmPrintPosition = 0
       object ppNo2: TppVariable
         UserName = 'No'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5104,6 +5287,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         BlankWhenZero = False
         CalcOrder = 0
         DataType = dtInteger
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5119,6 +5303,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBMemo1: TppDBMemo
         UserName = 'DBMemo1'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5143,10 +5328,12 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppDBText11: TppDBText
         UserName = 'DBText3'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5154,6 +5341,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'QTY7'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,##0.##;(#,##0.##)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5171,12 +5359,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText20: TppDBText
         UserName = 'DBText20'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'KD_SUB_LOKASI2'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5194,6 +5384,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText18: TppDBText
         UserName = 'DBText18'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5201,6 +5392,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'QTY6'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,##0.##;(#,##0.##)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5218,6 +5410,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText29: TppDBText
         UserName = 'DBText301'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -5225,6 +5418,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'WARNA'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5241,6 +5435,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText21: TppDBText
         UserName = 'DBText21'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -5248,6 +5443,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'NO_BATCH'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5264,11 +5460,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel23: TppLabel
         UserName = 'Label23'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'PCS'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5290,11 +5488,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       mmPrintPosition = 0
       object ppUserCetak2: TppLabel
         UserName = 'UserCetak'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SYSTEM, 17 Jan 2007 16:35'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5309,6 +5509,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText41: TppDBText
         UserName = 'DBText41'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -5316,6 +5517,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         Border.Visible = False
         DataField = 'DISTRIBUSI'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5334,16 +5536,19 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     end
     object ppSummaryBand2: TppSummaryBand
       PrintHeight = phDynamic
+      AlignToBottom = False
       mmBottomOffset = 0
       mmHeight = 35719
       mmPrintPosition = 0
       object ppLabel29: TppLabel
         UserName = 'Label29'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Catatan :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5358,6 +5563,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBMemo2: TppDBMemo
         UserName = 'DBMemo2'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5381,16 +5587,19 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppDBText32: TppDBText
         UserName = 'DBText32'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5408,12 +5617,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText33: TppDBText
         UserName = 'DBText33'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5431,12 +5642,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText34: TppDBText
         UserName = 'DBText34'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5454,12 +5667,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText35: TppDBText
         UserName = 'DBText35'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5477,12 +5692,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText36: TppDBText
         UserName = 'DBText36'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5500,12 +5717,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText37: TppDBText
         UserName = 'DBText37'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5523,12 +5742,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText38: TppDBText
         UserName = 'DBText38'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5546,12 +5767,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText39: TppDBText
         UserName = 'DBText39'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5569,12 +5792,14 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBText40: TppDBText
         UserName = 'DBText40'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5592,6 +5817,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBCalc1: TppDBCalc
         UserName = 'DBCalc1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = [bpTop]
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5599,6 +5825,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'QTY6'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,##0.##;(#,##0.##)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5615,6 +5842,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppDBCalc2: TppDBCalc
         UserName = 'DBCalc2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = [bpTop]
         Border.Color = clBlack
         Border.Style = psSolid
@@ -5622,6 +5850,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         DataField = 'QTY7'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,##0.##;(#,##0.##)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -5638,11 +5867,13 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
       end
       object ppLabel27: TppLabel
         UserName = 'Label27'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'TOTAL'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -6368,6 +6599,66 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
   end
   object QItem: TOracleDataSet
     SQL.Strings = (
+      'select * from ('
+      'select'
+      '  a.nama_item,'
+      '  a.kd_item,'
+      '  a.kd_warna,'
+      '  b.warna,'
+      '  a.no_batch,'
+      '  sum(qty) as qty,'
+      '  sum(qty2) as qty2,'
+      '  a.rasio,'
+      '  '#39'KG'#39' as satuan,'
+      '  :pkd_sublokasi as kd_sub_lokasi'
+      'from ('
+      '  select   '
+      '    a.keterangan as nama_item,'
+      '    :pkd_lokasi||'#39'.'#39'||substr(kd_item, 4,5) as kd_item,'
+      '    a.kd_warna,'
+      '    a.no_batch,'
+      '    a.qty1 as qty, --kg'
+      '    a.qty2 as qty2, --pcs'
+      '    a.rasio'
+      '  from ipisma_db3.bukti_detail a'
+      '  where ibukti in '
+      '  ('
+      '   select ibukti from'
+      '   ipisma_db3.bukti'
+      '   where'
+      '    kd_transaksi = :pkd_trans1 and'
+      '    ispost='#39'1'#39' and'
+      '    trunc(tgl) >= to_date('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39')'
+      '  ) '
+      '  union all'
+      ''
+      '  select   '
+      '    a.keterangan as nama_item,'
+      '    :pkd_lokasi||'#39'.'#39'||substr(kd_item, 4,5) as kd_item,'
+      '    a.kd_warna,'
+      '    a.no_batch,'
+      '    -a.qty2 as qty, --kg'
+      '    -a.qty7 as qty2, --pcs'
+      '    a.rasio'
+      '  from ipisma_db3.bukti_detail a'
+      '  where ibukti in '
+      '  ('
+      '   select ibukti from'
+      '   ipisma_db3.bukti'
+      '   where'
+      '    kd_transaksi = :pkd_trans2 and'
+      '    ispost='#39'1'#39' and'
+      
+        '    trunc(tgl) >= to_date('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39') or ibukti =' +
+        ' :pibukti'
+      '  )'
+      ') a'
+      'left join ipisma_db3.warna_baru b on a.kd_warna=b.kd_warna'
+      
+        'group by a.nama_item, a.kd_item, a.kd_warna, b.warna, a.no_batch' +
+        ', a.rasio, b.warna'
+      ') where qty<>0'
+      ''
       '/*select * from ipisma_db3.vlook_st_hasil_celup*/'
       ''
       '/* oldest'
@@ -6390,6 +6681,12 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         'ch'
       'having sum(b.qty_in2-b.qty_out2)>0'
       '*/')
+    Variables.Data = {
+      0300000005000000080000003A504942554B5449030000000000000000000000
+      0B0000003A504B445F4C4F4B4153490500000000000000000000000E0000003A
+      504B445F5355424C4F4B4153490500000000000000000000000B0000003A504B
+      445F5452414E53310500000000000000000000000B0000003A504B445F545241
+      4E5332050000000000000000000000}
     QBEDefinition.QBEFieldDefs = {
       040000000C000000070000004B445F4954454D010000000000090000004E414D
       415F4954454D010000000000080000004D494E5F53544F4B0100000000000600

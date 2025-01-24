@@ -1,6 +1,6 @@
 object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
-  Left = 192
-  Top = 79
+  Left = 204
+  Top = 126
   Width = 1173
   Height = 660
   Caption = 'VALIDASI KELUAR KE MITRA'
@@ -367,7 +367,6 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
             DataField = 'TGL'
             DataSource = dsQMaster
             Epoch = 1950
-            Enabled = False
             ShowButton = True
             TabOrder = 5
           end
@@ -673,7 +672,8 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
               'RASIO'#9'10'#9'RASIO'#9'F'
               'KD_SUB_LOKASI'#9'10'#9'LOKASI'#9'F'#9
               'QTY2'#9'25'#9'PCS'#9'F'
-              'QTY'#9'25'#9'KG'#9'F')
+              'QTY'#9'25'#9'KG'#9'F'
+              'TGL_STOK'#9'13'#9'TGL_STOK'#9'F')
             DataField = 'KD_ITEM'
             DataSource = dsQDetail
             LookupTable = QItem
@@ -3018,6 +3018,7 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
     end
     object QMasterTGL: TDateTimeField
       FieldName = 'TGL'
+      OnChange = QMasterTGLChange
       DisplayFormat = 'dd mmm yyyy'
     end
     object QMasterKETERANGAN: TStringField
@@ -3244,6 +3245,9 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
       FieldName = 'QTY10'
       DisplayFormat = '#,##0.##;(#,##0.##);-'
     end
+    object QDetailJAM1: TDateTimeField
+      FieldName = 'JAM1'
+    end
   end
   object dsQDetail: TwwDataSource
     DataSet = QDetail
@@ -3255,7 +3259,7 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
     DataPipeline = ppDBQDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'myA5'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -3264,7 +3268,7 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 140000
     PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 10000
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\TransaksiOrgBukti.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -5547,6 +5551,34 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
   end
   object QItem: TOracleDataSet
     SQL.Strings = (
+      'select * from ('
+      ' select'
+      
+        '  b.kd_sub_kel, b.kd_item, b.nama_item, a.warna, a.kd_warna, b.k' +
+        'd_satuan, '
+      
+        '  '#39'30-00000'#39' as kd_sub_lokasi, b.rasio, a.stok_kg as qty, ROUND(' +
+        'a.stok_kg/b.rasio) as qty2, a.tgl_stok'
+      ' from ('
+      '  select'
+      '    substr(a.kd_item, 0,8) as kd_item, a.kd_warna, a.warna,'
+      
+        '   (sum(a.awal_thn)+sum(awal_tgl)+sum(qty_in))-sum(a.qty_out) as' +
+        ' stok_kg,'
+      '   a.tgl_stok'
+      '  from ipisma_db3.TEMP_LOOKUP_GW a'
+      
+        '  group by substr(a.kd_item, 0,8), a.kd_warna, a.warna, a.tgl_st' +
+        'ok'
+      ' ) a'
+      ' left join ipisma_db3.item b on substr(a.kd_item, 0,8)=b.kd_item'
+      ' where a.stok_kg <> 0'
+      ' order by b.kd_sub_kel, b.nama_item, a.warna'
+      ')'
+      ':myparam'
+      ''
+      ''
+      '/*'
       
         'select * from (select a.kd_sub_kel, a.kd_item, a.nama_item, d.wa' +
         'rna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'
@@ -5561,20 +5593,21 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
       
         'group by a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_war' +
         'na, a.kd_satuan, b.kd_sub_lokasi, a.rasio'
-      'order by a.kd_sub_kel, a.nama_item, d.warna) :myparam')
+      'order by a.kd_sub_kel, a.nama_item, d.warna) :myparam'
+      '*/')
     Variables.Data = {
       0300000001000000080000003A4D59504152414D010000000000000000000000}
     QBEDefinition.QBEFieldDefs = {
-      040000000A000000070000004B445F4954454D010000000000090000004E414D
+      040000000B000000070000004B445F4954454D010000000000090000004E414D
       415F4954454D010000000000090000004B445F53415455414E0100000000000D
       0000004B445F5355425F4C4F4B41534901000000000003000000515459010000
       000000050000005741524E41010000000000080000004B445F5741524E410100
       0000000005000000524153494F01000000000004000000515459320100000000
-      000A0000004B445F5355425F4B454C010000000000}
+      000A0000004B445F5355425F4B454C0100000000000800000054474C5F53544F
+      4B010000000000}
     Cursor = crSQLWait
     ReadOnly = True
     QueryAllRecords = False
-    BeforeQuery = QItemBeforeQuery
     Session = DMFrm.OS
     Left = 200
     Top = 368
@@ -5625,6 +5658,10 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
       DisplayLabel = 'KG'
       DisplayWidth = 25
       FieldName = 'QTY'
+    end
+    object QItemTGL_STOK: TDateTimeField
+      DisplayWidth = 13
+      FieldName = 'TGL_STOK'
     end
     object QItemKD_WARNA: TStringField
       FieldName = 'KD_WARNA'
@@ -5792,5 +5829,18 @@ object ValidasiKeluarKeMitraFrm: TValidasiKeluarKeMitraFrm
     object QTotalKG2: TFloatField
       FieldName = 'KG2'
     end
+  end
+  object QProc_getStok: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  ipisma_db3.proc_temp_lookup_gw(:ptgl, :ptgl2);'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000050000003A5054474C0C0000000000000000000000060000
+      003A5054474C320C0000000000000000000000}
+    Cursor = crSQLWait
+    Left = 656
+    Top = 144
   end
 end

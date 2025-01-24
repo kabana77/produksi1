@@ -63,7 +63,8 @@ object DaftarWarnaFrm: TDaftarWarnaFrm
           'KD_WARNA'#9'6'#9'KODE'#9'F'
           'WARNA'#9'40'#9'WARNA'#9'F'
           'JNS_WARNA'#9'10'#9'JENIS'#9'F'
-          'CW'#9'3'#9'CW'#9'F')
+          'CW'#9'3'#9'CW'#9'F'
+          'ISFIXED'#9'1'#9'ISFIXED'#9'F')
         IniAttributes.Enabled = True
         IniAttributes.SaveToRegistry = True
         IniAttributes.FileName = 'Pismatex Master'

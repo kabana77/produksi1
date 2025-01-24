@@ -368,6 +368,9 @@ type
     QBrowseQTY9: TFloatField;
     QBrowseQTY10: TFloatField;
     EditKG: TCheckBox;
+    QProc_getStok: TOracleQuery;
+    QItemTGL_STOK: TDateTimeField;
+    QDetailJAM1: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -433,6 +436,7 @@ type
       State: TGridDrawState; Highlight: Boolean; AFont: TFont;
       ABrush: TBrush);
     procedure QMasterAfterDelete(DataSet: TDataSet);
+    procedure QMasterTGLChange(Sender: TField);
 
   private
     { Private declarations }
@@ -1237,6 +1241,7 @@ begin
     QDetailKD_WARNA.AsString:=QItemKD_WARNA.AsString;
     QDetailKD_SUB_LOKASI2.AsString:=QItemKD_SUB_LOKASI.AsString;
     QDetailNO_BATCH.AsString:='-'; //QItemNO_BATCH.AsString; {MAA 11-01-2020}
+    QDetailJAM1.AsDateTime:=QItemTGL_STOK.AsDateTime;
   END;
 end;
 
@@ -1503,5 +1508,13 @@ begin
   cbTransaksi.Enabled:=False;
 end;
 
+
+procedure TValidasiKeluarKeMitraFrm.QMasterTGLChange(Sender: TField);
+begin
+  QProc_getStok.Close;
+  QProc_getStok.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QProc_getStok.SetVariable('ptgl2', QMasterTGL.AsDateTime);
+  QProc_getStok.Execute;
+end;
 
 end.

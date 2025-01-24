@@ -25,7 +25,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     Left = 0
     Top = 0
     Width = 1066
-    Height = 699
+    Height = 700
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -33,7 +33,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 686
+      Top = 687
       Width = 1066
       Height = 13
       Align = alBottom
@@ -79,7 +79,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       Left = 0
       Top = 76
       Width = 1066
-      Height = 610
+      Height = 611
       ActivePage = TabSheet2
       Align = alClient
       Style = tsFlatButtons
@@ -381,7 +381,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
           Left = 0
           Top = 178
           Width = 1058
-          Height = 360
+          Height = 361
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 2
@@ -389,7 +389,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
             Left = 0
             Top = 0
             Width = 1058
-            Height = 360
+            Height = 361
             ControlType.Strings = (
               'KD_SUB_LOKASI;CustomEdit;LookLokasi;F'
               'KD_ITEM;CustomEdit;LookItem;F'
@@ -522,7 +522,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         end
         object PanelFooter1: TPanel
           Left = 0
-          Top = 538
+          Top = 539
           Width = 1058
           Height = 41
           Align = alBottom
@@ -953,7 +953,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
           Left = 0
           Top = 70
           Width = 1058
-          Height = 468
+          Height = 469
           Align = alClient
           BevelOuter = bvNone
           TabOrder = 1
@@ -961,7 +961,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
             Left = 0
             Top = 0
             Width = 1058
-            Height = 468
+            Height = 469
             DisableThemes = True
             DisableThemesInTitle = True
             ControlType.Strings = (
@@ -1020,7 +1020,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         end
         object PanelFooter2: TPanel
           Left = 0
-          Top = 538
+          Top = 539
           Width = 1058
           Height = 41
           Align = alBottom
@@ -1291,26 +1291,40 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     PrinterSetup.Orientation = poLandscape
     PrinterSetup.PaperName = 'A4'
     PrinterSetup.PrinterName = 'Fax'
+    PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
     PrinterSetup.mmMarginRight = 6350
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
     EmailSettings.ReportFormat = 'PDF'
+    LanguageID = 'Default'
     OutlineSettings.CreateNode = True
     OutlineSettings.CreatePageNodes = True
     OutlineSettings.Enabled = False
     OutlineSettings.Visible = False
+    PDFSettings.EmbedFontOptions = [efUseSubset]
+    PDFSettings.EncryptSettings.AllowCopy = True
+    PDFSettings.EncryptSettings.AllowInteract = True
+    PDFSettings.EncryptSettings.AllowModify = True
+    PDFSettings.EncryptSettings.AllowPrint = True
+    PDFSettings.EncryptSettings.Enabled = False
+    PDFSettings.FontEncoding = feAnsi
+    RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
+    RTFSettings.DefaultFont.Color = clWindowText
+    RTFSettings.DefaultFont.Height = -13
+    RTFSettings.DefaultFont.Name = 'Arial'
+    RTFSettings.DefaultFont.Style = []
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = False
     Left = 976
     Top = 16
-    Version = '10.07'
+    Version = '12.03'
     mmColumnWidth = 197300
     DataPipelineName = 'ppDBQBrowseDetail'
     object ppTitleBand1: TppTitleBand
@@ -1321,12 +1335,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppNamaLaporan: TppLabel
         UserName = 'NamaLaporan'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Transaksi Org'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1342,11 +1358,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel9: TppLabel
         UserName = 'Label9'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '====================================='
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1361,12 +1379,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppPeriode: TppLabel
         UserName = 'Periode'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '01 Nop 2006 s/d 30 Nop 2006'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1382,6 +1402,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText12: TppDBText
         UserName = 'DBText11'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -1389,6 +1410,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'PERUSAHAAN'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1405,6 +1427,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText13: TppDBText
         UserName = 'DBText12'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -1412,6 +1435,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'ALAMAT1'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1428,6 +1452,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText14: TppDBText
         UserName = 'DBText13'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -1435,6 +1460,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'TELEPON1'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1451,11 +1477,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppUserCetak: TppLabel
         UserName = 'UserCetak'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SYSTEM, 17 Jan 2007 16:35'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1477,11 +1505,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppLabel2: TppLabel
         UserName = 'Label2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NO. NOTA'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1496,11 +1526,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel3: TppLabel
         UserName = 'Label3'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'TANGGAL'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1515,11 +1547,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel4: TppLabel
         UserName = 'Label4'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'DIVISI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1534,11 +1568,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel5: TppLabel
         UserName = 'Label5'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'BALE'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1554,11 +1590,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel6: TppLabel
         UserName = 'Label6'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NO'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1574,11 +1612,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel7: TppLabel
         UserName = 'Label7'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SHIFT/GRUP'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1594,11 +1634,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel8: TppLabel
         UserName = 'Label8'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'KODE'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1613,11 +1655,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel10: TppLabel
         UserName = 'Label10'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'KG'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1633,11 +1677,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel11: TppLabel
         UserName = 'Label11'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'NAMA BARANG'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1652,11 +1698,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel12: TppLabel
         UserName = 'Label12'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'LOKASI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1671,18 +1719,28 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
     end
     object ppDetailBand1: TppDetailBand
+      Background1.Brush.Style = bsClear
+      Background1.Gradient.EndColor = clWhite
+      Background1.Gradient.StartColor = clWhite
+      Background1.Gradient.Style = gsNone
+      Background2.Brush.Style = bsClear
+      Background2.Gradient.EndColor = clWhite
+      Background2.Gradient.StartColor = clWhite
+      Background2.Gradient.Style = gsNone
       PrintHeight = phDynamic
       mmBottomOffset = 0
       mmHeight = 3969
       mmPrintPosition = 0
       object ppDBText8: TppDBText
         UserName = 'DBText8'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'KODE_BRG'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1698,6 +1756,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText10: TppDBText
         UserName = 'DBText10'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -1706,6 +1765,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY1'
         DataPipeline = ppDBQBrowseDetail
         DisplayFormat = '#,##0.######;(#,##0.######); '
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1722,12 +1782,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText5: TppDBText
         UserName = 'DBText5'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'LOKASI'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1743,6 +1805,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText6: TppDBText
         UserName = 'DBText6'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -1751,6 +1814,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY2'
         DataPipeline = ppDBQBrowseDetail
         DisplayFormat = '#,##0.######;(#,##0.######); '
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1767,6 +1831,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBMemo3: TppDBMemo
         UserName = 'DBMemo3'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -1789,10 +1854,12 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppNo: TppVariable
         UserName = 'No'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -1800,6 +1867,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         BlankWhenZero = False
         CalcOrder = 0
         DataType = dtInteger
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1815,12 +1883,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText1: TppDBText
         UserName = 'DBText1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'NO_NOTA'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1837,6 +1907,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText2: TppDBText
         UserName = 'DBText2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -1844,6 +1915,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'TANGGAL'
         DataPipeline = ppDBQBrowseDetail
         DisplayFormat = 'dd/mm/yyyy'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1859,12 +1931,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText3: TppDBText
         UserName = 'DBText3'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'KD_DIV'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1880,12 +1954,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText4: TppDBText
         UserName = 'DBText4'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'NAMA_DIVISI'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1901,12 +1977,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText7: TppDBText
         UserName = 'DBText7'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'SHIFT'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1922,12 +2000,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText9: TppDBText
         UserName = 'DBText9'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'GRUP'
         DataPipeline = ppDBQBrowseDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1943,11 +2023,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel18: TppLabel
         UserName = 'Label14'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '/'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -1967,6 +2049,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppSystemVariable1: TppSystemVariable
         UserName = 'SystemVariable1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -1988,17 +2071,20 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
     end
     object ppSummaryBand1: TppSummaryBand
+      AlignToBottom = False
       mmBottomOffset = 0
       mmHeight = 48419
       mmPrintPosition = 0
       object ppDBText19: TppDBText
         UserName = 'DBText19'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2016,12 +2102,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText42: TppDBText
         UserName = 'DBText42'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2039,12 +2127,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText43: TppDBText
         UserName = 'DBText43'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2062,12 +2152,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText44: TppDBText
         UserName = 'DBText44'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2085,12 +2177,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText45: TppDBText
         UserName = 'DBText45'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2108,12 +2202,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText46: TppDBText
         UserName = 'DBText46'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2131,12 +2227,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText47: TppDBText
         UserName = 'DBText47'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2154,12 +2252,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText48: TppDBText
         UserName = 'DBText48'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2177,12 +2277,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText49: TppDBText
         UserName = 'DBText401'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2698,6 +2800,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
     PrinterSetup.mmMarginRight = 6350
@@ -2709,15 +2812,28 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     Units = utMillimeters
     DeviceType = 'Screen'
     EmailSettings.ReportFormat = 'PDF'
+    LanguageID = 'Default'
     OutlineSettings.CreateNode = True
     OutlineSettings.CreatePageNodes = True
     OutlineSettings.Enabled = False
     OutlineSettings.Visible = False
+    PDFSettings.EmbedFontOptions = [efUseSubset]
+    PDFSettings.EncryptSettings.AllowCopy = True
+    PDFSettings.EncryptSettings.AllowInteract = True
+    PDFSettings.EncryptSettings.AllowModify = True
+    PDFSettings.EncryptSettings.AllowPrint = True
+    PDFSettings.EncryptSettings.Enabled = False
+    PDFSettings.FontEncoding = feAnsi
+    RTFSettings.DefaultFont.Charset = DEFAULT_CHARSET
+    RTFSettings.DefaultFont.Color = clWindowText
+    RTFSettings.DefaultFont.Height = -13
+    RTFSettings.DefaultFont.Name = 'Arial'
+    RTFSettings.DefaultFont.Style = []
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = False
     Left = 200
     Top = 56
-    Version = '10.07'
+    Version = '12.03'
     mmColumnWidth = 197300
     DataPipelineName = 'ppDBQDetail'
     object ppTitleBand2: TppTitleBand
@@ -2728,6 +2844,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppDBText15: TppDBText
         UserName = 'DBText11'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2735,6 +2852,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'PERUSAHAAN'
         DataPipeline = ppDBPerusahaan
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2751,6 +2869,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText50: TppDBText
         UserName = 'DBText50'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2758,6 +2877,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'NAMA_TRANSAKSI'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial Narrow'
@@ -2775,12 +2895,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppVariable2: TppVariable
         UserName = 'Variable1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         BlankWhenZero = False
         CalcOrder = 0
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2796,6 +2918,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText26: TppDBText
         UserName = 'DBText4'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2803,6 +2926,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'NO_BUKTI'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2820,11 +2944,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel25: TppLabel
         UserName = 'Label25'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Telah diterima barang-barang berikut :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2839,6 +2965,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText23: TppDBText
         UserName = 'DBText1'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2846,6 +2973,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'NO_NOTA'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial Narrow'
@@ -2864,6 +2992,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText24: TppDBText
         UserName = 'DBText2'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2872,6 +3001,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'TGL'
         DataPipeline = ppDBQMaster
         DisplayFormat = 'dd mmm yyyy'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2889,12 +3019,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText27: TppDBText
         UserName = 'DBText6'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'SHIFT'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2912,11 +3044,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel17: TppLabel
         UserName = 'Label17'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Tanggal :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2932,11 +3066,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel14: TppLabel
         UserName = 'Label18'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No. Nota'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2952,11 +3088,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel32: TppLabel
         UserName = 'Label32'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Shift/ Grup :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2972,6 +3110,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText28: TppDBText
         UserName = 'DBText28'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -2979,6 +3118,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'GRUP'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -2996,11 +3136,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel33: TppLabel
         UserName = 'Label33'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = '/'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3016,6 +3158,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText25: TppDBText
         UserName = 'DBText25'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3023,6 +3166,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'LDIVISI'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3040,11 +3184,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel20: TppLabel
         UserName = 'Label20'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No. Bukti'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3059,11 +3205,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel35: TppLabel
         UserName = 'Label201'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Divisi'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3078,11 +3226,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel15: TppLabel
         UserName = 'Label202'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = ':'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3097,11 +3247,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel16: TppLabel
         UserName = 'Label16'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = ':'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3116,11 +3268,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel21: TppLabel
         UserName = 'Label21'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'No. Doc :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3136,12 +3290,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText16: TppDBText
         UserName = 'DBText16'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DOC_ISO'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3165,12 +3321,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppLabel26: TppLabel
         UserName = 'Label6'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'NO'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3186,12 +3344,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel22: TppLabel
         UserName = 'Label2'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'ITEM'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3206,12 +3366,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel1: TppLabel
         UserName = 'Label1'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'WARNA'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3226,12 +3388,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel13: TppLabel
         UserName = 'Label13'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'BATCH'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3247,12 +3411,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel24: TppLabel
         UserName = 'Label4'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'PCS'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3268,12 +3434,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel27: TppLabel
         UserName = 'Label7'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'KG'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3289,12 +3457,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel28: TppLabel
         UserName = 'Label8'
+        HyperlinkColor = clBlue
         AutoSize = False
         Border.BorderPositions = [bpBottom]
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = True
         Caption = 'LOKASI'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3310,12 +3480,21 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     end
     object ppDetailBand2: TppDetailBand
       BeforePrint = ppDetailBand2BeforePrint
+      Background1.Brush.Style = bsClear
+      Background1.Gradient.EndColor = clWhite
+      Background1.Gradient.StartColor = clWhite
+      Background1.Gradient.Style = gsNone
+      Background2.Brush.Style = bsClear
+      Background2.Gradient.EndColor = clWhite
+      Background2.Gradient.StartColor = clWhite
+      Background2.Gradient.Style = gsNone
       PrintHeight = phDynamic
       mmBottomOffset = 0
       mmHeight = 6350
       mmPrintPosition = 0
       object ppDBText18: TppDBText
         UserName = 'DBText5'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3323,6 +3502,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'KD_SUB_LOKASI'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3339,6 +3519,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText22: TppDBText
         UserName = 'DBText101'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3347,6 +3528,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY1'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,0.0000;(#,0.0000)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3364,6 +3546,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppNo2: TppVariable
         UserName = 'No'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3371,6 +3554,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         BlankWhenZero = False
         CalcOrder = 0
         DataType = dtInteger
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3386,6 +3570,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText30: TppDBText
         UserName = 'DBText30'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3394,6 +3579,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY6'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#.#,#;(#.#,#);-'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3411,6 +3597,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBMemo1: TppDBMemo
         UserName = 'DBMemo1'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3435,10 +3622,12 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppDBText11: TppDBText
         UserName = 'DBText3'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3446,6 +3635,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'WARNA'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3462,6 +3652,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText20: TppDBText
         UserName = 'DBText20'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3469,6 +3660,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'NO_BATCH'
         DataPipeline = ppDBQDetail
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3491,6 +3683,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       mmPrintPosition = 0
       object ppDBText41: TppDBText
         UserName = 'DBText41'
+        HyperlinkColor = clBlue
         AutoSize = True
         Border.BorderPositions = []
         Border.Color = clBlack
@@ -3498,6 +3691,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         Border.Visible = False
         DataField = 'DISTRIBUSI'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3515,11 +3709,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppUserCetak2: TppLabel
         UserName = 'UserCetak'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'SYSTEM, 17 Jan 2007 16:35'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3535,16 +3731,19 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
     end
     object ppSummaryBand2: TppSummaryBand
       PrintHeight = phDynamic
+      AlignToBottom = False
       mmBottomOffset = 0
       mmHeight = 43656
       mmPrintPosition = 0
       object ppLabel29: TppLabel
         UserName = 'Label29'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'Catatan :'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3559,6 +3758,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBMemo2: TppDBMemo
         UserName = 'DBMemo2'
+        SaveOrder = 0
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3583,16 +3783,19 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         mmBottomOffset = 0
         mmOverFlowOffset = 0
         mmStopPosition = 0
+        mmMinHeight = 0
         mmLeading = 0
       end
       object ppDBText32: TppDBText
         UserName = 'DBText32'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD1'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3610,12 +3813,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText33: TppDBText
         UserName = 'DBText33'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD2'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3633,12 +3838,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText34: TppDBText
         UserName = 'DBText34'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'TTD3'
         DataPipeline = ppDBQMaster
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3656,12 +3863,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText35: TppDBText
         UserName = 'DBText35'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3679,12 +3888,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText36: TppDBText
         UserName = 'DBText36'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3702,12 +3913,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText37: TppDBText
         UserName = 'DBText37'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'DIV1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3725,12 +3938,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText38: TppDBText
         UserName = 'DBText38'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB3'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3748,12 +3963,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText39: TppDBText
         UserName = 'DBText39'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB2'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3771,12 +3988,14 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBText40: TppDBText
         UserName = 'DBText40'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         DataField = 'JAB1'
         DataPipeline = ppDBQTransaksi
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3794,6 +4013,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBCalc1: TppDBCalc
         UserName = 'DBCalc1'
+        HyperlinkColor = clBlue
         Border.BorderPositions = [bpTop]
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3801,6 +4021,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY6'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#.#,#;(#.#,#);-'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3818,6 +4039,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppDBCalc2: TppDBCalc
         UserName = 'DBCalc2'
+        HyperlinkColor = clBlue
         Border.BorderPositions = [bpTop]
         Border.Color = clBlack
         Border.Style = psSolid
@@ -3825,6 +4047,7 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
         DataField = 'QTY1'
         DataPipeline = ppDBQDetail
         DisplayFormat = '#,0.0000;(#,0.0000)'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'
@@ -3842,11 +4065,13 @@ object PenerimaanKGFrm: TPenerimaanKGFrm
       end
       object ppLabel19: TppLabel
         UserName = 'Label19'
+        HyperlinkColor = clBlue
         Border.BorderPositions = []
         Border.Color = clBlack
         Border.Style = psSolid
         Border.Visible = False
         Caption = 'TOTAL'
+        Ellipsis = False
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlack
         Font.Name = 'Arial'

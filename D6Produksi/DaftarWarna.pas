@@ -54,6 +54,7 @@ type
     procedure ECari2Change(Sender: TObject);
     procedure BtnfilterClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure BitBtn6Click(Sender: TObject);
   private
     { Private declarations }
         vfilter, vorder, vfilter2 : String;
@@ -225,6 +226,29 @@ procedure TDaftarWarnaFrm.FormClose(Sender: TObject;
 begin
   Action:=caFree;
   DaftarWarnaFrm:=Nil;
+end;
+
+procedure TDaftarWarnaFrm.BitBtn6Click(Sender: TObject);
+begin
+  if QMaster.Active then
+  begin
+     DMFrm.SaveDialog1.DefaultExt:='XLK';
+     DMFrm.SaveDialog1.Filter:='Excel files (*.XLK)|*.XLK';
+   //DMFrm.SaveDialog1.FileName:='HASIL MESIN SOFTCONES';
+     wwDBGrid3.ExportOptions.TitleName:='DAFTAR WARNA';
+       if DMFrm.SaveDialog1.Execute then
+       begin
+         try
+         wwDBGrid3.ExportOptions.FileName:=DMFrm.SaveDialog1.FileName;
+         wwDBGrid3.ExportOptions.Save;
+         ShowMessage('Simpan Sukses !');
+         except
+         ShowMessage('Simpan Gagal !');
+         end;
+       end;
+  end
+  else
+    ShowMessage('Tabel belum di-OPEN !');
 end;
 
 end.

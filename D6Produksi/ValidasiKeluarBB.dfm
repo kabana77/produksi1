@@ -1,6 +1,6 @@
 object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
-  Left = 216
-  Top = 131
+  Left = 349
+  Top = 211
   Width = 1089
   Height = 577
   Caption = 'PENGELUARAN'
@@ -288,7 +288,6 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
             DataField = 'TGL'
             DataSource = dsQMaster
             Epoch = 1950
-            Enabled = False
             ShowButton = True
             TabOrder = 5
           end
@@ -524,7 +523,8 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
               'RASIO'#9'10'#9'RASIO'#9'F'
               'KD_SUB_LOKASI'#9'10'#9'LOKASI'#9'F'#9
               'QTY2'#9'25'#9'PCS'#9'F'
-              'QTY'#9'25'#9'KG'#9'F')
+              'QTY'#9'25'#9'KG'#9'F'
+              'TGL_STOK'#9'12'#9'TGL_STOK'#9'F')
             DataField = 'KD_ITEM'
             DataSource = dsQDetail
             LookupTable = QItem
@@ -1409,7 +1409,7 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -2721,6 +2721,7 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
     end
     object QMasterTGL: TDateTimeField
       FieldName = 'TGL'
+      OnChange = QMasterTGLChange
       DisplayFormat = 'dd mmm yyyy'
     end
     object QMasterKETERANGAN: TStringField
@@ -2929,6 +2930,9 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
       KeyFields = 'KD_ITEM'
       Size = 35
       Lookup = True
+    end
+    object QDetailJAM1: TDateTimeField
+      FieldName = 'JAM1'
     end
   end
   object dsQDetail: TwwDataSource
@@ -5078,6 +5082,34 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
   end
   object QItem: TOracleDataSet
     SQL.Strings = (
+      'select * from ('
+      ' select'
+      
+        '  b.kd_sub_kel, b.kd_item, b.nama_item, a.warna, a.kd_warna, b.k' +
+        'd_satuan, '
+      
+        '  '#39'30-00000'#39' as kd_sub_lokasi, b.rasio, a.stok_kg as qty, ROUND(' +
+        'a.stok_kg/b.rasio) as qty2, a.tgl_stok'
+      ' from ('
+      '  select'
+      '    substr(a.kd_item, 0,8) as kd_item, a.kd_warna, a.warna,'
+      
+        '   (sum(a.awal_thn)+sum(awal_tgl)+sum(qty_in))-sum(a.qty_out) as' +
+        ' stok_kg,'
+      '   a.tgl_stok'
+      '  from ipisma_db3.TEMP_LOOKUP_GW a'
+      
+        '  group by substr(a.kd_item, 0,8), a.kd_warna, a.warna, a.tgl_st' +
+        'ok'
+      ' ) a'
+      ' left join ipisma_db3.item b on substr(a.kd_item, 0,8)=b.kd_item'
+      ' where a.stok_kg <> 0'
+      ' order by b.kd_sub_kel, b.nama_item, a.warna'
+      ')'
+      ':myparam'
+      ''
+      ''
+      '/*'
       'select * from '
       
         '(select a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warn' +
@@ -5094,83 +5126,64 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
         'group by a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_war' +
         'na, a.kd_satuan, b.kd_sub_lokasi, a.rasio'
       'order by a.kd_sub_kel, a.nama_item, d.warna) '
-      ':myparam')
+      ':myparam'
+      '*/')
     Variables.Data = {
       0300000001000000080000003A4D59504152414D010000000000000000000000}
     QBEDefinition.QBEFieldDefs = {
-      040000000A000000070000004B445F4954454D010000000000090000004E414D
+      040000000B000000070000004B445F4954454D010000000000090000004E414D
       415F4954454D010000000000090000004B445F53415455414E0100000000000D
       0000004B445F5355425F4C4F4B41534901000000000003000000515459010000
       000000050000005741524E41010000000000080000004B445F5741524E410100
       0000000005000000524153494F01000000000004000000515459320100000000
-      000A0000004B445F5355425F4B454C010000000000}
+      000A0000004B445F5355425F4B454C0100000000000800000054474C5F53544F
+      4B010000000000}
     Cursor = crSQLWait
     ReadOnly = True
     QueryAllRecords = False
-    BeforeQuery = QItemBeforeQuery
     Session = DMFrm.OS
     OnCalcFields = QItemCalcFields
     Left = 232
     Top = 328
     object QItemKD_SUB_KEL: TStringField
-      DisplayLabel = 'JENIS BENANG'
-      DisplayWidth = 14
       FieldName = 'KD_SUB_KEL'
-      Required = True
-      Size = 12
+      Size = 32
+    end
+    object QItemKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Size = 50
     end
     object QItemNAMA_ITEM: TStringField
-      DisplayLabel = 'KETERANGAN ITEM PATAL'
-      DisplayWidth = 35
       FieldName = 'NAMA_ITEM'
-      Required = True
       Size = 50
     end
     object QItemWARNA: TStringField
-      DisplayWidth = 25
       FieldName = 'WARNA'
-      Size = 50
-    end
-    object QItemKD_ITEM: TStringField
-      DisplayLabel = 'KODE'
-      DisplayWidth = 11
-      FieldName = 'KD_ITEM'
-      Required = True
-      Size = 50
-    end
-    object QItemRASIO: TFloatField
-      DisplayWidth = 10
-      FieldName = 'RASIO'
-      DisplayFormat = '#,0.0000;-#,0.0000;-'
-    end
-    object QItemKD_SUB_LOKASI: TStringField
-      DisplayLabel = 'LOKASI'
-      DisplayWidth = 10
-      FieldName = 'KD_SUB_LOKASI'
-      Required = True
-      Size = 12
-    end
-    object QItemQTY2: TFloatField
-      DisplayLabel = 'PCS'
-      DisplayWidth = 25
-      FieldName = 'QTY2'
-    end
-    object QItemQTY: TFloatField
-      DisplayLabel = 'KG'
-      DisplayWidth = 25
-      FieldName = 'QTY'
-    end
-    object QItemRASIO2: TFloatField
-      DisplayWidth = 10
-      FieldKind = fkCalculated
-      FieldName = 'RASIO2'
-      Visible = False
-      Calculated = True
+      Size = 128
     end
     object QItemKD_WARNA: TStringField
       FieldName = 'KD_WARNA'
-      Visible = False
-      Size = 12
+      Size = 6
+    end
+    object QItemKD_SATUAN: TStringField
+      FieldName = 'KD_SATUAN'
+      Size = 2
+    end
+    object QItemKD_SUB_LOKASI: TStringField
+      FieldName = 'KD_SUB_LOKASI'
+      Size = 8
+    end
+    object QItemRASIO: TFloatField
+      FieldName = 'RASIO'
+    end
+    object QItemQTY: TFloatField
+      FieldName = 'QTY'
+    end
+    object QItemQTY2: TFloatField
+      FieldName = 'QTY2'
+    end
+    object QItemTGL_STOK: TDateTimeField
+      FieldName = 'TGL_STOK'
     end
   end
   object OD_Detail: TOracleDataSet
@@ -5358,5 +5371,18 @@ object ValidasiKeluarBBFrm: TValidasiKeluarBBFrm
     object QQty_resepJML_RESEP: TFloatField
       FieldName = 'JML_RESEP'
     end
+  end
+  object QProc_getStok: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  ipisma_db3.proc_temp_lookup_gw(:ptgl, :ptgl2);'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000050000003A5054474C0C0000000000000000000000060000
+      003A5054474C320C0000000000000000000000}
+    Cursor = crSQLWait
+    Left = 832
+    Top = 144
   end
 end

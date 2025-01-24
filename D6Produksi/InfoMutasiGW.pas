@@ -259,6 +259,34 @@ type
     wwDBGrid3: TwwDBGrid;
     CheckBox3: TCheckBox;
     QBrowseDetailKETERANGAN: TStringField;
+    dsQBrowseNew: TwwDataSource;
+    QBrowseNew: TOracleDataSet;
+    wwDBGridNew: TwwDBGrid;
+    QBrowseNewKD_ITEM: TStringField;
+    QBrowseNewJNS_BENANG: TStringField;
+    QBrowseNewDISKRIPSI: TStringField;
+    QBrowseNewQTY01: TFloatField;
+    QBrowseNewQTY02: TFloatField;
+    QBrowseNewQTY03: TFloatField;
+    QBrowseNewQTY04: TFloatField;
+    QBrowseNewQTY05: TFloatField;
+    QBrowseNewQTY06: TFloatField;
+    QBrowseNewQTY07: TFloatField;
+    QBrowseNewQTY08: TFloatField;
+    QBrowseNewQTY09: TFloatField;
+    QBrowseNewQTY10: TFloatField;
+    QBrowseNewQTY11: TFloatField;
+    QBrowseNewQTY12: TFloatField;
+    QBrowseNewQTY13: TFloatField;
+    QBrowseNewQTY14: TFloatField;
+    QBrowseNewQTY15: TFloatField;
+    QBrowseNewQTY16: TFloatField;
+    QBrowseNewQTY17: TFloatField;
+    QBrowseNewQTY18: TFloatField;
+    QBrowseNewQTY19: TFloatField;
+    QBrowseNewAKHIR: TFloatField;
+    QBrowseNewQTY20: TFloatField;
+    QBrowseNewAWAL: TFloatField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -302,6 +330,10 @@ type
     procedure QBrowse2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure CheckBox3Click(Sender: TObject);
     procedure QBrowse2AfterScroll(DataSet: TDataSet);
+    procedure QBrowseNewAfterScroll(DataSet: TDataSet);
+    procedure wwDBGridNewTitleButtonClick(Sender: TObject;
+      AFieldName: String);
+    procedure QBrowseNewCalcFields(DataSet: TDataSet);
   private
     { Private declarations }
     vorder, SelectedFont, vkode, vitem : String;
@@ -438,59 +470,37 @@ end;
 procedure TInfoMutasiGWFrm.BtnOkClick(Sender: TObject);
 var
   vrasio : real;
-  vt1, vt2, vt3, vt4, vt5, vt6, vt7,
+  vt0, vt1, vt2, vt3, vt4, vt5, vt6, vt7,
   vt8, vt9, vt10, vt11, vt12, vt13, vt14,
-  vt15, vt16, vt17, vt18, vt19, vt20 : real;
+  vt15, vt16, vt17, vt18, vt19, vt20, vt21 : real;
 
 begin
-//showmessage(vkode);
   vorder:=' order by '+Edit1.Text;
   if vTglAwal.Date>vTglAkhir.DateTime then
     ShowMessage('Tgl. Akhir harus lebih besar dari Tgl. Awal !')
-    else
+    else 
     begin
       case ComboBox1.ItemIndex of
       0 : begin
-            { QDump.Close;
-             QDump.SetVariable('vrasio',1);
-             QDump.SetVariable('vsysdate',vTglAwal.Date);
-             QDump.SetVariable('vsysdate2',vTglAkhir.Date);
-             QDump.SetVariable('kd_jns_item',vkode);
-             QDump.Execute; }
              QProc_konstruksi.Close;
              QProc_konstruksi.SetVariable('vrasio',1);
              QProc_konstruksi.SetVariable('vsysdate',vTglAwal.Date);
              QProc_konstruksi.SetVariable('vsysdate2',vTglAkhir.Date);
+
+
              QProc_konstruksi.SetVariable('vkd_jns_item',vkode);
+
              QProc_konstruksi.Execute;
              //konstruksi
           end;
-      1 : begin
-             QDump2.Close;
-             QDump2.SetVariable('vrasio',1);
-             QDump2.SetVariable('vsysdate',vTglAwal.Date);
-             QDump2.SetVariable('vsysdate2',vTglAkhir.Date);
-             QDump2.SetVariable('vkd_jns_item',vkode);
-             QDump2.Execute;
-             // warna
-          end;
-      2 : begin
-             QDump3.Close;
-             QDump3.SetVariable('vrasio',1);
-             QDump3.SetVariable('vsysdate',vTglAwal.Date);
-             QDump3.SetVariable('vsysdate2',vTglAkhir.Date);
-             QDump3.SetVariable('kd_jns_item',vkode);
-             QDump3.Execute;
-             //batch
-          end;
       end;
+
       
-          if QBrowse.QBEMode then
-            QBrowse.QBEMode:=False;
-          QBrowse.DisableControls;
-          QBrowse.Close;
-          QBrowse.SetVariable('vorder',vorder);
-          QBrowse.Open;
+      if QBrowse.QBEMode then QBrowse.QBEMode:=False;
+      QBrowse.DisableControls;
+      QBrowse.Close;
+      QBrowse.SetVariable('vorder',vorder);
+      QBrowse.Open;
       vt1:=0; vt2:=0; vt3:=0; vt4:=0; vt5:=0; vt6:=0; vt7:=0;
       vt8:=0; vt9:=0; vt10:=0; vt11:=0; vt12:=0; vt13:=0; vt14:=0;
       vt15:=0; vt16:=0; vt17:=0; vt18:=0; vt19:=0; vt20:=0;
@@ -539,6 +549,57 @@ begin
       wwDBGrid2.ColumnByName('MASUK5').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt14);
       wwDBGrid2.ColumnByName('SISADOUBLING').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt15);
       wwDBGrid2.ColumnByName('FISIK').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt16);
+
+      {if QBrowseNew.QBEMode then QBrowseNew.QBEMode:=False;
+      QBrowseNew.DisableControls;
+      QBrowseNew.Close;
+      QBrowseNew.SetVariable('vorder',vorder);
+      QBrowseNew.Open;
+      vt0:=0; vt1:=0; vt2:=0; vt3:=0; vt4:=0; vt5:=0; vt6:=0; vt7:=0;
+      vt8:=0; vt9:=0; vt10:=0; vt11:=0; vt12:=0; vt13:=0; vt14:=0;
+      vt15:=0; vt16:=0; vt17:=0; vt18:=0; vt19:=0; vt20:=0;  vt21:=0;
+
+      while not QBrowseNew.Eof do
+      begin
+        vt0:=vt0+QBrowseNewAWAL.AsFloat;
+        vt1:=vt1+QBrowseNewQTY01.AsFloat;
+        vt2:=vt2+QBrowseNewQTY02.AsFloat;
+        vt3:=vt3+QBrowseNewQTY03.AsFloat;
+        vt4:=vt4+QBrowseNewQTY04.AsFloat;
+        vt5:=vt5+QBrowseNewQTY05.AsFloat;
+        vt6:=vt6+QBrowseNewQTY06.AsFloat;
+        vt10:=vt10+QBrowseNewQTY10.AsFloat;
+        vt11:=vt11+QBrowseNewQTY11.AsFloat;
+        vt12:=vt12+QBrowseNewQTY12.AsFloat;
+        vt13:=vt13+QBrowseNewQTY13.AsFloat;
+        vt14:=vt14+QBrowseNewQTY14.AsFloat;
+        vt15:=vt15+QBrowseNewQTY15.AsFloat;
+        vt16:=vt16+QBrowseNewQTY16.AsFloat;
+        vt17:=vt17+QBrowseNewQTY17.AsFloat;
+        vt18:=vt18+QBrowseNewQTY18.AsFloat;
+        vt19:=vt19+QBrowseNewQTY19.AsFloat;
+        vt20:=vt20+QBrowseNewAKHIR.AsFloat;
+        QBrowseNew.Next;
+      end;
+      QBrowseNew.EnableControls;
+
+      wwDBGridNew.ColumnByName('AWAL').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt0);
+      wwDBGridNew.ColumnByName('QTY01').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt1);
+      wwDBGridNew.ColumnByName('QTY02').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt2);
+      wwDBGridNew.ColumnByName('QTY03').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt3);
+      wwDBGridNew.ColumnByName('QTY04').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt4);
+      wwDBGridNew.ColumnByName('QTY05').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt5);
+      wwDBGridNew.ColumnByName('QTY06').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt6);
+      wwDBGridNew.ColumnByName('QTY11').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt11);
+      wwDBGridNew.ColumnByName('QTY12').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt12);
+      wwDBGridNew.ColumnByName('QTY13').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt13);
+      wwDBGridNew.ColumnByName('QTY14').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt14);
+      wwDBGridNew.ColumnByName('QTY15').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt15);
+      wwDBGridNew.ColumnByName('QTY16').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt16);
+      wwDBGridNew.ColumnByName('QTY17').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt17);
+      wwDBGridNew.ColumnByName('QTY18').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt18);
+      wwDBGridNew.ColumnByName('QTY19').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt19);
+      wwDBGridNew.ColumnByName('AKHIR').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt20);}
     end;
 end;
 
@@ -566,78 +627,73 @@ end;
 
 procedure TInfoMutasiGWFrm.BtnFindClick(Sender: TObject);
 begin
-	wwDBGrid2.ColumnByName('NILAI').FooterValue:='';;
-  if not QBrowse.QBEMode then
+	wwDBGridNew.ColumnByName('NILAI').FooterValue:='';;
+  if not QBrowseNew.QBEMode then
   begin
-    wwDBGrid2.Options:=wwDBGrid2.Options-[dgRowSelect,dgAlwaysShowSelection];
-    QBrowse.QBEMode:=TRUE;
+    wwDBGridNew.Options:=wwDBGridNew.Options-[dgRowSelect,dgAlwaysShowSelection];
+    QBrowseNew.QBEMode:=TRUE;
   end
   else
-    QBrowse.ClearQBE;
+    QBrowseNew.ClearQBE;
 end;
 
 procedure TInfoMutasiGWFrm.BtnOk2Click(Sender: TObject);
 var
   vrasio : real;
-  vt1, vt2, vt3, vt4, vt5, vt6, vt7,
+  vt0, vt1, vt2, vt3, vt4, vt5, vt6, vt7,
   vt8, vt9, vt10, vt11, vt12, vt13, vt14,
-  vt15, vt16, vt17, vt18, vt19, vt20 : real;
+  vt15, vt16, vt17, vt18, vt19, vt20, vt21 : real;
 
 begin
-  if QBrowse.QBEMode then
+  if QBrowseNew.QBEMode then
   begin
-    QBrowse.ExecuteQBE;
-    wwDBGrid2.Options:=wwDBGrid2.Options+[dgRowSelect,dgAlwaysShowSelection];
+    QBrowseNew.ExecuteQBE;
+    wwDBGridNew.Options:=wwDBGridNew.Options+[dgRowSelect,dgAlwaysShowSelection];
 
-      vt1:=0; vt2:=0; vt3:=0; vt4:=0; vt5:=0; vt6:=0; vt7:=0;
+      vt0:=0; vt1:=0; vt2:=0; vt3:=0; vt4:=0; vt5:=0; vt6:=0; vt7:=0;
       vt8:=0; vt9:=0; vt10:=0; vt11:=0; vt12:=0; vt13:=0; vt14:=0;
-      vt15:=0; vt16:=0; vt17:=0; vt18:=0; vt19:=0; vt20:=0;
-      while not QBrowse.Eof do
+      vt15:=0; vt16:=0; vt17:=0; vt18:=0; vt19:=0; vt20:=0; vt21:=0;
+      while not QBrowseNew.Eof do
       begin
-        vt1:=vt1+QBrowseAWAL1.AsFloat;
-        vt2:=vt2+QBrowseMASUK1.AsFloat;
-        vt3:=vt3+QBrowseMASUK2.AsFloat;
-        vt4:=vt4+QBrowseMASUK3.AsFloat;
-        vt5:=vt5+QBrowseMASUK4.AsFloat;
-        vt6:=vt6+QBrowseKELUAR1.AsFloat;
-        vt7:=vt7+QBrowseKELUAR2.AsFloat;
-        vt8:=vt8+QBrowseKELUAR3.AsFloat;
-        vt9:=vt9+QBrowseKELUAR4.AsFloat;
-        vt10:=vt10+QBrowseKELUAR5.AsFloat;
-        vt11:=vt11+QBrowseKELUAR6.AsFloat;
-        vt12:=vt12+QBrowseAKHIR.AsFloat;
-        vt13:=vt13+QBrowseKELUAR7.AsFloat;
-        vt17:=vt17+QBrowseKELUAR8.AsFloat;
-        vt14:=vt14+QBrowseMASUK5.AsFloat;
-        vt15:=vt15+QBrowseSISADOUBLING.AsFloat;
-        vt16:=vt16+QBrowseFISIK.AsFloat;
-        vt18:=vt18+QBrowseMASUK6.AsFloat;
-        vt19:=vt19+QBrowseKELUAR9.AsFloat;
-        vt20:=vt20+QBrowseMASUK7.AsFloat;
-        QBrowse.Next;
+        vt0:=vt0+QBrowseNewAWAL.AsFloat;
+        vt1:=vt1+QBrowseNewQTY01.AsFloat;
+        vt2:=vt2+QBrowseNewQTY02.AsFloat;
+        vt3:=vt3+QBrowseNewQTY03.AsFloat;
+        vt4:=vt4+QBrowseNewQTY04.AsFloat;
+        vt5:=vt5+QBrowseNewQTY05.AsFloat;
+        vt6:=vt6+QBrowseNewQTY06.AsFloat;
+        vt10:=vt10+QBrowseNewQTY10.AsFloat;
+        vt11:=vt11+QBrowseNewQTY11.AsFloat;
+        vt12:=vt12+QBrowseNewQTY12.AsFloat;
+        vt13:=vt13+QBrowseNewQTY13.AsFloat;
+        vt14:=vt14+QBrowseNewQTY14.AsFloat;
+        vt15:=vt15+QBrowseNewQTY15.AsFloat;
+        vt16:=vt16+QBrowseNewQTY16.AsFloat;
+        vt17:=vt17+QBrowseNewQTY17.AsFloat;
+        vt18:=vt18+QBrowseNewQTY18.AsFloat;
+        vt19:=vt19+QBrowseNewQTY19.AsFloat;
+        vt20:=vt20+QBrowseNewAKHIR.AsFloat;
+        QBrowseNew.Next;
       end;
-          QBrowse.EnableControls;
-      wwDBGrid2.ColumnByName('AWAL1').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt1);
-      wwDBGrid2.ColumnByName('MASUK1').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt2);
-      wwDBGrid2.ColumnByName('MASUK2').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt3);
-      wwDBGrid2.ColumnByName('MASUK3').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt4);
-      wwDBGrid2.ColumnByName('MASUK4').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt5);
-      wwDBGrid2.ColumnByName('MASUK6').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt18);
-      wwDBGrid2.ColumnByName('MASUK7').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt20);
-      wwDBGrid2.ColumnByName('KELUAR1').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt6);
-      wwDBGrid2.ColumnByName('KELUAR2').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt7);
-      wwDBGrid2.ColumnByName('KELUAR3').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt8);
-      wwDBGrid2.ColumnByName('KELUAR4').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt9);
-      wwDBGrid2.ColumnByName('KELUAR5').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt10);
-      wwDBGrid2.ColumnByName('KELUAR6').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt11);
-      wwDBGrid2.ColumnByName('KELUAR8').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt17);
-      wwDBGrid2.ColumnByName('KELUAR9').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt19);
-      wwDBGrid2.ColumnByName('AKHIR').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt12);
-      wwDBGrid2.ColumnByName('KELUAR7').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt13);
-      wwDBGrid2.ColumnByName('MASUK5').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt14);
-      wwDBGrid2.ColumnByName('SISADOUBLING').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt15);
-      wwDBGrid2.ColumnByName('FISIK').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt16);
-          
+      QBrowseNew.EnableControls;
+      wwDBGridNew.ColumnByName('AWAL').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt0);
+      wwDBGridNew.ColumnByName('QTY01').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt1);
+      wwDBGridNew.ColumnByName('QTY02').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt2);
+      wwDBGridNew.ColumnByName('QTY03').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt3);
+      wwDBGridNew.ColumnByName('QTY04').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt4);
+      wwDBGridNew.ColumnByName('QTY05').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt5);
+      wwDBGridNew.ColumnByName('QTY06').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt6);
+      wwDBGridNew.ColumnByName('QTY11').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt11);
+      wwDBGridNew.ColumnByName('QTY12').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt12);
+      wwDBGridNew.ColumnByName('QTY13').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt13);
+      wwDBGridNew.ColumnByName('QTY14').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt14);
+      wwDBGridNew.ColumnByName('QTY15').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt15);
+      wwDBGridNew.ColumnByName('QTY16').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt16);
+      wwDBGridNew.ColumnByName('QTY17').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt17);
+      wwDBGridNew.ColumnByName('QTY18').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt18);
+      wwDBGridNew.ColumnByName('QTY19').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt19);
+      wwDBGridNew.ColumnByName('AKHIR').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt20);
+
   end;
 
 end;
@@ -858,7 +914,6 @@ begin
       QDump4.Execute;
       //warna format baru
 
-
       if QBrowse2.QBEMode then QBrowse2.QBEMode:=False;
 
       QBrowse2.DisableControls;
@@ -963,28 +1018,31 @@ end;
 procedure TInfoMutasiGWFrm.wwDBGrid1RowChanged(Sender: TObject);
 var vt1, vt2: real;
 begin
-  QBrowseDetail.DisableControls;
-  QBrowseDetail.Close;
-  QBrowseDetail.SetVariable('pkd_item', QBrowse2KD_ITEM.AsString);
-  QBrowseDetail.SetVariable('pkd_warna', QBrowse2KD_WARNA.AsString);
-  QBrowseDetail.Open;
-
-  QBrowseDetailQTY_IN.AsFloat;
-
-  vt1:=0; vt2:=0;
-  while not QBrowseDetail.Eof do
+  if CheckBox2.Checked then
   begin
-     vt1:=vt1+QBrowseDetailQTY_IN.AsFloat;
-     vt2:=vt2+QBrowseDetailQTY_OUT.Asfloat;
-     QBrowseDetail.Next;
+    QBrowseDetail.DisableControls;
+    QBrowseDetail.Close;
+    QBrowseDetail.SetVariable('pkd_item', QBrowse2KD_ITEM.AsString);
+    QBrowseDetail.SetVariable('pkd_warna', QBrowse2KD_WARNA.AsString);
+    QBrowseDetail.Open;
+
+    QBrowseDetailQTY_IN.AsFloat;
+
+    vt1:=0; vt2:=0;
+    while not QBrowseDetail.Eof do
+    begin
+       vt1:=vt1+QBrowseDetailQTY_IN.AsFloat;
+       vt2:=vt2+QBrowseDetailQTY_OUT.Asfloat;
+       QBrowseDetail.Next;
+    end;
+
+    QBrowseDetail.EnableControls;
+    wwDBGrid3.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt1);
+    wwDBGrid3.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt2);
+
+    PanelTop.Caption:=QBrowse2NO_BENANG.AsString+' - '+QBrowse2WARNA.AsString;
+    wwDBGrid3.GetInterfaceTable;
   end;
-
-  QBrowseDetail.EnableControls;
-  wwDBGrid3.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt1);
-  wwDBGrid3.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,##0.##;(#,##0.##);-',vt2);
-
-  PanelTop.Caption:=QBrowse2NO_BENANG.AsString+' - '+QBrowse2WARNA.AsString;
-  wwDBGrid3.GetInterfaceTable;
 end;
 
 procedure TInfoMutasiGWFrm.CheckBox2Click(Sender: TObject);
@@ -1009,6 +1067,49 @@ end;
 procedure TInfoMutasiGWFrm.QBrowse2AfterScroll(DataSet: TDataSet);
 begin
   LabelBanner2.Caption:='Record ke '+IntToStr(QBrowse2.RecNo)+' dari '+FormatFloat('#,#',QBrowse2.RecordCount)+' Records';
+end;
+
+procedure TInfoMutasiGWFrm.QBrowseNewAfterScroll(DataSet: TDataSet);
+begin
+    LabelBanner.Caption:='Record ke '+IntToStr(QBrowseNew.RecNo)+' dari '+FormatFloat('#,#',QBrowseNew.RecordCount)+' Records';
+end;
+
+procedure TInfoMutasiGWFrm.wwDBGridNewTitleButtonClick(Sender: TObject;
+  AFieldName: String);
+begin
+  if QBrowseNew.FieldByName(AFieldName).FieldKind=fkData then
+  begin
+    vorder:='order by '+AFieldName;
+    BtnOkClick(Nil);
+  end
+  else
+    ShowMessage('Maaf, tidak bisa Urut menurut kolom '+AFieldName+' !');
+end;
+
+procedure TInfoMutasiGWFrm.QBrowseNewCalcFields(DataSet: TDataSet);
+begin
+  QBrowseNewAKHIR.AsFloat:=
+  (QBrowseNewAWAL.AsFloat+
+  QBrowseNewQTY01.AsFloat+
+  QBrowseNewQTY02.AsFloat+
+  QBrowseNewQTY03.AsFloat+
+  QBrowseNewQTY04.AsFloat+
+  QBrowseNewQTY05.AsFloat+
+  QBrowseNewQTY06.AsFloat+
+  QBrowseNewQTY07.AsFloat+
+  QBrowseNewQTY08.AsFloat+
+  QBrowseNewQTY09.AsFloat+
+  QBrowseNewQTY10.AsFloat)-
+  (QBrowseNewQTY11.AsFloat+
+  QBrowseNewQTY12.AsFloat+
+  QBrowseNewQTY13.AsFloat+
+  QBrowseNewQTY14.AsFloat+
+  QBrowseNewQTY15.AsFloat+
+  QBrowseNewQTY16.AsFloat+
+  QBrowseNewQTY17.AsFloat+
+  QBrowseNewQTY18.AsFloat+
+  QBrowseNewQTY19.AsFloat+
+  QBrowseNewQTY20.AsFloat);
 end;
 
 end.

@@ -1055,7 +1055,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                   52.916666666666670000
                   587.375000000000000000
                   21.166666666666670000
-                  767.291666666666700000)
+                  767.291666666666800000)
                 Alignment = taCenter
                 AlignToBand = True
                 AutoSize = True
@@ -1084,9 +1084,9 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawRight = False
                 Size.Values = (
                   44.979166666666670000
-                  664.104166666666700000
-                  84.666666666666670000
-                  616.479166666666700000)
+                  664.104166666666800000
+                  84.666666666666680000
+                  616.479166666666800000)
                 Alignment = taCenter
                 AlignToBand = True
                 AutoSize = True
@@ -1119,7 +1119,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
               ForceNewColumn = False
               ForceNewPage = False
               Size.Values = (
-                92.604166666666670000
+                92.604166666666680000
                 1944.687500000000000000)
               BandType = rbColumnHeader
               object QRLabel25: TQRLabel
@@ -1687,7 +1687,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawRight = False
                 Size.Values = (
                   44.979166666666670000
-                  97.895833333333330000
+                  97.895833333333340000
                   0.000000000000000000
                   134.937500000000000000)
                 Alignment = taLeftJustify
@@ -1902,7 +1902,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawRight = False
                 Size.Values = (
                   44.979166666666670000
-                  788.458333333333300000
+                  788.458333333333400000
                   0.000000000000000000
                   108.479166666666700000)
                 Alignment = taLeftJustify
@@ -2577,7 +2577,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
                 Frame.DrawLeft = False
                 Frame.DrawRight = False
                 Size.Values = (
-                  42.333333333333330000
+                  42.333333333333340000
                   37.041666666666670000
                   7.937500000000000000
                   201.083333333333300000)
@@ -2962,8 +2962,8 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4 210 x 297 mm'
-    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.PaperName = 'Custom'
+    PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -2971,7 +2971,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -4538,7 +4538,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     DataPipeline = ppDBQDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'myA5'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -4547,7 +4547,7 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 139700
     PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 10000
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\TransaksiOrgBukti.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -6599,6 +6599,66 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
   end
   object QItem: TOracleDataSet
     SQL.Strings = (
+      'select * from ('
+      'select'
+      '  a.nama_item,'
+      '  a.kd_item,'
+      '  a.kd_warna,'
+      '  b.warna,'
+      '  a.no_batch,'
+      '  sum(qty) as qty,'
+      '  sum(qty2) as qty2,'
+      '  a.rasio,'
+      '  '#39'KG'#39' as satuan,'
+      '  :pkd_sublokasi as kd_sub_lokasi'
+      'from ('
+      '  select   '
+      '    a.keterangan as nama_item,'
+      '    :pkd_lokasi||'#39'.'#39'||substr(kd_item, 4,5) as kd_item,'
+      '    a.kd_warna,'
+      '    a.no_batch,'
+      '    a.qty1 as qty, --kg'
+      '    a.qty2 as qty2, --pcs'
+      '    a.rasio'
+      '  from ipisma_db3.bukti_detail a'
+      '  where ibukti in '
+      '  ('
+      '   select ibukti from'
+      '   ipisma_db3.bukti'
+      '   where'
+      '    kd_transaksi = :pkd_trans1 and'
+      '    ispost='#39'1'#39' and'
+      '    trunc(tgl) >= to_date('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39')'
+      '  ) '
+      '  union all'
+      ''
+      '  select   '
+      '    a.keterangan as nama_item,'
+      '    :pkd_lokasi||'#39'.'#39'||substr(kd_item, 4,5) as kd_item,'
+      '    a.kd_warna,'
+      '    a.no_batch,'
+      '    -a.qty2 as qty, --kg'
+      '    -a.qty7 as qty2, --pcs'
+      '    a.rasio'
+      '  from ipisma_db3.bukti_detail a'
+      '  where ibukti in '
+      '  ('
+      '   select ibukti from'
+      '   ipisma_db3.bukti'
+      '   where'
+      '    kd_transaksi = :pkd_trans2 and'
+      '    ispost='#39'1'#39' and'
+      
+        '    trunc(tgl) >= to_date('#39'01/01/2025'#39','#39'dd/mm/yyyy'#39') or ibukti =' +
+        ' :pibukti'
+      '  )'
+      ') a'
+      'left join ipisma_db3.warna_baru b on a.kd_warna=b.kd_warna'
+      
+        'group by a.nama_item, a.kd_item, a.kd_warna, b.warna, a.no_batch' +
+        ', a.rasio, b.warna'
+      ') where qty<>0'
+      ''
       '/*select * from ipisma_db3.vlook_st_hasil_celup*/'
       ''
       '/* oldest'
@@ -6621,6 +6681,12 @@ object PindahLokasi2Frm: TPindahLokasi2Frm
         'ch'
       'having sum(b.qty_in2-b.qty_out2)>0'
       '*/')
+    Variables.Data = {
+      0300000005000000080000003A504942554B5449030000000000000000000000
+      0B0000003A504B445F4C4F4B4153490500000000000000000000000E0000003A
+      504B445F5355424C4F4B4153490500000000000000000000000B0000003A504B
+      445F5452414E53310500000000000000000000000B0000003A504B445F545241
+      4E5332050000000000000000000000}
     QBEDefinition.QBEFieldDefs = {
       040000000C000000070000004B445F4954454D010000000000090000004E414D
       415F4954454D010000000000080000004D494E5F53544F4B0100000000000600

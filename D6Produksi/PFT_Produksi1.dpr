@@ -55,7 +55,8 @@ uses
   PermintaanUnpost in 'PermintaanUnpost.pas' {PermintaanUnpostFrm},
   Unpost in 'Unpost.pas' {UnpostFrm},
   DaftarWarna in 'DaftarWarna.pas' {DaftarWarnaFrm},
-  ProsesAwalTahun in 'ProsesAwalTahun.pas' {ProsesAwalTahunFrm};
+  ProsesAwalTahun in 'ProsesAwalTahun.pas' {ProsesAwalTahunFrm},
+  PindahLokasi3 in 'PindahLokasi3.pas' {PindahLokasi3Frm};
 
 {$R *.res}
 

@@ -329,6 +329,14 @@ type
     QMasterJNS_BNG: TStringField;
     Label21: TLabel;
     lookjns: TwwDBComboBox;
+    QItemNew: TOracleDataSet;
+    QItemNewKD_SATUAN: TStringField;
+    QItemNewNAMA_ITEM: TStringField;
+    QItemNewKD_ITEM: TStringField;
+    QItemNewSATUAN: TStringField;
+    QItemNewRASIO: TFloatField;
+    QItemNewQTY2: TFloatField;
+    QItemNewQTY: TFloatField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -391,6 +399,7 @@ type
     procedure QMasterAfterDelete(DataSet: TDataSet);
     procedure LookItemUserButton1Click(Sender: TObject;
       LookupTable: TDataSet);
+    procedure QItemNewBeforeQuery(Sender: TOracleDataSet);
   private
     { Private declarations }
     vshift, vgrup, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi, vkd_benang, vjns_item, vfilter : String;
@@ -1004,6 +1013,10 @@ begin
 
     QItem.SetVariable('psysdate',QMasterTGL.AsDateTime); //MAA 20-12-2019 TGL NOTA
     QItem.SetVariable('ibukti',QMasterIBUKTI.AsInteger); //MAA 20-12-2019
+
+    showmessage(QItem.SQL.Text);
+    showmessage(vjns_brg+' '+vjns_item+' '+vkd_benang);
+
    // QItem.SetVariable('pfilter',vkd_benang);
 //    QItem.Open;
 
@@ -1025,8 +1038,8 @@ procedure THasilCelupFrm.LookItemCloseUp(Sender: TObject; LookupTable,
 begin
   if modified then
   begin
-    QDetailKETERANGAN.AsString:=QItemNAMA_ITEM.AsString;
-    QDetailKD_SATUAN.AsString:=QItemKD_SATUAN.AsString;
+    QDetailKETERANGAN.AsString:=QItemNewNAMA_ITEM.AsString;
+    QDetailKD_SATUAN.AsString:=QItemNewKD_SATUAN.AsString;
 
 ///////INFO STOK LAMA
 {    QKg.Close;
@@ -1064,9 +1077,9 @@ begin
 ///////INFO STOK LAMA
 
 ////MAA 20-12-2019
-    QDetailQTY8.AsFloat:=QItemQTY2.AsFloat;
-    QDetailQTY7.AsFloat:=QItemQTY.AsFloat;
-    QDetailRASIO.AsFloat:=QItemRASIO.AsFloat;
+    QDetailQTY8.AsFloat:=QItemNewQTY2.AsFloat;
+    QDetailQTY7.AsFloat:=QItemNewQTY.AsFloat;
+    QDetailRASIO.AsFloat:=QItemNewRASIO.AsFloat;
 //    QDetailKD_WARNA.AsString:=QItemKD_WARNA.AsString;
 //    QDetailWARNA.AsString:=QItemWARNA.AsString;
 //    QDetailNO_BATCH.AsString:=QItemNO_BATCH.AsString;
@@ -1320,6 +1333,13 @@ begin
     QItem.SetVariable('pfilter',vfilter);
     QItem.Open;
   end;
+end;
+
+procedure THasilCelupFrm.QItemNewBeforeQuery(Sender: TOracleDataSet);
+begin
+  QItemNew.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QItemNew.SetVariable('pibukti', QMasterIBUKTI.AsInteger);
+  QItemNew.SetVariable('pkd_benang', vkd_benang);
 end;
 
 end.

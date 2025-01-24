@@ -1,6 +1,6 @@
 object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
-  Left = 191
-  Top = 105
+  Left = 200
+  Top = 143
   Width = 1120
   Height = 579
   Caption = 'Info WIP SOFTCONE'
@@ -24,8 +24,8 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
   object PanelMain: TPanel
     Left = 0
     Top = 0
-    Width = 1112
-    Height = 548
+    Width = 1104
+    Height = 541
     Align = alClient
     BevelOuter = bvNone
     Ctl3D = False
@@ -33,8 +33,8 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     TabOrder = 0
     object Label1: TLabel
       Left = 0
-      Top = 535
-      Width = 1112
+      Top = 528
+      Width = 1104
       Height = 13
       Align = alBottom
       Color = clSkyBlue
@@ -43,7 +43,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     object DBText3: TDBText
       Left = 0
       Top = 49
-      Width = 1112
+      Width = 1104
       Height = 27
       Align = alTop
       Alignment = taRightJustify
@@ -61,7 +61,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     object LabelBanner: TLabel
       Left = 0
       Top = 133
-      Width = 1112
+      Width = 1104
       Height = 13
       Align = alTop
       Color = clSkyBlue
@@ -70,7 +70,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     object PanelHeader: TPanel
       Left = 0
       Top = 0
-      Width = 1112
+      Width = 1104
       Height = 49
       Align = alTop
       BevelOuter = bvNone
@@ -87,17 +87,21 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     object PanelFilter: TPanel
       Left = 0
       Top = 76
-      Width = 1112
+      Width = 1104
       Height = 57
       Align = alTop
       BevelOuter = bvNone
       TabOrder = 1
+      DesignSize = (
+        1104
+        57)
       object Label5: TLabel
-        Left = 670
-        Top = 16
+        Left = 1001
+        Top = 34
         Width = 43
         Height = 13
         Cursor = crHandPoint
+        Anchors = [akTop, akRight]
         Caption = 'Spasi (%)'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clBlue
@@ -151,10 +155,11 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
         NumGlyphs = 2
       end
       object wwDBSpinLine2: TwwDBSpinEdit
-        Left = 672
+        Left = 1048
         Top = 32
         Width = 41
         Height = 19
+        Anchors = [akTop, akRight]
         Increment = 100.000000000000000000
         MaxValue = 400.000000000000000000
         MinValue = 100.000000000000000000
@@ -232,15 +237,39 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
         TabOrder = 5
         OnClick = cbAdaTransaksiClick
       end
+      object cbRiwayat: TCheckBox
+        Left = 610
+        Top = 8
+        Width = 161
+        Height = 17
+        Caption = 'Tampilkan Riwayat Mutasi'
+        TabOrder = 6
+        OnClick = cbRiwayatClick
+      end
     end
     object PanelBrowse: TPanel
       Left = 0
       Top = 146
-      Width = 1112
-      Height = 348
+      Width = 520
+      Height = 341
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 2
+      object WebBrowser1: TWebBrowser
+        Left = 0
+        Top = 0
+        Width = 520
+        Height = 341
+        Align = alClient
+        TabOrder = 7
+        OnDocumentComplete = WebBrowser1DocumentComplete
+        ControlData = {
+          4C000000BE3500003E2300000000000000000000000000000000000000000000
+          000000004C000000000000000000000001000000E0D057007335CF11AE690800
+          2B2E126208000000000000004C0000000114020000000000C000000000000046
+          8000000000000000000000000000000000000000000000000000000000000000
+          00000000000000000100000000000000000000000000000000000000}
+      end
       object QuickRep5: TQuickRep
         Left = 65
         Top = 103
@@ -2663,7 +2692,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               47.625000000000000000
               1973.791666666667000000
-              68.791666666666670000
+              68.791666666666660000
               119.062500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -3134,7 +3163,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               1690.687500000000000000
-              58.208333333333330000
+              58.208333333333340000
               169.333333333333300000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -3256,7 +3285,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1693.333333333333000000
               108.479166666666700000
               34.395833333333330000)
@@ -3411,7 +3440,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1817.687500000000000000
               108.479166666666700000
               39.687500000000000000)
@@ -3504,7 +3533,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1571.625000000000000000
               108.479166666666700000
               39.687500000000000000)
@@ -3535,7 +3564,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1484.312500000000000000
               108.479166666666700000
               34.395833333333330000)
@@ -3566,7 +3595,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1158.875000000000000000
               108.479166666666700000
               39.687500000000000000)
@@ -3599,7 +3628,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               1497.541666666667000000
-              58.208333333333330000
+              58.208333333333340000
               103.187500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -3692,7 +3721,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               2153.708333333333000000
-              58.208333333333330000
+              58.208333333333340000
               103.187500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -3848,7 +3877,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
               44.979166666666670000
               2407.708333333333000000
               42.333333333333330000
-              76.729166666666670000)
+              76.729166666666660000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -4184,7 +4213,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               42.333333333333330000
               1912.937500000000000000
-              58.208333333333330000
+              58.208333333333340000
               190.500000000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -4309,9 +4338,9 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1256.770833333333000000
-              58.208333333333330000
+              58.208333333333340000
               179.916666666666700000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -4357,7 +4386,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1285.875000000000000000
               108.479166666666700000
               34.395833333333330000)
@@ -4388,7 +4417,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              42.333333333333330000
+              42.333333333333340000
               1381.125000000000000000
               108.479166666666700000
               39.687500000000000000)
@@ -5888,7 +5917,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Frame.DrawLeft = False
             Frame.DrawRight = False
             Size.Values = (
-              60.854166666666670000
+              60.854166666666680000
               0.000000000000000000
               -2.645833333333333000
               2.645833333333333000)
@@ -6899,7 +6928,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               1688.041666666667000000
-              58.208333333333330000
+              58.208333333333340000
               227.541666666666700000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -7085,7 +7114,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               1132.416666666667000000
-              58.208333333333330000
+              58.208333333333340000
               246.062500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -7364,7 +7393,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               1460.500000000000000000
-              58.208333333333330000
+              58.208333333333340000
               119.062500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -7457,7 +7486,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               44.979166666666670000
               2005.541666666667000000
-              58.208333333333330000
+              58.208333333333340000
               119.062500000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -7613,7 +7642,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
               44.979166666666670000
               2323.041666666667000000
               42.333333333333330000
-              89.958333333333330000)
+              89.958333333333340000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -11086,7 +11115,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
             Size.Values = (
               55.562500000000000000
               2407.708333333333000000
-              84.666666666666670000
+              84.666666666666660000
               132.291666666666700000)
             Alignment = taLeftJustify
             AlignToBand = False
@@ -14909,7 +14938,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
           object QRDBText31: TQRDBText
             Left = 8
             Top = 5
-            Width = 105
+            Width = 132
             Height = 24
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -14920,7 +14949,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
               63.500000000000000000
               21.166666666666670000
               13.229166666666670000
-              277.812500000000000000)
+              349.250000000000000000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -15885,7 +15914,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
           object QRLabel78: TQRLabel
             Left = 248
             Top = 0
-            Width = 31
+            Width = 38
             Height = 17
             Frame.Color = clBlack
             Frame.DrawTop = False
@@ -15896,7 +15925,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
               44.979166666666670000
               656.166666666666700000
               0.000000000000000000
-              82.020833333333330000)
+              100.541666666666700000)
             Alignment = taLeftJustify
             AlignToBand = False
             AutoSize = True
@@ -16438,76 +16467,11 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
           BandType = rbPageFooter
         end
       end
-      object wwDBGrid1: TwwDBGrid
-        Left = 0
-        Top = 0
-        Width = 1112
-        Height = 348
-        DisableThemes = True
-        DisableThemesInTitle = True
-        ControlType.Strings = (
-          'ISFIXED;CheckBox;1;0')
-        Selected.Strings = (
-          'KD_ITEM'#9'10'#9'KODE'#9'F'
-          'NAMA_ITEM'#9'20'#9'NAMA ITEM'#9'F'
-          'AWAL'#9'10'#9'KG'#9'F'#9'AWAL'
-          'AWAL2'#9'10'#9'BALL'#9'F'#9'AWAL'
-          'IN_BON_KG'#9'10'#9'BON~GREY (KG)'#9'F'#9'PEMASUKAN'
-          'IN_BON_BALL'#9'10'#9'BON~GREY (BALL)'#9'F'#9'PEMASUKAN'
-          'IN_RETUR_KG'#9'10'#9'RETUR~GW (KG)'#9'F'#9'PEMASUKAN'
-          'IN_RETUR_BALL'#9'10'#9'RETUR~GW (BALL)'#9'F'#9'PEMASUKAN'
-          'IN_KOREKSI_KG'#9'10'#9'KOREKSI~(KG)'#9'F'#9'PEMASUKAN'
-          'IN_KOREKSI_BALL'#9'10'#9'KOREKSI~(BALL)'#9'F'#9'PEMASUKAN'
-          'OUT_HASIL_KG'#9'10'#9'HASIL PROD~(KG)'#9'F'#9'PENGELUARAN'
-          'OUT_HASIL_BALL'#9'10'#9'HASIL PROD~(BALL)'#9'F'#9'PENGELUARAN'
-          'OUT_RETUR_KG'#9'10'#9'RETUR~(KG)'#9'F'#9'PENGELUARAN'
-          'OUT_RETUR_BALL'#9'10'#9'RETUR~(BALL)'#9'F'#9'PENGELUARAN'
-          'OUT_KOREKSI_KG'#9'10'#9'KOREKSI~(KG)'#9'F'#9'PENGELUARAN'
-          'OUT_KOREKSI_BALL'#9'10'#9'KOREKSI~(BALL)'#9'F'#9'PENGELUARAN'
-          'AKHIR'#9'10'#9'KG'#9'F'#9'AKHIR'
-          'AKHIR2'#9'10'#9'BALL'#9'F'#9'AKHIR')
-        IniAttributes.Enabled = True
-        IniAttributes.SaveToRegistry = True
-        IniAttributes.FileName = 'produksi'
-        IniAttributes.Delimiter = ';;'
-        IniAttributes.CheckNewFields = True
-        ExportOptions.ExportType = wwgetSYLK
-        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowAlternating]
-        TitleColor = clBackground
-        FixedCols = 0
-        ShowHorzScrollBar = True
-        EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
-        Align = alClient
-        BorderStyle = bsNone
-        Ctl3D = False
-        DataSource = dsQBrowse
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -11
-        Font.Name = 'Arial'
-        Font.Style = []
-        KeyOptions = []
-        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
-        ParentCtl3D = False
-        ParentFont = False
-        TabOrder = 1
-        TitleAlignment = taCenter
-        TitleFont.Charset = ANSI_CHARSET
-        TitleFont.Color = clWhite
-        TitleFont.Height = -11
-        TitleFont.Name = 'Arial'
-        TitleFont.Style = []
-        TitleLines = 4
-        TitleButtons = True
-        UseTFields = False
-        OnTitleButtonClick = wwDBGrid1TitleButtonClick
-        OnDblClick = wwDBGrid2DblClick
-      end
       object wwDBGrid2: TwwDBGrid
         Left = 0
         Top = 0
-        Width = 1112
-        Height = 348
+        Width = 520
+        Height = 341
         DisableThemes = True
         DisableThemesInTitle = True
         ControlType.Strings = (
@@ -16541,6 +16505,7 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
         ExportOptions.ExportType = wwgetSYLK
         ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowAlternating]
         TitleColor = clBackground
+        OnRowChanged = wwDBGrid2RowChanged
         FixedCols = 0
         ShowHorzScrollBar = True
         EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
@@ -16570,11 +16535,77 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
         OnTitleButtonClick = wwDBGrid2TitleButtonClick
         OnDblClick = wwDBGrid2DblClick
       end
+      object wwDBGrid1: TwwDBGrid
+        Left = 0
+        Top = 0
+        Width = 520
+        Height = 341
+        DisableThemes = True
+        DisableThemesInTitle = True
+        ControlType.Strings = (
+          'ISFIXED;CheckBox;1;0')
+        Selected.Strings = (
+          'KD_ITEM'#9'10'#9'KODE'#9'F'
+          'NAMA_ITEM'#9'20'#9'NAMA ITEM'#9'F'
+          'AWAL'#9'10'#9'KG'#9'F'#9'AWAL'
+          'AWAL2'#9'10'#9'BALL'#9'F'#9'AWAL'
+          'IN_BON_KG'#9'10'#9'BON~GREY (KG)'#9'F'#9'PEMASUKAN'
+          'IN_BON_BALL'#9'10'#9'BON~GREY (BALL)'#9'F'#9'PEMASUKAN'
+          'IN_RETUR_KG'#9'10'#9'RETUR~GW (KG)'#9'F'#9'PEMASUKAN'
+          'IN_RETUR_BALL'#9'10'#9'RETUR~GW (BALL)'#9'F'#9'PEMASUKAN'
+          'IN_KOREKSI_KG'#9'10'#9'KOREKSI~(KG)'#9'F'#9'PEMASUKAN'
+          'IN_KOREKSI_BALL'#9'10'#9'KOREKSI~(BALL)'#9'F'#9'PEMASUKAN'
+          'OUT_HASIL_KG'#9'10'#9'HASIL PROD~(KG)'#9'F'#9'PENGELUARAN'
+          'OUT_HASIL_BALL'#9'10'#9'HASIL PROD~(BALL)'#9'F'#9'PENGELUARAN'
+          'OUT_RETUR_KG'#9'10'#9'RETUR~(KG)'#9'F'#9'PENGELUARAN'
+          'OUT_RETUR_BALL'#9'10'#9'RETUR~(BALL)'#9'F'#9'PENGELUARAN'
+          'OUT_KOREKSI_KG'#9'10'#9'KOREKSI~(KG)'#9'F'#9'PENGELUARAN'
+          'OUT_KOREKSI_BALL'#9'10'#9'KOREKSI~(BALL)'#9'F'#9'PENGELUARAN'
+          'AKHIR'#9'10'#9'KG'#9'F'#9'AKHIR'
+          'AKHIR2'#9'10'#9'BALL'#9'F'#9'AKHIR')
+        IniAttributes.Enabled = True
+        IniAttributes.SaveToRegistry = True
+        IniAttributes.FileName = 'produksi'
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetSYLK
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowAlternating]
+        TitleColor = clBackground
+        OnRowChanged = wwDBGrid1RowChanged
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+        Align = alClient
+        BorderStyle = bsNone
+        Ctl3D = False
+        DataSource = dsQBrowse
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        KeyOptions = []
+        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 1
+        TitleAlignment = taCenter
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWhite
+        TitleFont.Height = -11
+        TitleFont.Name = 'Arial'
+        TitleFont.Style = []
+        TitleLines = 4
+        TitleButtons = True
+        UseTFields = False
+        OnTitleButtonClick = wwDBGrid1TitleButtonClick
+        OnDblClick = wwDBGrid2DblClick
+      end
     end
     object PanelFooter2: TPanel
       Left = 0
-      Top = 494
-      Width = 1112
+      Top = 487
+      Width = 1104
       Height = 41
       Align = alBottom
       BevelOuter = bvNone
@@ -16706,6 +16737,129 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
         TabOrder = 5
         OnClick = BtnPrintBrowse1Click
         NumGlyphs = 2
+      end
+    end
+    object PanelRiwayat: TPanel
+      Left = 520
+      Top = 146
+      Width = 584
+      Height = 341
+      Align = alRight
+      BevelOuter = bvNone
+      Caption = 'PanelRiwayat'
+      TabOrder = 4
+      Visible = False
+      object PanelTop: TPanel
+        Left = 0
+        Top = 0
+        Width = 584
+        Height = 49
+        Align = alTop
+        BevelOuter = bvNone
+        Caption = 'PanelTop'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+        TabOrder = 1
+      end
+      object wwDBGridSoft0: TwwDBGrid
+        Left = 0
+        Top = 49
+        Width = 584
+        Height = 292
+        ControlType.Strings = (
+          'ISFIXED;CheckBox;1;0')
+        Selected.Strings = (
+          'TGL'#9'15'#9'WAKTU'#9'F'
+          'NO_NOTA'#9'15'#9'NO NOTA'#9'F'
+          'QTY_IN'#9'10'#9'KG'#9'F'#9'MASUK'
+          'QTY_IN2'#9'10'#9'BALL'#9'F'#9'MASUK'
+          'QTY_OUT'#9'10'#9'KG'#9'F'#9'KELUAR'
+          'QTY_OUT2'#9'10'#9'BALL'#9'F'#9'KELUAR'
+          'KETERANGAN'#9'20'#9'KETERANGAN'#9'F')
+        IniAttributes.Enabled = True
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clNavy
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+        Align = alClient
+        BorderStyle = bsNone
+        Ctl3D = False
+        DataSource = dsQBrowseDetail0
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        KeyOptions = []
+        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 0
+        TitleAlignment = taCenter
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWhite
+        TitleFont.Height = -11
+        TitleFont.Name = 'Arial'
+        TitleFont.Style = []
+        TitleLines = 2
+        TitleButtons = True
+        UseTFields = False
+      end
+      object wwDBGridSoft1: TwwDBGrid
+        Left = 0
+        Top = 49
+        Width = 584
+        Height = 292
+        ControlType.Strings = (
+          'ISFIXED;CheckBox;1;0')
+        Selected.Strings = (
+          'TGL'#9'15'#9'WAKTU'#9'F'
+          'NO_NOTA'#9'15'#9'NO NOTA'#9'F'
+          'QTY_IN'#9'10'#9'KG'#9'F'#9'MASUK'
+          'QTY_IN2'#9'10'#9'PCS'#9'F'#9'MASUK'
+          'QTY_OUT'#9'10'#9'KG'#9'F'#9'KELUAR'
+          'QTY_OUT2'#9'10'#9'PCS'#9'F'#9'KELUAR'
+          'KETERANGAN'#9'20'#9'KETERANGAN'#9'F')
+        IniAttributes.Enabled = True
+        IniAttributes.Delimiter = ';;'
+        IniAttributes.CheckNewFields = True
+        ExportOptions.ExportType = wwgetHTML
+        ExportOptions.Options = [esoShowHeader, esoShowFooter, esoShowTitle, esoDblQuoteFields, esoBestColFit, esoShowRecordNo, esoShowAlternating]
+        TitleColor = clNavy
+        FixedCols = 0
+        ShowHorzScrollBar = True
+        EditControlOptions = [ecoSearchOwnerForm, ecoDisableDateTimePicker]
+        Align = alClient
+        BorderStyle = bsNone
+        Ctl3D = False
+        DataSource = dsQBrowseDetail1
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Arial'
+        Font.Style = []
+        KeyOptions = []
+        Options = [dgEditing, dgTitles, dgColumnResize, dgColLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit, dgWordWrap, dgPerfectRowFit, dgShowFooter, dgNoLimitColSize, dgTrailingEllipsis, dgRowResize, dgFixedProportionalResize]
+        ParentCtl3D = False
+        ParentFont = False
+        TabOrder = 2
+        TitleAlignment = taCenter
+        TitleFont.Charset = ANSI_CHARSET
+        TitleFont.Color = clWhite
+        TitleFont.Height = -11
+        TitleFont.Name = 'Arial'
+        TitleFont.Style = []
+        TitleLines = 2
+        TitleButtons = True
+        UseTFields = False
       end
     end
   end
@@ -16920,8 +17074,8 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
   end
   object dsQTransaksi: TwwDataSource
     DataSet = QTransaksi
-    Left = 424
-    Top = 56
+    Left = 416
+    Top = 32
   end
   object QSOP: TOracleDataSet
     SQL.Strings = (
@@ -16935,8 +17089,8 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
   end
   object dsQSOP: TwwDataSource
     DataSet = QSOP
-    Left = 356
-    Top = 48
+    Left = 364
+    Top = 24
   end
   object QDump: TOracleQuery
     SQL.Strings = (
@@ -17084,5 +17238,123 @@ object InfoRealisasiPOFrm: TInfoRealisasiPOFrm
     DataSet = QBrowse2
     Left = 528
     Top = 296
+  end
+  object QBrowseDetail0: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.tgl, t.no_nota, t.qty_in, t.qty_in2, t.qty_out, t.qty_o' +
+        'ut2, b.opr_insert||'#39': '#39'||b.keterangan as keterangan'
+      'from ipisma_db3.temp_mutasi_softcone0 t'
+      'left join ('
+      
+        ' select no_nota, tgl, opr_insert, keterangan from ipisma_db3.buk' +
+        'ti'
+      ' union all'
+      
+        ' select no_nota, tanggal AS tgl, opr_insert, keterangan from pmt' +
+        'x02.vbon_barang@gjduduk'
+      ') b on t.no_nota=b.no_nota'
+      
+        'where t.kd_item=:pkd_item and t.awal_thn = 0 and t.awal_thn2 = 0' +
+        ' and trunc(b.tgl) >= :pawal')
+    Variables.Data = {
+      0300000002000000090000003A504B445F4954454D0500000000000000000000
+      00060000003A504157414C0C0000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000060000005154595F494E010000000000070000005154595F
+      4F5554010000000000070000005154595F494E32010000000000080000005154
+      595F4F5554320100000000000300000054474C010000000000070000004E4F5F
+      4E4F54410100000000000A0000004B45544552414E47414E010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 860
+    Top = 248
+    object QBrowseDetail0TGL: TDateTimeField
+      FieldName = 'TGL'
+    end
+    object QBrowseDetail0NO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 16
+    end
+    object QBrowseDetail0QTY_IN: TFloatField
+      FieldName = 'QTY_IN'
+      DisplayFormat = '#,0.00;-#,0.00;-'
+    end
+    object QBrowseDetail0QTY_IN2: TFloatField
+      FieldName = 'QTY_IN2'
+      DisplayFormat = '#,0.0000;-#,0.0000;-'
+    end
+    object QBrowseDetail0QTY_OUT: TFloatField
+      FieldName = 'QTY_OUT'
+      DisplayFormat = '#,0.00;-#,0.00;-'
+    end
+    object QBrowseDetail0QTY_OUT2: TFloatField
+      FieldName = 'QTY_OUT2'
+      DisplayFormat = '#,0.0000;-#,0.0000;-'
+    end
+    object QBrowseDetail0KETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 288
+    end
+  end
+  object dsQBrowseDetail0: TwwDataSource
+    DataSet = QBrowseDetail0
+    Left = 928
+    Top = 264
+  end
+  object QBrowseDetail1: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.tgl, t.no_nota, t.qty_in, t.qty_in2, t.qty_out, t.qty_o' +
+        'ut2, b.opr_insert||'#39': '#39'||b.keterangan as keterangan'
+      'from ipisma_db3.temp_mutasi_softcone1 t'
+      'left join ipisma_db3.bukti b on t.no_nota=b.no_nota'
+      
+        'where t.kd_item=:pkd_item and t.awal_thn = 0 and t.awal_thn2 = 0' +
+        ' and trunc(b.tgl) >= :pawal')
+    Variables.Data = {
+      0300000002000000090000003A504B445F4954454D0500000000000000000000
+      00060000003A504157414C0C0000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000007000000060000005154595F494E010000000000070000005154595F
+      4F5554010000000000070000005154595F494E32010000000000080000005154
+      595F4F5554320100000000000300000054474C010000000000070000004E4F5F
+      4E4F54410100000000000A0000004B45544552414E47414E010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    Left = 868
+    Top = 312
+    object QBrowseDetail1TGL: TDateTimeField
+      FieldName = 'TGL'
+    end
+    object QBrowseDetail1NO_NOTA: TStringField
+      FieldName = 'NO_NOTA'
+      Size = 16
+    end
+    object QBrowseDetail1QTY_IN: TFloatField
+      FieldName = 'QTY_IN'
+    end
+    object QBrowseDetail1QTY_IN2: TFloatField
+      FieldName = 'QTY_IN2'
+    end
+    object QBrowseDetail1QTY_OUT: TFloatField
+      FieldName = 'QTY_OUT'
+    end
+    object QBrowseDetail1QTY_OUT2: TFloatField
+      FieldName = 'QTY_OUT2'
+    end
+    object QBrowseDetail1KETERANGAN: TStringField
+      FieldName = 'KETERANGAN'
+      Size = 287
+    end
+  end
+  object dsQBrowseDetail1: TwwDataSource
+    DataSet = QBrowseDetail1
+    Left = 936
+    Top = 328
   end
 end

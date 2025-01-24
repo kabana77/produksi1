@@ -65,7 +65,7 @@ begin
   SplashForm.Show; // Display The Splash Screen
   SplashForm.Update; // Update The Splah Screen
   While SplashForm.Timer1.Enabled do Application.ProcessMessages; // Makes Splash Screen Longer
-  Application.Title := 'PFT Produksi1';
+  Application.Title := '';
   Application.CreateForm(TDMFrm, DMFrm);
   Application.CreateForm(TPembelianFrm, PembelianFrm);
   Application.CreateForm(TKriteria_Tanggal1_FRM, Kriteria_Tanggal1_FRM);

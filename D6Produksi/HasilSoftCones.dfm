@@ -1,9 +1,9 @@
 object HasilSoftConesFrm: THasilSoftConesFrm
-  Left = 191
-  Top = 124
+  Left = 193
+  Top = 128
   Width = 1036
   Height = 611
-  ActiveControl = wwDBEdit1
+  ActiveControl = vTglAwal
   Caption = 'Hasil SoftCones'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -81,7 +81,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
       Top = 76
       Width = 1020
       Height = 484
-      ActivePage = TabSheet1
+      ActivePage = TabSheet2
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -449,7 +449,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
               'QTY2'#9'15'#9'QTY (Pcs)'#9'F')
             DataField = 'KD_ITEM'
             DataSource = dsQDetail
-            LookupTable = QItem
+            LookupTable = QItemNew
             LookupField = 'KD_ITEM'
             Style = csDropDownList
             TabOrder = 1
@@ -2680,6 +2680,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     end
     object QMasterTGL: TDateTimeField
       FieldName = 'TGL'
+      OnChange = QMasterTGLChange
       DisplayFormat = 'dd mmm yyyy'
     end
     object QMasterKETERANGAN: TStringField
@@ -5400,7 +5401,7 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     BeforeQuery = QItemBeforeQuery
     Session = DMFrm.OS
     Left = 288
-    Top = 312
+    Top = 296
     object QItemNAMA_ITEM: TStringField
       DisplayLabel = 'NAMA ITEM'
       DisplayWidth = 35
@@ -5471,6 +5472,161 @@ object HasilSoftConesFrm: THasilSoftConesFrm
     end
     object QTotalPCS: TFloatField
       FieldName = 'PCS'
+    end
+  end
+  object QItemNew: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.nama_item, b.kd_item, '#39'KG'#39' as satuan, b.rasio, b.rasio2' +
+        ', a.qty, (a.qty)/b.rasio2 as qty2, b.kd_sub_kel from '
+      '('
+      '  select kd_item, sum(qty) as qty from ('
+      
+        '    select a.kd_item, ((a.awal_thn+a.awal_tgl+a.qty_in)-a.qty_ou' +
+        't) as qty'
+      '    from ipisma_db3.TEMP_LOOKUP_SOFT0 a'
+      ''
+      '    UNION ALL'
+      ''
+      
+        '    select b.kd_item, -b.qty1 as qty from ipisma_db3.bukti a, ip' +
+        'isma_db3.bukti_detail b'
+      '    where a.ibukti=b.ibukti and a.ibukti=:pibukti'
+      '  ) group by kd_item'
+      ''
+      ') a'
+      'left join ipisma_db3.item b on a.kd_item=b.kd_item'
+      'where b.kd_sub_kel=:pkd_benang')
+    Variables.Data = {
+      03000000020000000B0000003A504B445F42454E414E47050000000000000000
+      000000080000003A504942554B5449030000000000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000008000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000600000053415455414E01000000000005000000
+      524153494F01000000000006000000524153494F320100000000000300000051
+      545901000000000004000000515459320100000000000A0000004B445F535542
+      5F4B454C010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemNewBeforeQuery
+    Session = DMFrm.OS
+    Left = 384
+    Top = 328
+    object QItemNewNAMA_ITEM: TStringField
+      DisplayLabel = 'NAMA ITEM'
+      DisplayWidth = 35
+      FieldName = 'NAMA_ITEM'
+      Size = 50
+    end
+    object QItemNewKD_ITEM: TStringField
+      DisplayLabel = 'KODE'
+      DisplayWidth = 10
+      FieldName = 'KD_ITEM'
+      Size = 50
+    end
+    object QItemNewSATUAN: TStringField
+      DisplayWidth = 12
+      FieldName = 'SATUAN'
+      Size = 2
+    end
+    object QItemNewRASIO: TFloatField
+      DisplayLabel = 'Rasio Spring'
+      DisplayWidth = 5
+      FieldName = 'RASIO'
+    end
+    object QItemNewRASIO2: TFloatField
+      DisplayLabel = 'Rasio ISI'
+      DisplayWidth = 5
+      FieldName = 'RASIO2'
+    end
+    object QItemNewQTY: TFloatField
+      DisplayLabel = 'QTY (Kg)'
+      DisplayWidth = 15
+      FieldName = 'QTY'
+      DisplayFormat = '#,0.00;-#,0.00;-'
+    end
+    object QItemNewQTY2: TFloatField
+      DisplayLabel = 'QTY (Pcs)'
+      DisplayWidth = 15
+      FieldName = 'QTY2'
+      DisplayFormat = '#,0;-#,0;-'
+    end
+    object QItemNewKD_SUB_KEL: TStringField
+      FieldName = 'KD_SUB_KEL'
+      Size = 32
+    end
+  end
+  object QProc_getStok: TOracleQuery
+    SQL.Strings = (
+      'begin'
+      '  ipisma_db3.proc_temp_lookup_soft0(:ptgl, :ptgl2);'
+      'end;')
+    Session = DMFrm.OS
+    Variables.Data = {
+      0300000002000000050000003A5054474C0C0000000000000000000000060000
+      003A5054474C320C0000000000000000000000}
+    Cursor = crSQLWait
+    Left = 824
+    Top = 160
+  end
+  object OracleDataSet1: TOracleDataSet
+    SQL.Strings = (
+      
+        'select b.nama_item, b.kd_item, '#39'KG'#39' as satuan, b.rasio, b.rasio2' +
+        ', a.qty, (a.qty)/b.rasio2 as qty2, b.kd_sub_kel from '
+      '('
+      
+        '  select a.kd_item, sum((a.awal_thn+a.awal_tgl+a.qty_in)-a.qty_o' +
+        'ut) as qty'
+      '  from ipisma_db3.TEMP_LOOKUP_SOFT1 a'
+      '  group by a.kd_item'
+      ') a'
+      'left join ipisma_db3.item b on a.kd_item=b.kd_item'
+      'where b.kd_sub_kel=:pkd_benang')
+    Variables.Data = {
+      03000000010000000B0000003A504B445F42454E414E47050000000000000000
+      000000}
+    QBEDefinition.QBEFieldDefs = {
+      0400000008000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000600000053415455414E01000000000005000000
+      524153494F01000000000006000000524153494F320100000000000300000051
+      545901000000000004000000515459320100000000000A0000004B445F535542
+      5F4B454C010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    BeforeQuery = QItemNewBeforeQuery
+    Session = DMFrm.OS
+    Left = 424
+    Top = 344
+    object StringField1: TStringField
+      FieldName = 'NAMA_ITEM'
+      Size = 50
+    end
+    object StringField2: TStringField
+      FieldName = 'KD_ITEM'
+      Size = 50
+    end
+    object StringField3: TStringField
+      FieldName = 'SATUAN'
+      Size = 2
+    end
+    object FloatField1: TFloatField
+      FieldName = 'RASIO'
+    end
+    object FloatField2: TFloatField
+      FieldName = 'RASIO2'
+    end
+    object FloatField3: TFloatField
+      FieldName = 'QTY'
+    end
+    object FloatField4: TFloatField
+      FieldName = 'QTY2'
+    end
+    object StringField4: TStringField
+      FieldName = 'KD_SUB_KEL'
+      Size = 32
     end
   end
 end

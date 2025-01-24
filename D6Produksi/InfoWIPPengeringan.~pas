@@ -414,6 +414,29 @@ type
     QBrowseNew2OUT_KOREKSI_PCS: TFloatField;
     QBrowseNew2AKHIR_KG: TFloatField;
     QBrowseNew2AKHIR_PCS: TFloatField;
+    PanelRiwayat: TPanel;
+    wwDBGridDry1: TwwDBGrid;
+    wwDBGridDry0: TwwDBGrid;
+    PanelTop: TPanel;
+    cbRiwayat: TCheckBox;
+    QBrowseDetail0: TOracleDataSet;
+    QBrowseDetail1: TOracleDataSet;
+    QBrowseDetail1TGL: TDateTimeField;
+    QBrowseDetail1NO_NOTA: TStringField;
+    QBrowseDetail1QTY_IN: TFloatField;
+    QBrowseDetail1QTY_IN2: TFloatField;
+    QBrowseDetail1QTY_OUT: TFloatField;
+    QBrowseDetail1QTY_OUT2: TFloatField;
+    QBrowseDetail1KETERANGAN: TStringField;
+    dsQBrowseDetail0: TwwDataSource;
+    dsQBrowseDetail1: TwwDataSource;
+    QBrowseDetail0TGL: TDateTimeField;
+    QBrowseDetail0NO_NOTA: TStringField;
+    QBrowseDetail0QTY_IN: TFloatField;
+    QBrowseDetail0QTY_IN2: TFloatField;
+    QBrowseDetail0QTY_OUT: TFloatField;
+    QBrowseDetail0QTY_OUT2: TFloatField;
+    QBrowseDetail0KETERANGAN: TStringField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -469,6 +492,9 @@ type
       AFieldName: String);
     procedure wwDBGrid4TitleButtonClick(Sender: TObject;
       AFieldName: String);
+    procedure cbRiwayatClick(Sender: TObject);
+    procedure wwDBGrid3RowChanged(Sender: TObject);
+    procedure wwDBGrid4RowChanged(Sender: TObject);
 
   private
     { Private declarations }
@@ -1383,7 +1409,7 @@ begin
     wwDBGrid4.ColumnByName('OUT_REPRO_PCS').FooterValue:=FormatFloat('#,0;-#,0;-',t12);
     wwDBGrid4.ColumnByName('OUT_KOREKSI_PCS').FooterValue:=FormatFloat('#,0;-#,0;-',t13);
     wwDBGrid4.ColumnByName('AKHIR_PCS').FooterValue:=FormatFloat('#,0;-#,0;-',t14);
-  end
+  end;
 end;
 
 procedure TInfoWIPPengeringanFrm.QBrowseNewAfterScroll(DataSet: TDataSet);
@@ -1464,6 +1490,78 @@ begin
   end
   else
     ShowMessage('Maaf, tidak bisa Urut menurut kolom '+AFieldName+' !');
+end;
+
+procedure TInfoWIPPengeringanFrm.cbRiwayatClick(Sender: TObject);
+begin
+  if PanelRiwayat.Visible=false then
+    PanelRiwayat.Visible:=true
+  else
+    PanelRiwayat.Visible:=false;
+end;
+
+procedure TInfoWIPPengeringanFrm.wwDBGrid3RowChanged(Sender: TObject);
+var
+vt1, vt2, vt3, vt4 : real;
+begin
+  if PanelRiwayat.Visible=True then
+  begin
+    QBrowseDetail0.DisableControls;
+    QBrowseDetail0.Close;
+    QBrowseDetail0.SetVariable('pawal', vTglAwal.DateTime);
+    QBrowseDetail0.SetVariable('pkd_item', QBrowseNewKD_ITEM.AsString);
+    QBrowseDetail0.Open;
+
+    vt1:=0; vt2:=0; vt3:=0; vt4:=0;
+    while not QBrowseDetail0.Eof do
+    begin
+       vt1:=vt1+QBrowseDetail0QTY_IN.AsFloat;
+       vt2:=vt2+QBrowseDetail0QTY_IN2.AsFloat;
+       vt3:=vt3+QBrowseDetail0QTY_OUT.Asfloat;
+       vt4:=vt4+QBrowseDetail0QTY_OUT2.Asfloat;
+       QBrowseDetail0.Next;
+    end;
+    QBrowseDetail0.EnableControls;
+
+    wwDBGridDry0.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt1);
+    wwDBGridDry0.ColumnByName('QTY_IN2').FooterValue:=FormatFloat('#,0;-#,0;-',vt2);
+    wwDBGridDry0.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt3);
+    wwDBGridDry0.ColumnByName('QTY_OUT2').FooterValue:=FormatFloat('#,0;-#,0;-',vt4);
+    wwDBGridDry0.BringToFront;
+    PanelTop.Caption:='Dalam Proses : '+QBrowseNewNAMA_ITEM.AsString;
+  end;
+end;
+
+procedure TInfoWIPPengeringanFrm.wwDBGrid4RowChanged(Sender: TObject);
+var
+vt1, vt2, vt3, vt4 : real;
+begin
+  if PanelRiwayat.Visible=True then
+  begin
+    QBrowseDetail1.DisableControls;
+    QBrowseDetail1.Close;
+    QBrowseDetail1.SetVariable('pawal', vTglAwal.DateTime);
+    QBrowseDetail1.SetVariable('pkd_item', QBrowseNew2KD_ITEM.AsString);
+    QBrowseDetail1.Open;
+
+    vt1:=0; vt2:=0; vt3:=0; vt4:=0;
+    while not QBrowseDetail1.Eof do
+    begin
+       vt1:=vt1+QBrowseDetail1QTY_IN.AsFloat;
+       vt2:=vt2+QBrowseDetail1QTY_IN2.AsFloat;
+       vt3:=vt3+QBrowseDetail1QTY_OUT.Asfloat;
+       vt4:=vt4+QBrowseDetail1QTY_OUT2.Asfloat;
+       QBrowseDetail1.Next;
+    end;
+    QBrowseDetail1.EnableControls;
+
+    wwDBGridDry1.ColumnByName('QTY_IN').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt1);
+    wwDBGridDry1.ColumnByName('QTY_IN2').FooterValue:=FormatFloat('#,0;-#,0;-',vt2);
+    wwDBGridDry1.ColumnByName('QTY_OUT').FooterValue:=FormatFloat('#,0.0000;-#,0.0000;-',vt3);
+    wwDBGridDry1.ColumnByName('QTY_OUT2').FooterValue:=FormatFloat('#,0;-#,0;-',vt4);
+    wwDBGridDry1.BringToFront;
+    PanelTop.Caption:='Hasil Proses :'+QBrowseNew2NAMA_ITEM.AsString;
+  end;
 end;
 
 end.

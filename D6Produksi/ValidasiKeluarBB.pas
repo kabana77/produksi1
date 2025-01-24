@@ -139,8 +139,6 @@ type
     wwDBComboBox2: TwwDBComboBox;
     Label10: TLabel;
     QItem: TOracleDataSet;
-    QItemNAMA_ITEM: TStringField;
-    QItemKD_ITEM: TStringField;
     LookItem: TwwDBLookupComboDlg;
     QBrowseSHIFT: TStringField;
     QBrowseGRUP: TStringField;
@@ -201,25 +199,19 @@ type
     ppDBText48: TppDBText;
     ppDBText49: TppDBText;
     QDetailQTY3: TFloatField;
-    QItemKD_SUB_LOKASI: TStringField;
-    QItemQTY: TFloatField;
     QMasterSTATUS: TStringField;
     QDetailQTY6: TFloatField;
     QDetailQTY8: TFloatField;
     QDetailRASIO: TFloatField;
     QBrowseRASIO: TFloatField;
     RadioGroup1: TRadioGroup;
-    QItemRASIO: TFloatField;
     QBrowseQTY3: TFloatField;
     QBrowseQTY8: TFloatField;
     CBPreview: TCheckBox;
     QDetailKD_WARNA: TStringField;
     QDetailNO_BATCH: TStringField;
     QDetailWARNA: TStringField;
-    QItemKD_WARNA: TStringField;
-    QItemWARNA: TStringField;
     QDetailKD_SUB_LOKASI2: TStringField;
-    QItemQTY2: TFloatField;
     QDetailNO_BUKTI: TStringField;
     QDetailSTATUS: TStringField;
     LookResep: TwwDBLookupComboDlg;
@@ -342,10 +334,21 @@ type
     QTransaksiDOC_ISO: TStringField;
     ppDBText29: TppDBText;
     Label18: TLabel;
-    QItemRASIO2: TFloatField;
-    QItemKD_SUB_KEL: TStringField;
     QDetailKD_SUB_KEL: TStringField;
     EditKG: TCheckBox;
+    QProc_getStok: TOracleQuery;
+    QDetailJAM1: TDateTimeField;
+    QItemKD_SUB_KEL: TStringField;
+    QItemKD_ITEM: TStringField;
+    QItemNAMA_ITEM: TStringField;
+    QItemWARNA: TStringField;
+    QItemKD_WARNA: TStringField;
+    QItemKD_SATUAN: TStringField;
+    QItemKD_SUB_LOKASI: TStringField;
+    QItemRASIO: TFloatField;
+    QItemQTY: TFloatField;
+    QItemQTY2: TFloatField;
+    QItemTGL_STOK: TDateTimeField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -414,6 +417,7 @@ type
     procedure cbTransaksiCloseUp(Sender: TwwDBComboBox; Select: Boolean);
     procedure QMasterAfterDelete(DataSet: TDataSet);
     procedure QDetailQTY8Change(Sender: TField);
+    procedure QMasterTGLChange(Sender: TField);
   private
     { Private declarations }
     vshift, vgrup, vdiv, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi, vfilter_item,
@@ -1115,7 +1119,6 @@ begin
       ' a.kd_jns_item =:vjns_brg and b.tgl<=:tgl'+
       ' group by a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
       ' having sum(b.qty_in2-b.qty_out2)>0 order by a.nama_item, d.warna, b.no_batch :myparam'
-//{azmi}      ' having sum(b.qty_in-b.qty_out)>0 order by a.nama_item, d.warna, b.no_batch :myparam'
       else
     if (vjns_lokasi='42') then
   	QItem.SQL.Text:='select a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'+
@@ -1125,10 +1128,7 @@ begin
       ' a.kd_jns_item =:vjns_brg and b.tgl<=:tgl'+
       ' group by a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
       ' having sum(b.qty_in2-b.qty_out2)>0 order by a.nama_item, d.warna, b.no_batch :myparam'
-//{azmi}      ' having sum(b.qty_in-b.qty_out)>0 order by a.nama_item, d.warna, b.no_batch :myparam'
       else
-         //QItem.SQL.Text:='Select  a.kd_item, a.nama_item, a.warna, a.kd_warna, a.no_batch, a.kd_satuan, a.kd_sub_lokasi, a.rasio, a.qty, a.qty2 from ipisma_db3.vitemkeluar_gwfrm a where a.kd_jns_item =:vjns_brg and a.tgl<=:tgl';
-         //ShowMessage(QItem.SQL.Text);
         QItem.SetVariable('vjns_brg',vjns_brg);
         QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
 
@@ -1145,65 +1145,11 @@ begin
                       ' a.kd_jns_item =:vjns_brg and trunc(b.tgl)<=:tgl'+
                       ' group by a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
                       ' having sum(b.qty_in-b.qty_out)<>0 OR sum(b.qty_in2-b.qty_out2)<>0'+
-                      //' order by a.kd_sub_kel, a.nama_item, d.warna '+   //190523
                       ' ) :myparam'+
                       ' ) t '+
                       ' left outer join '+cUserTabel+'VSA_CO_GW_2023_ALL r on (r.KD_ITEM=t.kd_item and r.KD_WARNA=t.kd_warna)'+    //26-12-2023
                       ' order by t.kd_sub_kel, t.nama_item, t.warna '; //060124
-   {    //MAA 10-01-2020
-   	QItem.SQL.Text:='select * from (select a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'+
-                      ' sum(b.qty_in-b.qty_out) as qty, sum(b.qty_in2-b.qty_out2) as qty2'+
-                      ' from '+cUserTabel+'vitem_30_kel a, '+cUserTabel+'gd_stok4 b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'vi_warna_baru_2017 d'+
-                      ' where a.kd_item=b.kd_item and b.kd_warna=d.kd_warna and b.kd_sub_lokasi=c.kd_sub_lokasi and c.jns_lokasi=''LOKASI'' and '+
-                      ' a.kd_jns_item =:vjns_brg and trunc(b.tgl)<=:tgl'+
-                      ' group by a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
-                      ' having sum(b.qty_in-b.qty_out)<>0 OR sum(b.qty_in2-b.qty_out2)<>0'+
-//                      ' having round(sum(b.qty_in-b.qty_out),2)<>0 OR round(sum(b.qty_in2-b.qty_out2),2)<>0'+
-//                      ' having (sum(b.qty_in-b.qty_out) + sum(b.qty_in2-b.qty_out2)) <>0'+
-//                      ' having sum(b.qty_in-b.qty_out)>0 and sum(b.qty_in2-b.qty_out2)>0'+
-                      ' order by a.kd_sub_kel, a.nama_item, d.warna '+   //190523
-                      ' ) :myparam';   }
-      //MAA 10-01-2020
-
-     //MAA 10-01-2020
-   { 	QItem.SQL.Text:='select * from (select a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'+
-//                      ' round(sum(b.qty_in-b.qty_out),2) as qty, round(sum(b.qty_in2-b.qty_out2),2) as qty2'+
-                      ' round(sum(nvl(b.qty_in,0)-nvl(b.qty_out,0)),2) as qty, round(sum(nvl(b.qty_in2,0)-nvl(b.qty_out2,0)),2) as qty2'+
-                      ' from '+cUserTabel+'item a, '+cUserTabel+'gd_stok4 b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'vi_warna_baru_2017 d'+
-                      ' where a.kd_item=b.kd_item and b.kd_warna=d.kd_warna and b.kd_sub_lokasi=c.kd_sub_lokasi and c.jns_lokasi=''LOKASI'' and '+
-                      ' a.kd_jns_item =:vjns_brg and trunc(b.tgl)<=:tgl'+
-                      ' group by a.kd_sub_kel, a.kd_item, a.nama_item, d.warna, b.kd_warna, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
-//                      ' having (sum(b.qty_in-b.qty_out) + sum(b.qty_in2-b.qty_out2)) >0'+
-                      ' having round(sum(nvl(b.qty_in,0)-nvl(b.qty_out,0)),2)>0 OR round(sum(nvl(b.qty_in2,0)-nvl(b.qty_out2,0)),2)>0'+
-                      ' order by a.kd_sub_kel, a.nama_item, d.warna) :myparam';     }
-      //MAA 10-01-2020
-
-      //MAA 21-01-2019
-{    	QItem.SQL.Text:='select * from (select a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'+
-                      ' round(sum(b.qty_in-b.qty_out),2) as qty, round(sum(b.qty_in2-b.qty_out2),2) as qty2'+
-                      ' from '+cUserTabel+'item a, '+cUserTabel+'gd_stok4 b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'vi_warna_baru_2017 d'+
-                      ' where a.kd_item=b.kd_item and b.kd_warna=d.kd_warna and b.kd_sub_lokasi=c.kd_sub_lokasi and c.jns_lokasi=''LOKASI'' and '+
-                      ' a.kd_jns_item =:vjns_brg and trunc(b.tgl)<=:tgl'+
-                      ' group by a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
-                      ' having sum(b.qty_in-b.qty_out)>0 and sum(b.qty_in2-b.qty_out2)>0'+
-                      ' order by a.nama_item, d.warna, b.no_batch) :myparam'; }
-      //MAA 21-01-2019
-
-//=============================================================================================================================================
-        ///OLD
- {   	QItem.SQL.Text:='select * from (select a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio,'+
-      ' sum(b.qty_in-b.qty_out) as qty, sum(b.qty_in2-b.qty_out2) as qty2'+
-      ' from '+cUserTabel+'item a, '+cUserTabel+'gd_stok4 b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'vi_warna_baru_2017 d'+
-      ' where a.kd_item=b.kd_item and b.kd_warna=d.kd_warna and b.kd_sub_lokasi=c.kd_sub_lokasi and c.jns_lokasi=''LOKASI'' and '+
-          //  ' a.kd_jns_item =:vjns_brg and substr(trunc(b.tgl),7,4)>=substr(trunc(:tgl),7,4) and b.tgl<=:tgl'+
-       'a.kd_jns_item =:vjns_brg and ((trunc(b.tgl))'+'>=(to_date('+'''01/01/2017'''+','+'''dd/mm/yyyy'''+'))) and b.tgl<=:tgl'+
-
-      ' group by a.kd_item, a.nama_item, d.warna, b.kd_warna, b.no_batch, a.kd_satuan, b.kd_sub_lokasi, a.rasio'+
-      ' having sum(b.qty_in2-b.qty_out2)>0 order by a.nama_item, d.warna, b.no_batch) :myparam';
-  }
-       // showmessage (qitem.SQL.Text);
-      //{azmi}      ' having sum(b.qty_in-b.qty_out)>0 order by a.nama_item, d.warna, b.no_batch) :myparam';
-     end;
+  end;
 end;
 
 procedure TValidasiKeluarBBFrm.LookItemCloseUp(Sender: TObject; LookupTable,
@@ -1220,6 +1166,7 @@ begin
     QDetailKD_WARNA.AsString:=QItemKD_WARNA.AsString;
     QDetailKD_SUB_LOKASI2.AsString:=QItemKD_SUB_LOKASI.AsString;
     QDetailNO_BATCH.AsString:='-';//QItemNO_BATCH.AsString; MAA 10-01-2020 {HSL MEETING '-'}
+    QDetailJAM1.AsDateTime:=QItemTGL_STOK.AsDateTime;
   END;
 end;
 
@@ -1525,6 +1472,14 @@ begin
 //MAA 13-01-2020
     QDetailQTY3.AsFloat:=QDetailRASIO.AsFloat*QDetailQTY8.AsFloat;
 
+end;
+
+procedure TValidasiKeluarBBFrm.QMasterTGLChange(Sender: TField);
+begin
+  QProc_getStok.Close;
+  QProc_getStok.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QProc_getStok.SetVariable('ptgl2', QMasterTGL.AsDateTime);
+  QProc_getStok.Execute;
 end;
 
 end.

@@ -604,7 +604,6 @@ begin
       QBrowse.DeclareVariable('pakhir',otDate);
       QBrowse.DeclareVariable('kd_transaksi',otString);
       QBrowse.DeclareVariable('porder',otSubst);
-//      QBrowse.SQL.Text:='select * from '+cUserTabel+'v'+Name+'_2017'+
       QBrowse.SQL.Text:='select * from '+cUserTabel+'v'+Name+'4'+
         ' where tanggal>=:pawal and tanggal<=:pakhir and kd_transaksi=:kd_transaksi :porder';
   		QBrowse.SetVariable('pawal',Trunc(vTglAwal.Date));

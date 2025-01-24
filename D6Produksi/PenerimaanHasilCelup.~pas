@@ -1210,25 +1210,22 @@ begin
       QDetail.Open;
       if QHasilCelup.IsEmpty then
         ShowMessage('No Nota tidak ada !')
-        else
-        begin
-
+      else
+      begin
         QCek796.Close;
         QCek796.SetVariable('NO_NOTA',wwDBEdit1.Text);
         QCek796.Open;
         if QCek796N796.AsInteger>1 then       //>1
           ShowMessage('No Nota Sudah di-Ambil Data !!, Silahkan masukkan No Nota lainnya !!')
-          else
-          begin
-
+        else
+        begin
           QCekItemKEL.Close;
           QCekItemKEL.SetVariable('NO_NOTA',wwDBEdit1.Text);
           QCekItemKEL.Open;
           if QCekItemKELJMLNULL.AsInteger>0 then     //>0
             ShowMessage('Masih ada Master Item yang belum di-Set Item Kelompoknya !, Silahkan Hub. Bag. PPC !, Setelah di-Set Silahkan Anda Ambil Data Ulang !')
-            else
-            begin
-
+          else
+          begin
             DMFrm.QSatuan.Open;
             wwDBGrid1.OnUpdateFooter:=nil;
             while not QHasilCelup.Eof do
@@ -1242,25 +1239,6 @@ begin
               QDetailNO_BUKTI.AsString:=QHasilCelupKD_ITEM30.AsString;
               QDetailQTY1.AsFloat:=QHasilCelupQTY2.AsFloat;
               QDetailQTY6.AsFloat:=QHasilCelupQTY7.AsFloat;
-
-{              QDetailKD_ITEM.AsString:='30.'+copy(QHasilCelupKD_ITEM.AsString,4,10);
-    					QDetailKETERANGAN.AsString:=QHasilCelupKETERANGAN.AsString;
-    					QDetailRASIO.AsFloat:=QHasilCelupRASIO.AsFloat;
-    					QDetailKD_SATUAN.AsString:=QHasilCelupKD_SATUAN.AsString;
-              QDetailNO_BATCH.AsString:=QHasilCelupNO_BATCH.AsString; //'-'; //MAA 10-01-2020 //HSL MEETING '-' //
- //azmi
-            if copy(trim(wwDBEdit1.Text),1,3)='804' then
-             begin
-              QDetailQTY1.AsFloat:=QHasilCelupQTY4.AsFloat;
-              QDetailQTY6.AsFloat:=QHasilCelupQTY5.AsFloat;
-             end
-            else
-             begin
-              QDetailQTY1.AsFloat:=QHasilCelupQTY2.AsFloat;
-              QDetailQTY6.AsFloat:=QHasilCelupQTY7.AsFloat;
-             end;
- //azmi
- }
               QDetailKD_WARNA.AsString:=QHasilCelupKD_WARNA.AsString;
               QDetailKD_SUB_LOKASI.AsString:='30-00000';
               QDetail.Post;
@@ -1269,12 +1247,10 @@ begin
             wwDBGrid1.OnUpdateFooter:=wwDBGrid1UpdateFooter;
             wwDBGrid1UpdateFooter(nil);
 
-            end; ///Cek NullITEM Kelompok
-          end; ///Cek N796
-
-    QMasterKETERANGAN.AsString:=wwDBEdit1.Text;
-    
-        end;
+          end; ///Cek NullITEM Kelompok
+        end; ///Cek N796
+      QMasterKETERANGAN.AsString:=wwDBEdit1.Text;
+      end;
   end;
 
 end;

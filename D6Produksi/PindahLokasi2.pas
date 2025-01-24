@@ -956,18 +956,11 @@ procedure TPindahLokasi2Frm.LookItemEnter(Sender: TObject);
 var
 tgl_awal : tdatetime;
 begin
-//tgl_awal :=StrToDate('01/01/2017'); //formatDateTime('dd/mm/yyyy','01/01/2018');
-
- if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
+ {if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
   begin
-    {QItem.Close;
-    ShowMessage(QItem.SQL.Text);
-    QItem.open;}
     QItem.DeclareVariable('vjns_brg',otString);
     QItem.DeclareVariable('vjns_lokasi',otString);
     QItem.DeclareVariable('tgl',otDate);
-    //QItem.DeclareVariable('ibukti',otInteger);
-//    QItem.DeclareVariable('tgl_awal',otDate);
     QItem.Close;
     if vjns_lokasi='21' then
     begin
@@ -988,14 +981,11 @@ begin
     QItem.SetVariable('vjns_brg',vjns_brg);
     QItem.SetVariable('vjns_lokasi',vjns_lokasi);
     QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
- //   QItem.SetVariable('tgl_awal',tgl_awal);    and b.tgl>=:tgl_awal
     QItem.open;
- //   ShowMessage('21 '+QItem.SQL.Text);
     end
 
     else //'22'
 
-    //ShowMessage('vjns_lokasi=22');
     begin
     QItem.DeclareVariable('ibukti',otInteger);
     QItem.SQL.Text:=
@@ -1020,47 +1010,32 @@ begin
     ' WHERE v.KD_ITEM=w.KD_ITEM(+) AND v.KD_WARNA=w.KD_WARNA(+) AND v.NO_BATCH=w.NO_BATCH(+)'+
     ' ORDER BY v.nama_item, v.warna ';   //190523
 
-         	{QItem.SQL.Text:='select a.kd_item, a.nama_item, a.kd_satuan, a.rasio, d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna, e.warna, b.no_batch,'+
-      ' sum(b.qty_in-b.qty_out) as qty, sum(b.qty_in2-b.qty_out2) as qty2'+
-      ' from '+cUserTabel+'item a, '+cUserTabel+'gd_stok b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'satuan d, '+cUserTabel+'vi_warna_baru_2017 e'+
-      ' where a.kd_item=b.kd_item and b.kd_sub_lokasi=c.kd_sub_lokasi and b.kd_warna=e.kd_warna and'+
-      ' a.kd_satuan=d.kd_satuan and c.jns_lokasi=''LOKASI'' and'+
-      ' a.kd_jns_item=:vjns_brg and c.kd_lokasi=:vjns_lokasi and b.tgl<=:tgl and a.kd_item <>''21.14581'' '+
-      ' group by a.kd_item, a.nama_item, a.kd_satuan, a.rasio,d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna, e.warna, b.no_batch'+
-      ' having sum(b.qty_in2-b.qty_out2)<>0'; // ORDER BY a.nama_item, e.warna';
-//      ' having sum(b.qty_in2-b.qty_out2)>0'; // ORDER BY a.nama_item, e.warna';  }
-
     QItem.SetVariable('vjns_brg',vjns_brg);
     QItem.SetVariable('vjns_lokasi',vjns_lokasi);
     QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
     QItem.SetVariable('ibukti',QMasterIBUKTI.AsInteger);
     QItem.open;
-    //ShowMessage('22 '+QItem.SQL.Text);
     end;
   end;
-
-  {end
-  else begin
-    QItem.DeclareVariable('vjns_brg',otString);
-    QItem.DeclareVariable('vjns_lokasi',otString);
-    QItem.DeclareVariable('tgl',otDate);
-    QItem.Close;
-  	QItem.SQL.Text:='select a.kd_item, a.nama_item, a.kd_satuan, a.rasio, d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna, e.warna, b.no_batch,'+
-      ' sum(b.qty_in-b.qty_out) as qty, sum(b.qty_in2-b.qty_out2) as qty2'+
-      ' from '+cUserTabel+'item a, '+cUserTabel+'gd_stok b, '+cUserTabel+'sub_lokasi c, '+cUserTabel+'satuan d, '+cUserTabel+'warna e'+
-      ' where a.kd_item=b.kd_item and b.kd_sub_lokasi=c.kd_sub_lokasi and b.kd_warna=e.kd_warna and'+
-      ' a.kd_satuan=d.kd_satuan and c.jns_lokasi=''LOKASI'' and'+
-      ' a.kd_jns_item=:vjns_brg and c.kd_lokasi=:vjns_lokasi and b.tgl<=:tgl'+
-      ' group by a.kd_item, a.nama_item, a.kd_satuan, a.rasio,d.satuan, a.min_stok, a.kd_jns_item, b.kd_sub_lokasi, b.kd_warna, e.warna, b.no_batch'+
-      ' having sum(b.qty_in2-b.qty_out2)>0';
-    QItem.SetVariable('vjns_brg',vjns_brg);
-    QItem.SetVariable('vjns_lokasi',vjns_lokasi);
-    QItem.SetVariable('tgl',Trunc(QMasterTGL.AsDateTime)+1-1/86400);
-  //  ShowMessage(QItem.SQL.Text);
-    QItem.open;
+  }
+  QItem.Close;
+  QItem.SetVariable('pibukti',QMasterIBUKTI.AsInteger);
+  QItem.SetVariable('pkd_lokasi',vjns_lokasi);
+  if vjns_lokasi = '21' then
+  begin
+    QItem.SetVariable('pkd_sublokasi', '21-00000');
+    QItem.SetVariable('pkd_trans1', '792');
+    QItem.SetVariable('pkd_trans2', '795');
   end;
-//  (sender as TwwDBLookupComboDlg).LookupTable.Open;}
 
+  if vjns_lokasi = '22' then
+  begin
+    QItem.SetVariable('pkd_sublokasi', '22-00000');
+    QItem.SetVariable('pkd_trans1', '793');
+    QItem.SetVariable('pkd_trans2', '796');
+  end;
+
+  QItem.Open;
 end;
 
 procedure TPindahLokasi2Frm.QMasterBeforeDelete(DataSet: TDataSet);

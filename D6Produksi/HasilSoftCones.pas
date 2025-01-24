@@ -336,6 +336,25 @@ type
     QItemQTY: TFloatField;
     QItemQTY2: TFloatField;
     QBrowseRPM: TStringField;
+    QItemNew: TOracleDataSet;
+    QProc_getStok: TOracleQuery;
+    QItemNewNAMA_ITEM: TStringField;
+    QItemNewKD_ITEM: TStringField;
+    QItemNewSATUAN: TStringField;
+    QItemNewRASIO: TFloatField;
+    QItemNewRASIO2: TFloatField;
+    QItemNewKD_SUB_KEL: TStringField;
+    OracleDataSet1: TOracleDataSet;
+    StringField1: TStringField;
+    StringField2: TStringField;
+    StringField3: TStringField;
+    FloatField1: TFloatField;
+    FloatField2: TFloatField;
+    FloatField3: TFloatField;
+    FloatField4: TFloatField;
+    StringField4: TStringField;
+    QItemNewQTY: TFloatField;
+    QItemNewQTY2: TFloatField;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -399,6 +418,9 @@ type
       State: TGridDrawState; Highlight: Boolean; AFont: TFont;
       ABrush: TBrush);
     procedure QMasterAfterDelete(DataSet: TDataSet);
+    procedure wwDBDateTimePicker1Change(Sender: TObject);
+    procedure QMasterTGLChange(Sender: TField);
+    procedure QItemNewBeforeQuery(Sender: TOracleDataSet);
   //  procedure ppNo2Print(Sender: TObject);
   private
     { Private declarations }
@@ -1004,13 +1026,14 @@ procedure THasilSoftConesFrm.LookItemCloseUp(Sender: TObject; LookupTable,
 begin
   if modified then
   begin
-    QDetailKETERANGAN.AsString:=QItemNAMA_ITEM.AsString;
-    QDetailRASIO.AsFloat:=QItemRASIO.AsFloat; //RASIO MASTER
-    QDetailKD_SATUAN.AsString:=QItemKD_SATUAN.AsString;
+    QDetailKETERANGAN.AsString:=QItemNewNAMA_ITEM.AsString;
+    QDetailRASIO.AsFloat:=QItemNewRASIO.AsFloat; //RASIO MASTER
+    //QDetailKD_SATUAN.AsString:=QItemNewKD_SATUAN.AsString;
+    QDetailKD_SATUAN.AsString:='04';
 
     //MAA 06-09-2019
-    QDetailQTY7.AsFloat:=QItemQTY.AsFloat;
-    QDetailQTY8.AsFloat:=QItemQTY2.AsFloat;
+    QDetailQTY7.AsFloat:=QItemNewQTY.AsFloat;
+    QDetailQTY8.AsFloat:=QItemNewQTY2.AsFloat;
   end;
   
 end;
@@ -1248,6 +1271,29 @@ end;
 procedure THasilSoftConesFrm.QMasterAfterDelete(DataSet: TDataSet);
 begin
   wwDBDateTimePicker1.Enabled:=False;
+end;
+
+procedure THasilSoftConesFrm.wwDBDateTimePicker1Change(Sender: TObject);
+begin
+  QProc_getStok.Close;
+  QProc_getStok.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QProc_getStok.SetVariable('ptgl2', QMasterTGL.AsDateTime);
+  QProc_getStok.Execute;
+end;
+
+procedure THasilSoftConesFrm.QMasterTGLChange(Sender: TField);
+begin
+  QProc_getStok.Close;
+  QProc_getStok.SetVariable('ptgl', QMasterTGL.AsDateTime);
+  QProc_getStok.SetVariable('ptgl2', QMasterTGL.AsDateTime);
+  QProc_getStok.Execute;
+  //ShowMessage(QProc_getStok.SQL.Text);
+end;
+
+procedure THasilSoftConesFrm.QItemNewBeforeQuery(Sender: TOracleDataSet);
+begin
+  QItemNew.SetVariable('pkd_benang', QLokasiKD_BENANG.AsString);
+  QItemNew.SetVariable('pibukti', QMasterIBUKTI.AsInteger);
 end;
 
 end.

@@ -313,6 +313,18 @@ type
     ppDBMemo4: TppDBMemo;
     ppDBQDetailppField19: TppField;
     Label20: TLabel;
+    QNewItems: TOracleDataSet;
+    QNewItemsNAMA_ITEM: TStringField;
+    QNewItemsKD_ITEM: TStringField;
+    QNewItemsRASIO: TFloatField;
+    QNewItemsKD_WARNA: TStringField;
+    QNewItemsWARNA: TStringField;
+    QNewItemsNO_BATCH: TStringField;
+    QNewItemsQTY: TFloatField;
+    QNewItemsQTY2: TFloatField;
+    QNewItemsSATUAN: TStringField;
+    QNewItemsKD_SUB_LOKASI: TStringField;
+    LookWarna: TwwDBLookupComboDlg;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure BtnExportClick(Sender: TObject);
@@ -367,6 +379,9 @@ type
     procedure LookItemUserButton1Click(Sender: TObject;
       LookupTable: TDataSet);
     procedure QMasterAfterDelete(DataSet: TDataSet);
+    procedure LookWarnaEnter(Sender: TObject);
+    procedure LookWarnaCloseUp(Sender: TObject; LookupTable,
+      FillTable: TDataSet; modified: Boolean);
   private
     { Private declarations }
     vshift, vgrup, vorder, SelectedFont, vkode, vjns_brg, vjns_lokasi : String;
@@ -786,6 +801,8 @@ begin
 ////////////////////////////RRREEEVIIIEEEWWWWWWWWWWWWWWWW STOK DALAM PROSES KERING
 ////////////////////////////RRREEEVIIIEEEWWWWWWWWWWWWWWWW STOK DALAM HASIL PROSES KERING
 
+
+ {
  if wwDBDateTimePicker1.Date >= StrToDate('01/01/2017') then
  begin
     QItem.DeclareVariable('vjns_brg',otString);
@@ -793,7 +810,6 @@ begin
     QItem.DeclareVariable('TGL',otDate);
     QItem.DeclareVariable('myparam',otSubst);
     QItem.Close;
-    {
     QItem.SQL.Text:='SELECT * FROM (select kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
                     ' kd_warna, warna, no_batch, sum(nvl(qty,0)) as qty, sum(nvl(qty2,0)) as qty2'+
                     ' from ipisma_db3.vlook_koreksi_hsl_celup_kering t'+
@@ -801,14 +817,6 @@ begin
                     ' group by kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi ,kd_warna, warna, no_batch'+
                     ' order by nama_item, warna, no_batch '+  //190523
                     ') WHERE (ROUND(nvl(qty,0),6)+ROUND(nvl(qty2,0),6))<>0';
-    }
-
-    QItem.SQL.Text:='SELECT * FROM (select kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi,'+
-                    ' kd_warna, warna, no_batch, sum(nvl(qty,0)) as qty, sum(nvl(qty2,0)) as qty2'+
-                    ' from ipisma_db3.vlook_koreksi_hsl_celup_kering t'+
-                    ' where kd_jns_item=:vjns_brg and kd_lokasi=:vjns_lokasi and tgl<=:tgl :myparam'+
-                    ' group by kd_item, nama_item, kd_satuan, rasio, satuan, kd_jns_item, kd_lokasi, kd_sub_lokasi ,kd_warna, warna, no_batch'+
-                    ' order by nama_item, warna, no_batch)';
 
     QItem.SetVariable('vjns_brg',vjns_brg);
     QItem.SetVariable('vjns_lokasi',vjns_lokasi);
@@ -836,6 +844,21 @@ begin
     //ShowMessage(QItem.SQL.Text);
     QItem.Open;
  end;
+ }
+
+ QNewItems.Close;
+ if QMasterNO_RESEP.AsString='KOREKSI3' then
+ begin
+    QNewItems.SetVariable('vkd_sub_lokasi', '22-10000');
+    QNewItems.SetVariable('vkd_jns_item', '21');
+ end;
+
+  if QMasterNO_RESEP.AsString='KOREKSI4' then
+ begin
+    QNewItems.SetVariable('vkd_sub_lokasi', '22-00000');
+    QNewItems.SetVariable('vkd_jns_item', '22');
+ end;
+ QNewItems.Open;
 end;
 
 procedure TPermintaanKoreksiCelupFrm.QMasterBeforeDelete(DataSet: TDataSet);
@@ -944,6 +967,7 @@ end;
 procedure TPermintaanKoreksiCelupFrm.LookItemCloseUp(Sender: TObject; LookupTable,
   FillTable: TDataSet; modified: Boolean);
 begin
+  {
   if modified then
   begin
     QDetailKETERANGAN.AsString:=QItemNAMA_ITEM.AsString;
@@ -964,11 +988,35 @@ begin
       QDetailKD_SUB_LOKASI.AsString:=QItemKD_SUB_LOKASI.AsString;
     end;
 
-//    if QItemQTY2.AsFloat>0 then
-    QDetailRASIO.AsFloat:=QItemRASIO.AsFloat; //QItemQTY.AsFloat/QItemQTY2.AsFloat;
+    QDetailRASIO.AsFloat:=QItemRASIO.AsFloat;
     QDetailKD_WARNA.AsString:=QItemKD_WARNA.AsString;
     QDetailNO_BATCH.AsString:=QItemNO_BATCH.AsString;
-    
+  end;
+  }
+
+  if modified then
+  begin
+    QDetailKETERANGAN.AsString:=QNewItemsNAMA_ITEM.AsString;
+    QDetailQTY1.AsFloat:=QNewItemsQTY.AsFloat;
+    QDetailQTY6.AsFloat:=QNewItemsQTY2.AsFloat;
+
+    if QMasterNO_RESEP.AsString='KOREKSI1' then
+    begin
+      QDetailKD_SUB_LOKASI.AsString:='21-10000';
+    end
+    else
+    if QMasterNO_RESEP.AsString='KOREKSI3' then
+    begin
+      QDetailKD_SUB_LOKASI.AsString:='22-10000';
+    end
+    else
+    begin
+      QDetailKD_SUB_LOKASI.AsString:=QNewItemsKD_SUB_LOKASI.AsString;
+    end;
+
+    QDetailRASIO.AsFloat:=QNewItemsRASIO.AsFloat;
+    QDetailKD_WARNA.AsString:=QNewItemsKD_WARNA.AsString;
+    QDetailNO_BATCH.AsString:=QNewItemsNO_BATCH.AsString;
   end;
 end;
 
@@ -1077,14 +1125,22 @@ procedure TPermintaanKoreksiCelupFrm.LookItemUserButton1Click(
 var
   vfilter : string ;
 begin
-  if InputQuery('Filter','Filter : ',vfilter) then
+{  if InputQuery('Filter','Filter : ',vfilter) then
   begin
     QItem.Close;
     QItem.SetVariable('myparam',' and (warna like upper(''%'+vfilter+
       '%'')'+ ' or upper(nama_item) like upper(''%'+vfilter+'%'')'+
       ' or upper(no_batch) like upper(''%'+vfilter+'%'')'+')');
     QItem.Open;
+  end;}
+
+  if InputQuery('Filter','Filter : ',vfilter) then
+  begin
+    QNewItems.Close;
+    QNewItems.SetVariable('myparam',' and upper(nama_item) like upper(''%'+vfilter+'%'')');
+    QNewItems.Open;
   end;
+
 end;
 
 procedure TPermintaanKoreksiCelupFrm.QMasterAfterDelete(DataSet: TDataSet);
@@ -1092,6 +1148,19 @@ begin
   wwDBDateTimePicker1.Enabled:=False;
   wwDBComboBox3.Enabled:=False;
 
+end;
+
+procedure TPermintaanKoreksiCelupFrm.LookWarnaEnter(Sender: TObject);
+begin
+  DMFrm.QWarna.Close;
+  DMFrm.QWarna.SetVariable('myparam','ipisma_db3.warna_baru a');
+  DMFrm.QWarna.Open;
+end;
+
+procedure TPermintaanKoreksiCelupFrm.LookWarnaCloseUp(Sender: TObject;
+  LookupTable, FillTable: TDataSet; modified: Boolean);
+begin
+  QDetailWARNA.AsString:=DMFrm.QWarnaWARNA.AsString;
 end;
 
 end.

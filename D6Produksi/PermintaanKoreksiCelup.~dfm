@@ -1,8 +1,9 @@
 object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
-  Left = 280
-  Top = 114
+  Left = 288
+  Top = 129
   Width = 1011
   Height = 606
+  ActiveControl = LookItem
   Caption = 'Koreksi'
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -404,21 +405,17 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
             Height = 228
             ControlType.Strings = (
               'KD_ITEM;CustomEdit;LookItem;F'
-              'KD_SUB_LOKASI2;CustomEdit;LookLokasi2;F')
+              'KD_SUB_LOKASI2;CustomEdit;LookLokasi2;F'
+              'KD_WARNA;CustomEdit;LookWarna;F')
             Selected.Strings = (
               'KD_ITEM'#9'14'#9'KODE'#9'F'
               'KETERANGAN'#9'30'#9'ITEM'#9'T'
               'RASIO'#9'7'#9'RASIO'#9'T'
-              'KD_WARNA'#9'6'#9'Kode'#9'T'#9'WARNA'
+              'KD_WARNA'#9'6'#9'Kode'#9'F'#9'WARNA'
               'WARNA'#9'20'#9#9'T'#9'WARNA'
-              'NO_BATCH'#9'10'#9'NO BATCH'#9'T'
-              'KD_SUB_LOKASI'#9'12'#9'Lokasi'#9'T'#9'AWAL'
-              'QTY1'#9'8'#9'Kg'#9'T'#9'AWAL'
-              'QTY6'#9'6'#9'Pcs'#9'T'#9'AWAL'
+              'NO_BATCH'#9'10'#9'NO BATCH'#9'F'
               'QTY4'#9'10'#9'Kg'#9'F'#9'IN (OUT)'
               'QTY5'#9'5'#9'Pcs'#9'F'#9'IN (OUT)'
-              'QTY2'#9'8'#9'Kg'#9'T'#9'AKHIR'
-              'QTY7'#9'6'#9'Pcs'#9'T'#9'AKHIR'
               'KD_ITEM2'#9'14'#9'NO LOT'#9'F')
             IniAttributes.Enabled = True
             IniAttributes.SaveToRegistry = True
@@ -481,7 +478,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
               'QTY2'#9'15'#9'PCS'#9'F')
             DataField = 'KD_ITEM'
             DataSource = dsQDetail
-            LookupTable = QItem
+            LookupTable = QNewItems
             LookupField = 'KD_ITEM'
             TabOrder = 1
             AutoDropDown = True
@@ -489,6 +486,33 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
             AllowClearKey = False
             OnCloseUp = LookItemCloseUp
             OnEnter = LookItemEnter
+          end
+          object LookWarna: TwwDBLookupComboDlg
+            Left = 456
+            Top = 96
+            Width = 121
+            Height = 19
+            GridOptions = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgPerfectRowFit]
+            GridColor = clWhite
+            GridTitleAlignment = taLeftJustify
+            Caption = 'Lookup'
+            MaxWidth = 0
+            MaxHeight = 209
+            Selected.Strings = (
+              'WARNA'#9'30'#9'WARNA'#9'F'
+              'KD_WARNA'#9'6'#9'KODE'#9'F')
+            DataField = 'KD_WARNA'
+            DataSource = dsQDetail
+            LookupTable = DMFrm.QWarna
+            LookupField = 'KD_WARNA'
+            Style = csDropDownList
+            TabOrder = 2
+            Visible = False
+            AutoDropDown = False
+            ShowButton = True
+            AllowClearKey = False
+            OnCloseUp = LookWarnaCloseUp
+            OnEnter = LookWarnaEnter
           end
         end
         object PanelFooter1: TPanel
@@ -1199,7 +1223,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -2766,7 +2790,7 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     object QDetailWARNA: TStringField
       FieldKind = fkLookup
       FieldName = 'WARNA'
-      LookupDataSet = QItem
+      LookupDataSet = QNewItems
       LookupKeyFields = 'KD_WARNA'
       LookupResultField = 'WARNA'
       KeyFields = 'KD_WARNA'
@@ -4928,8 +4952,8 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     QueryAllRecords = False
     Session = DMFrm.OS
     BeforeOpen = QItemBeforeOpen
-    Left = 184
-    Top = 360
+    Left = 192
+    Top = 320
     object QItemNAMA_ITEM: TStringField
       DisplayLabel = 'NAMA ITEM'
       DisplayWidth = 35
@@ -5005,13 +5029,86 @@ object PermintaanKoreksiCelupFrm: TPermintaanKoreksiCelupFrm
     Cursor = crSQLWait
     QueryAllRecords = False
     Session = DMFrm.OS
-    Left = 245
-    Top = 401
+    Left = 261
+    Top = 385
     object QTotalPCS: TFloatField
       FieldName = 'PCS'
     end
     object QTotalKG: TFloatField
       FieldName = 'KG'
+    end
+  end
+  object QNewItems: TOracleDataSet
+    SQL.Strings = (
+      'select'
+      
+        '  nama_item, kd_item, rasio, kd_warna, '#39#39' as warna, '#39#39' as no_bat' +
+        'ch,'
+      
+        '  0 as qty, 0 as qty2, kd_satuan as satuan, :vkd_sub_lokasi as k' +
+        'd_sub_lokasi'
+      'from ipisma_db3.item'
+      'where kd_jns_item = :vkd_jns_item and isjasa = '#39'1'#39
+      ':myparam'
+      'order by nama_item')
+    Variables.Data = {
+      03000000030000000D0000003A564B445F4A4E535F4954454D05000000030000
+      00333000000000000F0000003A564B445F5355425F4C4F4B4153490500000009
+      00000032322D30303030300000000000080000003A4D59504152414D01000000
+      0000000000000000}
+    QBEDefinition.QBEFieldDefs = {
+      040000000A000000070000004B445F4954454D010000000000090000004E414D
+      415F4954454D0100000000000600000053415455414E0100000000000D000000
+      4B445F5355425F4C4F4B41534901000000000003000000515459010000000000
+      05000000524153494F010000000000080000004B445F5741524E410100000000
+      00080000004E4F5F424154434801000000000004000000515459320100000000
+      00050000005741524E41010000000000}
+    Cursor = crSQLWait
+    ReadOnly = True
+    QueryAllRecords = False
+    Session = DMFrm.OS
+    BeforeOpen = QItemBeforeOpen
+    Left = 304
+    Top = 328
+    object QNewItemsNAMA_ITEM: TStringField
+      FieldName = 'NAMA_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QNewItemsKD_ITEM: TStringField
+      FieldName = 'KD_ITEM'
+      Required = True
+      Size = 50
+    end
+    object QNewItemsRASIO: TFloatField
+      FieldName = 'RASIO'
+    end
+    object QNewItemsKD_WARNA: TStringField
+      FieldName = 'KD_WARNA'
+      Size = 6
+    end
+    object QNewItemsWARNA: TStringField
+      FieldName = 'WARNA'
+      Size = 1
+    end
+    object QNewItemsNO_BATCH: TStringField
+      FieldName = 'NO_BATCH'
+      Size = 1
+    end
+    object QNewItemsQTY: TFloatField
+      FieldName = 'QTY'
+    end
+    object QNewItemsQTY2: TFloatField
+      FieldName = 'QTY2'
+    end
+    object QNewItemsSATUAN: TStringField
+      FieldName = 'SATUAN'
+      Required = True
+      Size = 2
+    end
+    object QNewItemsKD_SUB_LOKASI: TStringField
+      FieldName = 'KD_SUB_LOKASI'
+      Size = 4000
     end
   end
 end

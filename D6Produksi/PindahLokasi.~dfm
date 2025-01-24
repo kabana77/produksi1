@@ -79,7 +79,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
       Top = 76
       Width = 1135
       Height = 477
-      ActivePage = TabSheet2
+      ActivePage = TabSheet1
       Align = alClient
       Style = tsFlatButtons
       TabOrder = 1
@@ -1202,8 +1202,8 @@ object PindahLokasiFrm: TPindahLokasiFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4 210 x 297 mm'
-    PrinterSetup.PrinterName = 'Default'
+    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
     PrinterSetup.mmMarginLeft = 6350
@@ -1211,7 +1211,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 210000
     PrinterSetup.mmPaperWidth = 297000
-    PrinterSetup.PaperSize = 9
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\ts.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
@@ -1235,8 +1235,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
     RTFSettings.DefaultFont.Style = []
     TextSearchSettings.DefaultString = '<FindText>'
     TextSearchSettings.Enabled = False
-    Left = 952
-    Top = 8
+    Left = 984
     Version = '12.03'
     mmColumnWidth = 197300
     DataPipelineName = 'ppDBQBrowseDetail'
@@ -2217,7 +2216,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
     DataSource = dsQBrowse
     OpenDataSource = False
     UserName = 'DBQBrowseDetail'
-    Left = 920
+    Left = 928
     Top = 8
     object ppDBQBrowseDetailppField1: TppField
       FieldAlias = 'NO_NOTA'
@@ -2622,7 +2621,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
     DataPipeline = ppDBQDetail
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'myA5'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -2631,7 +2630,7 @@ object PindahLokasiFrm: TPindahLokasiFrm
     PrinterSetup.mmMarginTop = 6350
     PrinterSetup.mmPaperHeight = 139700
     PrinterSetup.mmPaperWidth = 210000
-    PrinterSetup.PaperSize = 10000
+    PrinterSetup.PaperSize = 256
     Template.FileName = 'D:\_Proyek\iPismaTex\Aplikasi\Report\TransaksiOrgBukti.rtm'
     Units = utMillimeters
     DeviceType = 'Screen'
