@@ -438,11 +438,18 @@ object DMFrm: TDMFrm
   end
   object QUser: TOracleDataSet
     SQL.Strings = (
+      'select a.*, b.nama_divisi'
+      'from ipisma_db3.vuser a'
+      'left join ipisma_db3.divisi b on a.kd_div=b.kd_div'
+      'where a.vuser=:vuser'
+      ''
       
-        'select a.*, b.nama_divisi from ipisma_db3.vuser a, ipisma_db3.di' +
-        'visi b'
-      'where a.kd_div=b.kd_div and a.vuser=:vuser')
-    Variables.Data = {0300000001000000060000003A5655534552050000000000000000000000}
+        '/*select a.*, b.nama_divisi from ipisma_db3.vuser a, ipisma_db3.' +
+        'divisi b'
+      'where a.kd_div=b.kd_div and a.vuser=:vuser*/')
+    Variables.Data = {
+      0300000001000000060000003A5655534552050000000B0000004A554D48414E
+      5F4943540000000000}
     QBEDefinition.QBEFieldDefs = {
       0400000006000000040000005449504501000000000005000000565553455201
       0000000000060000004B445F4449560100000000000B0000004E414D415F4449

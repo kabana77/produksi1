@@ -276,6 +276,7 @@ begin
         DMFrm.QUserTime.Close;
         DMFrm.QUserTime.Open;
         DMFrm.QUser.Close;
+        DMFrm.QUser.SetVariable('vuser', UpperCase(DMFrm.OS.LogonUsername));
         DMFrm.QUser.Open;
         DMFrm.QDateTime.Close;
         DMFrm.QDateTime.Open;
@@ -317,6 +318,10 @@ begin
             end
           end;
         end;
+
+        //ShowMessage('Tgl Aplilkasi : '+vtgl_aplikasi);
+        //ShowMessage('Username : '+DMFrm.QUserVUSER.AsString+' - '+DMFrm.QUserIUPDATE.AsString);
+
 
         { auto kill after 1 min idle  }
         InactivityTimer := TTimer.Create(Self);

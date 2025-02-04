@@ -1,6 +1,6 @@
 object InfoMutasiGWFrm: TInfoMutasiGWFrm
-  Left = 204
-  Top = 62
+  Left = 184
+  Top = 116
   Width = 1100
   Height = 606
   Caption = 'InfoMutasiGW 1'
@@ -554,7 +554,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
             Width = 401
             Height = 19
             TabOrder = 6
-            Text = 'kd_item, jns_benang'
+            Text = 'NAMA_ITEM, KD_ITEM'
           end
         end
       end
@@ -1030,7 +1030,7 @@ object InfoMutasiGWFrm: TInfoMutasiGWFrm
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'Custom'
     PrinterSetup.PrinterName = 'Fax'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350

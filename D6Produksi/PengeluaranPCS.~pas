@@ -1236,7 +1236,7 @@ end;
 
 procedure TPengeluaranPCSFrm.QDetailNewRecord(DataSet: TDataSet);
 begin
-  QDetailNO_BUKTI.AsString:=vresep;
+  //QDetailNO_BUKTI.AsString:=vresep;
   QDetailSTATUS.AsString:=varah;
 
   QDetailQTY8.AsFloat:=0;
@@ -1418,8 +1418,13 @@ end;
 
 procedure TPengeluaranPCSFrm.LookResepEnter(Sender: TObject);
 begin
-//  DMFrm.QResep.Open;
+  {QResep.Close;
+  QResep.Open;}
+
   QResep.Close;
+  QResep.SetVariable('myparam',' (no_resep is not null) ');
+  QResep.SetVariable('pnama_item', QDetailKD_SUB_KEL.AsString);
+  QResep.SetVariable('pkd_warna', QDetailKD_warna.AsString);
   QResep.Open;
 end;
 
@@ -1510,8 +1515,17 @@ begin
 QResep.Open;
   if InputQuery('Filter','Filter : ',vfilter)then
   begin
+    {
     QResep.Close;
-    QResep.SetVariable('myparam',' (no_resep like ''%'+vfilter+'%'')');
+    QResep.SetVariable('myparam',' (no_resep like ''%'+vfilter+'%'') ');
+    QResep.Open;
+    }
+
+    QResep.Close;
+    QResep.SetVariable('myparam',' (no_resep like ''%'+vfilter+'%'') ');
+    QResep.SetVariable('pnama_item', QDetailKD_SUB_KEL.AsString);
+    QResep.SetVariable('pkd_warna', QDetailKD_warna.AsString);
+    ShowMessage(QResep.SQL.Text);
     QResep.Open;
   end;
 
